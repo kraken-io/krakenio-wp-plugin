@@ -6,7 +6,7 @@ Both lossless and lossy optimization modes are supported. Supported filetypes ar
 
  - All image uploaded throught the media uploader are optimized on-the-fly. All generated thumbnails are optimized too.
  - All images already present in the media library can be optimized individually.
- - This plugin not require any root or command-line access. No compilation and installation of any binaries is necessary. 
+ - This plugin does not require any root or command-line access. No compilation and installation of any binaries is necessary. 
  - All optimization is carried out by sending images to Kraken.io's infrastructure, and downloading the optimized files to your Wordpress installation.
  - To use this plugin, you must obtain an API key and secret from [Kraken.io](https://kraken.io)
 
