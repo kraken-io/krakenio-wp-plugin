@@ -9,7 +9,7 @@ Optimize new and existing Wordpress image uploads through [Kraken Image Optimize
  - All optimization is carried out by sending images to Kraken.io's infrastructure, and downloading the optimized files to your Wordpress installation.
 
 
-**This is not currently hosted on Wordpress. You must clone this repository in your wp-content/plugins folder, or upload the zipped contents of this repository to your Wordpress blog (Plugins -> Add New -> Upload Zip_)**
+**This is not currently hosted on Wordpress. You must clone this repository in your wp-content/plugins folder, or upload the zipped contents of this repository to your Wordpress blog (Plugins -> Add New -> Upload Zip)**
 
 
 To use this plugin, you must obtain an API key and secret from [Kraken.io!](https://kraken.io)
