@@ -14,7 +14,8 @@ Optimize new and existing Wordpress image uploads through [Kraken Image Optimize
 
 To use this plugin, you must obtain an API key and secret from [Kraken.io!](https://kraken.io)
 
-Once you have obtained your credentials, go to Settings->Media. The Kraken Wordpress plugin adds a section to the bottom where you can enter your API credentials, and select your Optimization preferences. Once you have done this, click "Save". If everything is in order, it will simply say "settings saved" and give you a reassuring green tick in the Kraken.io settings section.
+Once you have obtained your credentials, from your Wordpress admin, go to Settings->Media. 
+The Kraken Wordpress plugin adds a **Kraken.io Settings** section to the bottom of the page, from where you can enter your API credentials, and select your Optimization preferences. Once you have done this, click "Save". If everything is in order, it will simply say "settings saved" and give you a reassuring green tick in the Kraken.io settings section.
 
 
 
