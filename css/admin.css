@@ -1,0 +1,112 @@
+.head_cell{
+	float:left;
+	width:10em;
+	height: 20px;
+	background-color:#F0F0F0;
+	padding-top: 5px;
+}
+.head_file_name{
+	float:left;
+	width:30em;
+	height: 20px;
+	background-color:#F0F0F0;
+	padding-top: 5px;
+	padding-left: 2px;
+}
+.item_cell{
+	float:left;
+	width:10em;
+	height: 20px;
+	background-color:#F8F8F8 ;
+	padding-top: 5px;
+	margin-top: 5px;
+}
+.item_file_name{
+	float:left;
+	width:30em;
+	height: 20px;
+	background-color:#F8F8F8 ;
+	padding-top: 5px;
+	padding-left: 2px;
+	margin-top: 5px;
+}
+.head_row{
+	
+}
+#kraken_loading{
+	float: left;
+	clear: left;
+}
+
+.kraken_req {
+	//float: left;
+	border: 1px solid #efab00;
+	color: #222;
+	padding: 3px 8px 4px;
+	font-size: 11px;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+	background: #ffc942;
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#ffc942),to(#efab00));
+	background-image: -webkit-linear-gradient(top,#ffc942,#efab00);
+	background-image: -moz-linear-gradient(top,#ffc942,#efab00);
+	background-image: -o-linear-gradient(top,#ffc942,#efab00);
+	background-image: linear-gradient(to bottom,#ffc942,#efab00);
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.buttonWrap {
+	position: relative;
+}
+
+.apiValid {
+	left: 0;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	top: 3px;
+	position: absolute;
+}
+
+.apiInvalid {
+	left: 0;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	top: 2px;
+	position: absolute;
+}
+
+p.apiStatus {
+	padding-left: 26px;
+	position: relative;
+	width: 400px;
+}
+
+.krakenSpinner {
+	display: none;
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	top: 5px;
+	//left: 425px;
+	background: url('https://kraken.r.worldssl.net/assets/images/spinner.gif') no-repeat 0 0;
+}
+
+.krakenErrorWrap {
+	margin-top: 10px;
+	margin-bottom: 4px;
+}
+
+.noSavings {
+	margin-left: 2px;
+}
+
+.krakenError {
+	margin-left: 2px;
+	font-weight: bold;
+	color: #dd3d36;
+}
