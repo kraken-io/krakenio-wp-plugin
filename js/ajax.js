@@ -57,9 +57,9 @@ jQuery(document).ready(function ($) {
 	,
 
 	requestSuccess = function (data, textStatus, jqXHR) {
-
 		var $button = $(this)
-		,	$parent = $(this).parent();
+		,	$parent = $(this).parent()
+		,	$cell = $(this).closest("td");
 
 		if (data.success && typeof data.error === 'undefined') {
 			
@@ -73,13 +73,13 @@ jQuery(document).ready(function ($) {
 			,	$originalSizeColumn = $(this).parent().prev("td.original_size");
 
 			$parent.fadeOut("fast", function () {
+				$cell.find(".noSavings, .krakenErrorWrap").remove();
 				$(this).replaceWith('<strong>' + krakedSize + '</strong><br /><small>Type:&nbsp;' + type + '</small><br /><small>Savings: ' + savingsPercent + '</small>');
 				$originalSizeColumn.html(originalSize);
 				$parent.remove();
 			});
 
 		} else if (data.error) {
-			console.log("ERROR", data.error);
 
 			var $error = $(errorTpl).attr("title", data.error);
 
