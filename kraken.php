@@ -23,7 +23,9 @@
  * Author: Karim Salman
  * Version: 1.0
  * Author URI: https://kraken.io
+ * License GPL2
  */
+
 
 if (!class_exists('Wp_Kraken')) {
 
