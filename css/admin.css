@@ -30,16 +30,11 @@
 	padding-left: 2px;
 	margin-top: 5px;
 }
-.head_row{
-	
-}
 #kraken_loading{
 	float: left;
 	clear: left;
 }
-
 .kraken_req {
-	//float: left;
 	border: 1px solid #efab00;
 	color: #222;
 	padding: 3px 8px 4px;
@@ -57,11 +52,9 @@
 	cursor: pointer;
 	font-weight: bold;
 }
-
 .buttonWrap {
 	position: relative;
 }
-
 .apiValid {
 	left: 0;
 	display: inline-block;
@@ -70,7 +63,6 @@
 	top: 3px;
 	position: absolute;
 }
-
 .apiInvalid {
 	left: 0;
 	display: inline-block;
@@ -79,32 +71,26 @@
 	top: 2px;
 	position: absolute;
 }
-
 p.apiStatus {
 	padding-left: 26px;
 	position: relative;
 	width: 400px;
 }
-
 .krakenSpinner {
 	display: none;
 	position: absolute;
 	width: 16px;
 	height: 16px;
 	top: 5px;
-	//left: 425px;
 	background: url('https://kraken.r.worldssl.net/assets/images/spinner.gif') no-repeat 0 0;
 }
-
 .krakenErrorWrap {
 	margin-top: 10px;
 	margin-bottom: 4px;
 }
-
 .noSavings {
 	margin-left: 2px;
 }
-
 .krakenError {
 	margin-left: 2px;
 	font-weight: bold;

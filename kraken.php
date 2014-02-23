@@ -33,12 +33,12 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 		
 		private $id;
 
-		private $krakenSettings = array();
+		private $kraken_settings = array();
 
 		function __construct() {
 			$plugin_dir_path = dirname( __FILE__ );
 			require_once( $plugin_dir_path . '/lib/Kraken.php' );
-			$this->krakenSettings = get_option( '_kraken_options' );
+			$this->kraken_settings = get_option( '_kraken_options' );
 			add_action( 'admin_init', array( &$this, 'admin_init' ) );
 			add_action( 'admin_enqueue_scripts', array( &$this, 'my_enqueue' ) );
 			add_action( 'wp_ajax_kraken_request', array( &$this, 'kraken_media_library_ajax_callback' ) );
@@ -95,7 +95,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 			
 		}
 
-		function my_enqueue($hook) {
+		function my_enqueue( $hook ) {
 			wp_enqueue_script( 'jquery' );
 			wp_enqueue_script( 'tipsy-js', plugins_url( '/js/jquery.tipsy.js', __FILE__ ), array( 'jquery' ) );
 			wp_enqueue_script( 'ajax-script', plugins_url( '/js/ajax.js', __FILE__ ), array( 'jquery' ) );
@@ -104,7 +104,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 			wp_localize_script( 'ajax-script', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 		}
 
-		function checkApiStatus($apiKey, $apiSecret) {
+		function get_api_status( $api_key, $api_secret ) {
 
 			/*  Possible API Status Errors:
 			 * 
@@ -115,8 +115,8 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 			 * 'API Key and API Secret mismatch'
 			 */
 
-			if ( !empty( $apiKey ) && !empty( $apiSecret ) ) {
-				$kraken = new Kraken( $apiKey, $apiSecret );
+			if ( !empty( $api_key ) && !empty( $api_secret ) ) {
+				$kraken = new Kraken( $api_key, $api_secret );
 				$status = $kraken->status();
 				return $status;
 			}
@@ -128,26 +128,26 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 		 */
 		function kraken_media_library_ajax_callback() {
 
-			$imageId = (int) $_POST['id'];
+			$image_id = (int) $_POST['id'];
 
-			if ( wp_attachment_is_image( $imageId ) ) {	
+			if ( wp_attachment_is_image( $image_id ) ) {	
 
-				$imageUrl = wp_get_attachment_url( $imageId );
-				$imagePath = get_attached_file( $imageId );
+				$imageUrl = wp_get_attachment_url( $image_id );
+				$image_path = get_attached_file( $image_id );
 
-				$settings = $this->krakenSettings;
+				$settings = $this->kraken_settings;
 
-				$apiKey = isset( $settings['api_key'] ) ? $settings['api_key'] : '';
-				$apiSecret = isset( $settings['api_secret'] ) ? $settings['api_secret'] : '';
+				$api_key = isset( $settings['api_key'] ) ? $settings['api_key'] : '';
+				$api_secret = isset( $settings['api_secret'] ) ? $settings['api_secret'] : '';
 
-				$status = $this->checkApiStatus( $apiKey, $apiSecret );
+				$status = $this->get_api_status( $api_key, $api_secret );
 	
 
 				if ( $status === false ) {
 
 					// TODO: Update older error messages stored in WP Post Meta
 					$kv['error'] = 'There is a problem with your credentials. Please check them in the Kraken.io settings section of Media Settings, and try again.';
-					update_post_meta( $imageId, '_kraken_size', $kv );
+					update_post_meta( $image_id, '_kraken_size', $kv );
 					echo json_encode( array( 'error' => $kv['error'] ) );
 					exit;
 				}
@@ -165,25 +165,25 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 				if ( $result['success'] == true && !isset( $result['error'] ) ) {
 
 					$kraked_url = $result['kraked_url'];
-					$savingsPercent = (int) $result['saved_bytes'] / (int) $result['original_size'] * 100;
+					$savings_percentage = (int) $result['saved_bytes'] / (int) $result['original_size'] * 100;
 					$kv['original_size'] = self::pretty_kb( $result['original_size'] );
 					$kv['kraked_size'] = self::pretty_kb( $result['kraked_size'] );
 					$kv['saved_bytes'] = self::pretty_kb( $result['saved_bytes'] );
-					$kv['savings_percent'] = round( $savingsPercent, 2 ) . '%';
+					$kv['savings_percent'] = round( $savings_percentage, 2 ) . '%';
 					$kv['type'] = $result['type'];
 					$kv['success'] = true;
-					$kv['meta'] = wp_get_attachment_metadata( $imageId );
+					$kv['meta'] = wp_get_attachment_metadata( $image_id );
 
-					if ( $this->replace_image( $imagePath, $kraked_url ) ) {
-						update_post_meta( $imageId, '_kraken_size', $kv );	
+					if ( $this->replace_image( $image_path, $kraked_url ) ) {
+						update_post_meta( $image_id, '_kraken_size', $kv );	
 						echo json_encode( $kv );
 					}
 				} else {
 
 					// error or no optimization
-					if ( file_exists( $imagePath ) ) {
+					if ( file_exists( $image_path ) ) {
 
-						$kv['original_size'] = self::pretty_kb( filesize( $imagePath ) );
+						$kv['original_size'] = self::pretty_kb( filesize( $image_path ) );
 						$kv['error'] = $result['error'];
 						$kv['type'] = $result['type'];
 
@@ -192,7 +192,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 							$kv['no_savings'] = true;
 						}
 
-						update_post_meta( $imageId, '_kraken_size', $kv );
+						update_post_meta( $image_id, '_kraken_size', $kv );
 
 					} else {
 						// file not found
@@ -206,39 +206,39 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 		/** 
 		 *  Handles optimizing images uploaded through any of the media uploaders.
 		 */
-		function kraken_media_uploader_callback( $imageId ) {
+		function kraken_media_uploader_callback( $image_id ) {
 
-			$this->id = $imageId;
+			$this->id = $image_id;
 
-			if ( wp_attachment_is_image( $imageId ) ) {	
+			if ( wp_attachment_is_image( $image_id ) ) {	
 
-				$imageUrl = wp_get_attachment_url( $imageId );
-				$imagePath = get_attached_file( $imageId );
+				$imageUrl = wp_get_attachment_url( $image_id );
+				$image_path = get_attached_file( $image_id );
 				$result = $this->optimize_image( $imageUrl );
 
 				if ( $result['success'] == true && !isset( $result['error'] ) ) {
 
 					$kraked_url = $result['kraked_url'];
-					$savingsPercent = (int) $result['saved_bytes'] / (int) $result['original_size'] * 100;
+					$savings_percentage = (int) $result['saved_bytes'] / (int) $result['original_size'] * 100;
 					$kv['original_size'] = self::pretty_kb( $result['original_size'] );
 					$kv['kraked_size'] = self::pretty_kb( $result['kraked_size'] );
 					$kv['saved_bytes'] = self::pretty_kb( $result['saved_bytes'] );
-					$kv['savings_percent'] = round( $savingsPercent, 2 ) . '%';
+					$kv['savings_percent'] = round( $savings_percentage, 2 ) . '%';
 					$kv['type'] = $result['type'];
 					$kv['success'] = true;
-					$kv['meta'] = wp_get_attachment_metadata( $imageId );
+					$kv['meta'] = wp_get_attachment_metadata( $image_id );
 
-					if ( $this->replace_image( $imagePath, $kraked_url ) ) {
-						update_post_meta( $imageId, '_kraken_size', $kv );	
+					if ( $this->replace_image( $image_path, $kraked_url ) ) {
+						update_post_meta( $image_id, '_kraken_size', $kv );	
 					} else {
 						// writing image failed
 					}
 				} else {
 
 					// error or no optimization
-					if ( file_exists( $imagePath ) ) {
+					if ( file_exists( $image_path ) ) {
 
-						$kv['original_size'] = self::pretty_kb( filesize( $imagePath ) );
+						$kv['original_size'] = self::pretty_kb( filesize( $image_path ) );
 						$kv['error'] = $result['error'];
 						$kv['type'] = $result['type'];
 
@@ -247,7 +247,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 							$kv['no_savings'] = true;
 						}
 
-						update_post_meta( $imageId, '_kraken_size', $kv );
+						update_post_meta( $image_id, '_kraken_size', $kv );
 
 					} else {
 						// file not found
@@ -258,12 +258,12 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 
 		function show_credentials_validity() {
 
-			$settings = $this->krakenSettings;
+			$settings = $this->kraken_settings;
 
-			$apiKey = isset( $settings['api_key'] ) ? $settings['api_key'] : '';
-			$apiSecret = isset( $settings['api_secret'] ) ? $settings['api_secret'] : '';
+			$api_key = isset( $settings['api_key'] ) ? $settings['api_key'] : '';
+			$api_secret = isset( $settings['api_secret'] ) ? $settings['api_secret'] : '';
 
-			$status = $this->checkApiStatus( $apiKey, $apiSecret );
+			$status = $this->get_api_status( $api_key, $api_secret );
 			$url = admin_url() . 'images/';
 
 			if ( $status !== false && isset( $status['active'] ) && $status['active'] === true ) {
@@ -285,7 +285,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 			$error = '';
 			$valid['api_lossy'] = $input['api_lossy'];						
 
-			$status = $this->checkApiStatus( $input['api_key'], $input['api_secret'] );
+			$status = $this->get_api_status( $input['api_key'], $input['api_secret'] );
 
 			if ( $status !== false ) {
 
@@ -317,7 +317,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 		}
 
 		function show_api_key() {
-			$settings = $this->krakenSettings;
+			$settings = $this->kraken_settings;
 			$value = isset( $settings['api_key'] ) ? $settings['api_key'] : '';
 			?>
 				<input id='kraken_api_key' name='_kraken_options[api_key]'
@@ -326,7 +326,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 		}
 		
 		function show_api_secret() {
-			$settings = $this->krakenSettings;
+			$settings = $this->kraken_settings;
 			$value = isset( $settings['api_secret'] ) ? $settings['api_secret'] : '';
 			?>
 				<input id='kraken_api_secret' name='_kraken_options[api_secret]'
@@ -349,8 +349,8 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 				
 		function fill_media_columns( $column_name, $id ) {
 			
-			$originalSize = filesize( get_attached_file( $id ) );
-			$originalSize = self::pretty_kb( $originalSize );
+			$original_size = filesize( get_attached_file( $id ) );
+			$original_size = self::pretty_kb( $original_size );
 			switch ( $column_name ) {
 				case 'original_size' :
 					$meta = get_post_meta($id, '_kraken_size', true);
@@ -358,7 +358,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 					if ( isset( $meta['original_size'] ) ) {
 						echo $meta['original_size'];
 					} else {
-						echo $originalSize;
+						echo $original_size;
 					}
 
 				break;
@@ -368,10 +368,10 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 
 					// Is it optimized? Show some stats
 					if ( isset( $meta['kraked_size'] ) && empty( $meta['no_savings'] ) ) {
-						$krakedSize = $meta['kraked_size'];
+						$kraked_size = $meta['kraked_size'];
 						$type = $meta['type'];
-						$savingsPercent = $meta['savings_percent'];
-						echo '<strong>' . $krakedSize .'</strong><br /><small>Type:&nbsp;' . $type . '</small><br /><small>Savings:&nbsp;' . $savingsPercent . '</small>';
+						$savings_percentage = $meta['savings_percent'];
+						echo '<strong>' . $kraked_size .'</strong><br /><small>Type:&nbsp;' . $type . '</small><br /><small>Savings:&nbsp;' . $savings_percentage . '</small>';
 					
 					// Were there no savings, or was there an error?
 					} else {
@@ -397,16 +397,16 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 			return $columns;
 		}
 		
-		function replace_image($imgPath, $krakedUrl) {
+		function replace_image($image_path, $kraked_url) {
 
 			$rv = false;
 			if( ini_get( 'allow_url_fopen' ) ) {
 
-   				$rv = file_put_contents( $imgPath, file_get_contents($krakedUrl) );
+   				$rv = file_put_contents( $image_path, file_get_contents($kraked_url) );
 			
 			} else if ( function_exists('curl_version') ) {
 
-				$ch =  curl_init( $krakedUrl );
+				$ch =  curl_init( $kraked_url );
 				curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 				$result = curl_exec($ch);
 			}		
@@ -415,7 +415,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 
 		function optimize_image($url) {
 
-			$settings = $this->krakenSettings;
+			$settings = $this->kraken_settings;
 			$kraken = new Kraken($settings['api_key'], $settings['api_secret']);
 
 			$lossy = $settings['api_lossy'] === "lossy";
@@ -432,40 +432,40 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 			return $data;
 		}
 
-		function optimize_thumbnails($imageData) {
+		function optimize_thumbnails($image_data) {
 
-			$imageId = $this->id;
-			$uploadDir = wp_upload_dir();
-			$uploadPath = $uploadDir['path'];
-			$uploadUrl = $uploadDir['url'];
+			$image_id = $this->id;
+			$upload_dir = wp_upload_dir();
+			$upload_path = $upload_dir['path'];
+			$upload_url = $upload_dir['url'];
 			
-			if ( isset( $imageData['sizes'] ) ) {
-				$sizes = $imageData['sizes'];
+			if ( isset( $image_data['sizes'] ) ) {
+				$sizes = $image_data['sizes'];
 			}
 
 			if ( !empty( $sizes ) ) {
 				
-				$thumbUrl = '';
-				$thumbPath = '';
+				$thumb_url = '';
+				$thumb_path = '';
 
 				foreach ( $sizes as $size ) {
 					
-					$thumbPath = $uploadPath . '/' . $size['file'];
-					$thumbUrl = $uploadUrl . '/' . $size['file'];
+					$thumb_path = $upload_path . '/' . $size['file'];
+					$thumb_url = $upload_url . '/' . $size['file'];
 			
-					if ( file_exists( $thumbPath ) !== false ) {
-						$result = $this->optimize_image( $thumbUrl );
+					if ( file_exists( $thumb_path ) !== false ) {
+						$result = $this->optimize_image( $thumb_url );
 			
 						if ( !empty($result) && isset($result['success']) && isset( $result['kraked_url'] ) ) {
-							$krakedUrl = $result["kraked_url"];
-							if ( $this->replace_image( $thumbPath, $krakedUrl ) ) {
+							$kraked_url = $result["kraked_url"];
+							if ( $this->replace_image( $thumb_path, $kraked_url ) ) {
 								// file written successfully
 							}
 						}
 					}					
 				}
 			}
-			return $imageData;
+			return $image_data;
 		}
 
 		static function pretty_kb( $bytes ) {
