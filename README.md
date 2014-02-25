@@ -14,12 +14,4 @@ Both lossless and lossy optimization modes are supported. Supported filetypes ar
 Once you have obtained your credentials, from your Wordpress admin, go to Settings->Media. 
 The Kraken Wordpress plugin adds a **Kraken.io Settings** section to the bottom of the page, from where you can enter your API credentials, and select your optimization preferences. Once you have done this, click "Save". If everything is in order, it will simply say "settings saved" and give you a reassuring green tick in the Kraken.io settings section. You can now start optimizing images from within Media Library. Any image you upload from now on will be optimized on-the-fly by Kraken.
 
-Please send bug reports, problems, feature requests and so on to support (at) Kraken dot io.
-
-**This is not currently hosted on Wordpress. You must clone this repository in your wp-content/plugins folder, or upload the zipped contents of this repository to your Wordpress blog (Plugins -> Add New -> Upload Zip)**
-
-
-
-
-
-
+Please send bug reports, problems, feature requests and so on to support (at) kraken (dot) io
