@@ -474,4 +474,4 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 	}
 }
 
-new Wp_Kraken();
+$wp_kraken = new Wp_Kraken();
