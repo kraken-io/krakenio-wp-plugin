@@ -1,9 +1,9 @@
 <?php
-/*  
+/*
 	Copyright 2014  Karim Salman  (email : ksalman@kraken.io)
 
     This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as 
+    it under the terms of the GNU General Public License, version 2, as
     published by the Free Software Foundation.
 
     This program is distributed in the hope that it will be useful,
@@ -30,7 +30,7 @@
 if ( !class_exists( 'Wp_Kraken' ) ) {
 
 	class Wp_Kraken {
-		
+
 		private $id;
 
 		private $kraken_settings = array();
@@ -48,19 +48,19 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 			add_action( 'add_attachment', array( &$this, 'kraken_media_uploader_callback' ) );
 		}
 
-		/* 
+		/*
 		 *  Adds kraken fields and settings to Settings->Media settings page
 		 */
 		function admin_init() {
-			
+
 			add_settings_section( 'kraken_image_optimizer', 'Kraken Image Optimizer', array( &$this, 'show_kraken_image_optimizer' ), 'media' );
-			
+
 			register_setting(
 				'media',
 				'_kraken_options',
 				array( &$this, 'validate_options' )
 			);
-			
+
 			add_settings_field(
 				'kraken_api_key',
 				'API Key:',
@@ -68,15 +68,15 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 				'media',
 				'kraken_image_optimizer'
 			);
-			
+
 			add_settings_field(
-				'kraken_api_secret',      				
-				'API Secret:',              			
-				array( &$this, 'show_api_secret' ),    	
-				'media',               					
-				'kraken_image_optimizer'    			
+				'kraken_api_secret',
+				'API Secret:',
+				array( &$this, 'show_api_secret' ),
+				'media',
+				'kraken_image_optimizer'
 			);
-			
+
 			add_settings_field(
 				'kraken_lossy',
 				'Optimization Type:',
@@ -89,10 +89,10 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 				'credentials_valid',
 				'API status:',
 				array( &$this, 'show_credentials_validity' ),
-				'media',	
-				'kraken_image_optimizer'		
+				'media',
+				'kraken_image_optimizer'
 			);
-			
+
 		}
 
 		function my_enqueue( $hook ) {
@@ -107,7 +107,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 		function get_api_status( $api_key, $api_secret ) {
 
 			/*  Possible API Status Errors:
-			 * 
+			 *
 			 * 'Incoming request body does not contain a valid JSON object'
 			 * 'Incoming request body does not contain a valid auth.api_key or auth.api_secret'
 			 * 'Kraken has encountered an unexpected error and cannot fulfill your request'
@@ -130,7 +130,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 
 			$image_id = (int) $_POST['id'];
 
-			if ( wp_attachment_is_image( $image_id ) ) {	
+			if ( wp_attachment_is_image( $image_id ) ) {
 
 				$imageUrl = wp_get_attachment_url( $image_id );
 				$image_path = get_attached_file( $image_id );
@@ -141,7 +141,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 				$api_secret = isset( $settings['api_secret'] ) ? $settings['api_secret'] : '';
 
 				$status = $this->get_api_status( $api_key, $api_secret );
-	
+
 
 				if ( $status === false ) {
 
@@ -151,14 +151,14 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 					echo json_encode( array( 'error' => $kv['error'] ) );
 					exit;
 				}
-				
+
 				if ( isset($status['active']) && $status['active'] === true ) {
 
 				} else {
 					echo json_encode( array( 'error' => 'Your API is inactive. Please visit your account settings' ) );
 					die();
 				}
-				
+
 				$result = $this->optimize_image( $imageUrl );
 				$kv = array();
 
@@ -175,7 +175,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 					$kv['meta'] = wp_get_attachment_metadata( $image_id );
 
 					if ( $this->replace_image( $image_path, $kraked_url ) ) {
-						update_post_meta( $image_id, '_kraken_size', $kv );	
+						update_post_meta( $image_id, '_kraken_size', $kv );
 						echo json_encode( $kv );
 					}
 				} else {
@@ -200,17 +200,17 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 					echo json_encode($result);
 				}
 			}
-			die(); 
+			die();
 		}
 
-		/** 
+		/**
 		 *  Handles optimizing images uploaded through any of the media uploaders.
 		 */
 		function kraken_media_uploader_callback( $image_id ) {
 
 			$this->id = $image_id;
 
-			if ( wp_attachment_is_image( $image_id ) ) {	
+			if ( wp_attachment_is_image( $image_id ) ) {
 
 				$imageUrl = wp_get_attachment_url( $image_id );
 				$image_path = get_attached_file( $image_id );
@@ -229,7 +229,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 					$kv['meta'] = wp_get_attachment_metadata( $image_id );
 
 					if ( $this->replace_image( $image_path, $kraked_url ) ) {
-						update_post_meta( $image_id, '_kraken_size', $kv );	
+						update_post_meta( $image_id, '_kraken_size', $kv );
 					} else {
 						// writing image failed
 					}
@@ -254,7 +254,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 					}
 				}
 			}
-		}	
+		}
 
 		function show_credentials_validity() {
 
@@ -268,10 +268,10 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 
 			if ( $status !== false && isset( $status['active'] ) && $status['active'] === true ) {
 				$url .= 'yes.png';
-				echo '<p class="apiStatus">Your credentials are valid <span class="apiValid" style="background:url(' . "'$url') no-repeat 0 0" . '"></span></p>';
+				printf( '<p class="apiStatus">Your credentials are valid <span class="apiValid" style="background:url(\'%s\') no-repeat 0 0"></span></p>', esc_url( $url ) );
 			} else {
 				$url .= 'no.png';
-				echo '<p class="apiStatus">There is a problem with your credentials <span class="apiInvalid" style="background:url(' . "'$url') no-repeat 0 0" . '"></span></p>';
+				printf( '<p class="apiStatus">There is a problem with your credentials <span class="apiInvalid" style="background:url(\'%s\') no-repeat 0 0"></span></p>', esc_url( $url ) );
 			}
 
 		}
@@ -279,11 +279,11 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 		function show_kraken_image_optimizer() {
 			echo '<a href="http://kraken.io" title="Visit Kraken.io Homepage">Kraken.io</a> API settings';
 		}
-		
+
 		function validate_options( $input ) {
 			$valid = array();
 			$error = '';
-			$valid['api_lossy'] = $input['api_lossy'];						
+			$valid['api_lossy'] = $input['api_lossy'];
 
 			$status = $this->get_api_status( $input['api_key'], $input['api_secret'] );
 
@@ -299,7 +299,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 				} else {
 					$error = 'There is a problem with your credentials. Please check them from your Kraken.io account.';
 				}
-		
+
 			} else {
 				$error = 'Please enter a valid Kraken.io API key and secret';
 			}
@@ -310,8 +310,8 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 					'api_key_error',
 					$error,
 					'error'
-				);	
-			}		
+				);
+			}
 
 			return $valid;
 		}
@@ -324,7 +324,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 				 type='text' value='<?php echo esc_attr( $value ); ?>' size="50"/>
 			<?php
 		}
-		
+
 		function show_api_secret() {
 			$settings = $this->kraken_settings;
 			$value = isset( $settings['api_secret'] ) ? $settings['api_secret'] : '';
@@ -333,22 +333,22 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 				 type='text' value='<?php echo esc_attr( $value ); ?>' size="50"/>
 			<?php
 		}
-		
+
 		function show_lossy() {
 			$options = get_option( '_kraken_options' );
 			$value = isset( $options['api_lossy'] ) ? $options['api_lossy'] : 'lossy';
 
-			$html = '<input type="radio" id="kraken_lossy" name="_kraken_options[api_lossy]" value="lossy"' . checked( 'lossy', $value, false ) . '/>';  
-			$html .= '<label for="kraken_lossy">Lossy</label>';  
-			  
-			$html .= '<input style="margin-left:10px;" type="radio" id="kraken_lossless" name="_kraken_options[api_lossy]" value="lossless"' . checked( 'lossless', $value, false ) . '/>';  
-			$html .= '<label for="kraken_lossless">Lossless</label>';  
-			  
-			echo $html;  
+			$html = '<input type="radio" id="kraken_lossy" name="_kraken_options[api_lossy]" value="lossy"' . checked( 'lossy', $value, false ) . '/>';
+			$html .= '<label for="kraken_lossy">Lossy</label>';
+
+			$html .= '<input style="margin-left:10px;" type="radio" id="kraken_lossless" name="_kraken_options[api_lossy]" value="lossless"' . checked( 'lossless', $value, false ) . '/>';
+			$html .= '<label for="kraken_lossless">Lossless</label>';
+
+			echo $html;
 		}
-				
+
 		function fill_media_columns( $column_name, $id ) {
-			
+
 			$original_size = filesize( get_attached_file( $id ) );
 			$original_size = self::pretty_kb( $original_size );
 			switch ( $column_name ) {
@@ -356,9 +356,9 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 					$meta = get_post_meta($id, '_kraken_size', true);
 
 					if ( isset( $meta['original_size'] ) ) {
-						echo $meta['original_size'];
+						echo esc_html( $meta['original_size'] );
 					} else {
-						echo $original_size;
+						echo esc_html( $original_size );
 					}
 
 				break;
@@ -371,19 +371,19 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 						$kraked_size = $meta['kraked_size'];
 						$type = $meta['type'];
 						$savings_percentage = $meta['savings_percent'];
-						echo '<strong>' . $kraked_size .'</strong><br /><small>Type:&nbsp;' . $type . '</small><br /><small>Savings:&nbsp;' . $savings_percentage . '</small>';
-					
+						echo '<strong>', esc_html( $kraked_size ), '</strong><br /><small>Type:&nbsp;', esc_html( $type ), '</small><br /><small>Savings:&nbsp;', esc_html( $savings_percentage ), '</small>';
+
 					// Were there no savings, or was there an error?
 					} else {
-						echo '<div class="buttonWrap"><button type="button" class="kraken_req" data-id="' . $id . '" id="krakenid-' . $id .'">Optimize This Image</button><span class="krakenSpinner"></span></div>';
-						
+						echo '<div class="buttonWrap"><button type="button" class="kraken_req" data-id="', esc_attr( $id ), '" id="krakenid-', esc_attr( $id ), '">Optimize This Image</button><span class="krakenSpinner"></span></div>';
+
 						if ( isset( $meta['error'] ) ) {
 							$error = $meta['error'];
-							echo '<div class="krakenErrorWrap"><a class="krakenError" title="' . $error . '">Failed! Hover here</a></div>';
+							echo '<div class="krakenErrorWrap"><a class="krakenError" title="', esc_attr( $error ), '">Failed! Hover here</a></div>';
 						}
 
 						if ( !empty( $meta['no_savings'] ) ) {
-							echo '<div class="noSavings"><strong>No savings found</strong><br /><small>Type:&nbsp;' . $meta['type'] . '</small></div>';
+							echo '<div class="noSavings"><strong>No savings found</strong><br /><small>Type:&nbsp;', esc_html( $meta['type'] ), '</small></div>';
 						}
 
 					}
@@ -396,20 +396,20 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 			$columns['kraken_size'] = 'Kraked Size';
 			return $columns;
 		}
-		
+
 		function replace_image($image_path, $kraked_url) {
 
 			$rv = false;
 			if( ini_get( 'allow_url_fopen' ) ) {
 
    				$rv = file_put_contents( $image_path, file_get_contents($kraked_url) );
-			
+
 			} else if ( function_exists('curl_version') ) {
 
 				$ch =  curl_init( $kraked_url );
 				curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 				$result = curl_exec($ch);
-			}		
+			}
 			return $rv !== false;
 		}
 
@@ -428,7 +428,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 
 			$data = $kraken->url( $params );
 			$data['type'] = $settings['api_lossy'];
-			
+
 			return $data;
 		}
 
@@ -438,31 +438,31 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 			$upload_dir = wp_upload_dir();
 			$upload_path = $upload_dir['path'];
 			$upload_url = $upload_dir['url'];
-			
+
 			if ( isset( $image_data['sizes'] ) ) {
 				$sizes = $image_data['sizes'];
 			}
 
 			if ( !empty( $sizes ) ) {
-				
+
 				$thumb_url = '';
 				$thumb_path = '';
 
 				foreach ( $sizes as $size ) {
-					
+
 					$thumb_path = $upload_path . '/' . $size['file'];
 					$thumb_url = $upload_url . '/' . $size['file'];
-			
+
 					if ( file_exists( $thumb_path ) !== false ) {
 						$result = $this->optimize_image( $thumb_url );
-			
+
 						if ( !empty($result) && isset($result['success']) && isset( $result['kraked_url'] ) ) {
 							$kraked_url = $result["kraked_url"];
 							if ( $this->replace_image( $thumb_path, $kraked_url ) ) {
 								// file written successfully
 							}
 						}
-					}					
+					}
 				}
 			}
 			return $image_data;
