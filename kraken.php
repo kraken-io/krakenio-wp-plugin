@@ -1025,6 +1025,12 @@ EOD;
 			$optimize_main_image = !empty( $settings['optimize_main_image'] ); 
 
 			$file = get_attached_file( $id );
+			// Ensure file exists on this server.
+			if ( ! file_exists( $file ) ) {
+				print('No file found on server');
+				return false;
+			}	
+			
 			$original_size = filesize( $file );
 
 			// handle the case where file does not exist
