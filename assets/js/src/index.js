@@ -1,7 +1,7 @@
 import '../../css/src/style.scss';
 const $ = window.jQuery;
 
-$( document ).on( 'click', '.kraken-action-show-details', function( e ) {
+$( document ).on( 'click', '.kraken-stats-action-show-details', function( e ) {
 	e.preventDefault();
 
 	const $el = $( this );
