@@ -1,3 +1,14 @@
 .kraken {
-	position: relative;
+
+	&-form-table {
+		max-width: 800px;
+	}
+
+	&-status-error {
+		color: #900;
+	}
+
+	&-status-success {
+		color: #3e9429;
+	}
 }

@@ -110,6 +110,7 @@ class Kraken_IO {
 		$dir = $this->get_plugin_path();
 
 		require_once $dir . 'includes/class-kraken-io-api.php';
+		require_once $dir . 'includes/class-kraken-io-settings.php';
 	}
 
 	/**
@@ -126,7 +127,8 @@ class Kraken_IO {
 		// Set up localisation.
 		$this->load_plugin_textdomain();
 
-		$this->api = new Kraken_IO_API( $this->options['api_key'], $this->options['api_secret'] );
+		$this->api      = new Kraken_IO_API( $this->options['api_key'], $this->options['api_secret'] );
+		$this->settings = new Kraken_IO_Settings();
 
 		// Init action.
 		do_action( 'kraken_io_init' );
