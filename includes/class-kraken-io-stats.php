@@ -165,7 +165,7 @@ class Kraken_IO_Stats {
 		if ( isset( $meta['original_size'] ) ) {
 
 			$saved_bytes        = isset( $meta['saved_bytes'] ) ? $meta['saved_bytes'] : '';
-			$savings_percentage = $meta['savings_percent'];
+			$savings_percentage = isset( $meta['savings_percent'] ) ? $meta['savings_percent'] : '';
 
 			// convert old data format, where applicable
 			if ( stripos( $saved_bytes, 'kb' ) !== false ) {
