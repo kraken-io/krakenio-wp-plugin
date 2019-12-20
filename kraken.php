@@ -2,18 +2,18 @@
 /*
 	Copyright 2015  Karim Salman  (email : ksalman@kraken.io)
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as
-    published by the Free Software Foundation.
+	This program is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License, version 2, as
+	published by the Free Software Foundation.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 /*
@@ -33,3 +33,23 @@ defined( 'ABSPATH' ) || exit;
 
 define( 'KRAKEN_DEV_MODE', false );
 define( 'KRAKEN_PLUGIN_FILE', __FILE__ );
+
+// Include the main Kraken_IO class.
+if ( ! class_exists( 'Kraken_IO', false ) ) {
+	include_once dirname( __FILE__ ) . '/includes/class-kraken-io.php';
+}
+
+/**
+ * The main function responsible for returning the instance
+ * to functions everywhere.
+ *
+ * @since  2.7
+ * @access public
+ * @return object The one true instance
+ */
+function kraken_io() {
+	return Kraken_IO::instance();
+}
+
+// let's start
+kraken_io();
