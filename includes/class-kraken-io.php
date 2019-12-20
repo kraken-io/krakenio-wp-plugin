@@ -111,6 +111,7 @@ class Kraken_IO {
 
 		require_once $dir . 'includes/class-kraken-io-api.php';
 		require_once $dir . 'includes/class-kraken-io-settings.php';
+		require_once $dir . 'includes/class-kraken-io-stats.php';
 	}
 
 	/**
@@ -129,6 +130,7 @@ class Kraken_IO {
 
 		$this->api      = new Kraken_IO_API( $this->options['api_key'], $this->options['api_secret'] );
 		$this->settings = new Kraken_IO_Settings();
+		$this->stats    = new Kraken_IO_Stats();
 
 		// Init action.
 		do_action( 'kraken_io_init' );
@@ -239,6 +241,45 @@ class Kraken_IO {
 		}
 
 		return $sizes;
+	}
+
+	/**
+	 * Load a template part with passing arguments.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  string  $slug   The slug name for the generic template.
+	 * @param  array   $args   Pass args with the template load.
+	 */
+	public function get_template( $slug, $args = array() ) {
+		$template = $this->get_plugin_path() . '/templates/' . $slug . '.php';
+		include $template;
+	}
+
+	/**
+	 * Format bytes.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  int  $size
+	 * @param  int  $precision
+	 * @param  string  $value
+	 */
+	public function format_bytes( $size, $precision = 2 ) {
+		$base     = log( $size, 1024 );
+		$suffixes = array( ' bytes', 'KB', 'MB', 'GB', 'TB' );
+		return round( pow( 1024, $base - floor( $base ) ), $precision ) . $suffixes[ floor( $base ) ];
+	}
+
+	public function kb_string_to_bytes( $str ) {
+		$temp = floatVal( $str );
+		$rv   = false;
+		if ( 0 === $temp ) {
+			$rv = '0 bytes';
+		} else {
+			$rv = $this->format_bytes( ceil( floatval( $str ) * 1024 ) );
+		}
+		return $rv;
 	}
 
 }
