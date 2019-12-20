@@ -230,11 +230,78 @@ class Kraken_IO_Settings {
 		}
 
 		$options = $_POST['kraken_options'];
+		$options = $this->sanitize_options( $options, $settings );
+		$options = $this->validate_options( $options, $this->options, $settings );
+		$options = array_merge( $this->options, $options );
 
 		$this->options = $options;
 		update_option( '_kraken_options', $options );
 
 		$this->settings_sucess[] = __( 'Settings Saved', 'kraken-io' );
+	}
+
+	/**
+	 * Sanitize options.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  array $options Values.
+	 * @param  array $settings Settings
+	 * @return array $options Sanitized options.
+	 */
+	public function sanitize_options( $options, $settings ) {
+		$sanitized_options = array();
+
+		foreach ( $settings as $key => $setting ) {
+
+			$value = isset( $options[ $setting['id'] ] ) ? $options[ $setting['id'] ] : false;
+			$type  = $setting['type'];
+
+			if ( isset( $setting['sanitize_callback'] ) ) {
+				if ( 'multi_text' === $type || 'multi_checkbox' === $type ) {
+					foreach ( $setting['options'] as $option => $title ) {
+						$val                          = isset( $options[ $option ] ) ? $options[ $option ] : false;
+						$sanitized_options[ $option ] = call_user_func( $setting['sanitize_callback'], $val );
+					}
+				} else {
+					$sanitized_options[ $setting['id'] ] = call_user_func( $setting['sanitize_callback'], $value );
+				}
+			} else {
+				$sanitized_options[ $setting['id'] ] = $value;
+			}
+		}
+
+		return $sanitized_options;
+	}
+
+	/**
+	 * Validate options.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  array $options Values.
+	 * @param  array $old_options Old values.
+	 * @param  array $settings Settings
+	 * @return array $options Validated options.
+	 */
+	public function validate_options( $options, $old_options, $settings ) {
+		$validated_options = array();
+
+		foreach ( $settings as $key => $setting ) {
+
+			$value = isset( $options[ $setting['id'] ] ) ? $options[ $setting['id'] ] : false;
+
+			if ( isset( $setting['validate_callback'] ) ) {
+				$is_valid = call_user_func( $setting['validate_callback'], $value, $setting['options'] );
+				if ( $is_valid ) {
+					$validated_options[ $setting['id'] ] = $value;
+				} else {
+					$validated_options[ $setting['id'] ] = $old_options[ $setting['id'] ];
+				}
+			}
+		}
+
+		return array_merge( $options, $validated_options );
 	}
 
 	/**
@@ -614,6 +681,44 @@ class Kraken_IO_Settings {
 				),
 			),
 		);
+	}
+
+	/**
+	 * Checkbox sanitization callback.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  bool $checked Whether the checkbox is checked.
+	 * @return bool Whether the checkbox is checked.
+	 */
+	public function sanitize_checkbox( $checked ) {
+		return $checked ? '1' : '0';
+	}
+
+	/**
+	 * Sanitize number.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  int     $number     Number to sanitize.
+	 * @return int     $number     Sanitized number otherwise, the setting default.
+	 */
+	public function sanitize_number( $number ) {
+		$number = intval( $number );
+		return $number > 0 ? $number : 0;
+	}
+
+	/**
+	 * Validate select and radio options callback.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  string $selected Value selected.
+	 * @param  array $options Posibble values
+	 * @return bool Whether the option is valid.
+	 */
+	public function validate_select_radio( $selected, $options ) {
+		return array_key_exists( $selected, $options ) ? true : false;
 	}
 
 }
