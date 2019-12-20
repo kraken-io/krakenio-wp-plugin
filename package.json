@@ -8,15 +8,22 @@
   "main": "index.js",
   "scripts": {
     "watch": "cross-env webpack",
-    "build": "cross-env && NODE_ENV=production webpack"
+    "build": "cross-env && npm run lint && NODE_ENV=production webpack",
+    "lint": "npm run lint:scripts && npm run lint:styles",
+    "lint:scripts": "eslint './assets/js/src/'",
+    "lint:styles": "stylelint './assets/css/src/'",
+    "lint:scripts:fix": "eslint './assets/js/src/' --fix",
+    "lint:styles:fix": "stylelint './assets/css/src/' --fix"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
     "@wordpress/babel-preset-default": "^4.7.0",
+    "@wordpress/eslint-plugin": "^3.2.0",
     "autoprefixer": "^9.7.3",
     "babel-loader": "^8.0.6",
     "cross-env": "^6.0.3",
     "css-loader": "^3.2.1",
+    "eslint": "^6.7.2",
     "fibers": "^4.0.2",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.13.0",
@@ -24,11 +31,37 @@
     "postcss-loader": "^3.0.0",
     "sass": "^1.23.7",
     "sass-loader": "^8.0.0",
+    "stylelint": "^11.0.0",
+    "stylelint-config-wordpress": "^15.0.0",
     "terser-webpack-plugin": "^2.2.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {},
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "plugin:@wordpress/eslint-plugin/esnext"
+    ],
+    "rules": {
+      "no-console": 1
+    },
+    "env": {
+      "es6": true,
+      "browser": true
+    }
+  },
+  "eslintIgnore": [
+    "assets/dist/**",
+    "vendor/**"
+  ],
+  "stylelint": {
+    "extends": "stylelint-config-wordpress/scss",
+    "ignoreFiles": [
+      "assets/dist/**",
+      "vendor/**"
+    ]
+  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
