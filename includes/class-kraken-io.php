@@ -112,6 +112,7 @@ class Kraken_IO {
 		require_once $dir . 'includes/class-kraken-io-api.php';
 		require_once $dir . 'includes/class-kraken-io-settings.php';
 		require_once $dir . 'includes/class-kraken-io-stats.php';
+		require_once $dir . 'includes/class-kraken-io-optimization.php';
 	}
 
 	/**
@@ -128,9 +129,10 @@ class Kraken_IO {
 		// Set up localisation.
 		$this->load_plugin_textdomain();
 
-		$this->api      = new Kraken_IO_API( $this->options['api_key'], $this->options['api_secret'] );
-		$this->settings = new Kraken_IO_Settings();
-		$this->stats    = new Kraken_IO_Stats();
+		$this->api          = new Kraken_IO_API( $this->options['api_key'], $this->options['api_secret'] );
+		$this->settings     = new Kraken_IO_Settings();
+		$this->stats        = new Kraken_IO_Stats();
+		$this->optimization = new Kraken_IO_Optimization();
 
 		// Init action.
 		do_action( 'kraken_io_init' );
@@ -155,7 +157,17 @@ class Kraken_IO {
 			wp_enqueue_script( 'kraken', $assets_url . 'js/kraken.min.js', array( 'jquery' ), $plugin_version, true );
 		}
 
-		wp_localize_script( 'kraken', 'kraken_options', $this->options );
+		$args = array(
+			'ajax_url' => admin_url( 'admin-ajax.php', 'relative' ),
+			'nonce'    => wp_create_nonce( 'kraken-io-nonce' ),
+			'texts'    => array(
+				'reset_image'      => esc_html__( 'Are you sure you want to remove Kraken metadata for this image?', 'kraken-io' ),
+				'reset_all_images' => esc_html__( 'This will immediately remove all Kraken metadata associated with your images. Are you sure you want to do this?', 'kraken-io' ),
+				'error_reset'      => esc_html__( 'Something went wrong. Please reload the page and try again.', 'kraken-io' ),
+			),
+		);
+
+		wp_localize_script( 'kraken', 'kraken_options', wp_parse_args( $args, $this->options ) );
 	}
 
 	/**

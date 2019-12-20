@@ -31,6 +31,14 @@
 
 		&-action {
 			position: relative;
+
+			&-reset-image {
+				display: inline-block;
+
+				.spinner {
+					margin-top: 0;
+				}
+			}
 		}
 
 		&-action-popup {
