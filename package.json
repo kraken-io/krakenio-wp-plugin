@@ -8,14 +8,15 @@
   "main": "index.js",
   "scripts": {
     "watch": "cross-env webpack",
-    "build": "cross-env && npm run lint && NODE_ENV=production webpack",
+    "build": "cross-env && npm run lint && npm run test && NODE_ENV=production webpack",
     "lint": "npm run lint:scripts && npm run lint:styles && npm run lint:php",
     "lint:scripts": "eslint './assets/js/src/'",
     "lint:styles": "stylelint './assets/css/src/'",
     "lint:php": "./vendor/bin/phpcs --standard=phpcs.xml",
     "lint:scripts:fix": "eslint './assets/js/src/' --fix",
     "lint:styles:fix": "stylelint './assets/css/src/' --fix",
-    "lint:php:fix": "./vendor/bin/phpcbf --standard=phpcs.xml"
+    "lint:php:fix": "./vendor/bin/phpcbf --standard=phpcs.xml",
+    "test": "./vendor/bin/phpunit"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
