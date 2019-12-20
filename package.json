@@ -1,0 +1,40 @@
+{
+  "name": "kraken-image-optimizer",
+  "version": "1.0.0",
+  "description": "This plugin allows you to optimize new and existing Wordpress image uploads through [Kraken Image Optimizer's](https://kraken.io) API.  Both lossless and lossy optimization modes are supported. Supported filetypes are JPEG, PNG and GIF. Maximum filesize limit is 8MB. For more details, including detailed documentation, please visit [Kraken.io](https://kraken.io).",
+  "author": "Kraken IO",
+  "license": "GPL-2.0",
+  "repository": "https://github.com/kraken-io/kraken-wp-plugin.git",
+  "main": "index.js",
+  "scripts": {
+    "watch": "cross-env webpack",
+    "build": "cross-env && NODE_ENV=production webpack"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@wordpress/babel-preset-default": "^4.7.0",
+    "autoprefixer": "^9.7.3",
+    "babel-loader": "^8.0.6",
+    "cross-env": "^6.0.3",
+    "css-loader": "^3.2.1",
+    "fibers": "^4.0.2",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "sass": "^1.23.7",
+    "sass-loader": "^8.0.0",
+    "terser-webpack-plugin": "^2.2.2",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {},
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie 10"
+  ],
+  "engines": {
+    "node": ">=8.0.0"
+  }
+}
