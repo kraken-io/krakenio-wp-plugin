@@ -19,6 +19,15 @@ class Kraken_IO {
 	private $options = array();
 
 	/**
+	 * The instance of the api class.
+	 *
+	 * @var    Kraken_IO_API
+	 * @since  2.7
+	 * @access protected
+	 */
+	public $api = null;
+
+	/**
 	 * The single instance of the class.
 	 *
 	 * @var    Kraken_IO
@@ -99,6 +108,8 @@ class Kraken_IO {
 	public function includes() {
 
 		$dir = $this->get_plugin_path();
+
+		require_once $dir . 'includes/class-kraken-io-api.php';
 	}
 
 	/**
@@ -114,6 +125,8 @@ class Kraken_IO {
 
 		// Set up localisation.
 		$this->load_plugin_textdomain();
+
+		$this->api = new Kraken_IO_API( $this->options['api_key'], $this->options['api_secret'] );
 
 		// Init action.
 		do_action( 'kraken_io_init' );
@@ -225,4 +238,5 @@ class Kraken_IO {
 
 		return $sizes;
 	}
+
 }
