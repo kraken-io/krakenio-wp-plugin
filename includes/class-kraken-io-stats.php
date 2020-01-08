@@ -17,8 +17,8 @@ class Kraken_IO_Stats {
 	 * @access public
 	 */
 	public function __construct() {
-		add_filter( 'manage_media_columns', array( $this, 'add_media_columns' ) );
-		add_action( 'manage_media_custom_column', array( $this, 'fill_media_columns' ), 10, 2 );
+		add_filter( 'manage_media_columns', [ $this, 'add_media_columns' ] );
+		add_action( 'manage_media_custom_column', [ $this, 'fill_media_columns' ], 10, 2 );
 
 		$this->options = kraken_io()->get_options();
 	}
@@ -53,11 +53,11 @@ class Kraken_IO_Stats {
 		switch ( $column_name ) {
 			case 'kraken-original-size':
 				$size = $this->get_original_size( $id );
-				kraken_io()->get_template( 'media-column-size', array( 'size' => $size ) );
+				kraken_io()->get_template( 'media-column-size', [ 'size' => $size ] );
 				break;
 			case 'kraken-stats':
 				$stats = $this->get_image_stats( $id );
-				kraken_io()->get_template( 'media-column-stats', array( 'stats' => $stats ) );
+				kraken_io()->get_template( 'media-column-stats', [ 'stats' => $stats ] );
 				break;
 		}
 
@@ -115,7 +115,7 @@ class Kraken_IO_Stats {
 		$type                = $this->options['api_lossy'];
 		$optimize_main_image = $this->options['optimize_main_image'];
 
-		$stats = array(
+		$stats = [
 			'id'           => $id,
 			'type'         => $type,
 			'is_image'     => false,
@@ -124,8 +124,8 @@ class Kraken_IO_Stats {
 			'has_error'    => false,
 			'show_button'  => false,
 			'show_reset'   => false,
-			'stats'        => array(),
-		);
+			'stats'        => [],
+		];
 
 		$image_url = wp_get_attachment_url( $id );
 		$filename  = basename( $image_url );
@@ -178,10 +178,10 @@ class Kraken_IO_Stats {
 				}
 			}
 
-			return array(
+			return [
 				'saved_bytes'        => $saved_bytes,
 				'savings_percentage' => $savings_percentage,
-			);
+			];
 
 		} elseif ( ! empty( $meta ) ) {
 			$total_thumb_byte_savings  = 0;
@@ -202,10 +202,10 @@ class Kraken_IO_Stats {
 				$total_thumbs_savings = '0 bytes';
 			}
 
-			return array(
+			return [
 				'savings_percentage' => $thumbs_savings_percentage,
 				'total_savings'      => $total_thumbs_savings,
-			);
+			];
 		}
 	}
 
@@ -226,16 +226,16 @@ class Kraken_IO_Stats {
 
 		$total_savings_percentage = 0;
 
-		$summary = array(
+		$summary = [
 			'percentage'              => 0,
 			'total'                   => 0,
 			'is_main_image_optimized' => false,
 			'is_thumbs_optimized'     => false,
-			'main_image_stats'        => array(),
+			'main_image_stats'        => [],
 			'thumbs_count'            => 0,
-			'thumbs_stats'            => array(),
+			'thumbs_stats'            => [],
 			'optimization_mode'       => false,
-		);
+		];
 
 		$main_image_optimized = ! empty( $image_meta ) && isset( $image_meta['type'] );
 		$thumbs_optimized     = ! empty( $thumbs_meta ) && count( $thumbs_meta ) && isset( $thumbs_meta[0]['type'] );

@@ -16,7 +16,7 @@ class Kraken_IO {
 	 * @var    array
 	 * @access private
 	 */
-	private $options = array();
+	private $options = [];
 
 	/**
 	 * The instance of the api class.
@@ -95,8 +95,8 @@ class Kraken_IO {
 	 * @access private
 	 */
 	private function init_hooks() {
-		add_action( 'init', array( $this, 'init' ), 0 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'init', [ $this, 'init' ], 0 );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 	}
 
 	/**
@@ -150,22 +150,22 @@ class Kraken_IO {
 		$plugin_version = $this->get_version();
 
 		if ( KRAKEN_DEV_MODE === true ) {
-			wp_enqueue_style( 'kraken', $assets_url . 'css/kraken.css', array(), $plugin_version );
-			wp_enqueue_script( 'kraken', $assets_url . 'js/kraken.js', array( 'jquery' ), $plugin_version, true );
+			wp_enqueue_style( 'kraken', $assets_url . 'css/kraken.css', [], $plugin_version );
+			wp_enqueue_script( 'kraken', $assets_url . 'js/kraken.js', [ 'jquery' ], $plugin_version, true );
 		} else {
-			wp_enqueue_style( 'kraken', $assets_url . 'css/kraken.min.css', array(), $plugin_version );
-			wp_enqueue_script( 'kraken', $assets_url . 'js/kraken.min.js', array( 'jquery' ), $plugin_version, true );
+			wp_enqueue_style( 'kraken', $assets_url . 'css/kraken.min.css', [], $plugin_version );
+			wp_enqueue_script( 'kraken', $assets_url . 'js/kraken.min.js', [ 'jquery' ], $plugin_version, true );
 		}
 
-		$args = array(
+		$args = [
 			'ajax_url' => admin_url( 'admin-ajax.php', 'relative' ),
 			'nonce'    => wp_create_nonce( 'kraken-io-nonce' ),
-			'texts'    => array(
+			'texts'    => [
 				'reset_image'      => esc_html__( 'Are you sure you want to remove Kraken metadata for this image?', 'kraken-io' ),
 				'reset_all_images' => esc_html__( 'This will immediately remove all Kraken metadata associated with your images. Are you sure you want to do this?', 'kraken-io' ),
 				'error_reset'      => esc_html__( 'Something went wrong. Please reload the page and try again.', 'kraken-io' ),
-			),
-		);
+			],
+		];
 
 		wp_localize_script( 'kraken', 'kraken_options', wp_parse_args( $args, $this->options ) );
 	}
@@ -210,7 +210,7 @@ class Kraken_IO {
 	 * @return string
 	 */
 	public function get_version() {
-		$plugin_data = get_file_data( $this->file, array( 'Version' => 'Version' ), 'plugin' );
+		$plugin_data = get_file_data( $this->file, [ 'Version' => 'Version' ], 'plugin' );
 		return $plugin_data['Version'];
 	}
 
@@ -235,20 +235,20 @@ class Kraken_IO {
 	public function get_image_sizes() {
 		global $_wp_additional_image_sizes;
 
-		$sizes       = array();
+		$sizes       = [];
 		$image_sizes = get_intermediate_image_sizes();
 
 		foreach ( $image_sizes as $size ) {
-			if ( in_array( $size, array( 'thumbnail', 'medium', 'medium_large', 'large' ), true ) ) {
+			if ( in_array( $size, [ 'thumbnail', 'medium', 'medium_large', 'large' ], true ) ) {
 				$sizes[ $size ]['width']  = get_option( "{$size}_size_w" );
 				$sizes[ $size ]['height'] = get_option( "{$size}_size_h" );
 				$sizes[ $size ]['crop']   = (bool) get_option( "{$size}_crop" );
 			} elseif ( isset( $_wp_additional_image_sizes[ $size ] ) ) {
-				$sizes[ $size ] = array(
+				$sizes[ $size ] = [
 					'width'  => $_wp_additional_image_sizes[ $size ]['width'],
 					'height' => $_wp_additional_image_sizes[ $size ]['height'],
 					'crop'   => $_wp_additional_image_sizes[ $size ]['crop'],
-				);
+				];
 			}
 		}
 
@@ -263,7 +263,7 @@ class Kraken_IO {
 	 * @param  string  $slug   The slug name for the generic template.
 	 * @param  array   $args   Pass args with the template load.
 	 */
-	public function get_template( $slug, $args = array() ) {
+	public function get_template( $slug, $args = [] ) {
 		$template = $this->get_plugin_path() . '/templates/' . $slug . '.php';
 		include $template;
 	}
@@ -279,7 +279,7 @@ class Kraken_IO {
 	 */
 	public function format_bytes( $size, $precision = 2 ) {
 		$base     = log( $size, 1024 );
-		$suffixes = array( ' bytes', 'KB', 'MB', 'GB', 'TB' );
+		$suffixes = [ ' bytes', 'KB', 'MB', 'GB', 'TB' ];
 		return round( pow( 1024, $base - floor( $base ) ), $precision ) . $suffixes[ floor( $base ) ];
 	}
 

@@ -10,16 +10,16 @@ defined( 'ABSPATH' ) || exit;
 
 class Kraken_IO_API {
 
-	protected $auth     = array();
+	protected $auth     = [];
 	protected $endpoint = 'https://api.kraken.io/';
 
 	public function __construct( $key = '', $secret = '' ) {
-		$this->auth = array(
-			'auth' => array(
+		$this->auth = [
+			'auth' => [
 				'api_key'    => $key,
 				'api_secret' => $secret,
-			),
-		);
+			],
+		];
 	}
 
 	private function request( $data, $url ) {
@@ -28,9 +28,9 @@ class Kraken_IO_API {
 			return false;
 		}
 
-		$data = array(
+		$data = [
 			'body' => wp_json_encode( $data ),
-		);
+		];
 
 		$response = wp_remote_post( $url, $data );
 
@@ -52,34 +52,34 @@ class Kraken_IO_API {
 		return $result;
 	}
 
-	public function url( $opts = array() ) {
+	public function url( $opts = [] ) {
 		$data = array_merge( $this->auth, $opts );
 		return $this->request( $data, $this->endpoint . '/v1/url' );
 	}
 
-	public function upload( $opts = array() ) {
+	public function upload( $opts = [] ) {
 		if ( ! isset( $opts['file'] ) ) {
 			wp_send_json_error(
-				array(
+				[
 					'type' => 'file_not_provided',
-				)
+				]
 			);
 		}
 
 		if ( ! file_exists( $opts['file'] ) ) {
 			wp_send_json_error(
-				array(
+				[
 					'type' => 'file_not_found',
-				)
+				]
 			);
 		}
 
 		$file = '@' . $opts['file'];
 
-		$data = array(
+		$data = [
 			'file' => $file,
 			'data' => array_merge( $this->auth, $opts ),
-		);
+		];
 
 		return $this->request( $data, $this->endpoint . 'v1/upload' );
 	}

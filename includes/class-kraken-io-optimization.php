@@ -17,14 +17,14 @@ class Kraken_IO_Optimization {
 	 * @access public
 	 */
 	public function __construct() {
-		add_action( 'wp_ajax_kraken_reset_image', array( $this, 'reset_image' ) );
-		add_action( 'wp_ajax_kraken_reset_all', array( $this, 'reset_all_images' ) );
+		add_action( 'wp_ajax_kraken_reset_image', [ $this, 'reset_image' ] );
+		add_action( 'wp_ajax_kraken_reset_all', [ $this, 'reset_all_images' ] );
 
 		$this->options = kraken_io()->get_options();
 
 		if ( $this->options['auto_optimize'] ) {
-			add_action( 'add_attachment', array( $this, 'optimize_image_on_upload' ) );
-			add_filter( 'wp_generate_attachment_metadata', array( $this, 'optimize_thumbnails' ) );
+			add_action( 'add_attachment', [ $this, 'optimize_image_on_upload' ] );
+			add_filter( 'wp_generate_attachment_metadata', [ $this, 'optimize_thumbnails' ] );
 		}
 	}
 
@@ -38,9 +38,9 @@ class Kraken_IO_Optimization {
 
 		if ( ! wp_verify_nonce( $_POST['nonce'], 'kraken-io-nonce' ) ) {
 			wp_send_json_error(
-				array(
+				[
 					'type' => 'nonce',
-				)
+				]
 			);
 		}
 
@@ -48,9 +48,9 @@ class Kraken_IO_Optimization {
 
 		if ( ! wp_attachment_is_image( $id ) ) {
 			wp_send_json_error(
-				array(
+				[
 					'type' => 'error',
-				)
+				]
 			);
 		}
 
@@ -64,21 +64,21 @@ class Kraken_IO_Optimization {
 			$stats = kraken_io()->stats->get_image_stats( $id );
 
 			ob_start();
-			kraken_io()->get_template( 'media-column-stats', array( 'stats' => $stats ) );
+			kraken_io()->get_template( 'media-column-stats', [ 'stats' => $stats ] );
 			$column_html = ob_get_clean();
 
 			wp_send_json_success(
-				array(
+				[
 					'size' => $size,
 					'html' => $column_html,
-				)
+				]
 			);
 		}
 
 		wp_send_json_error(
-			array(
+			[
 				'type' => 'error',
-			)
+			]
 		);
 	}
 
@@ -110,7 +110,7 @@ class Kraken_IO_Optimization {
 	 * @return array $result
 	 */
 	public function get_result_arr( $result, $image_id ) {
-		$rv = array();
+		$rv = [];
 
 		$rv['original_size'] = $result['original_size'];
 		$rv['kraked_size']   = $result['kraked_size'];
@@ -147,7 +147,7 @@ class Kraken_IO_Optimization {
 
 	public function get_preserve_meta_options( $options ) {
 
-		$preserve_meta = array();
+		$preserve_meta = [];
 
 		if ( $options['preserve_meta_date'] ) {
 			$preserve_meta[] = 'date';
@@ -187,12 +187,12 @@ class Kraken_IO_Optimization {
 			$lossy = 'lossy' === $settings['api_lossy'];
 		}
 
-		$params = array(
+		$params = [
 			'file'   => $image_path,
 			'wait'   => true,
 			'lossy'  => $lossy,
 			'origin' => 'wp',
-		);
+		];
 
 		$preserve_meta = $this->get_preserve_meta_options( $settings );
 
@@ -212,21 +212,21 @@ class Kraken_IO_Optimization {
 			$width  = (int) $settings['resize_width'];
 			$height = (int) $settings['resize_height'];
 			if ( $width && $height ) {
-				$params['resize'] = array(
+				$params['resize'] = [
 					'strategy' => 'auto',
 					'width'    => $width,
 					'height'   => $height,
-				);
+				];
 			} elseif ( $width && ! $height ) {
-				$params['resize'] = array(
+				$params['resize'] = [
 					'strategy' => 'landscape',
 					'width'    => $width,
-				);
+				];
 			} elseif ( $height && ! $width ) {
-				$params['resize'] = array(
+				$params['resize'] = [
 					'strategy' => 'portrait',
 					'height'   => $height,
-				);
+				];
 			}
 		}
 
@@ -290,7 +290,7 @@ class Kraken_IO_Optimization {
 			$api_result = $this->optimize_image( $image_path, $type, $resize );
 		}
 
-		$data = array();
+		$data = [];
 
 		if ( ! empty( $api_result ) && ! empty( $api_result['success'] ) ) {
 			$data = $this->get_result_arr( $api_result, $image_id );
