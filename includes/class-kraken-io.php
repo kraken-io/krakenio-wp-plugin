@@ -113,6 +113,7 @@ class Kraken_IO {
 		require_once $dir . 'includes/class-kraken-io-settings.php';
 		require_once $dir . 'includes/class-kraken-io-stats.php';
 		require_once $dir . 'includes/class-kraken-io-optimization.php';
+		require_once $dir . 'includes/class-kraken-io-ajax.php';
 	}
 
 	/**
