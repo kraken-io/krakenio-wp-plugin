@@ -140,7 +140,84 @@ $(document).on('click', '.kraken-button-optimize-image', function (e) {
   e.preventDefault();
   var $el = $(this);
   var $spinner = $el.find('.spinner');
+  var id = $el.data('id');
   $spinner.addClass('is-active');
+  $.ajax({
+    type: 'POST',
+    url: window.kraken_options.ajax_url,
+    data: {
+      action: 'kraken_optimize_image',
+      id: id,
+      type: 'single',
+      nonce: window.kraken_options.nonce
+    },
+    success: function success(response) {
+      if (response.success) {
+        $el.parents('tr').find('.column-kraken-original-size').text(response.data.size);
+        $el.parents('.kraken-stats-media-column').replaceWith(response.data.html);
+      } else {
+        alert(window.kraken_options.texts.error_reset);
+        $spinner.removeClass('is-active');
+      }
+    },
+    error: function error() {
+      alert(window.kraken_options.texts.error_reset);
+      $spinner.removeClass('is-active');
+    }
+  });
+});
+$(document).on('click', '.kraken-button-bulk-optimize', function (e) {
+  e.preventDefault();
+  var $el = $(this);
+  var $spinner = $el.find('.spinner');
+  var total = $el.data('total'); // const pages = $el.data( 'pages' );
+  // const page = 1;
+
+  var optimized = 0;
+  var ids = $el.data('ids');
+  $el.parents('.kraken-bulk-actions').addClass('is-active');
+  $spinner.addClass('is-active');
+  optimizeImageAjaxCallback($el, ids, optimized, total);
+});
+
+function optimizeImageAjaxCallback($el, ids, optimized, total) {
+  var $table = $el.parents('.kraken-bulk-optimizer').find('.kraken-bulk-table tbody');
+  var id = ids.shift();
+  var $spinner = $el.find('.spinner');
+
+  if (undefined === id) {
+    $spinner.removeClass('is-active');
+    return false;
+  }
+
+  optimized = optimized + 1;
+  $.ajax({
+    type: 'POST',
+    url: window.kraken_options.ajax_url,
+    data: {
+      action: 'kraken_optimize_image',
+      id: id,
+      type: 'bulk',
+      nonce: window.kraken_options.nonce
+    },
+    success: function success(response) {
+      if (response.success) {
+        $table.append($(response.data.html));
+      }
+
+      $('.optimized').text(optimized);
+      optimizeImageAjaxCallback($el, ids, optimized, total);
+    },
+    error: function error() {
+      $('.optimized').text(optimized);
+      optimizeImageAjaxCallback($el, ids, optimized, total);
+    }
+  });
+}
+
+$(document).on('click', '.kraken-bulk-close-modal', function (e) {
+  e.preventDefault();
+  $(this).parents('.kraken-modal').removeClass('is-active');
 });
 
 /***/ }),
