@@ -50,6 +50,9 @@ class Kraken_IO_Settings {
 	 */
 	public function __construct() {
 		add_filter( 'plugin_action_links_' . kraken_io()->basename, [ $this, 'plugin_action_links' ] );
+		add_filter( 'bulk_actions-upload', [ $this, 'register_bulk_optimize_option' ] );
+		add_filter( 'handle_bulk_actions-upload', [ $this, 'handle_bulk_optimize' ], 10, 3 );
+		add_filter( 'admin_footer', [ $this, 'footer_bulk_modal' ] );
 		add_action( 'admin_menu', [ $this, 'add_options_page' ] );
 		$this->options = kraken_io()->get_options();
 		$this->register_settings();
@@ -66,6 +69,66 @@ class Kraken_IO_Settings {
 	public function plugin_action_links( $links ) {
 		$links['settings'] = '<a href="' . esc_url( admin_url( 'options-general.php?page=kraken-io' ) ) . '" aria-label="' . esc_attr__( 'Kraken.io Settings', 'kraken-io' ) . '">' . esc_attr__( 'Settings', 'kraken-io' ) . '</a>';
 		return $links;
+	}
+
+	/**
+	 * Add optimize bulk option.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  array $actions Bulk actions
+	 * @return array $actions Bulk links
+	 */
+	public function register_bulk_optimize_option( $actions ) {
+		$actions['kraken_bulk'] = esc_html__( "Krak 'em all", 'kraken-io' );
+		return $actions;
+	}
+
+	/**
+	 * Add optimize bulk option.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  string $actions Redirect url
+	 * @param  string $actions Redirect url
+	 * @param  array $ids Post ids
+	 * @return string $redirect Redirect url
+	 */
+	public function handle_bulk_optimize( $redirect, $action, $ids ) {
+
+		if ( 'kraken_bulk' === $action ) {
+			$redirect = add_query_arg( 'kraken_bulk', implode( ',', $ids ), $redirect );
+		}
+
+		return $redirect;
+	}
+
+	/**
+	 * Add bulk optimizer template to admin footer.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @return void
+	 */
+	public function footer_bulk_modal() {
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! isset( $_GET['kraken_bulk'] ) ) {
+			return false;
+		}
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$ids = explode( ',', $_GET['kraken_bulk'] );
+
+		kraken_io()->get_template(
+			'bulk-optimizer',
+			[
+				'ids'   => $ids,
+				'type'  => 'modal',
+				'total' => count( $ids ),
+				'pages' => 1,
+			]
+		);
 	}
 
 	/**
@@ -137,9 +200,17 @@ class Kraken_IO_Settings {
 					wp_nonce_field( 'kraken_io_settings', 'kraken_io_settings_nonce' );
 					$this->do_settings_sections( $tabs, $active_tab );
 				?>
-				<p class="submit">
-					<input type="submit" name="submit" class="button button-primary" value="<?php esc_attr_e( 'Save Changes', 'kraken-io' ); ?>">
-				</p>
+
+				<?php if ( 'tools' !== $active_tab ) : ?>
+					<p class="submit">
+						<input type="submit" name="submit" class="button button-primary" value="<?php esc_attr_e( 'Save Changes', 'kraken-io' ); ?>">
+					</p>
+					<?php
+				else :
+					$unoptimized_images = kraken_io()->optimization->get_unoptimized_images();
+					kraken_io()->get_template( 'bulk-optimizer', wp_parse_args( $unoptimized_images, [ 'type' => 'tool' ] ) );
+				endif;
+				?>
 			</form>
 		</div>
 		<?php
