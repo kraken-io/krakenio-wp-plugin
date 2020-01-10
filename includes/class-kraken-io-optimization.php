@@ -90,14 +90,16 @@ class Kraken_IO_Optimization {
 	 */
 	private function replace_image( $path, $url ) {
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		$optimized_image_contents = file_get_contents( $url );
 		$replaced_image           = false;
 
 		if ( $optimized_image_contents ) {
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_file_put_contents
 			$replaced_image = file_put_contents( $path, $optimized_image_contents );
 		}
 
-		return $replaced_image !== false;
+		return false !== $replaced_image;
 	}
 
 	public function get_preserve_meta_options( $options ) {
@@ -271,8 +273,8 @@ class Kraken_IO_Optimization {
 			return false;
 		}
 
-		$metadata = wp_get_attachment_metadata( $id );
-		$sizes = $this->get_image_sizes_to_optimize();
+		$metadata   = wp_get_attachment_metadata( $id );
+		$sizes      = $this->get_image_sizes_to_optimize();
 		$thumb_data = [];
 
 		$upload_dir = wp_upload_dir();
@@ -367,14 +369,54 @@ class Kraken_IO_Optimization {
 	 * @access public
 	 */
 	public function get_image_sizes_to_optimize() {
-		$sizes = array();
+		$sizes = [];
 
-		foreach( $this->options as $key => $value ) {
-			if ( strpos( $key, 'include_size' ) === 0 && !empty( $value ) ) {
+		foreach ( $this->options as $key => $value ) {
+			if ( strpos( $key, 'include_size' ) === 0 && ! empty( $value ) ) {
 				$sizes[] = str_replace( 'include_size_', '', $key );
 			}
 		}
 
 		return $sizes;
 	}
+
+	/**
+	 * Get all unoptimized images.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  int $paged
+	 * @return array $data
+	 */
+	public function get_unoptimized_images( $paged = 1, $posts_per_page = 30 ) {
+
+		$args = [
+			'post_type'      => 'attachment',
+			'post_status'    => 'inherit',
+			'posts_per_page' => $posts_per_page,
+			'paged'          => $paged,
+			'meta_query'     => [
+				'relation' => 'OR',
+				[
+					'key'     => '_kraken_size',
+					'compare' => 'NOT EXISTS',
+					'value'   => '',
+				],
+				[
+					'key'     => '_kraked_thumbs',
+					'compare' => 'NOT EXISTS',
+					'value'   => '',
+				],
+			],
+		];
+
+		$query = new WP_Query( $args );
+
+		return [
+			'ids'   => wp_list_pluck( $query->posts, 'ID' ),
+			'pages' => $query->max_num_pages,
+			'total' => $query->found_posts,
+		];
+	}
+
 }
