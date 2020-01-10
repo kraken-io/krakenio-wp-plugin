@@ -105,7 +105,8 @@ class Kraken_IO_Ajax {
 			);
 		}
 
-		$id = (int) $_POST['id'];
+		$id   = (int) $_POST['id'];
+		$type = $_POST['type'];
 
 		if ( ! wp_attachment_is_image( $id ) ) {
 			wp_send_json_error(
@@ -119,17 +120,33 @@ class Kraken_IO_Ajax {
 
 		if ( $optimize_image ) {
 
-			$stats = kraken_io()->stats->get_image_stats( $id );
-			$size  = kraken_io()->format_bytes( filesize( get_attached_file( $id ) ) );
+			$stats    = kraken_io()->stats->get_image_stats( $id );
+			$file     = get_attached_file( $id );
+			$size     = kraken_io()->format_bytes( filesize( $file ) );
+			$filename = basename( get_attached_file( $id ) );
 
 			ob_start();
-			kraken_io()->get_template( 'media-column-stats', [ 'stats' => $stats ] );
+
+			if ( 'bulk' === $type ) {
+				kraken_io()->get_template(
+					'bulk-optimizer-stats',
+					[
+						'stats'    => $stats,
+						'filename' => $filename,
+						'size'     => $size,
+					]
+				);
+			} else {
+				kraken_io()->get_template( 'media-column-stats', [ 'stats' => $stats ] );
+			}
+
 			$column_html = ob_get_clean();
 
 			wp_send_json_success(
 				[
-					'size' => $size,
-					'html' => $column_html,
+					'size'     => $size,
+					'html'     => $column_html,
+					'filename' => $filename,
 				]
 			);
 		}
