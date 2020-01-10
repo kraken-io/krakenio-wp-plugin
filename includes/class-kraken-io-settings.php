@@ -216,17 +216,19 @@ class Kraken_IO_Settings {
 		}
 
 		if ( ! isset( $this->settings[ $active ] ) ) {
-			return;
+			return false;
 		}
 
 		$settings = $this->settings[ $active ];
 
 		if ( ! wp_verify_nonce( $_POST['kraken_io_settings_nonce'], 'kraken_io_settings' ) ) {
 			$this->settings_errors[] = __( 'Please refresh the page and try again.', 'kraken-io' );
+			return false;
 		}
 
 		if ( ! isset( $_POST['kraken_options'] ) ) {
 			$this->settings_errors[] = __( 'There are no Kraken options.', 'kraken-io' );
+			return false;
 		}
 
 		$options = $_POST['kraken_options'];
