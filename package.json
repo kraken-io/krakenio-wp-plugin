@@ -7,8 +7,9 @@
   "repository": "https://github.com/kraken-io/kraken-wp-plugin.git",
   "main": "index.js",
   "scripts": {
-    "watch": "cross-env webpack",
-    "build": "cross-env && npm run lint && npm run test && NODE_ENV=production webpack",
+    "watch": "cross-env && composer install && webpack",
+    "build": "cross-env && npm run composer && npm run lint && npm run test && NODE_ENV=production webpack",
+    "composer": "composer config vendor-dir includes/vendor && composer install --no-dev",
     "lint": "npm run lint:scripts && npm run lint:styles && npm run lint:php",
     "lint:scripts": "eslint './assets/js/src/'",
     "lint:styles": "stylelint './assets/css/src/'",
