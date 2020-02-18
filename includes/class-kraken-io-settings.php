@@ -166,11 +166,11 @@ class Kraken_IO_Settings {
 		$tabs = [
 			'general'  => [
 				'title'       => __( 'General Settings', 'kraken-io' ),
-				'description' => __( '<a href="http://kraken.io/account" target="_blank">Kraken.io</a> API Setting', 'kraken-io' ),
+				'description' => __( '<a href="http://kraken.io/account" target="_blank">Kraken.io</a> API Settings.', 'kraken-io' ),
 			],
 			'advanced' => [
 				'title'       => __( 'Advanced Settings', 'kraken-io' ),
-				'description' => __( 'We recommend that you leave these settings at their default values', 'kraken-io' ),
+				'description' => __( 'We recommend that you leave these settings at their default values.', 'kraken-io' ),
 			],
 			'tools'    => [
 				'title'       => __( 'Tools', 'kraken-io' ),
@@ -362,7 +362,7 @@ class Kraken_IO_Settings {
 	 */
 	public function get_default_options() {
 		$settings = $this->settings;
-		$options = [];
+		$options  = [];
 
 		foreach ( $settings as $section ) {
 			foreach ( $section as $setting ) {
@@ -404,11 +404,11 @@ class Kraken_IO_Settings {
 				if ( $is_valid ) {
 					$validated_options[ $setting['id'] ] = $value;
 				} else {
-					if ( isset ( $old_options[ $setting['id'] ] ) ) {
+					if ( isset( $old_options[ $setting['id'] ] ) ) {
 						$old_value = $old_options[ $setting['id'] ];
 					} else {
 						$old_options = $this->get_default_options();
-						$old_value = $old_options[ $setting['id'] ];
+						$old_value   = $old_options[ $setting['id'] ];
 					}
 					$validated_options[ $setting['id'] ] = $old_value;
 				}
