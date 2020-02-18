@@ -234,11 +234,11 @@ class Kraken_IO {
 	 * @access public
 	 */
 	public function get_image_sizes_to_optimize() {
-		$sizes = [];
+		$sizes       = [];
 		$image_sizes = get_intermediate_image_sizes();
 
 		foreach ( $image_sizes as $size ) {
-			if ( ! isset( $this->options['include_size_' . $size] ) || ! empty( $this->options['include_size_' . $size] ) ) {
+			if ( ! isset( $this->options[ 'include_size_' . $size ] ) || ! empty( $this->options[ 'include_size_' . $size ] ) ) {
 				$sizes[] = $size;
 			}
 		}

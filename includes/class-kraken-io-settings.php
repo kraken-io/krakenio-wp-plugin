@@ -238,7 +238,7 @@ class Kraken_IO_Settings {
 			foreach ( $settings['options'] as $option => $title ) {
 				if ( isset( $this->options[ $option ] ) ) {
 					$values[ $option ] = $this->options[ $option ];
-				} else if ( isset( $settings['default'][ $option ] ) ) {
+				} elseif ( isset( $settings['default'][ $option ] ) ) {
 					$values[ $option ] = $settings['default'][ $option ];
 				}
 			}
@@ -557,15 +557,15 @@ class Kraken_IO_Settings {
 	 */
 	public function get_prefixed_image_sizes( $type = 'all' ) {
 
-		$sizes       = [];
-		$image_sizes = get_intermediate_image_sizes();
+		$sizes             = [];
+		$image_sizes       = get_intermediate_image_sizes();
 		$sizes_to_optimize = kraken_io()->get_image_sizes_to_optimize();
 
 		foreach ( $image_sizes as $size ) {
 			if ( 'all' === $type ) {
 				$sizes[ 'include_size_' . $size ] = $size;
 			} else {
-				if ( in_array( $size, $sizes_to_optimize ) ) {
+				if ( in_array( $size, $sizes_to_optimize, true ) ) {
 					$sizes[ 'include_size_' . $size ] = '1';
 				}
 			}
