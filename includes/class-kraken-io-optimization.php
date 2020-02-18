@@ -275,7 +275,7 @@ class Kraken_IO_Optimization {
 		}
 
 		$metadata   = wp_get_attachment_metadata( $id );
-		$sizes      = $this->get_image_sizes_to_optimize();
+		$sizes      = kraken_io()->get_image_sizes_to_optimize();
 		$thumb_data = [];
 
 		$upload_dir = wp_upload_dir();
@@ -361,24 +361,6 @@ class Kraken_IO_Optimization {
 	public function optimize_thumbnails_on_resize( $metadata, $id ) {
 		$this->optimize_thumbnails( $id );
 		return $metadata;
-	}
-
-	/**
-	 * Get image sizes to optimize.
-	 *
-	 * @since  2.7
-	 * @access public
-	 */
-	public function get_image_sizes_to_optimize() {
-		$sizes = [];
-
-		foreach ( $this->options as $key => $value ) {
-			if ( strpos( $key, 'include_size' ) === 0 && ! empty( $value ) ) {
-				$sizes[] = str_replace( 'include_size_', '', $key );
-			}
-		}
-
-		return $sizes;
 	}
 
 	/**

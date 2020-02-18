@@ -228,29 +228,18 @@ class Kraken_IO {
 	}
 
 	/**
-	 * Get size information for all currently-registered image sizes.
+	 * Get image sizes to optimize.
 	 *
 	 * @since  2.7
 	 * @access public
-	 * @return array $sizes
 	 */
-	public function get_image_sizes() {
-		global $_wp_additional_image_sizes;
-
-		$sizes       = [];
+	public function get_image_sizes_to_optimize() {
+		$sizes = [];
 		$image_sizes = get_intermediate_image_sizes();
 
 		foreach ( $image_sizes as $size ) {
-			if ( in_array( $size, [ 'thumbnail', 'medium', 'medium_large', 'large' ], true ) ) {
-				$sizes[ $size ]['width']  = get_option( "{$size}_size_w" );
-				$sizes[ $size ]['height'] = get_option( "{$size}_size_h" );
-				$sizes[ $size ]['crop']   = (bool) get_option( "{$size}_crop" );
-			} elseif ( isset( $_wp_additional_image_sizes[ $size ] ) ) {
-				$sizes[ $size ] = [
-					'width'  => $_wp_additional_image_sizes[ $size ]['width'],
-					'height' => $_wp_additional_image_sizes[ $size ]['height'],
-					'crop'   => $_wp_additional_image_sizes[ $size ]['crop'],
-				];
+			if ( ! isset( $this->options['include_size_' . $size] ) || ! empty( $this->options['include_size_' . $size] ) ) {
+				$sizes[] = $size;
 			}
 		}
 

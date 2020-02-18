@@ -558,7 +558,7 @@ class Kraken_IO_Settings {
 	public function get_image_sizes( $prefix = false ) {
 
 		$sizes       = [];
-		$image_sizes = array_keys( kraken_io()->get_image_sizes() );
+		$image_sizes = get_intermediate_image_sizes();
 
 		foreach ( $image_sizes as $size ) {
 			$sizes[ $prefix . $size ] = $size;
