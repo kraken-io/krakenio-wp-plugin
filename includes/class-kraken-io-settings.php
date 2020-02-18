@@ -67,7 +67,7 @@ class Kraken_IO_Settings {
 	 * @return array $links Plugin Action links
 	 */
 	public function plugin_action_links( $links ) {
-		$links['settings'] = '<a href="' . esc_url( admin_url( 'options-general.php?page=kraken-io' ) ) . '" aria-label="' . esc_attr__( 'Kraken.io Settings', 'kraken-io' ) . '">' . esc_attr__( 'Settings', 'kraken-io' ) . '</a>';
+		$links['settings'] = '<a href="' . esc_url( admin_url( 'options-general.php?page=wp-krakenio' ) ) . '" aria-label="' . esc_attr__( 'Kraken.io Settings', 'kraken-io' ) . '">' . esc_attr__( 'Settings', 'kraken-io' ) . '</a>';
 		return $links;
 	}
 
@@ -142,7 +142,7 @@ class Kraken_IO_Settings {
 			esc_html__( 'Kraken.io Settings', 'kraken-io' ),
 			esc_html__( 'Kraken.io', 'kraken-io' ),
 			'manage_options',
-			'kraken-io',
+			'wp-krakenio',
 			[ $this, 'create_options_page' ]
 		);
 	}
@@ -190,12 +190,12 @@ class Kraken_IO_Settings {
 				<?php
 				foreach ( $tabs as $id => $tab ) {
 					$active_class = $active_tab === $id ? ' nav-tab-active' : false;
-					$link         = admin_url( 'options-general.php?page=kraken-io&tab=' . $id );
+					$link         = admin_url( 'options-general.php?page=wp-krakenio&tab=' . $id );
 					echo '<a href="' . esc_url( $link ) . '" class="nav-tab' . esc_attr( $active_class ) . '">' . esc_html( $tab['title'] ) . '</a>';
 				}
 				?>
 			</h2>
-			<form method="post" action="<?php echo esc_url( admin_url( 'options-general.php?page=kraken-io&tab=' . $active_tab ) ); ?>">
+			<form method="post" action="<?php echo esc_url( admin_url( 'options-general.php?page=wp-krakenio&tab=' . $active_tab ) ); ?>">
 				<?php
 					wp_nonce_field( 'kraken_io_settings', 'kraken_io_settings_nonce' );
 					$this->do_settings_sections( $tabs, $active_tab );
