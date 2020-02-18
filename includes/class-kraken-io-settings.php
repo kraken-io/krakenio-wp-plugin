@@ -548,20 +548,27 @@ class Kraken_IO_Settings {
 	}
 
 	/**
-	 * Get registered image sizes.
+	 * Get prefixed image sizes.
 	 *
 	 * @since  2.7
 	 * @access public
 	 * @param  bool $prefix Prefix sizes
 	 * @return array $sizes Image sizes
 	 */
-	public function get_image_sizes( $prefix = false ) {
+	public function get_prefixed_image_sizes( $type = 'all' ) {
 
 		$sizes       = [];
 		$image_sizes = get_intermediate_image_sizes();
+		$sizes_to_optimize = kraken_io()->get_image_sizes_to_optimize();
 
 		foreach ( $image_sizes as $size ) {
-			$sizes[ $prefix . $size ] = $size;
+			if ( 'all' === $type ) {
+				$sizes[ 'include_size_' . $size ] = $size;
+			} else {
+				if ( in_array( $size, $sizes_to_optimize ) ) {
+					$sizes[ 'include_size_' . $size ] = '1';
+				}
+			}
 		}
 
 		return $sizes;
@@ -698,8 +705,8 @@ class Kraken_IO_Settings {
 					'id'                => 'include_size',
 					'type'              => 'multi_checkbox',
 					'sanitize_callback' => [ $this, 'sanitize_checkbox' ],
-					'default'           => $this->get_image_sizes( 'include_size_' ),
-					'options'           => $this->get_image_sizes( 'include_size_' ),
+					'default'           => $this->get_prefixed_image_sizes( 'to-optimize' ),
+					'options'           => $this->get_prefixed_image_sizes(),
 					'title'             => __( 'Image sizes to Krak', 'kraken-io' ),
 				],
 				[
