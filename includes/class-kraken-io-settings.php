@@ -308,8 +308,10 @@ class Kraken_IO_Settings {
 		$options = $this->sanitize_options( $options, $settings );
 		$options = $this->validate_options( $options, $this->options, $settings );
 		$options = array_merge( $this->options, $options );
+		$options = array_merge( $this->get_default_options(), $options );
 
 		$this->options = $options;
+		kraken_io()->set_options( $options );
 		update_option( '_kraken_options', $options );
 
 		$this->settings_sucess[] = __( 'Settings Saved', 'kraken-io' );
@@ -332,21 +334,52 @@ class Kraken_IO_Settings {
 			$value = isset( $options[ $setting['id'] ] ) ? $options[ $setting['id'] ] : false;
 			$type  = $setting['type'];
 
-			if ( isset( $setting['sanitize_callback'] ) ) {
-				if ( 'multi_text' === $type || 'multi_checkbox' === $type ) {
-					foreach ( $setting['options'] as $option => $title ) {
-						$val                          = isset( $options[ $option ] ) ? $options[ $option ] : false;
-						$sanitized_options[ $option ] = call_user_func( $setting['sanitize_callback'], $val );
+			if ( isset( $setting['id'] ) ) {
+				if ( isset( $setting['sanitize_callback'] ) ) {
+					if ( 'multi_text' === $type || 'multi_checkbox' === $type ) {
+						foreach ( $setting['options'] as $option => $title ) {
+							$val                          = isset( $options[ $option ] ) ? $options[ $option ] : false;
+							$sanitized_options[ $option ] = call_user_func( $setting['sanitize_callback'], $val );
+						}
+					} else {
+						$sanitized_options[ $setting['id'] ] = call_user_func( $setting['sanitize_callback'], $value );
 					}
 				} else {
-					$sanitized_options[ $setting['id'] ] = call_user_func( $setting['sanitize_callback'], $value );
+					$sanitized_options[ $setting['id'] ] = $value;
 				}
-			} else {
-				$sanitized_options[ $setting['id'] ] = $value;
 			}
 		}
 
 		return $sanitized_options;
+	}
+
+	/**
+	 * Get default options.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @return array $options options.
+	 */
+	public function get_default_options() {
+		$settings = $this->settings;
+		$options = [];
+
+		foreach ( $settings as $section ) {
+			foreach ( $section as $setting ) {
+				$type = $setting['type'];
+				if ( isset( $setting['id'] ) ) {
+					if ( 'multi_text' === $type || 'multi_checkbox' === $type ) {
+						foreach ( $setting['options'] as $option => $title ) {
+							$options[ $option ] = $setting['default'][ $option ];
+						}
+					} else {
+						$options[ $setting['id'] ] = isset( $setting['default'] ) ? $setting['default'] : '';
+					}
+				}
+			}
+		}
+
+		return $options;
 	}
 
 	/**
@@ -371,7 +404,13 @@ class Kraken_IO_Settings {
 				if ( $is_valid ) {
 					$validated_options[ $setting['id'] ] = $value;
 				} else {
-					$validated_options[ $setting['id'] ] = $old_options[ $setting['id'] ];
+					if ( isset ( $old_options[ $setting['id'] ] ) ) {
+						$old_value = $old_options[ $setting['id'] ];
+					} else {
+						$old_options = $this->get_default_options();
+						$old_value = $old_options[ $setting['id'] ];
+					}
+					$validated_options[ $setting['id'] ] = $old_value;
 				}
 			}
 		}
@@ -597,7 +636,6 @@ class Kraken_IO_Settings {
 					'title'             => __( 'API Secret', 'kraken-io' ),
 				],
 				[
-					'id'    => 'api_status',
 					'type'  => 'api_status',
 					'title' => __( 'API Status', 'kraken-io' ),
 				],

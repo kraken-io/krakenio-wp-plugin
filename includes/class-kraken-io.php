@@ -80,7 +80,7 @@ class Kraken_IO {
 
 		$this->file     = KRAKEN_PLUGIN_FILE;
 		$this->basename = plugin_basename( $this->file );
-		$this->options  = get_option( '_kraken_options' );
+		$this->options  = get_option( '_kraken_options', [] );
 
 		$this->includes();
 		$this->init_hooks();
@@ -221,10 +221,26 @@ class Kraken_IO {
 	 *
 	 * @since  2.7
 	 * @access public
-	 * @return string
+	 * @return array
 	 */
 	public function get_options() {
 		return $this->options;
+	}
+
+	/**
+	 * Set the options.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  arry $options
+	 * @return void
+	 */
+	public function set_options( $options ) {
+		if ( $this->options['api_key'] !== $options['api_key'] || $this->options['api_secret'] !== $options['api_secret'] ) {
+			$this->api = new Kraken_IO_API( $options['api_key'], $options['api_secret'] );
+		}
+
+		$this->options = $options;
 	}
 
 	/**
