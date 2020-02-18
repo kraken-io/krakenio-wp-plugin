@@ -238,6 +238,8 @@ class Kraken_IO_Settings {
 			foreach ( $settings['options'] as $option => $title ) {
 				if ( isset( $this->options[ $option ] ) ) {
 					$values[ $option ] = $this->options[ $option ];
+				} else if ( isset( $settings['default'][ $option ] ) ) {
+					$values[ $option ] = $settings['default'][ $option ];
 				}
 			}
 			return $values;
