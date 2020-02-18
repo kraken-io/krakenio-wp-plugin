@@ -244,6 +244,7 @@ class Kraken_IO_Optimization {
 
 		if ( copy( $path, $backup_path ) ) {
 			$data['optimized_backup_file'] = $backup_path;
+			$data['optimized_backup_file'] = wp_slash( $backup_path );
 		}
 
 		$optimized_image = $this->optimize_single_image( $path, $type );
