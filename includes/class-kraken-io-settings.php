@@ -746,10 +746,8 @@ class Kraken_IO_Settings {
 					'default'           => 4,
 					'title'             => __( 'Bulk concurrency', 'kraken-io' ),
 					'description'       => [
-						__( 'Advanced users can force the quality of JPEG images to a discrete "q" value between 25 and 100 using this setting.', 'kraken-io' ),
-						__( 'For example, forcing the quality to 60 or 70 might yield greater savings, but the resulting quality might be affected, depending on the image.', 'kraken-io' ),
-						__( 'We therefore recommend keeping the <strong>Intelligent Lossy</strong> setting, which will not allow a resulting image of unacceptable quality.', 'kraken-io' ),
-						__( 'This setting will be ignored when using the <strong>lossless</strong> optimization mode.', 'kraken-io' ),
+						__( 'This settings defines how many images can be processed at the same time using the bulk optimizer. The recommended (and default) value is 4.', 'kraken-io' ),
+						__( 'For blogs on very small hosting plans, or with reduced connectivity, a lower number might be necessary to avoid hitting request limits.', 'kraken-io' ),
 					],
 				],
 			],
