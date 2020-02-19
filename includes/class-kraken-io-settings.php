@@ -314,8 +314,11 @@ class Kraken_IO_Settings {
 		$options = array_merge( $this->options, $options );
 		$options = array_merge( $this->get_default_options(), $options );
 
+		$old_options   = $this->options;
 		$this->options = $options;
+
 		kraken_io()->set_options( $options );
+		kraken_io()->maybe_reinit_api( $old_options, $options );
 
 		$this->settings_sucess[] = __( 'Settings Saved', 'kraken-io' );
 	}

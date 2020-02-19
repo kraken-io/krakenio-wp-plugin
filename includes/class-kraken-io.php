@@ -245,11 +245,12 @@ class Kraken_IO {
 	 *
 	 * @since  2.7
 	 * @access public
+	 * @param  arry $old_options
 	 * @param  arry $options
 	 * @return void
 	 */
-	public function maybe_reinit_api( $options ) {
-		if ( $this->options['api_key'] !== $options['api_key'] || $this->options['api_secret'] !== $options['api_secret'] ) {
+	public function maybe_reinit_api( $old_options, $options ) {
+		if ( $old_options['api_key'] !== $options['api_key'] || $old_options['api_secret'] !== $options['api_secret'] ) {
 			$this->api = new Kraken_IO_API();
 		}
 	}
