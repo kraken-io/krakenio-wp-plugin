@@ -226,6 +226,10 @@ class Kraken_IO_Settings {
 	 */
 	public function get_field_value( $settings ) {
 
+		if ( ! isset( $settings['id'] ) ) {
+			return false;
+		}
+
 		$id   = $settings['id'];
 		$type = $settings['type'];
 
@@ -330,7 +334,8 @@ class Kraken_IO_Settings {
 
 		foreach ( $settings as $key => $setting ) {
 
-			$value = isset( $options[ $setting['id'] ] ) ? $options[ $setting['id'] ] : false;
+			$id = isset( $setting['id'] ) ? $setting['id'] : 'empty';
+			$value = isset( $options[ $id ] ) ? $options[ $id ] : false;
 			$type  = $setting['type'];
 
 			if ( isset( $setting['id'] ) ) {
@@ -365,14 +370,15 @@ class Kraken_IO_Settings {
 
 		foreach ( $settings as $section ) {
 			foreach ( $section as $setting ) {
-				$type = $setting['type'];
 				if ( isset( $setting['id'] ) ) {
+					$type = $setting['type'];
 					if ( 'multi_text' === $type || 'multi_checkbox' === $type ) {
 						foreach ( $setting['options'] as $option => $title ) {
-							$options[ $option ] = $setting['default'][ $option ];
+							$default = isset( $setting['default'][ $option ] ) ? $setting['default'][ $option ] : '';
+							$options[ $option ] = $default;
 						}
 					} else {
-						$options[ $setting['id'] ] = isset( $setting['default'] ) ? $setting['default'] : '';
+						$options[ $setting['id'] ] = $setting['default'];
 					}
 				}
 			}
@@ -396,7 +402,8 @@ class Kraken_IO_Settings {
 
 		foreach ( $settings as $key => $setting ) {
 
-			$value = isset( $options[ $setting['id'] ] ) ? $options[ $setting['id'] ] : false;
+			$id = isset( $setting['id'] ) ? $setting['id'] : 'empty';
+			$value = isset( $options[ $id ] ) ? $options[ $id ] : false;
 
 			if ( isset( $setting['validate_callback'] ) ) {
 				$is_valid = call_user_func( $setting['validate_callback'], $value, $setting['options'] );
@@ -627,16 +634,19 @@ class Kraken_IO_Settings {
 					'type'              => 'text',
 					'sanitize_callback' => 'sanitize_text_field',
 					'title'             => __( 'API Key', 'kraken-io' ),
+					'default'           => '',
 				],
 				[
 					'id'                => 'api_secret',
 					'type'              => 'text',
 					'sanitize_callback' => 'sanitize_text_field',
 					'title'             => __( 'API Secret', 'kraken-io' ),
+					'default'           => '',
 				],
 				[
 					'type'  => 'api_status',
 					'title' => __( 'API Status', 'kraken-io' ),
+					'default'           => '',
 				],
 				[
 					'id'                => 'api_lossy',
@@ -756,6 +766,13 @@ class Kraken_IO_Settings {
 						'preserve_meta_geotag'      => __( 'Geotag', 'kraken-io' ),
 						'preserve_meta_orientation' => __( 'Orientation', 'kraken-io' ),
 						'preserve_meta_profile'     => __( 'Profile Profile', 'kraken-io' ),
+					],
+					'default'           => [
+						'preserve_meta_date'        => '',
+						'preserve_meta_copyright'   => '',
+						'preserve_meta_geotag'      => '',
+						'preserve_meta_orientation' => '',
+						'preserve_meta_profile'     => '',
 					],
 					'title'             => __( 'Preserve EXIF Metadata', 'kraken-io' ),
 				],
