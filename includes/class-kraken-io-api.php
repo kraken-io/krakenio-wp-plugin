@@ -12,7 +12,11 @@ class Kraken_IO_API {
 
 	protected $kraken;
 
-	public function __construct( $key = '', $secret = '' ) {
+	public function __construct() {
+		$options = kraken_io()->get_options();
+		$key     = isset( $options['api_key'] ) ? $options['api_key'] : '';
+		$secret  = isset( $options['api_secret'] ) ? $options['api_secret'] : '';
+
 		$this->kraken = new Kraken( $key, $secret );
 	}
 

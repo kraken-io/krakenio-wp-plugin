@@ -131,7 +131,7 @@ class Kraken_IO {
 		// Set up localisation.
 		$this->load_plugin_textdomain();
 
-		$this->api          = new Kraken_IO_API( $this->options['api_key'], $this->options['api_secret'] );
+		$this->api          = new Kraken_IO_API();
 		$this->settings     = new Kraken_IO_Settings();
 		$this->stats        = new Kraken_IO_Stats();
 		$this->optimization = new Kraken_IO_Optimization();
@@ -236,12 +236,22 @@ class Kraken_IO {
 	 * @return void
 	 */
 	public function set_options( $options ) {
-		if ( $this->options['api_key'] !== $options['api_key'] || $this->options['api_secret'] !== $options['api_secret'] ) {
-			$this->api = new Kraken_IO_API( $options['api_key'], $options['api_secret'] );
-		}
-
 		$this->options = $options;
 		update_option( '_kraken_options', $options );
+	}
+
+	/**
+	 * Reinit the api if the api settings have changed.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  arry $options
+	 * @return void
+	 */
+	public function maybe_reinit_api( $options ) {
+		if ( $this->options['api_key'] !== $options['api_key'] || $this->options['api_secret'] !== $options['api_secret'] ) {
+			$this->api = new Kraken_IO_API();
+		}
 	}
 
 	/**
