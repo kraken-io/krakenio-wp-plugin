@@ -11,11 +11,16 @@ defined( 'ABSPATH' ) || exit;
 class Kraken_IO_API {
 
 	protected $kraken;
+	protected $has_auth = false;
 
 	public function __construct() {
 		$options = kraken_io()->get_options();
-		$key     = isset( $options['api_key'] ) ? $options['api_key'] : '';
-		$secret  = isset( $options['api_secret'] ) ? $options['api_secret'] : '';
+		$key     = $options['api_key'];
+		$secret  = $options['api_secret'];
+
+		if ( '' !== $key && '' !== $secret ) {
+			$this->has_auth = true;
+		}
 
 		$this->kraken = new Kraken( $key, $secret );
 	}
@@ -24,11 +29,32 @@ class Kraken_IO_API {
 		return wp_parse_args( [ 'success' => false ], $data );
 	}
 
+	private function return_no_api_error() {
+		return $this->return_error(
+			[
+				'type' => 'no_auth',
+			]
+		);
+	}
+
+	public function has_auth() {
+		return $this->has_auth;
+	}
+
 	public function url( $opts = [] ) {
-		return $this->kraken->status( $opts );
+
+		if ( ! $this->has_auth() ) {
+			return $this->return_no_api_error();
+		}
+
+		return $this->kraken->url( $opts );
 	}
 
 	public function upload( $opts = [] ) {
+
+		if ( ! $this->has_auth() ) {
+			return $this->return_no_api_error();
+		}
 
 		if ( empty( $opts ) ) {
 			return $this->return_error(
@@ -60,6 +86,11 @@ class Kraken_IO_API {
 	}
 
 	public function status() {
+
+		if ( ! $this->has_auth() ) {
+			return $this->return_no_api_error();
+		}
+
 		return $this->kraken->status();
 	}
 }

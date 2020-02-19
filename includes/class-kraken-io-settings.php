@@ -588,7 +588,7 @@ class Kraken_IO_Settings {
 	public function do_settings_field_api_status( $settings, $value ) {
 		$status = kraken_io()->api->status();
 
-		if ( false !== $status && isset( $status['active'] ) && true === $status['active'] ) {
+		if ( $status['success'] && isset( $status['active'] ) && true === $status['active'] ) {
 			echo '<p><span class="kraken-status-success dashicons dashicons-yes-alt"></span> ' . esc_html__( 'Your credentials are valid.', 'kraken-io' ) . '</p>';
 		} else {
 			echo '<p><span class="kraken-status-error  dashicons dashicons-warning"></span> ' . esc_html__( 'There is a problem with your credentials.', 'kraken-io' ) . '</p>';
