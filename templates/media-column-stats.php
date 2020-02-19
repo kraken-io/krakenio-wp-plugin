@@ -21,11 +21,7 @@ $summary = $stats['stats']; ?>
 				<button
 					type="button"
 					class="button kraken-button-optimize-image"
-					data-setting="<?php echo esc_attr( $stats['type'] ); ?>"
-					data-id="<?php echo esc_attr( $stats['id'] ); ?>"
-					id="kraken-id-<?php echo esc_attr( $stats['id'] ); ?>"
-					data-filename="<?php echo esc_attr( $stats['filename'] ); ?>"
-					data-url="<?php echo esc_attr( $stats['image_url'] ); ?>">
+					data-id="<?php echo esc_attr( $stats['id'] ); ?>">
 					<?php esc_html_e( 'Optimize Main Image', 'kraken-io' ); ?>
 					<span class="spinner"></span>
 				</button>
@@ -93,12 +89,8 @@ $summary = $stats['stats']; ?>
 			<button
 				type="button"
 				class="button kraken-button-optimize-image"
-				data-setting="<?php echo esc_attr( $stats['type'] ); ?>"
-				data-id="<?php echo esc_attr( $stats['id'] ); ?>"
-				id="kraken-id-<?php echo esc_attr( $stats['id'] ); ?>"
-				data-filename="<?php echo esc_attr( $stats['filename'] ); ?>"
-				data-url="<?php echo esc_attr( $stats['image_url'] ); ?>">
-				<?php esc_html_e( 'Optimize This Image', 'kraken-io' ); ?>
+				data-id="<?php echo esc_attr( $stats['id'] ); ?>">
+				<?php esc_html_e( 'Optimize', 'kraken-io' ); ?>
 				<span class="spinner"></span>
 			</button>
 

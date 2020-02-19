@@ -19,6 +19,7 @@ class Kraken_IO_Stats {
 	public function __construct() {
 		add_filter( 'manage_media_columns', [ $this, 'add_media_columns' ] );
 		add_action( 'manage_media_custom_column', [ $this, 'fill_media_columns' ], 10, 2 );
+		add_filter( 'attachment_fields_to_edit', [ $this, 'attachment_fields' ], 10, 2 );
 
 		$this->options = kraken_io()->get_options();
 	}
@@ -32,10 +33,7 @@ class Kraken_IO_Stats {
 	 * @return array $columns An array of columns.
 	 */
 	public function add_media_columns( $columns ) {
-
-		$columns['kraken-original-size'] = esc_html__( 'Original Size', 'kraken-io' );
-		$columns['kraken-stats']         = esc_html__( 'Kraken.io Stats', 'kraken-io' );
-
+		$columns['kraken-stats'] = esc_html__( 'Kraken.io', 'kraken-io' );
 		return $columns;
 	}
 
@@ -51,16 +49,39 @@ class Kraken_IO_Stats {
 	public function fill_media_columns( $column_name, $id ) {
 
 		switch ( $column_name ) {
-			case 'kraken-original-size':
-				$size = $this->get_original_size( $id );
-				kraken_io()->get_template( 'media-column-size', [ 'size' => $size ] );
-				break;
 			case 'kraken-stats':
 				$stats = $this->get_image_stats( $id );
 				kraken_io()->get_template( 'media-column-stats', [ 'stats' => $stats ] );
 				break;
 		}
 
+	}
+
+	/**
+	 * Add Kraken stats to media uploader.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  $form_fields array, fields to include in attachment form
+	 * @param  $post object, attachment record in database
+	 * @return $form_fields, modified form fields
+	 */
+	public function attachment_fields( $form_fields, $post ) {
+
+		$stats = $this->get_image_stats( $post->ID );
+		ob_start();
+		kraken_io()->get_template( 'media-column-stats', [ 'stats' => $stats ] );
+		$template = ob_get_clean();
+
+		$form_fields['kraken-stats'] = [
+			'label' 				=> esc_html__( 'Kraken.io', 'kraken-io' ),
+			'input'         => 'html',
+			'html'          => $template,
+			'show_in_edit'  => true,
+			'show_in_modal' => true,
+		];
+
+		return $form_fields;
 	}
 
 	/**
@@ -125,6 +146,7 @@ class Kraken_IO_Stats {
 			'show_button'  => false,
 			'show_reset'   => false,
 			'stats'        => [],
+			'size' 			   => $this->get_original_size( $id ),
 		];
 
 		$image_url = wp_get_attachment_url( $id );
