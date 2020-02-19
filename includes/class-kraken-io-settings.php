@@ -175,6 +175,10 @@ class Kraken_IO_Settings {
 				'title'       => __( 'Tools', 'kraken-io' ),
 				'description' => '',
 			],
+			'stats'    => [
+				'title'       => __( 'Stats', 'kraken-io' ),
+				'description' => '',
+			],
 		];
 
 		$this->options = kraken_io()->get_options();
@@ -195,17 +199,20 @@ class Kraken_IO_Settings {
 				}
 				?>
 			</h2>
-			<form method="post" action="<?php echo esc_url( admin_url( 'options-general.php?page=wp-krakenio&tab=' . $active_tab ) ); ?>">
+			<form method="post" action="<?php echo esc_url( admin_url( 'options-general.php?page=kraken-io&tab=' . $active_tab ) ); ?>">
 				<?php
 					wp_nonce_field( 'kraken_io_settings', 'kraken_io_settings_nonce' );
 					$this->do_settings_sections( $tabs, $active_tab );
 				?>
 
-				<?php if ( 'tools' !== $active_tab ) : ?>
+				<?php if ( 'general' === $active_tab || 'advanced' === $active_tab ) : ?>
 					<p class="submit">
 						<input type="submit" name="submit" class="button button-primary" value="<?php esc_attr_e( 'Save Changes', 'kraken-io' ); ?>">
 					</p>
 					<?php
+				elseif ( 'stats' === $active_tab ) :
+					$status = kraken_io()->api->status();
+					kraken_io()->get_template( 'stats', [ 'stats' => $status ] );
 				else :
 					$unoptimized_images = kraken_io()->optimization->get_unoptimized_images();
 					kraken_io()->get_template( 'bulk-optimizer', wp_parse_args( $unoptimized_images, [ 'type' => 'tool' ] ) );

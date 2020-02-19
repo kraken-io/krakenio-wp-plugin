@@ -8,7 +8,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$stats = $args['stats'];
+$stats   = $args['stats'];
 $summary = $stats['stats']; ?>
 
 <tr class="kraken-bulk-table-row">

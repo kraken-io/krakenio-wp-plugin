@@ -74,7 +74,7 @@ class Kraken_IO_Stats {
 		$template = ob_get_clean();
 
 		$form_fields['kraken-stats'] = [
-			'label' 				=> esc_html__( 'Kraken.io', 'kraken-io' ),
+			'label'         => esc_html__( 'Kraken.io', 'kraken-io' ),
 			'input'         => 'html',
 			'html'          => $template,
 			'show_in_edit'  => true,
@@ -146,7 +146,7 @@ class Kraken_IO_Stats {
 			'show_button'  => false,
 			'show_reset'   => false,
 			'stats'        => [],
-			'size' 			   => $this->get_original_size( $id ),
+			'size'         => $this->get_original_size( $id ),
 		];
 
 		$image_url = wp_get_attachment_url( $id );
