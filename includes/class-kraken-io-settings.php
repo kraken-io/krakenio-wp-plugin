@@ -199,7 +199,7 @@ class Kraken_IO_Settings {
 				}
 				?>
 			</h2>
-			<form method="post" action="<?php echo esc_url( admin_url( 'options-general.php?page=kraken-io&tab=' . $active_tab ) ); ?>">
+			<form method="post" action="<?php echo esc_url( admin_url( 'options-general.php?page=wp-krakenio&tab=' . $active_tab ) ); ?>">
 				<?php
 					wp_nonce_field( 'kraken_io_settings', 'kraken_io_settings_nonce' );
 					$this->do_settings_sections( $tabs, $active_tab );
