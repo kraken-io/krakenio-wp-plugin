@@ -334,7 +334,7 @@ class Kraken_IO_Settings {
 
 		foreach ( $settings as $key => $setting ) {
 
-			$id = isset( $setting['id'] ) ? $setting['id'] : 'empty';
+			$id    = isset( $setting['id'] ) ? $setting['id'] : 'empty';
 			$value = isset( $options[ $id ] ) ? $options[ $id ] : false;
 			$type  = $setting['type'];
 
@@ -374,7 +374,7 @@ class Kraken_IO_Settings {
 					$type = $setting['type'];
 					if ( 'multi_text' === $type || 'multi_checkbox' === $type ) {
 						foreach ( $setting['options'] as $option => $title ) {
-							$default = isset( $setting['default'][ $option ] ) ? $setting['default'][ $option ] : '';
+							$default            = isset( $setting['default'][ $option ] ) ? $setting['default'][ $option ] : '';
 							$options[ $option ] = $default;
 						}
 					} else {
@@ -402,7 +402,7 @@ class Kraken_IO_Settings {
 
 		foreach ( $settings as $key => $setting ) {
 
-			$id = isset( $setting['id'] ) ? $setting['id'] : 'empty';
+			$id    = isset( $setting['id'] ) ? $setting['id'] : 'empty';
 			$value = isset( $options[ $id ] ) ? $options[ $id ] : false;
 
 			if ( isset( $setting['validate_callback'] ) ) {
@@ -644,9 +644,9 @@ class Kraken_IO_Settings {
 					'default'           => '',
 				],
 				[
-					'type'  => 'api_status',
-					'title' => __( 'API Status', 'kraken-io' ),
-					'default'           => '',
+					'type'    => 'api_status',
+					'title'   => __( 'API Status', 'kraken-io' ),
+					'default' => '',
 				],
 				[
 					'id'                => 'api_lossy',
@@ -691,7 +691,7 @@ class Kraken_IO_Settings {
 				[
 					'id'                => 'resize',
 					'type'              => 'multi_text',
-					'sanitize_callback' => 'intval',
+					'sanitize_callback' => 'abs',
 					'options'           => [
 						'resize_width'  => __( 'Max width (px)', 'kraken-io' ),
 						'resize_height' => __( 'Max height (px)', 'kraken-io' ),
