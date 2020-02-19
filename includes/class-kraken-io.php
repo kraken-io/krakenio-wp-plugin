@@ -28,6 +28,15 @@ class Kraken_IO {
 	public $api = null;
 
 	/**
+	 * The instance of the settigns class.
+	 *
+	 * @var    Kraken_IO_API
+	 * @since  2.7
+	 * @access protected
+	 */
+	public $settings = null;
+
+	/**
 	 * The single instance of the class.
 	 *
 	 * @var    Kraken_IO
@@ -131,8 +140,10 @@ class Kraken_IO {
 		// Set up localisation.
 		$this->load_plugin_textdomain();
 
+		$this->settings = new Kraken_IO_Settings();
+		$this->options  = array_merge( $this->settings->get_default_options(), $this->options );
+
 		$this->api          = new Kraken_IO_API();
-		$this->settings     = new Kraken_IO_Settings();
 		$this->stats        = new Kraken_IO_Stats();
 		$this->optimization = new Kraken_IO_Optimization();
 

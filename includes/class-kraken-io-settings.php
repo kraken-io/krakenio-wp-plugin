@@ -54,7 +54,6 @@ class Kraken_IO_Settings {
 		add_filter( 'handle_bulk_actions-upload', [ $this, 'handle_bulk_optimize' ], 10, 3 );
 		add_filter( 'admin_footer', [ $this, 'footer_bulk_modal' ] );
 		add_action( 'admin_menu', [ $this, 'add_options_page' ] );
-		$this->options = kraken_io()->get_options();
 		$this->register_settings();
 	}
 
@@ -178,6 +177,7 @@ class Kraken_IO_Settings {
 			],
 		];
 
+		$this->options = kraken_io()->get_options();
 		$this->save_options( $active_tab );
 
 		?>
