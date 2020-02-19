@@ -13,6 +13,6 @@
     "brain/monkey": "^2.4"
   },
   "config": {
-    "vendor-dir": "includes/vendor"
+    "vendor-dir": "vendor"
   }
 }

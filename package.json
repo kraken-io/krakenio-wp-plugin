@@ -8,8 +8,8 @@
   "main": "index.js",
   "scripts": {
     "watch": "cross-env && composer install && webpack",
-    "build": "cross-env && npm run composer && npm run lint && npm run test && NODE_ENV=production webpack",
-    "composer": "composer config vendor-dir includes/vendor && composer install --no-dev",
+    "build": "cross-env && npm run setup && npm run lint && npm run test && NODE_ENV=production webpack",
+    "setup": "composer config vendor-dir includes/vendor && composer install --no-dev && composer config vendor-dir vendor",
     "lint": "npm run lint:scripts && npm run lint:styles && npm run lint:php",
     "lint:scripts": "eslint './assets/js/src/'",
     "lint:styles": "stylelint './assets/css/src/'",
