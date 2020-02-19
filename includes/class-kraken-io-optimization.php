@@ -271,7 +271,7 @@ class Kraken_IO_Optimization {
 		$kraked_thumbs = get_post_meta( $id, '_kraked_thumbs', true );
 
 		if ( $kraked_thumbs ) {
-			return false;
+			return true;
 		}
 
 		$metadata   = wp_get_attachment_metadata( $id );

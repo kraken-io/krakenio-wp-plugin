@@ -22,7 +22,7 @@ class Kraken_IO_API {
 			$this->has_auth = true;
 		}
 
-		$this->kraken = new Kraken( $key, $secret );
+		$this->kraken = new Kraken( $key, $secret, 10 );
 	}
 
 	private function return_error( $data = [] ) {
