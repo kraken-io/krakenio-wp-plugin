@@ -38,7 +38,6 @@ $( document ).on( 'click', '.kraken-stats-action-reset-image', function( e ) {
 		},
 		success( response ) {
 			if ( response.success ) {
-				$el.parents( 'tr' ).find( '.column-kraken-original-size' ).text( response.data.size );
 				$el.parents( '.kraken-stats-media-column' ).replaceWith( response.data.html );
 			} else {
 				alert( window.kraken_options.texts.error_reset );
@@ -70,7 +69,6 @@ $( document ).on( 'click', '.kraken-button-optimize-image', function( e ) {
 		},
 		success( response ) {
 			if ( response.success ) {
-				$el.parents( 'tr' ).find( '.column-kraken-original-size' ).text( response.data.size );
 				$el.parents( '.kraken-stats-media-column' ).replaceWith( response.data.html );
 			} else {
 				alert( window.kraken_options.texts.error_reset );
@@ -89,25 +87,30 @@ $( document ).on( 'click', '.kraken-button-bulk-optimize', function( e ) {
 
 	const $el = $( this );
 	const $spinner = $el.find( '.spinner' );
-	const total = $el.data( 'total' );
-	// const pages = $el.data( 'pages' );
-	// const page = 1;
+	const pages = $el.data( 'pages' );
+	const page = 1;
 	const optimized = 0;
 	const ids = $el.data( 'ids' );
 
 	$el.parents( '.kraken-bulk-actions' ).addClass( 'is-active' );
 	$spinner.addClass( 'is-active' );
 
-	optimizeImageAjaxCallback( $el, ids, optimized, total );
+	optimizeImageAjaxCallback( $el, ids, optimized, pages, page );
 } );
 
-function optimizeImageAjaxCallback( $el, ids, optimized, total ) {
+function optimizeImageAjaxCallback( $el, ids, optimized, pages, page ) {
 	const $table = $el.parents( '.kraken-bulk-optimizer' ).find( '.kraken-bulk-table tbody' );
 	const id = ids.shift();
 	const $spinner = $el.find( '.spinner' );
 
 	if ( undefined === id ) {
-		$spinner.removeClass( 'is-active' );
+		if ( page < pages ) {
+			page = page + 1;
+			getUnoptimizedImagesPages( $el, optimized, pages, page );
+		} else {
+			$spinner.removeClass( 'is-active' );
+		}
+
 		return false;
 	}
 
@@ -128,11 +131,31 @@ function optimizeImageAjaxCallback( $el, ids, optimized, total ) {
 			}
 			$( '.optimized' ).text( optimized );
 
-			optimizeImageAjaxCallback( $el, ids, optimized, total );
+			optimizeImageAjaxCallback( $el, ids, optimized, pages, page );
 		},
 		error() {
 			$( '.optimized' ).text( optimized );
-			optimizeImageAjaxCallback( $el, ids, optimized, total );
+			optimizeImageAjaxCallback( $el, ids, optimized, pages, page );
+		},
+	} );
+}
+
+function getUnoptimizedImagesPages( $el, optimized, pages, page ) {
+	$.ajax( {
+		type: 'POST',
+		url: window.kraken_options.ajax_url,
+		data: {
+			action: 'kraken_get_bulk_pages',
+			paged: page,
+			nonce: window.kraken_options.nonce,
+		},
+		success( response ) {
+			const data = response.data;
+			if ( data.ids.length > 0 ) {
+				optimizeImageAjaxCallback( $el, data.ids, optimized, pages, page );
+			}
+		},
+		error() {
 		},
 	} );
 }
@@ -142,3 +165,29 @@ $( document ).on( 'click', '.kraken-bulk-close-modal', function( e ) {
 
 	$( this ).parents( '.kraken-modal' ).removeClass( 'is-active' );
 } );
+
+function drawCircle( $el, width ) {
+	if ( $el.length === 0 ) {
+		return false;
+	}
+
+	const canvas = $el.find( 'canvas' )[ 0 ];
+	const context = canvas.getContext( '2d' );
+	const startPoint = Math.PI / 180;
+	const lineWidth = 10;
+	const percent = $el.data( 'percent' );
+	const color = $el.data( 'color' );
+	const onePercent = 360 / 100;
+	const radius = ( width - lineWidth ) / 2;
+	const center = width / 2;
+	const deegre = onePercent * percent;
+
+	context.strokeStyle = color;
+	context.lineWidth = lineWidth;
+	context.clearRect( 0, 0, width, width );
+	context.beginPath();
+	context.arc( center, center, radius, startPoint * 270, startPoint * ( 270 + deegre ) );
+	context.stroke();
+}
+
+drawCircle( $( '.kraken-progress-circle' ), 120 );
