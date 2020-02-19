@@ -1,0 +1,41 @@
+[
+    {
+        "name": "kraken-io/kraken-php",
+        "version": "1.6",
+        "version_normalized": "1.6.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/kraken-io/kraken-php.git",
+            "reference": "56563df1b9a7829f7039cc6e712cf89fab655e26"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/kraken-io/kraken-php/zipball/56563df1b9a7829f7039cc6e712cf89fab655e26",
+            "reference": "56563df1b9a7829f7039cc6e712cf89fab655e26",
+            "shasum": ""
+        },
+        "require": {
+            "ext-curl": "*",
+            "ext-json": "*"
+        },
+        "time": "2016-07-26T08:03:24+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Kraken": "lib"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Kraken Image Optimizer",
+                "email": "support@kraken.io"
+            }
+        ],
+        "description": "Official Kraken.io SDK"
+    }
+]
