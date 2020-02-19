@@ -312,7 +312,6 @@ class Kraken_IO_Settings {
 
 		$this->options = $options;
 		kraken_io()->set_options( $options );
-		update_option( '_kraken_options', $options );
 
 		$this->settings_sucess[] = __( 'Settings Saved', 'kraken-io' );
 	}

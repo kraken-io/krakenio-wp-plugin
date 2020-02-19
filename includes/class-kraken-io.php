@@ -241,6 +241,7 @@ class Kraken_IO {
 		}
 
 		$this->options = $options;
+		update_option( '_kraken_options', $options );
 	}
 
 	/**
