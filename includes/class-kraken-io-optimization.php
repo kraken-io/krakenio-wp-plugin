@@ -23,6 +23,10 @@ class Kraken_IO_Optimization {
 			add_action( 'add_attachment', [ $this, 'optimize_image_on_upload' ] );
 			add_filter( 'wp_generate_attachment_metadata', [ $this, 'optimize_thumbnails_on_resize' ], 10, 2 );
 		}
+
+		if ( $this->options['display_webp'] ) {
+			add_filter( 'mod_rewrite_rules', [ $this, 'webp_rewrite_rules' ] );
+		}
 	}
 
 	/**
@@ -135,7 +139,7 @@ class Kraken_IO_Optimization {
 	 * @since  2.7
 	 * @access private
 	 */
-	private function get_optimized_image( $image_path, $type ) {
+	private function get_optimized_image( $image_path, $type, $webp = false ) {
 		$settings = $this->options;
 
 		if ( ! empty( $type ) ) {
@@ -149,6 +153,7 @@ class Kraken_IO_Optimization {
 			'wait'   => true,
 			'lossy'  => $lossy,
 			'origin' => 'wp',
+			'webp'   => $webp,
 		];
 
 		$preserve_meta = $this->get_preserve_meta_options( $settings );
@@ -225,6 +230,36 @@ class Kraken_IO_Optimization {
 	}
 
 	/**
+	 * Optimize single image to webp.
+	 *
+	 * @since  2.7
+	 * @access private
+	 * @param  string $path
+	 * @param  string $type
+	 * @return bool
+	 */
+	private function optimize_single_image_webp( $path, $type = null ) {
+
+		if ( empty( $this->options['create_webp'] ) ) {
+			return false;
+		}
+
+		$optimized_image = $this->get_optimized_image( $path, $type, true );
+
+		if ( $optimized_image['success'] ) {
+
+			$path = $path . '.webp';
+			if ( ! $this->replace_image( $path, $optimized_image['kraked_url'] ) ) {
+				return false;
+			}
+
+			return $optimized_image;
+		}
+
+		return false;
+	}
+
+	/**
 	 * Optimize main image.
 	 *
 	 * @since  2.7
@@ -248,6 +283,7 @@ class Kraken_IO_Optimization {
 		}
 
 		$optimized_image = $this->optimize_single_image( $path, $type );
+		$this->optimize_single_image_webp( $path, $type );
 
 		if ( $optimized_image ) {
 
@@ -293,6 +329,7 @@ class Kraken_IO_Optimization {
 			if ( in_array( $key, $sizes, true ) ) {
 				$path            = $upload_full_path . '/' . $size['file'];
 				$optimized_image = $this->optimize_single_image( $path, $type );
+				$this->optimize_single_image_webp( $path, $type );
 
 				if ( $optimized_image ) {
 					$thumb_data[] = [
@@ -400,6 +437,53 @@ class Kraken_IO_Optimization {
 			'pages' => $query->max_num_pages,
 			'total' => $query->found_posts,
 		];
+	}
+
+	/**
+	 * Add webp rules rewrite rules to an .htaccess file
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  string $rules
+	 * @return string $rules
+	 */
+	public function webp_rewrite_rules( $rules ) {
+		$home_root  = wp_parse_url( home_url( '/' ) );
+		$home_root  = $home_root['path'];
+
+		$webp_rules = <<<EOD
+\n# BEGIN Kraken WebP
+
+<IfModule mod_setenvif.c>
+# Vary: Accept for all the requests to jpeg and png.
+SetEnvIf Request_URI "\.(jpe?g|png)$" REQUEST_image
+</IfModule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase {$home_root}
+
+# Check if browser supports WebP images.
+RewriteCond %{HTTP_ACCEPT} image/webp
+
+# Check if WebP replacement image exists.
+RewriteCond %{REQUEST_FILENAME}.webp -f
+
+# Serve WebP image instead.
+RewriteRule (.+)\.(jpe?g|png)$ $1.$2.webp [T=image/webp,NC]
+</IfModule>
+
+<IfModule mod_headers.c>
+Header append Vary Accept env=REQUEST_image
+</IfModule>
+
+<IfModule mod_mime.c>
+AddType image/webp .webp
+</IfModule>
+
+# END Kraken WebP\n\n
+EOD;
+		return $webp_rules . $rules;
 	}
 
 }
