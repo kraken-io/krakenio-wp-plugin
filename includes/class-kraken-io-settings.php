@@ -812,6 +812,17 @@ class Kraken_IO_Settings {
 					],
 				],
 				[
+					'id'                => 'background_process',
+					'type'              => 'checkbox',
+					'sanitize_callback' => [ $this, 'sanitize_checkbox' ],
+					'default'           => true,
+					'title'             => __( 'Background process', 'kraken-io' ),
+					'label'             => __( 'Process image optimization in background', 'kraken-io' ),
+					'description'       => [
+						__( 'This setting will optimize images in background when using the option "Automatically optimize uploads" resulting in faster image uploads.', 'kraken-io' ),
+					],
+				],
+				[
 					'id'                => 'bulk_async_limit',
 					'type'              => 'select',
 					'validate_callback' => [ $this, 'validate_select_radio' ],

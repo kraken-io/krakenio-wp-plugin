@@ -232,6 +232,12 @@ class Kraken_IO_Optimization {
 	 */
 	public function optimize_main_image( $id, $type = null ) {
 
+		$kraked_sie = get_post_meta( $id, '_kraken_size', true );
+
+		if ( $kraked_sie ) {
+			return true;
+		}
+
 		$path = get_attached_file( $id );
 
 		// the image doesn't exist
@@ -349,7 +355,12 @@ class Kraken_IO_Optimization {
 			return false;
 		}
 
-		$this->optimize_main_image( $id );
+		if ( $this->options['background_process'] ) {
+			kraken_io()->bg_process->push_to_queue( $id );
+			kraken_io()->bg_process->save()->dispatch();
+		} else {
+			$this->optimize_main_image( $id );
+		}
 	}
 
 	/**
@@ -359,7 +370,9 @@ class Kraken_IO_Optimization {
 	 * @access public
 	 */
 	public function optimize_thumbnails_on_resize( $metadata, $id ) {
-		$this->optimize_thumbnails( $id );
+		if ( empty( $this->options['background_process'] ) ) {
+			$this->optimize_thumbnails( $id );
+		}
 		return $metadata;
 	}
 
