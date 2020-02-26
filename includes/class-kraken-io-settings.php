@@ -326,6 +326,8 @@ class Kraken_IO_Settings {
 
 		kraken_io()->set_options( $options );
 		kraken_io()->maybe_reinit_api( $old_options, $options );
+		kraken_io()->maybe_flush_rewrite_rules( $old_options, $options );
+		// flush_rewrite_rules();
 
 		$this->settings_sucess[] = __( 'Settings Saved', 'kraken-io' );
 	}
@@ -820,6 +822,29 @@ class Kraken_IO_Settings {
 					'label'             => __( 'Process image optimization in background', 'kraken-io' ),
 					'description'       => [
 						__( 'This setting will optimize images in background when using the option "Automatically optimize uploads" resulting in faster image uploads.', 'kraken-io' ),
+					],
+				],
+				[
+					'id'                => 'create_webp',
+					'type'              => 'checkbox',
+					'sanitize_callback' => [ $this, 'sanitize_checkbox' ],
+					'default'           => false,
+					'title'             => __( 'WebP format', 'kraken-io' ),
+					'label'             => __( 'Create WebP versions of images', 'kraken-io' ),
+					'description'       => [
+						__( 'Checking this option will create WebP version of images.', 'kraken-io' ),
+					],
+				],
+				[
+					'id'                => 'display_webp',
+					'type'              => 'checkbox',
+					'sanitize_callback' => [ $this, 'sanitize_checkbox' ],
+					'default'           => false,
+					'title'             => __( 'Display WebP', 'kraken-io' ),
+					'label'             => __( 'Display WebP images on the site', 'kraken-io' ),
+					'description'       => [
+						__( 'Currently it works only with Apache servers where it adds rewrite rules to configuration file (.htacess).', 'kraken-io' ),
+						__( 'This does not work with CDN.', 'kraken-io' ),
 					],
 				],
 				[

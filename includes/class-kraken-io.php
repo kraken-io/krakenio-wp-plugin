@@ -278,6 +278,21 @@ class Kraken_IO {
 	}
 
 	/**
+	 * Flush the rewrite ruels if settings have changed.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  arry $old_options
+	 * @param  arry $options
+	 * @return void
+	 */
+	public function maybe_flush_rewrite_rules( $old_options, $options ) {
+		if ( $old_options['display_webp'] !== $options['display_webp'] ) {
+			flush_rewrite_rules();
+		}
+	}
+
+	/**
 	 * Get image sizes to optimize.
 	 *
 	 * @since  2.7
