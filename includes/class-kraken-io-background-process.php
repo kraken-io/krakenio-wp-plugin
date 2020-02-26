@@ -11,22 +11,19 @@ defined( 'ABSPATH' ) || exit;
 class Kraken_IO_Background_Process extends WP_Background_Process {
 
 	/**
-     * Initiate new background process.
-     */
-    public function __construct()
-    {
+	 * Initiate new background process.
+	 */
+	public function __construct() {
 
-        // Uses unique prefix per blog so each blog has separate queue.
-        // $this->prefix = 'wp_' . get_current_blog_id();
-        $this->action = 'kraken_optimize_images';
+		// Uses unique prefix per blog so each blog has separate queue.
+		$this->prefix = 'wp_' . get_current_blog_id();
+		$this->action = 'kraken_optimize_images';
 
-        // This is needed to prevent timeouts due to threading. See https://core.trac.wordpress.org/ticket/36534.
+		// This is needed to prevent timeouts due to threading. See https://core.trac.wordpress.org/ticket/36534.
 		@putenv( 'MAGICK_THREAD_LIMIT=1' ); // @codingStandardsIgnoreLine.
-		
-		update_option('_dsa', 'construct');
 
-        parent::__construct();
-    }
+		parent::__construct();
+	}
 
 	/**
 	 * Return the modified item for further processing
@@ -35,31 +32,25 @@ class Kraken_IO_Background_Process extends WP_Background_Process {
 	 *
 	 * @since  2.7
 	 * @access public
-	 * @param  int $id item to iterate over
+	 * @param  int $item item to iterate over
 	 * @return mixed
 	 */
-	protected function task( $id ) {
-		update_option('_dsa', $id);
-		error_log( 'task id: ' . $id );
-		$optimized_main_image = kraken_io()->optimization->optimize_main_image( $id );
-		$optimized_thumbnails = kraken_io()->optimization->optimize_thumbnails( $id );
+	protected function task( $item ) {
 
-		if ( $optimized_main_image && $optimized_thumbnails ) {
+		$item['count']++;
+
+		if ( 'main-image' === $item['type'] ) {
+			$is_optimized = kraken_io()->optimization->optimize_main_image( $item['id'] );
+		} else {
+			$is_optimized = kraken_io()->optimization->optimize_thumbnails( $item['id'] );
+		}
+
+		// if it's optimized or we tried 3 times but failed
+		if ( $is_optimized || $item['count'] > 3 ) {
 			return false;
 		}
 
-		return $id;
-	}
-
-	/**
-	 * Complete
-	 *
-	 * @since  2.7
-	 * @access public
-	 */
-	protected function complete() {
-		parent::complete();
-		error_log('done');
+		return $item;
 	}
 
 }

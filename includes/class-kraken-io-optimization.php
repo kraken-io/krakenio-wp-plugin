@@ -356,7 +356,12 @@ class Kraken_IO_Optimization {
 		}
 
 		if ( $this->options['background_process'] ) {
-			kraken_io()->bg_process->push_to_queue( $id );
+			$data = [
+				'id'    => $id,
+				'type'  => 'main-image',
+				'count' => 0,
+			];
+			kraken_io()->bg_process->push_to_queue( $data );
 			kraken_io()->bg_process->save()->dispatch();
 		} else {
 			$this->optimize_main_image( $id );
@@ -370,9 +375,18 @@ class Kraken_IO_Optimization {
 	 * @access public
 	 */
 	public function optimize_thumbnails_on_resize( $metadata, $id ) {
-		if ( empty( $this->options['background_process'] ) ) {
+		if ( $this->options['background_process'] ) {
+			$data = [
+				'id'    => $id,
+				'type'  => 'thumbnails',
+				'count' => 0,
+			];
+			kraken_io()->bg_process->push_to_queue( $data );
+			kraken_io()->bg_process->save()->dispatch();
+		} else {
 			$this->optimize_thumbnails( $id );
 		}
+
 		return $metadata;
 	}
 
