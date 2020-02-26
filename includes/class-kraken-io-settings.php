@@ -327,7 +327,6 @@ class Kraken_IO_Settings {
 		kraken_io()->set_options( $options );
 		kraken_io()->maybe_reinit_api( $old_options, $options );
 		kraken_io()->maybe_flush_rewrite_rules( $old_options, $options );
-		// flush_rewrite_rules();
 
 		$this->settings_sucess[] = __( 'Settings Saved', 'kraken-io' );
 	}
