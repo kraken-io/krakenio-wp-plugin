@@ -37,6 +37,15 @@ class Kraken_IO {
 	public $settings = null;
 
 	/**
+	 * The instance of the background process class.
+	 *
+	 * @var    Kraken_IO_API
+	 * @since  2.7
+	 * @access protected
+	 */
+	public $bg_process = null;
+
+	/**
 	 * The single instance of the class.
 	 *
 	 * @var    Kraken_IO
@@ -124,6 +133,7 @@ class Kraken_IO {
 		require_once $dir . 'includes/class-kraken-io-stats.php';
 		require_once $dir . 'includes/class-kraken-io-optimization.php';
 		require_once $dir . 'includes/class-kraken-io-ajax.php';
+		require_once $dir . 'includes/class-kraken-io-background-process.php';
 	}
 
 	/**
@@ -146,6 +156,7 @@ class Kraken_IO {
 		$this->api          = new Kraken_IO_API();
 		$this->stats        = new Kraken_IO_Stats();
 		$this->optimization = new Kraken_IO_Optimization();
+		$this->bg_process   = new Kraken_IO_Background_Process();
 
 		// Init action.
 		do_action( 'kraken_io_init' );
@@ -263,6 +274,21 @@ class Kraken_IO {
 	public function maybe_reinit_api( $old_options, $options ) {
 		if ( $old_options['api_key'] !== $options['api_key'] || $old_options['api_secret'] !== $options['api_secret'] ) {
 			$this->api = new Kraken_IO_API();
+		}
+	}
+
+	/**
+	 * Flush the rewrite ruels if settings have changed.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  arry $old_options
+	 * @param  arry $options
+	 * @return void
+	 */
+	public function maybe_flush_rewrite_rules( $old_options, $options ) {
+		if ( $old_options['display_webp'] !== $options['display_webp'] ) {
+			flush_rewrite_rules();
 		}
 	}
 
