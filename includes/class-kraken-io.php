@@ -134,6 +134,8 @@ class Kraken_IO {
 		require_once $dir . 'includes/class-kraken-io-optimization.php';
 		require_once $dir . 'includes/class-kraken-io-ajax.php';
 		require_once $dir . 'includes/class-kraken-io-background-process.php';
+
+		require_once $dir . 'includes/supported-plugins/class-kraken-io-support-wp-retina-2x.php';
 	}
 
 	/**

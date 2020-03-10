@@ -24,6 +24,7 @@ class Kraken_IO_Optimization {
 			add_filter( 'wp_generate_attachment_metadata', [ $this, 'optimize_thumbnails_on_resize' ], 10, 2 );
 		}
 
+		add_action( 'delete_attachment', [ $this, 'delete_attachment' ] );
 		add_filter( 'mod_rewrite_rules', [ $this, 'webp_rewrite_rules' ] );
 	}
 
@@ -61,6 +62,22 @@ class Kraken_IO_Optimization {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Delete image.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @return bool
+	 */
+	public function delete_attachment( $id ) {
+		$path = get_attached_file( $id );
+		$webp = $path . '.webp';
+
+		if ( file_exists( $webp ) ) {
+			unlink( $webp );
+		}
 	}
 
 	/**
@@ -137,7 +154,7 @@ class Kraken_IO_Optimization {
 	 * @since  2.7
 	 * @access private
 	 */
-	private function get_optimized_image( $image_path, $type, $webp = false ) {
+	private function get_optimized_image( $image_path, $type = '', $webp = false ) {
 		$settings = $this->options;
 
 		if ( ! empty( $type ) ) {
@@ -206,12 +223,12 @@ class Kraken_IO_Optimization {
 	 * Optimize single image.
 	 *
 	 * @since  2.7
-	 * @access private
+	 * @access public
 	 * @param  string $path
 	 * @param  string $type
 	 * @return bool
 	 */
-	private function optimize_single_image( $path, $type = null ) {
+	public function optimize_single_image( $path, $type = null ) {
 
 		$optimized_image = $this->get_optimized_image( $path, $type );
 
@@ -231,12 +248,12 @@ class Kraken_IO_Optimization {
 	 * Optimize single image to webp.
 	 *
 	 * @since  2.7
-	 * @access private
+	 * @access public
 	 * @param  string $path
 	 * @param  string $type
 	 * @return bool
 	 */
-	private function optimize_single_image_webp( $path, $type = null ) {
+	public function optimize_single_image_webp( $path, $type = null ) {
 
 		if ( empty( $this->options['create_webp'] ) ) {
 			return false;
