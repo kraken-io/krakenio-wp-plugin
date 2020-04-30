@@ -28,7 +28,7 @@ class Kraken_IO_Support_WP_Retina_2x {
 	 * @access public
 	 * @param  int $id
 	 * @param  string $file
-	 * @return bool
+	 * @return void
 	 */
 	public function retina_file_added( $id, $file ) {
 		kraken_io()->optimization->optimize_single_image( $file );
@@ -42,12 +42,12 @@ class Kraken_IO_Support_WP_Retina_2x {
 	 * @access public
 	 * @param  int $id
 	 * @param  string $file
-	 * @return bool
+	 * @return void
 	 */
 	public function retina_file_removed( $id, $file ) {
-		$meta = wp_get_attachment_metadata( $id );
+		$meta     = wp_get_attachment_metadata( $id );
 		$pathinfo = pathinfo( $meta['file'] );
-		$uploads = wp_upload_dir();
+		$uploads  = wp_upload_dir();
 		$basepath = trailingslashit( $uploads['basedir'] ) . $pathinfo['dirname'];
 		$fullpath = trailingslashit( $basepath ) . $file . '.webp';
 
