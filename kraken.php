@@ -47,7 +47,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 			$plugin_dir_path = dirname( __FILE__ );
 			require_once( $plugin_dir_path . '/lib/Kraken.php' );
 			$this->kraken_settings = get_option( '_kraken_options' );
-			$this->optimization_type = $this->kraken_settings['api_lossy'];
+			$this->optimization_type = (isset($this->kraken_settings['api_lossy']) ? $this->kraken_settings['api_lossy'] : $this->optimization_type);
 			add_action( 'admin_enqueue_scripts', array( &$this, 'my_enqueue' ) );
 			add_action( 'wp_ajax_kraken_reset', array( &$this, 'kraken_media_library_reset' ) );
 			add_action( 'wp_ajax_kraken_optimize', array( &$this, 'kraken_optimize' ) );
