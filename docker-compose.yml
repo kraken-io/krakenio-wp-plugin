@@ -1,0 +1,43 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    image: wordpress:${KRAKEN_WORDPRESS_IMAGE:-latest}
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: ${KRAKEN_DB_HOST:-db}
+      WORDPRESS_DB_USER: ${KRAKEN_DB_USER:-exampleuser}
+      WORDPRESS_DB_PASSWORD: ${KRAKEN_DB_PASSWORD:-examplepass}
+      WORDPRESS_DB_NAME: ${KRAKEN_DB_NAME:-exampledb}
+      KRAKEN_WORDPRESS_URL: ${KRAKEN_WORDPRESS_URL:-localhost:8080}
+      KRAKEN_WORDPRESS_TITLE: ${KRAKEN_WORDPRESS_TITLE:-Kraken wp-plugin sandbox}
+      KRAKEN_WORDPRESS_USER: ${KRAKEN_WORDPRESS_USER:-admin}
+      KRAKEN_WORDPRESS_PASSWORD: ${KRAKEN_WORDPRESS_PASSWORD:-admin}
+      KRAKEN_WORDPRESS_EMAIL: ${KRAKEN_WORDPRESS_EMAIL:-admin@kraken.io}
+    entrypoint: /var/www/entrypoint.sh
+    volumes:
+      - wordpress:/var/www/html
+      - ./docker/wp.sh:/usr/local/bin/wp
+      - ./docker/entrypoint.sh:/var/www/entrypoint.sh
+      - .:/var/www/html/wp-content/plugins/kraken-image-optimizer
+    depends_on:
+      - db
+
+  db:
+    image: mysql:${KRAKEN_MYSQL_IMAGE:-5.7}
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${KRAKEN_DB_NAME:-exampledb}
+      MYSQL_USER: ${KRAKEN_DB_USER:-exampleuser}
+      MYSQL_PASSWORD: ${KRAKEN_DB_PASSWORD:-examplepass}
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+
+
+volumes:
+  wordpress:
+  db:
