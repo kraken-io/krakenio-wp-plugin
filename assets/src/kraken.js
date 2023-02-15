@@ -1,4 +1,4 @@
-import '../../css/src/style.scss';
+import './kraken.scss';
 const $ = window.jQuery;
 
 $( document ).on( 'click', '.kraken-stats-action-show-details', function( e ) {

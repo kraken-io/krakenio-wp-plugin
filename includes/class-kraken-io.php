@@ -173,13 +173,8 @@ class Kraken_IO {
 		$assets_url     = $this->get_plugin_url() . 'assets/';
 		$plugin_version = $this->get_version();
 
-		if ( KRAKEN_DEV_MODE === true ) {
-			wp_enqueue_style( 'kraken', $assets_url . 'css/kraken.css', [], $plugin_version );
-			wp_enqueue_script( 'kraken', $assets_url . 'js/kraken.js', [ 'jquery' ], $plugin_version, true );
-		} else {
-			wp_enqueue_style( 'kraken', $assets_url . 'css/kraken.min.css', [], $plugin_version );
-			wp_enqueue_script( 'kraken', $assets_url . 'js/kraken.min.js', [ 'jquery' ], $plugin_version, true );
-		}
+		wp_enqueue_style( 'kraken', $assets_url . 'dist/kraken.css', [], $plugin_version );
+		wp_enqueue_script( 'kraken', $assets_url . 'dist/kraken.js', [ 'jquery' ], $plugin_version, true );
 
 		$args = [
 			'ajax_url' => admin_url( 'admin-ajax.php', 'relative' ),
