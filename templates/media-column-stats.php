@@ -15,7 +15,11 @@ $summary = $stats['stats']; ?>
 
 	<div class="kraken-stats-media-column">
 
-		<?php if ( $stats['is_optimized'] ) : ?>
+		<?php if ( ! kraken_io()->api->has_auth() ) : ?>
+
+			<a href="<?php echo esc_url( admin_url( 'options-general.php?page=wp-krakenio&tab=general' ) ); ?>"><?php esc_html_e( 'Connect your account', 'kraken-io' ); ?></a>
+
+		<?php elseif ( $stats['is_optimized'] ) : ?>
 
 			<?php if ( $stats['show_button'] ) : ?>
 				<button
