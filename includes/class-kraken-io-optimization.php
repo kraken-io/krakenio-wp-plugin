@@ -31,6 +31,7 @@ class Kraken_IO_Optimization {
 			add_filter( 'wp_generate_attachment_metadata', [ $this, 'optimize_thumbnails_on_resize' ], 10, 2 );
 		}
 
+		add_action( 'delete_attachment', [ $this, 'delete_attachment' ] );
 		add_filter( 'mod_rewrite_rules', [ $this, 'webp_rewrite_rules' ] );
 	}
 
@@ -68,6 +69,22 @@ class Kraken_IO_Optimization {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Delete image.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @return bool
+	 */
+	public function delete_attachment( $id ) {
+		$path = get_attached_file( $id );
+		$webp = $path . '.webp';
+
+		if ( file_exists( $webp ) ) {
+			unlink( $webp );
+		}
 	}
 
 	/**
@@ -144,7 +161,7 @@ class Kraken_IO_Optimization {
 	 * @since  2.7
 	 * @access private
 	 */
-	private function get_optimized_image( $image_path, $type, $webp = false ) {
+	private function get_optimized_image( $image_path, $type = '', $webp = false ) {
 		$settings = $this->options;
 
 		if ( ! empty( $type ) ) {
@@ -213,16 +230,16 @@ class Kraken_IO_Optimization {
 	 * Optimize single image.
 	 *
 	 * @since  2.7
-	 * @access private
+	 * @access public
 	 * @param  string $path
 	 * @param  string $type
 	 * @return bool
 	 */
-	private function optimize_single_image( $path, $type = null ) {
+	public function optimize_single_image( $path, $type = null ) {
 
 		$optimized_image = $this->get_optimized_image( $path, $type );
 
-		if ( $optimized_image['success'] ) {
+		if ( isset( $optimized_image['success'] ) ) {
 
 			if ( ! $this->replace_image( $path, $optimized_image['kraked_url'] ) ) {
 				return false;
@@ -238,12 +255,12 @@ class Kraken_IO_Optimization {
 	 * Optimize single image to webp.
 	 *
 	 * @since  2.7
-	 * @access private
+	 * @access public
 	 * @param  string $path
 	 * @param  string $type
 	 * @return bool
 	 */
-	private function optimize_single_image_webp( $path, $type = null ) {
+	public function optimize_single_image_webp( $path, $type = null ) {
 
 		if ( empty( $this->options['create_webp'] ) ) {
 			return false;
@@ -251,7 +268,7 @@ class Kraken_IO_Optimization {
 
 		$optimized_image = $this->get_optimized_image( $path, $type, true );
 
-		if ( $optimized_image['success'] ) {
+		if ( isset( $optimized_image['success'] ) ) {
 
 			$path = $path . '.webp';
 			if ( ! $this->replace_image( $path, $optimized_image['kraked_url'] ) ) {
@@ -271,6 +288,7 @@ class Kraken_IO_Optimization {
 	 * @access public
 	 */
 	public function optimize_main_image( $id, $type = null ) {
+		kraken_io()->define( 'KRAKEN_IO_OPTIMIZE', true );
 
 		$kraked_sie = get_post_meta( $id, '_kraken_size', true );
 
@@ -298,8 +316,11 @@ class Kraken_IO_Optimization {
 
 		if ( $optimized_image ) {
 
-			$data = wp_parse_args( $this->format_optimization_response( $optimized_image, $id ), $data );
+			$data     = wp_parse_args( $this->format_optimization_response( $optimized_image, $id ), $data );
+			$metadata = wp_get_attachment_metadata( $id );
+
 			update_post_meta( $id, '_kraken_size', $data );
+			wp_update_attachment_metadata( $id, $metadata );
 
 			return true;
 		}
@@ -314,6 +335,7 @@ class Kraken_IO_Optimization {
 	 * @access public
 	 */
 	public function optimize_thumbnails( $id, $type = null ) {
+		kraken_io()->define( 'KRAKEN_IO_OPTIMIZE', true );
 
 		$kraked_thumbs = get_post_meta( $id, '_kraked_thumbs', true );
 
@@ -356,6 +378,7 @@ class Kraken_IO_Optimization {
 
 		if ( $thumb_data ) {
 			update_post_meta( $id, '_kraked_thumbs', $thumb_data, false );
+			wp_update_attachment_metadata( $id, $metadata );
 			return true;
 		}
 

@@ -79,7 +79,8 @@ class Kraken_IO {
 	 * @access public
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, 'Cheatin&#8217; huh?', '1.0.0' ); }
+		_doing_it_wrong( __FUNCTION__, 'Cheatin&#8217; huh?', '1.0.0' );
+	}
 
 	/**
 	 * A dummy magic method to prevent class from being unserialized.
@@ -88,7 +89,8 @@ class Kraken_IO {
 	 * @access public
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, 'Cheatin&#8217; huh?', '1.0.0' ); }
+		_doing_it_wrong( __FUNCTION__, 'Cheatin&#8217; huh?', '1.0.0' );
+	}
 
 	/**
 	 * Main instance.
@@ -149,6 +151,10 @@ class Kraken_IO {
 		require_once $dir . 'includes/class-kraken-io-optimization.php';
 		require_once $dir . 'includes/class-kraken-io-ajax.php';
 		require_once $dir . 'includes/class-kraken-io-background-process.php';
+
+		require_once $dir . 'includes/supported-plugins/class-kraken-io-support-wp-retina-2x.php';
+		require_once $dir . 'includes/supported-plugins/class-kraken-io-support-nextgen-gallery.php';
+		require_once $dir . 'includes/supported-plugins/class-kraken-io-support-wp-offload-media.php';
 	}
 
 	/**
@@ -360,4 +366,15 @@ class Kraken_IO {
 		return $rv;
 	}
 
+	/**
+	 * Define constant if not already set.
+	 *
+	 * @param string $name Constant name.
+	 * @param mixed $value Constant value.
+	 */
+	public function define( $name, $value ) {
+		if ( ! defined( $name ) ) {
+			define( $name, $value );
+		}
+	}
 }
