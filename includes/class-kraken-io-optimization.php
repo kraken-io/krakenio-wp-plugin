@@ -9,6 +9,13 @@
 defined( 'ABSPATH' ) || exit;
 
 class Kraken_IO_Optimization {
+	/**
+	 * Options.
+	 *
+	 * @var    array
+	 * @access private
+	 */
+	private $options = [];
 
 	/**
 	 * Hook in methods.

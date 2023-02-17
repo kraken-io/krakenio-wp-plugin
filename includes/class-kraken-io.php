@@ -28,18 +28,36 @@ class Kraken_IO {
 	public $api = null;
 
 	/**
-	 * The instance of the settigns class.
+	 * The instance of the settings class.
 	 *
-	 * @var    Kraken_IO_API
+	 * @var    Kraken_IO_Settings
 	 * @since  2.7
 	 * @access protected
 	 */
 	public $settings = null;
 
 	/**
+	 * The instance of the stats class.
+	 *
+	 * @var    Kraken_IO_Stats
+	 * @since  2.7
+	 * @access protected
+	 */
+	public $stats = null;
+
+	/**
+	 * The instance of the optimization class.
+	 *
+	 * @var    Kraken_IO_Optimization
+	 * @since  2.7
+	 * @access protected
+	 */
+	public $optimization = null;
+
+	/**
 	 * The instance of the background process class.
 	 *
-	 * @var    Kraken_IO_API
+	 * @var    Kraken_IO_Background_Process
 	 * @since  2.7
 	 * @access protected
 	 */
@@ -95,10 +113,7 @@ class Kraken_IO {
 	 * @access public
 	 */
 	public function __construct() {
-
-		$this->file     = KRAKEN_PLUGIN_FILE;
-		$this->basename = plugin_basename( $this->file );
-		$this->options  = get_option( '_kraken_options', [] );
+		$this->options = get_option( '_kraken_options', [] );
 
 		$this->includes();
 		$this->init_hooks();
@@ -196,7 +211,7 @@ class Kraken_IO {
 	 * @access public
 	 */
 	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'kraken-io', false, plugin_basename( dirname( $this->file ) ) . '/languages' );
+		load_plugin_textdomain( 'kraken-io', false, plugin_basename( dirname( KRAKEN_PLUGIN_FILE ) ) . '/languages' );
 	}
 
 	/**
@@ -207,7 +222,7 @@ class Kraken_IO {
 	 * @return string
 	 */
 	public function get_plugin_url() {
-		return plugin_dir_url( $this->file );
+		return plugin_dir_url( KRAKEN_PLUGIN_FILE );
 	}
 
 	/**
@@ -218,7 +233,7 @@ class Kraken_IO {
 	 * @return string
 	 */
 	public function get_plugin_path() {
-		return plugin_dir_path( $this->file );
+		return plugin_dir_path( KRAKEN_PLUGIN_FILE );
 	}
 
 	/**
@@ -229,7 +244,7 @@ class Kraken_IO {
 	 * @return string
 	 */
 	public function get_version() {
-		$plugin_data = get_file_data( $this->file, [ 'Version' => 'Version' ], 'plugin' );
+		$plugin_data = get_file_data( KRAKEN_PLUGIN_FILE, [ 'Version' => 'Version' ], 'plugin' );
 		return $plugin_data['Version'];
 	}
 

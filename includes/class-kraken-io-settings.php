@@ -49,7 +49,7 @@ class Kraken_IO_Settings {
 	 * @access public
 	 */
 	public function __construct() {
-		add_filter( 'plugin_action_links_' . kraken_io()->basename, [ $this, 'plugin_action_links' ] );
+		add_filter( 'plugin_action_links_' . plugin_basename( KRAKEN_PLUGIN_FILE ), [ $this, 'plugin_action_links' ] );
 		add_filter( 'bulk_actions-upload', [ $this, 'register_bulk_optimize_option' ] );
 		add_filter( 'handle_bulk_actions-upload', [ $this, 'handle_bulk_optimize' ], 10, 3 );
 		add_filter( 'admin_footer', [ $this, 'footer_bulk_modal' ] );
