@@ -8,11 +8,6 @@ $( document ).on( 'click', '.kraken-stats-action-show-details', function ( e ) {
 	$el.next().toggleClass( 'is-visible' );
 } );
 
-$( document ).on( 'click', '.kraken-stats-action-popup-close', function ( e ) {
-	e.preventDefault();
-	$( this ).parent().removeClass( 'is-visible' );
-} );
-
 $( document ).on( 'click', '.kraken-stats-action-reset-image', function ( e ) {
 	e.preventDefault();
 

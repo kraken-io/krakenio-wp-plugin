@@ -43,9 +43,7 @@ $summary = $stats['stats']; ?>
 					<div class="kraken-stats-action">
 						<a href="#details" class="kraken-stats-action-show-details"><?php esc_html_e( 'Show Details', 'kraken-io' ); ?></a>
 
-						<div class="kraken-stats-action-popup">
-
-							<button type="button" class="kraken-stats-action-popup-close dashicons dashicons-no-alt"></button>
+						<div class="kraken-stats-action-details">
 
 							<?php if ( $summary['is_main_image_optimized'] ) : ?>
 								<p>
