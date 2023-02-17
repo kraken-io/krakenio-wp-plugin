@@ -11,7 +11,8 @@
 		"phpcompatibility/phpcompatibility-wp": "^2.1",
 		"wp-coding-standards/wpcs": "^2.2",
 		"phpunit/phpunit": "^7.0",
-		"brain/monkey": "^2.4"
+		"brain/monkey": "^2.4",
+		"wp-cli/wp-cli-bundle": "^2.7"
 	},
 	"config": {
 		"vendor-dir": "vendor",

@@ -44,7 +44,8 @@
 		"lint:md:docs": "wp-scripts lint-md-docs",
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
 		"packages-update": "wp-scripts packages-update",
-		"test": "./vendor/bin/phpunit"
+		"test": "./vendor/bin/phpunit",
+		"makepot": "./vendor/bin/wp i18n make-pot . --skip-audit --exclude=\".github,.wordpress-org,build,node_modules,vendor\" --headers='{\"Last-Translator\":\"ksalman@kraken.io\",\"Report-Msgid-Bugs-To\":\"https://github.com/kraken-io/krakenio-wp-plugin/issues\"}' languages/kraken-io.pot"
 	},
 	"eslintConfig": {
 		"extends": [
