@@ -33,8 +33,8 @@
 		"check-licenses": "wp-scripts check-licenses",
 		"format": "wp-scripts format",
 		"lint": "run-p --silent lint:*",
-		"lint:js": "wp-scripts lint-js 'assets/js/src/*.js'",
-		"lint:css": "wp-scripts lint-style 'assets/css/src/*.scss'",
+		"lint:js": "wp-scripts lint-js 'assets/src/*.js'",
+		"lint:css": "wp-scripts lint-style 'assets/src/*.scss'",
 		"lint:php": "./vendor/bin/phpcs",
 		"lint:js:fix": "npm run lint:js -- --fix",
 		"lint:css:fix": "npm run lint:css -- --fix",
@@ -44,13 +44,15 @@
 		"lint:md:docs": "wp-scripts lint-md-docs",
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
 		"packages-update": "wp-scripts packages-update",
-		"test": "./vendor/bin/phpunit",
-		"makepot": "./vendor/bin/wp i18n make-pot . --skip-audit --exclude=\".github,.wordpress-org,build,node_modules,vendor\" --headers='{\"Last-Translator\":\"hello@bleech.de\",\"Report-Msgid-Bugs-To\":\"https://github.com/visual-regression-tests/issues\"}' languages/visual-regression-tests.pot"
+		"test": "./vendor/bin/phpunit"
 	},
 	"eslintConfig": {
 		"extends": [
 			"plugin:@wordpress/eslint-plugin/recommended"
-		]
+		],
+		"rules": {
+			"no-alert": 0
+		}
 	},
 	"eslintIgnore": [
 		"assets/dist/**",
