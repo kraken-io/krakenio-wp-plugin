@@ -1,22 +1,22 @@
 import './kraken.scss';
 const $ = window.jQuery;
 
-$( document ).on( 'click', '.kraken-stats-action-show-details', function( e ) {
+$( document ).on( 'click', '.kraken-stats-action-show-details', function ( e ) {
 	e.preventDefault();
 
 	const $el = $( this );
 	$el.next().toggleClass( 'is-visible' );
 } );
 
-$( document ).on( 'click', '.kraken-stats-action-popup-close', function( e ) {
+$( document ).on( 'click', '.kraken-stats-action-popup-close', function ( e ) {
 	e.preventDefault();
 	$( this ).parent().removeClass( 'is-visible' );
 } );
 
-$( document ).on( 'click', '.kraken-stats-action-reset-image', function( e ) {
+$( document ).on( 'click', '.kraken-stats-action-reset-image', function ( e ) {
 	e.preventDefault();
 
-	const reset = confirm( window.kraken_options.texts.reset_image );
+	const reset = window.confirm( window.kraken_options.texts.reset_image );
 
 	if ( ! reset ) {
 		return;
@@ -38,18 +38,20 @@ $( document ).on( 'click', '.kraken-stats-action-reset-image', function( e ) {
 		},
 		success( response ) {
 			if ( response.success ) {
-				$el.parents( '.kraken-stats-media-column' ).replaceWith( response.data.html );
+				$el.parents( '.kraken-stats-media-column' ).replaceWith(
+					response.data.html
+				);
 			} else {
-				alert( window.kraken_options.texts.error_reset );
+				window.alert( window.kraken_options.texts.error_reset );
 			}
 		},
 		error() {
-			alert( window.kraken_options.texts.error_reset );
+			window.alert( window.kraken_options.texts.error_reset );
 		},
 	} );
 } );
 
-$( document ).on( 'click', '.kraken-button-optimize-image', function( e ) {
+$( document ).on( 'click', '.kraken-button-optimize-image', function ( e ) {
 	e.preventDefault();
 
 	const $el = $( this );
@@ -69,20 +71,22 @@ $( document ).on( 'click', '.kraken-button-optimize-image', function( e ) {
 		},
 		success( response ) {
 			if ( response.success ) {
-				$el.parents( '.kraken-stats-media-column' ).replaceWith( response.data.html );
+				$el.parents( '.kraken-stats-media-column' ).replaceWith(
+					response.data.html
+				);
 			} else {
-				alert( window.kraken_options.texts.error_reset );
+				window.alert( window.kraken_options.texts.error_reset );
 				$spinner.removeClass( 'is-active' );
 			}
 		},
 		error() {
-			alert( window.kraken_options.texts.error_reset );
+			window.alert( window.kraken_options.texts.error_reset );
 			$spinner.removeClass( 'is-active' );
 		},
 	} );
 } );
 
-$( document ).on( 'click', '.kraken-button-bulk-optimize', function( e ) {
+$( document ).on( 'click', '.kraken-button-bulk-optimize', function ( e ) {
 	e.preventDefault();
 
 	const $el = $( this );
@@ -99,7 +103,6 @@ $( document ).on( 'click', '.kraken-button-bulk-optimize', function( e ) {
 } );
 
 function optimizeImageAjaxCallback( $el, ids, optimized, pages, page ) {
-	const $table = $el.parents( '.kraken-bulk-optimizer' ).find( '.kraken-bulk-table tbody' );
 	const id = ids.shift();
 	const $spinner = $el.find( '.spinner' );
 
@@ -115,6 +118,10 @@ function optimizeImageAjaxCallback( $el, ids, optimized, pages, page ) {
 	}
 
 	optimized = optimized + 1;
+
+	const $table = $el
+		.parents( '.kraken-bulk-optimizer' )
+		.find( '.kraken-bulk-table tbody' );
 
 	$.ajax( {
 		type: 'POST',
@@ -152,15 +159,20 @@ function getUnoptimizedImagesPages( $el, optimized, pages, page ) {
 		success( response ) {
 			const data = response.data;
 			if ( data.ids.length > 0 ) {
-				optimizeImageAjaxCallback( $el, data.ids, optimized, pages, page );
+				optimizeImageAjaxCallback(
+					$el,
+					data.ids,
+					optimized,
+					pages,
+					page
+				);
 			}
 		},
-		error() {
-		},
+		error() {},
 	} );
 }
 
-$( document ).on( 'click', '.kraken-bulk-close-modal', function( e ) {
+$( document ).on( 'click', '.kraken-bulk-close-modal', function ( e ) {
 	e.preventDefault();
 
 	$( this ).parents( '.kraken-modal' ).removeClass( 'is-active' );
@@ -186,7 +198,13 @@ function drawCircle( $el, width ) {
 	context.lineWidth = lineWidth;
 	context.clearRect( 0, 0, width, width );
 	context.beginPath();
-	context.arc( center, center, radius, startPoint * 270, startPoint * ( 270 + deegre ) );
+	context.arc(
+		center,
+		center,
+		radius,
+		startPoint * 270,
+		startPoint * ( 270 + deegre )
+	);
 	context.stroke();
 }
 
