@@ -31,7 +31,7 @@ class Kraken_IO_Optimization {
 			add_filter( 'wp_generate_attachment_metadata', [ $this, 'optimize_thumbnails_on_resize' ], 10, 2 );
 		}
 
-		add_action( 'delete_attachment', [ $this, 'delete_attachment' ] );
+		add_action( 'wp_delete_file', [ $this, 'delete_image' ] );
 		add_filter( 'mod_rewrite_rules', [ $this, 'webp_rewrite_rules' ] );
 	}
 
@@ -76,15 +76,22 @@ class Kraken_IO_Optimization {
 	 *
 	 * @since  2.7
 	 * @access public
+	 * @param  string $file Path to the file to delete.
 	 * @return bool
 	 */
-	public function delete_attachment( $id ) {
-		$path = get_attached_file( $id );
-		$webp = $path . '.webp';
+	public function delete_image( $file ) {
+		$webp = $file . '.webp';
+		$backup_image = $file . '_kraken_original';
 
 		if ( file_exists( $webp ) ) {
 			unlink( $webp );
 		}
+
+		if ( file_exists( $backup_image ) ) {
+			unlink( $backup_image );
+		}
+
+		return $file;
 	}
 
 	/**
@@ -303,12 +310,11 @@ class Kraken_IO_Optimization {
 			return false;
 		}
 
-		$backup_path = $path . '_kraken_' . md5( $path );
+		$backup_path = $path . '_kraken_original';
 		$data        = [];
 
 		if ( copy( $path, $backup_path ) ) {
 			$data['optimized_backup_file'] = $backup_path;
-			$data['optimized_backup_file'] = wp_slash( $backup_path );
 		}
 
 		$optimized_image = $this->optimize_single_image( $path, $type );
