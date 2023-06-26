@@ -16,7 +16,7 @@ class Kraken_IO_Background_Process extends WP_Background_Process {
 	public function __construct() {
 
 		// Uses unique prefix per blog so each blog has separate queue.
-		$this->prefix = 'wp_' . get_current_blog_id();
+		$this->prefix = 'kraken_io_' . get_current_blog_id();
 		$this->action = 'kraken_optimize_images';
 
 		// This is needed to prevent timeouts due to threading. See https://core.trac.wordpress.org/ticket/36534.
