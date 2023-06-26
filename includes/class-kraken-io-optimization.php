@@ -322,11 +322,8 @@ class Kraken_IO_Optimization {
 
 		if ( $optimized_image ) {
 
-			$data     = wp_parse_args( $this->format_optimization_response( $optimized_image, $id ), $data );
-			$metadata = wp_get_attachment_metadata( $id );
-
+			$data = wp_parse_args( $this->format_optimization_response( $optimized_image, $id ), $data );
 			update_post_meta( $id, '_kraken_size', $data );
-			wp_update_attachment_metadata( $id, $metadata );
 
 			return true;
 		}
