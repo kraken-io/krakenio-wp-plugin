@@ -81,14 +81,9 @@ class Kraken_IO_Optimization {
 	 */
 	public function delete_image( $file ) {
 		$webp = $file . '.webp';
-		$backup_image = $file . '_kraken_original';
 
 		if ( file_exists( $webp ) ) {
 			unlink( $webp );
-		}
-
-		if ( file_exists( $backup_image ) ) {
-			unlink( $backup_image );
 		}
 
 		return $file;
@@ -310,19 +305,12 @@ class Kraken_IO_Optimization {
 			return false;
 		}
 
-		$backup_path = $path . '_kraken_original';
-		$data        = [];
-
-		if ( copy( $path, $backup_path ) ) {
-			$data['optimized_backup_file'] = $backup_path;
-		}
-
 		$optimized_image = $this->optimize_single_image( $path, $type );
 		$this->optimize_single_image_webp( $path, $type );
 
 		if ( $optimized_image ) {
 
-			$data = wp_parse_args( $this->format_optimization_response( $optimized_image, $id ), $data );
+			$data = $this->format_optimization_response( $optimized_image, $id );
 			update_post_meta( $id, '_kraken_size', $data );
 
 			return true;
