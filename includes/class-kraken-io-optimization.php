@@ -292,9 +292,9 @@ class Kraken_IO_Optimization {
 	public function optimize_main_image( $id, $type = null ) {
 		kraken_io()->define( 'KRAKEN_IO_OPTIMIZE', true );
 
-		$kraked_sie = get_post_meta( $id, '_kraken_size', true );
+		$kraked_size = get_post_meta( $id, '_kraken_size', true );
 
-		if ( $kraked_sie ) {
+		if ( $kraked_size ) {
 			return true;
 		}
 

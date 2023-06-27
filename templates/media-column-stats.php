@@ -46,37 +46,42 @@ $summary = $stats['stats']; ?>
 						<div class="kraken-stats-action-details">
 
 							<?php if ( $summary['is_main_image_optimized'] ) : ?>
-								<p>
+								<p class="kraken-stats-action-detail">
+									<strong><?php esc_html_e( 'Main image savings', 'kraken-io' ); ?></strong><br>
 									<?php
 										/* translators: %1$s bytes %2$s percentage */
-										echo esc_html( sprintf( __( 'Main image savings: %1$s (%2$s saved)', 'kraken-io' ), $summary['main_image_stats']['saved_bytes'], $summary['main_image_stats']['savings_percentage'] ) );
+										echo esc_html( sprintf( __( '%1$s (%2$s saved)', 'kraken-io' ), $summary['main_image_stats']['saved_bytes'], $summary['main_image_stats']['savings_percentage'] ) );
 									?>
 								</p>
 							<?php endif; ?>
 
 							<?php if ( $summary['is_thumbs_optimized'] ) : ?>
-								<p>
+								<p class="kraken-stats-action-detail">
+									<strong>
 									<?php
-										/* translators: %1$s count %2$s savings %3$s percentage */
-										echo esc_html( sprintf( __( 'Savings on %1$s thumbnails: %2$s (%3$s saved)', 'kraken-io' ), $summary['thumbs_count'], $summary['thumbs_stats']['total_savings'], $summary['thumbs_stats']['savings_percentage'] ) );
+										/* translators: %s count */
+										echo esc_html( sprintf( __( 'Savings on %s thumbnails', 'kraken-io' ), $summary['thumbs_count'] ) );
+									?>
+									</strong><br>
+									<?php
+										/* translators: %1$s bytes %2$s percentage */
+										echo esc_html( sprintf( __( '%1$s (%2$s saved)', 'kraken-io' ), $summary['thumbs_stats']['total_savings'], $summary['thumbs_stats']['savings_percentage'] ) );
 									?>
 								</p>
 							<?php endif; ?>
 
-							<p>
-								<?php
-									/* translators: %s optimization_mode */
-									echo esc_html( sprintf( __( 'Optimization mode: %s', 'kraken-io' ), $summary['optimization_mode'] ) );
-								?>
+							<p class="kraken-stats-action-detail">
+								<strong><?php esc_html_e( 'Optimization mode', 'kraken-io' ); ?></strong><br>
+								<?php echo esc_html( $summary['optimization_mode'] ); ?>
 							</p>
+
+							<?php if ( $stats['show_reset'] ) : ?>
+								<div class="kraken-stats-action">
+									<a href="#reset" class="kraken-stats-action-reset-image" data-id="<?php echo esc_attr( $stats['id'] ); ?>"><?php esc_html_e( 'Reset Image', 'kraken-io' ); ?><span class="spinner"></span></a>
+								</div>
+							<?php endif; ?>
 						</div>
 					</div>
-
-					<?php if ( $stats['show_reset'] ) : ?>
-						<div class="kraken-stats-action">
-							<a href="#reset" class="kraken-stats-action-reset-image" data-id="<?php echo esc_attr( $stats['id'] ); ?>"><?php esc_html_e( 'Reset Image', 'kraken-io' ); ?><span class="spinner"></span></a>
-						</div>
-					<?php endif; ?>
 
 				</div>
 
