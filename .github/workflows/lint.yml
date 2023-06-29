@@ -1,0 +1,37 @@
+name: Linting and Tests
+
+on: [push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js v16
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - uses: actions/cache@v3
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-composer-
+    - name: Install npm
+      run: |
+        npm i
+    - name: Install composer
+      run: |
+        php7.4 $(which composer) install
+    - name: Run lint
+      run: |
+        npm run lint
+    - name: Run tests
+      run: |
+        php7.4 ./vendor/bin/phpunit

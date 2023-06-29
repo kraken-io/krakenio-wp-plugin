@@ -1,11 +1,11 @@
 === Kraken.io Image Optimizer ===
 Contributors: karim79
 Tags: anigif, compress image, exif, image optimizer, image resize, jpg, media, Optimization, optimize, optimize animated gif, optimize gif, optimize jpeg, optimize png, PageRank, PageSpeed Insights, performance, photos, png, Reduce Image Size, retina, seo, sitespeed, speed up site, svg, upload, svg, upload, gtmetrix speed test, EXIF, image resize, kraken.io, smush
-Requires at least: 3.0.1
-Requires PHP: 5.0.0
-Tested up to: 4.9.6
+Requires at least: 4.9
+Requires PHP: 5.6
+Tested up to: 6.2
 Donate link: https://kraken.io
-Stable tag: 2.6.3
+Stable tag: 2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -119,7 +119,7 @@ Kraken.io's service emphasizes finding the precise balance between image quality
 = 2.6.2 =
 * Fixed a rare bug which prevented filepaths containing double-forward-slashes from getting optimized.
 
-= 2.6.1 = 
+= 2.6.1 =
 * Bug fixes related to new features
 
 = 2.6.0 =
@@ -132,7 +132,7 @@ Kraken.io's service emphasizes finding the precise balance between image quality
 = 2.5.1 =
 * Fix fatal error on older PHP versions resulting from recent PHP array syntax
 
-= 2.5.0 = 
+= 2.5.0 =
 * Ability to disable optimization of main image, allowing faster uploads from Media Library. You can optimize the main image later from within your Media Library.
 * Ability to restrict the maximum dimensions of image uploads (resizing), by width and/or height.
 * When using resize feature, resized images are enhanced for sharper results using various advanced techniques.
