@@ -20,6 +20,7 @@ class Kraken_IO_Support_WP_Offload_Media {
 		add_filter( 'as3cf_object_meta', [ $this, 'object_meta' ] );
 		add_filter( 'as3cf_attachment_file_paths', [ $this, 'attachment_file_paths' ], 10, 3 );
 		add_filter( 'as3cf_remove_attachment_paths', [ $this, 'remove_attachment_file_paths' ], 10, 2 );
+		// phpcs:ignore Squiz.PHP.CommentedOutCode.Found
 		// add_filter( 'as3cf_get_attached_file_copy_back_to_local', array( $this, 'get_attached_file_copy_back_to_local' ), 10, 3 );
 	}
 
@@ -29,7 +30,7 @@ class Kraken_IO_Support_WP_Offload_Media {
 	 * @param  array $args The parameters to be used for the S3 upload.
 	 * @return array $args The same parameters with ContentType corrected.
 	 */
-	function object_meta( $args ) {
+	public function object_meta( $args ) {
 		if ( ! empty( $args['SourceFile'] ) && empty( $args['ContentType'] ) && false !== strpos( $args['SourceFile'], '.webp' ) ) {
 			$args['ContentType'] = 'image/webp';
 		}
@@ -45,7 +46,7 @@ class Kraken_IO_Support_WP_Offload_Media {
 	 * @param  array $metadata attachment metadata
 	 * @return array $paths
 	 */
-	function attachment_file_paths( $paths, $attachment_id, $metadata ) {
+	public function attachment_file_paths( $paths, $attachment_id, $metadata ) {
 		foreach ( $paths as $path ) {
 			$webp = $path . '.webp';
 			if ( file_exists( $webp ) ) {
@@ -65,7 +66,7 @@ class Kraken_IO_Support_WP_Offload_Media {
 	 * @param  int $id The ID number of the image in the database.
 	 * @return array $paths A list of paths to remove.
 	 */
-	function remove_attachment_file_paths( $paths, $id ) {
+	public function remove_attachment_file_paths( $paths, $id ) {
 		foreach ( $paths as $path ) {
 			if ( is_string( $path ) ) {
 				$paths[] = $path . '.webp';
@@ -83,7 +84,7 @@ class Kraken_IO_Support_WP_Offload_Media {
 	 * @param  int $attachment_id
 	 * @return bool
 	 */
-	function get_attached_file_copy_back_to_local( $copy_back_to_local, $file, $attachment_id ) {
+	public function get_attached_file_copy_back_to_local( $copy_back_to_local, $file, $attachment_id ) {
 		if ( ! defined( 'KRAKEN_IO_OPTIMIZE' ) || ! KRAKEN_IO_OPTIMIZE ) {
 			return $copy_back_to_local;
 		}

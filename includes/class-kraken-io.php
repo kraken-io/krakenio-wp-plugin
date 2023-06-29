@@ -205,6 +205,7 @@ class Kraken_IO {
 				'reset_image'        => esc_html__( 'Are you sure you want to remove Kraken metadata for this image?', 'kraken-io' ),
 				'reset_all_images'   => esc_html__( 'This will immediately remove all Kraken metadata associated with your images. Are you sure you want to do this?', 'kraken-io' ),
 				'error_reset'        => esc_html__( 'Something went wrong. Please reload the page and try again.', 'kraken-io' ),
+				/* translators: %s number of images */
 				'images_to_optimize' => esc_html__( '%s images will be optimized.', 'kraken-io' ),
 				/* translators: %1$s optimized %2$s total */
 				'images_optimized'   => esc_html__( '%1$s / %2$s images have been optimized.', 'kraken-io' ),
