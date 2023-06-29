@@ -1,6 +1,6 @@
 <?php
 
-class Kraken {
+class Kraken_IO_Kraken {
     protected $auth = array();
     private $timeout;
     private $proxyParams;
@@ -29,13 +29,6 @@ class Kraken {
                 "success" => false,
                 "error" => "File parameter was not provided"
             );
-        }
-
-        if (preg_match("/\/\//i", $opts['file'])) {
-            $opts['url'] = $opts['file'];
-            unset($opts['file']);
-
-            return $this->url($opts);
         }
 
         if (!file_exists($opts['file'])) {
@@ -91,7 +84,6 @@ class Kraken {
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         curl_setopt($curl, CURLOPT_FAILONERROR, 0);
-        curl_setopt($curl, CURLOPT_CAINFO, __DIR__ . "/cacert.pem");
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 1);
         curl_setopt($curl, CURLOPT_TIMEOUT, $this->timeout);
 

@@ -8,7 +8,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-class Kraken_IO_Background_Process extends WP_Background_Process {
+class Kraken_IO_Background_Process extends Kraken_IO_WP_Background_Process {
 
 	/**
 	 * Initiate new background process.

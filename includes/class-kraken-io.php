@@ -144,7 +144,10 @@ class Kraken_IO {
 
 		$dir = $this->get_plugin_path();
 
-		require_once $dir . 'includes/vendor/autoload.php';
+		require_once $dir . 'includes/vendor/class-kraken.php';
+		require_once $dir . 'includes/vendor/class-wp-async-request.php';
+		require_once $dir . 'includes/vendor/class-wp-background-process.php';
+
 		require_once $dir . 'includes/class-kraken-io-api.php';
 		require_once $dir . 'includes/class-kraken-io-settings.php';
 		require_once $dir . 'includes/class-kraken-io-stats.php';

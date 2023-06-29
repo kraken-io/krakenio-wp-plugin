@@ -1,9 +1,5 @@
 {
 	"name": "kraken-io/kraken-wp-plugin",
-	"require": {
-		"kraken-io/kraken-php": "^1.6",
-		"a5hleyrich/wp-background-processing": "^1.0"
-	},
 	"require-dev": {
 		"squizlabs/php_codesniffer": "^3.5",
 		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
@@ -15,7 +11,6 @@
 		"wp-cli/wp-cli-bundle": "^2.7"
 	},
 	"config": {
-		"vendor-dir": "vendor",
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
