@@ -19,7 +19,7 @@ class Kraken_IO_Ajax {
 	public function __construct() {
 		add_action( 'wp_ajax_kraken_reset_image', [ $this, 'reset_image' ] );
 		add_action( 'wp_ajax_kraken_reset_all', [ $this, 'reset_all_images' ] );
-		add_action( 'wp_ajax_kraken_optimize_images', [ $this, 'optimize_images' ] );
+		add_action( 'wp_ajax_kraken_optimize_image', [ $this, 'optimize_image' ] );
 		add_action( 'wp_ajax_kraken_get_unoptimized_images', [ $this, 'get_unoptimized_images' ] );
 	}
 
@@ -94,7 +94,7 @@ class Kraken_IO_Ajax {
 	 * @since  2.7
 	 * @access public
 	 */
-	public function optimize_images() {
+	public function optimize_image() {
 
 		if ( ! wp_verify_nonce( $_POST['nonce'], 'kraken-io-nonce' ) ) {
 			wp_send_json_error(
@@ -104,37 +104,10 @@ class Kraken_IO_Ajax {
 			);
 		}
 
-		$options = kraken_io()->get_options();
-
-		$ids  = isset( $_POST['ids'] ) ? $_POST['ids'] : [];
-		$ids  = array_slice( $ids, 0, $options['bulk_async_limit'] );
-		$type = $_POST['type'];
-
-		$optimized_images = [];
-
-		foreach ( $ids as $id ) {
-			$optimized_images[] = $this->optimize_image( $id, $type );
-		}
-
-		if ( $optimized_images ) {
-			wp_send_json_success( $optimized_images );
-		}
-
-		wp_send_json_error();
-	}
-
-	/**
-	 * Optimize image.
-	 *
-	 * @since  2.7
-	 * @access public
-	 * @param  int $id Image ID.
-	 * @param  string $type Type of optimization.
-	 */
-	private function optimize_image( $id, $type ) {
+		$id = $_POST['id'];
 
 		if ( ! wp_attachment_is_image( $id ) ) {
-			return false;
+			wp_send_json_error();
 		}
 
 		$optimize_image = kraken_io()->optimization->optimize_image( $id );
@@ -163,16 +136,18 @@ class Kraken_IO_Ajax {
 			kraken_io()->get_template( 'media-column-stats', [ 'stats' => $stats ] );
 			$stats_html = ob_get_clean();
 
-			return [
-				'id'              => $id,
-				'size'            => $size,
-				'filename'        => $filename,
-				'stats_html'      => $stats_html,
-				'bulk_stats_html' => $bulk_stats_html,
-			];
+			wp_send_json_success(
+				[
+					'id'              => $id,
+					'size'            => $size,
+					'filename'        => $filename,
+					'stats_html'      => $stats_html,
+					'bulk_stats_html' => $bulk_stats_html,
+				]
+			);
 		}
 
-		return false;
+		wp_send_json_error();
 	}
 
 	public function get_unoptimized_images() {

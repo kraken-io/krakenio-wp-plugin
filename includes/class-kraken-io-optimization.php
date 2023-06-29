@@ -243,6 +243,10 @@ class Kraken_IO_Optimization {
 
 		if ( isset( $optimized_image['success'] ) ) {
 
+			if ( ! isset( $optimized_image['kraked_url'] ) ) {
+				return false;
+			}
+
 			if ( ! $this->replace_image( $path, $optimized_image['kraked_url'] ) ) {
 				return false;
 			}
@@ -271,6 +275,10 @@ class Kraken_IO_Optimization {
 		$optimized_image = $this->get_optimized_image( $path, $type, true );
 
 		if ( isset( $optimized_image['success'] ) ) {
+
+			if ( ! isset( $optimized_image['kraked_url'] ) ) {
+				return false;
+			}
 
 			$path = $path . '.webp';
 			if ( ! $this->replace_image( $path, $optimized_image['kraked_url'] ) ) {
