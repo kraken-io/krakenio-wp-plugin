@@ -110,44 +110,39 @@ class Kraken_IO_Ajax {
 			wp_send_json_error();
 		}
 
-		$optimize_image = kraken_io()->optimization->optimize_image( $id );
+		kraken_io()->optimization->optimize_image( $id );
 
-		if ( $optimize_image ) {
+		$stats     = kraken_io()->stats->get_image_stats( $id );
+		$file      = get_attached_file( $id );
+		$size      = kraken_io()->format_bytes( filesize( $file ) );
+		$filename  = basename( get_attached_file( $id ) );
+		$thumb_src = wp_get_attachment_image_src( $id, 'thumbnail' );
 
-			$stats     = kraken_io()->stats->get_image_stats( $id );
-			$file      = get_attached_file( $id );
-			$size      = kraken_io()->format_bytes( filesize( $file ) );
-			$filename  = basename( get_attached_file( $id ) );
-			$thumb_src = wp_get_attachment_image_src( $id, 'thumbnail' );
+		ob_start();
+		kraken_io()->get_template(
+			'bulk-optimizer-stats',
+			[
+				'stats'     => $stats,
+				'filename'  => $filename,
+				'size'      => $size,
+				'thumb_src' => isset( $thumb_src[0] ) ? $thumb_src[0] : '',
+			]
+		);
+		$bulk_stats_html = ob_get_clean();
 
-			ob_start();
-			kraken_io()->get_template(
-				'bulk-optimizer-stats',
-				[
-					'stats'     => $stats,
-					'filename'  => $filename,
-					'size'      => $size,
-					'thumb_src' => isset( $thumb_src[0] ) ? $thumb_src[0] : '',
-				]
-			);
-			$bulk_stats_html = ob_get_clean();
+		ob_start();
+		kraken_io()->get_template( 'media-column-stats', [ 'stats' => $stats ] );
+		$stats_html = ob_get_clean();
 
-			ob_start();
-			kraken_io()->get_template( 'media-column-stats', [ 'stats' => $stats ] );
-			$stats_html = ob_get_clean();
-
-			wp_send_json_success(
-				[
-					'id'              => $id,
-					'size'            => $size,
-					'filename'        => $filename,
-					'stats_html'      => $stats_html,
-					'bulk_stats_html' => $bulk_stats_html,
-				]
-			);
-		}
-
-		wp_send_json_error();
+		wp_send_json_success(
+			[
+				'id'              => $id,
+				'size'            => $size,
+				'filename'        => $filename,
+				'stats_html'      => $stats_html,
+				'bulk_stats_html' => $bulk_stats_html,
+			]
+		);
 	}
 
 	public function get_unoptimized_images() {

@@ -146,25 +146,40 @@ function bulkOptimizeImages( ids, pages, page = 1, optimized = 0 ) {
 						?.replaceWith( response.data.stats_html );
 
 					$( '.kraken-bulk-actions .optimized' ).text( optimized );
-				}
 
-				checkBulkRequest();
-				maybeDisableActive();
+					checkBulkRequest();
+					maybeShowMessage();
+				} else if ( response.data.type === 'nonce' ) {
+					window.alert( window.kraken_options.texts.error_reset );
+				}
 			},
 			error() {
 				concurentRequests--;
 				checkBulkRequest();
-				maybeDisableActive();
+				maybeShowMessage();
 			},
 		} );
 	};
 
-	const maybeDisableActive = () => {
+	const maybeShowMessage = () => {
 		if ( ids.length === 0 && ! needsMorePages && concurentRequests === 0 ) {
 			$( '.kraken-bulk-actions' ).removeClass( 'is-active' );
 			$( '.kraken-button-bulk-optimize .spinner' ).removeClass(
 				'is-active'
 			);
+
+			const total = parseInt(
+				$( '.kraken-button-bulk-optimize' ).data( 'total' ),
+				10
+			);
+
+			const optimizedText = window.kraken_options.texts.images_optimized
+				.replace( '%1$s', optimized )
+				.replace( '%2$s', total );
+
+			$( '.kraken-bulk-images' )
+				.empty()
+				.append( '<p>' + optimizedText + '</p>' );
 		}
 	};
 
