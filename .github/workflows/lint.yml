@@ -1,10 +1,6 @@
 name: Linting and Tests
 
-on:
-    push:
-        branches: [master]
-    pull_request:
-        branches: [master, develop]
+on: [push]
 
 jobs:
   lint:
@@ -36,6 +32,6 @@ jobs:
     - name: Run lint
       run: |
         npm run lint
-	- name: Run tests
+    - name: Run tests
       run: |
         npm run test
