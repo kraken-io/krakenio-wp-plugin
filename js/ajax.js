@@ -409,12 +409,12 @@ jQuery(document).ready(function($) {
 
         var $resetButton = $(this);
         $resetButton
-            .text('Resetting images, pleaes wait...')
+            .text('Resetting images, please wait...')
             .attr('disabled', true);
         var resetData = {
-            action: 'kraken_reset_all'
+            action: 'kraken_reset_all',
+            nonce: ajax_object.ajax_nonce
         };
-
 
         var $spinner = $('<span class="resetSpinner"></span>');
         $resetButton.after($spinner);
@@ -434,22 +434,6 @@ jQuery(document).ready(function($) {
                     .removeClass('enabled');
             });
     });
-
-    // $('.krakenAdvancedSettings h3').on('click', function () {
-    //     var $rows = $('.kraken-advanced-settings');
-    //     var $plusMinus = $('.kraken-plus-minus');
-    //     if ($rows.is(':visible')) {
-    //         $rows.hide();
-    //         $plusMinus
-    //             .removeClass('dashicons-arrow-down')
-    //             .addClass('dashicons-arrow-right');
-    //     } else {
-    //         $rows.show();
-    //         $plusMinus
-    //             .removeClass('dashicons-arrow-right')
-    //             .addClass('dashicons-arrow-down');
-    //     }
-    // });
 
     $('body').on("click", ".kraken_req", function(e) {
         e.preventDefault();

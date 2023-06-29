@@ -21,11 +21,14 @@
  * Plugin URI: http://wordpress.org/plugins/kraken-image-optimizer/
  * Description: This plugin allows you to optimize your WordPress images through the Kraken API, the world's most advanced image optimization solution.
  * Author: Karim Salman
- * Version: 2.6.3
- * Stable Tag: 2.6.3
+ * Version: 2.6.8
+ * Requires at least: 3.0.1
+ * Requires PHP: 5.0.0
+ * Stable Tag: 2.6.8
  * Author URI: https://kraken.io
  * License GPL2
  */
+
 
 
 if ( !class_exists( 'Wp_Kraken' ) ) {
@@ -41,7 +44,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 
 		private $optimization_type = 'lossy';
 
-		public static $kraken_plugin_version = '2.6.3';
+		public static $kraken_plugin_version = '2.6.8';
 
 		function __construct() {
 			$plugin_dir_path = dirname( __FILE__ );
@@ -103,12 +106,13 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 
 		function kraken_settings_page() {
 
-			if ( !empty( $_POST ) ) {
+			if ( !empty( $_POST ) && isset( $_POST['settings_form_nonce'] ) && wp_verify_nonce( $_POST['settings_form_nonce'], 'settings_form_nonce' ) ) {
 				$options = $_POST['_kraken_options'];
 				$result = $this->validate_options( $options );
 				update_option( '_kraken_options', $result['valid'] );
 			}
 
+			$form_nonce = wp_create_nonce( 'settings_form_nonce' );
 			$settings = get_option( '_kraken_options' );
 			$lossy = isset( $settings['api_lossy'] ) ? $settings['api_lossy'] : 'lossy';
 			$auto_optimize = isset( $settings['auto_optimize'] ) ? $settings['auto_optimize'] : 1;
@@ -148,7 +152,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 					<?php if ( isset( $result['error'] ) ) { ?>
 						<div class="kraken error settings-error">
 						<?php foreach( $result['error'] as $error ) { ?>
-							<p><?php echo $error; ?></p>
+							<p><?php echo esc_attr( $error ) ?></p>
 						<?php } ?>
 						</div>
 					<?php } else if ( isset( $result['success'] ) ) { ?>
@@ -254,8 +258,8 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 													<?php echo '<option value="0">Intelligent lossy (recommended)</option>'; ?>
 												<?php } ?>
 												<?php if ($i > 0) { ?>
-													<option value="<?php echo $number ?>" <?php selected( $jpeg_quality, $number, true); ?>>
-													<?php echo $number; ?>
+													<option value="<?php echo esc_attr( $number ) ?>" <?php selected( $jpeg_quality, $number, true); ?>>
+													<?php echo esc_attr( $number ); ?>
 												<?php } ?>
 													</option>
 												<?php $i++ ?>
@@ -306,7 +310,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 						            	<?php $i = 0; ?>
 						            	<?php foreach($sizes as $size) { ?>
 						            	<?php $size_checked = isset( $valid['include_size_' . $size] ) ? $valid['include_size_' . $size] : 1; ?>
-						                <label for="<?php echo "kraken_size_$size" ?>"><input type="checkbox" id="kraken_size_<?php echo $size ?>" name="_kraken_options[include_size_<?php echo $size ?>]" value="1" <?php checked( 1, $size_checked, true ); ?>/>&nbsp;<?php echo $size ?></label>&nbsp;&nbsp;&nbsp;&nbsp;
+						                <label for="<?php echo esc_attr( "kraken_size_$size" ) ?>"><input type="checkbox" id="kraken_size_<?php echo esc_attr( $size ) ?>" name="_kraken_options[include_size_<?php echo esc_attr( $size ) ?>]" value="1" <?php checked( 1, $size_checked, true ); ?>/>&nbsp;<?php echo esc_attr( $size ) ?></label>&nbsp;&nbsp;&nbsp;&nbsp;
 						            	<?php $i++ ?>
 						            	<?php if ($i % 3 == 0) { ?>
 						            		<br />
@@ -359,8 +363,8 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 						        	<td>
 										<select name="_kraken_options[bulk_async_limit]">
 											<?php foreach ( range(1, 10) as $number ) { ?>
-												<option value="<?php echo $number ?>" <?php selected( $bulk_async_limit, $number, true); ?>>
-													<?php echo $number ?>
+												<option value="<?php echo esc_attr( $number ) ?>" <?php selected( $bulk_async_limit, $number, true); ?>>
+													<?php echo esc_attr( $number ) ?>
 												</option>
 											<?php } ?>
 										</select>
@@ -376,6 +380,7 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 						        </tr>
 						    </tbody>
 						</table>
+				 <input type="hidden"  name="settings_form_nonce" value="<?php echo $form_nonce; ?>" />
 			     <input type="submit" name="kraken_save" id="kraken_save" class="button button-primary" value="Save All"/>
 			  </form>
 			<?php
@@ -450,14 +455,14 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
 					wp_enqueue_script( 'tipsy-js', plugins_url( '/js/jquery.tipsy.js', __FILE__ ), array( 'jquery' ) );
 					wp_enqueue_script( 'modal-js', plugins_url( '/js/jquery.modal.min.js', __FILE__ ), array( 'jquery' ) );
 					wp_enqueue_script( 'ajax-script', plugins_url( '/js/ajax.js', __FILE__ ), array( 'jquery' ) );
-					wp_localize_script( 'ajax-script', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+					wp_localize_script( 'ajax-script', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'ajax_nonce' => wp_create_nonce('ajax-nonce') ) );
 					wp_localize_script( 'ajax-script', 'kraken_settings', $this->kraken_settings );
 					wp_enqueue_style( 'kraken_admin_style', plugins_url( 'css/admin.css', __FILE__ ) );
 					wp_enqueue_style( 'tipsy-style', plugins_url( 'css/tipsy.css', __FILE__ ) );
 					wp_enqueue_style( 'modal-style', plugins_url( 'css/jquery.modal.css', __FILE__ ) );
 				} else {
 					wp_enqueue_script( 'kraken-js', plugins_url( '/js/dist/kraken.min.js', __FILE__ ), array( 'jquery' ) );
-					wp_localize_script( 'kraken-js', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+					wp_localize_script( 'kraken-js', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'ajax_nonce' => wp_create_nonce('ajax-nonce') ) );
 					wp_localize_script( 'kraken-js', 'kraken_settings', $this->kraken_settings );
 					wp_enqueue_style( 'kraken-css', plugins_url( 'css/dist/kraken.min.css', __FILE__ ) );					
 				}
@@ -713,6 +718,9 @@ if ( !class_exists( 'Wp_Kraken' ) ) {
  		}
 
 		function kraken_media_library_reset_all() {
+			if ( ! wp_verify_nonce( $_POST['nonce'], 'ajax-nonce' ) ) {
+				wp_die();
+			}
 			$result = null;
 			delete_post_meta_by_key( '_kraked_thumbs' );
 			delete_post_meta_by_key( '_kraken_size' );
@@ -822,7 +830,7 @@ EOD;
 			?>
 			<select name="_kraken_options[bulk_async_limit]">
 				<?php foreach ( range(1, 10) as $number ) { ?>
-					<option value="<?php echo $number ?>" <?php selected( $bulk_limit, $number, true); ?>>
+					<option value="<?php echo esc_attr( $number ) ?>" <?php selected( $bulk_limit, $number, true); ?>>
 						<?php echo $number ?>
 					</option>
 				<?php } ?>
@@ -1167,7 +1175,6 @@ EOD;
 				$params['quality'] = (int) $settings['jpeg_quality'];
 			}
 			
-			set_time_limit(400);
 			$data = $kraken->upload( $params );
 			$data['type'] = !empty( $type ) ? $type : $settings['api_lossy'];
 			return $data;

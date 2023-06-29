@@ -1,11 +1,11 @@
 === Kraken.io Image Optimizer ===
 Contributors: karim79
-Tags: anigif, compress image, exif, image optimizer, image resize, jpg, media, Optimization, optimize, optimize animated gif, optimize gif, optimize jpeg, optimize png, PageRank, PageSpeed Insights, performance, photos, png, Reduce Image Size, retina, seo, sitespeed, speed up site, svg, upload, svg, upload, gtmetrix speed test, EXIF, image resize, kraken.io, smush
-Requires at least: 3.0.1
-Requires PHP: 5.0.0
-Tested up to: 4.9.6
 Donate link: https://kraken.io
-Stable tag: 2.6.3
+Tags: compress images, image optimizer, SEO, performance, image resize, jpg, media, Optimization, optimize, optimize animated gif, optimize gif, optimize jpeg, optimize png, PageRank, PageSpeed Insights, photos, png, Reduce Image Size, retina, sitespeed, speed up site, svg, upload, svg, upload, gtmetrix speed test, EXIF, image resize
+Requires at least: 3.0.1
+Tested up to: 6.0.3
+Requires PHP: 5.0.0
+Stable tag: 2.6.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -68,13 +68,12 @@ Please send bug reports, problems, feature requests and so on to support (at) Kr
 = Connect with Kraken.io =
 * Website: https://kraken.io
 * [Twitter](https://twitter.com/KrakenIO "@KrakenIO")
-* [Google+](https://plus.google.com/107209047753760492207/ "Google+")
-* [Facebook](https://www.facebook.com/krakenio "Kraken Image Optimizer")
+* [Facebook](https://www.facebook.com/krakenio "Kraken.io Image Optimizer")
 * [Github](https://github.com/kraken-io "Kraken.io on Github")
 
 == Installation ==
 
-To install the Kraken Wordpress Plugin:
+To install the Kraken.io Wordpress Plugin:
 
 1. Upload `kraken.php` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
@@ -108,10 +107,22 @@ Yes, of course they will. Our plugin simply replaces the image files on your blo
 
 You will need to switch the Media Library from the Grid view to the List view. In the "Kraked Size" column, you will then see the "Optimize This Image" button for unoptimized images, or the results of the optimization where the image has already been optimized by our plugin.
 
-= What is the difference between Kraken.io and other plugins such as Optimus, EWWW, WP Smush, Imagify and TinyPNG/TinyJPG? =
-Kraken.io's service emphasizes finding the precise balance between image quality and file size reduction. Our API utilizes various mechanisms for ensuring that the result cannot be distinguished from the original by the human eye, even upon close inspection. If want to get the greatest possible savings without ever having to check the optimized image against the original, this is the plugin for you.
-
 == Changelog ==
+
+= 2.6.8 =
+* Security release - added nonce checking to "reset all metadata" feature in Settings->Kraken.io.
+
+= 2.6.7 =
+* Security release - added more escape mechanisms just to be sure.
+
+= 2.6.6 =
+* Security release to solve https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-38454
+
+= 2.6.5 =
+* Security and maintenance release
+
+= 2.6.4 =
+* Security and maintenance release
 
 = 2.6.3 =
 * Verified the plugin's compatibility with PHP 7 and WordPress 4.9
@@ -250,8 +261,11 @@ Kraken.io's service emphasizes finding the precise balance between image quality
 * Hooks to Media Uploader to optimize all uploaded images, including generated thumbnails.
 * Allows optimization of existing images in Wordpress Media Library.
 
+== Upgrade Notice ==
+Please upgrade immediately in order to avoid a potential security issue that could allow an attacker to overwrite your plugin setting (of the Kraken.io plugin.
+
 == Notes and Incompatible plugins ==
 If you use the WP Super Cache plugin, you must **disable the plugin** prior to performing any image optimization, as it is known to cause strange and buggy behaviour with the Kraken.io Image Optimizer plugin.
 
 == Any Questions? ==
-We love to hear from you! Just shoot an email to support (at) kraken dot io and let's talk.
+We love to hear from you! Just shoot an email to support@kraken.io and let's talk.
