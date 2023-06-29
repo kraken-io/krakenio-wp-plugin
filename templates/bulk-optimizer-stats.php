@@ -13,7 +13,10 @@ $summary = $stats['stats']; ?>
 
 <tr class="kraken-bulk-table-row">
 	<td>
-		<?php echo esc_html( $args['filename'] ); ?>
+		<div class="kraken-bulk-table-image">
+			<img class="kraken-bulk-table-thumbnail" src="<?php echo esc_url( $args['thumb_src'] ); ?>" alt="<?php echo esc_attr( $args['filename'] ); ?>">
+			<?php echo esc_html( $args['filename'] ); ?>
+		</div>
 	</td>
 	<td>
 	<?php echo esc_html( $args['size'] ); ?>

@@ -19,8 +19,8 @@ class Kraken_IO_Ajax {
 	public function __construct() {
 		add_action( 'wp_ajax_kraken_reset_image', [ $this, 'reset_image' ] );
 		add_action( 'wp_ajax_kraken_reset_all', [ $this, 'reset_all_images' ] );
-		add_action( 'wp_ajax_kraken_optimize_image', [ $this, 'optimize_image' ] );
-		add_action( 'wp_ajax_kraken_get_bulk_pages', [ $this, 'get_bulk_pages' ] );
+		add_action( 'wp_ajax_kraken_optimize_images', [ $this, 'optimize_images' ] );
+		add_action( 'wp_ajax_kraken_get_unoptimized_images', [ $this, 'get_unoptimized_images' ] );
 	}
 
 	/**
@@ -94,7 +94,7 @@ class Kraken_IO_Ajax {
 	 * @since  2.7
 	 * @access public
 	 */
-	public function optimize_image() {
+	public function optimize_images() {
 
 		if ( ! wp_verify_nonce( $_POST['nonce'], 'kraken-io-nonce' ) ) {
 			wp_send_json_error(
@@ -104,56 +104,78 @@ class Kraken_IO_Ajax {
 			);
 		}
 
-		$id   = (int) $_POST['id'];
+		$options = kraken_io()->get_options();
+
+		$ids  = isset( $_POST['ids'] ) ? $_POST['ids'] : [];
+		$ids  = array_slice( $ids, 0, $options['bulk_async_limit'] );
 		$type = $_POST['type'];
 
+		$optimized_images = [];
+
+		foreach ( $ids as $id ) {
+			$optimized_images[] = $this->optimize_image( $id, $type );
+		}
+
+		if ( $optimized_images ) {
+			wp_send_json_success( $optimized_images );
+		}
+
+		wp_send_json_error();
+	}
+
+	/**
+	 * Optimize image.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  int $id Image ID.
+	 * @param  string $type Type of optimization.
+	 */
+	private function optimize_image( $id, $type ) {
+
 		if ( ! wp_attachment_is_image( $id ) ) {
-			wp_send_json_error(
-				[
-					'type' => 'error',
-				]
-			);
+			return false;
 		}
 
 		$optimize_image = kraken_io()->optimization->optimize_image( $id );
 
 		if ( $optimize_image ) {
 
-			$stats    = kraken_io()->stats->get_image_stats( $id );
-			$file     = get_attached_file( $id );
-			$size     = kraken_io()->format_bytes( filesize( $file ) );
-			$filename = basename( get_attached_file( $id ) );
+			$stats     = kraken_io()->stats->get_image_stats( $id );
+			$file      = get_attached_file( $id );
+			$size      = kraken_io()->format_bytes( filesize( $file ) );
+			$filename  = basename( get_attached_file( $id ) );
+			$thumb_src = wp_get_attachment_image_src( $id, 'thumbnail' );
 
 			ob_start();
-
-			if ( 'bulk' === $type ) {
-				kraken_io()->get_template(
-					'bulk-optimizer-stats',
-					[
-						'stats'    => $stats,
-						'filename' => $filename,
-						'size'     => $size,
-					]
-				);
-			} else {
-				kraken_io()->get_template( 'media-column-stats', [ 'stats' => $stats ] );
-			}
-
-			$column_html = ob_get_clean();
-
-			wp_send_json_success(
+			kraken_io()->get_template(
+				'bulk-optimizer-stats',
 				[
-					'size'     => $size,
-					'html'     => $column_html,
-					'filename' => $filename,
+					'stats'     => $stats,
+					'filename'  => $filename,
+					'size'      => $size,
+					'thumb_src' => isset( $thumb_src[0] ) ? $thumb_src[0] : '',
 				]
 			);
+			$bulk_stats_html = ob_get_clean();
+
+			ob_start();
+			kraken_io()->get_template( 'media-column-stats', [ 'stats' => $stats ] );
+			$stats_html = ob_get_clean();
+
+			return [
+				'id'              => $id,
+				'size'            => $size,
+				'filename'        => $filename,
+				'stats_html'      => $stats_html,
+				'bulk_stats_html' => $bulk_stats_html,
+			];
 		}
 
-		wp_send_json_error();
+		return false;
 	}
 
-	public function get_bulk_pages() {
+	public function get_unoptimized_images() {
 		if ( ! wp_verify_nonce( $_POST['nonce'], 'kraken-io-nonce' ) ) {
 			wp_send_json_error(
 				[
@@ -162,9 +184,7 @@ class Kraken_IO_Ajax {
 			);
 		}
 
-		$paged = $_POST['paged'];
-
-		$unoptimized_images = kraken_io()->optimization->get_unoptimized_images( 1 );
+		$unoptimized_images = kraken_io()->optimization->get_unoptimized_images();
 
 		wp_send_json_success(
 			[

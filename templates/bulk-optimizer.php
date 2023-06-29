@@ -31,7 +31,7 @@ else :
 	$class = '';
 
 	if ( 'modal' === $args['type'] ) {
-		$class = ' kraken-modal is-active';
+		$class = ' kraken-modal';
 	}
 
 	?>
@@ -39,30 +39,32 @@ else :
 	<div class="kraken-bulk-optimizer-wrapper<?php echo esc_attr( $class ); ?>">
 		<div class="kraken-bulk-optimizer">
 			<div class="kraken-bulk-header">
-				<h4 class="kraken-bulk-heading"><?php esc_html_e( 'Kraken Bulk Image Optimization', 'kraken-io' ); ?></h4>
+				<h3 class="kraken-bulk-heading"><?php esc_html_e( 'Kraken Bulk Image Optimization', 'kraken-io' ); ?></h3>
 				<button type="button" class="kraken-bulk-close-modal dashicons dashicons-no"></button>
 			</div>
 
 			<div class="kraken-bulk-images">
 				<p class="kraken-bulk-images-info"><?php echo esc_html( $text ); ?></p>
-				<?php if ( $number > 0 ) : ?>
-					<div class="kraken-bulk-actions">
-						<button type="button" class="button kraken-button-bulk-optimize" data-total="<?php echo esc_html( $number ); ?>" data-pages="<?php echo esc_attr( $args['pages'] ); ?>" data-ids="<?php echo esc_attr( wp_json_encode( $args['ids'] ) ); ?>">
-							<?php esc_html_e( "Krak 'em all", 'kraken-io' ); ?>
-							<span class="spinner"></span>
-						</button>
-						<span class="progress"><span class="optimized">0</span> / <span class="total"><?php echo esc_html( $number ); ?></span></span>
-					</div>
-				<?php endif; ?>
+				<div class="kraken-bulk-actions"<?php echo $number > 0 ? '' : ' hidden'; ?>>
+					<button type="button" class="button kraken-button-bulk-optimize" data-total="<?php echo esc_html( $number ); ?>" data-pages="<?php echo esc_attr( $args['pages'] ); ?>" data-ids="<?php echo esc_attr( wp_json_encode( $args['ids'] ) ); ?>">
+						<?php esc_html_e( "Krak 'em all", 'kraken-io' ); ?>
+						<span class="spinner"></span>
+					</button>
+					<span class="progress"><span class="optimized">0</span> / <span class="total"><?php echo esc_html( $number ); ?></span></span>
+				</div>
 			</div>
-
-			<table class="kraken-bulk-table">
-				<tr class="kraken-bulk-table-header">
-					<td><?php esc_html_e( 'Filename', 'kraken-io' ); ?></td>
-					<td><?php esc_html_e( 'Original Size', 'kraken-io' ); ?></td>
-					<td><?php esc_html_e( 'Kraken.io Stats', 'kraken-io' ); ?></td>
-				</tr>
-			</table>
+			<div class="kraken-bulk-content">
+				<table class="kraken-bulk-table">
+					<thead>
+						<tr class="kraken-bulk-table-header">
+							<td class="kraken-bulk-table-column-image"><?php esc_html_e( 'Image', 'kraken-io' ); ?></td>
+							<td class="kraken-bulk-table-column-size"><?php esc_html_e( 'Original Size', 'kraken-io' ); ?></td>
+							<td class="kraken-bulk-table-column-stats"><?php esc_html_e( 'Kraken.io Stats', 'kraken-io' ); ?></td>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 

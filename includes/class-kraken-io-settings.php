@@ -51,7 +51,6 @@ class Kraken_IO_Settings {
 	public function __construct() {
 		add_filter( 'plugin_action_links_' . plugin_basename( KRAKEN_PLUGIN_FILE ), [ $this, 'plugin_action_links' ] );
 		add_filter( 'bulk_actions-upload', [ $this, 'register_bulk_optimize_option' ] );
-		add_filter( 'handle_bulk_actions-upload', [ $this, 'handle_bulk_optimize' ], 10, 3 );
 		add_filter( 'admin_footer', [ $this, 'footer_bulk_modal' ] );
 		add_action( 'admin_menu', [ $this, 'add_options_page' ] );
 		$this->register_settings();
@@ -84,25 +83,6 @@ class Kraken_IO_Settings {
 	}
 
 	/**
-	 * Add optimize bulk option.
-	 *
-	 * @since  2.7
-	 * @access public
-	 * @param  string $actions Redirect url
-	 * @param  string $actions Redirect url
-	 * @param  array $ids Post ids
-	 * @return string $redirect Redirect url
-	 */
-	public function handle_bulk_optimize( $redirect, $action, $ids ) {
-
-		if ( 'kraken_bulk' === $action ) {
-			$redirect = add_query_arg( 'kraken_bulk', implode( ',', $ids ), $redirect );
-		}
-
-		return $redirect;
-	}
-
-	/**
 	 * Add bulk optimizer template to admin footer.
 	 *
 	 * @since  2.7
@@ -110,21 +90,12 @@ class Kraken_IO_Settings {
 	 * @return void
 	 */
 	public function footer_bulk_modal() {
-
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if ( ! isset( $_GET['kraken_bulk'] ) ) {
-			return false;
-		}
-
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$ids = explode( ',', $_GET['kraken_bulk'] );
-
 		kraken_io()->get_template(
 			'bulk-optimizer',
 			[
-				'ids'   => $ids,
+				'ids'   => [],
 				'type'  => 'modal',
-				'total' => count( $ids ),
+				'total' => 0,
 				'pages' => 1,
 			]
 		);

@@ -85,92 +85,125 @@ $( document ).on( 'click', '.kraken-button-bulk-optimize', function ( e ) {
 	e.preventDefault();
 
 	const $el = $( this );
-	const $spinner = $el.find( '.spinner' );
 	const pages = $el.data( 'pages' );
-	const page = 1;
-	const optimized = 0;
 	const ids = $el.data( 'ids' );
 
-	$el.parents( '.kraken-bulk-actions' ).addClass( 'is-active' );
-	$spinner.addClass( 'is-active' );
+	$( '.kraken-bulk-actions' ).addClass( 'is-active' );
+	$( '.kraken-button-bulk-optimize .spinner' ).addClass( 'is-active' );
 
-	optimizeImageAjaxCallback( $el, ids, optimized, pages, page );
+	bulkOptimizeImages( ids, pages );
 } );
 
-function optimizeImageAjaxCallback( $el, ids, optimized, pages, page ) {
-	const id = ids.shift();
-	const $spinner = $el.find( '.spinner' );
+function bulkOptimizeImages( ids, pages, page = 1, optimized = 0 ) {
+	const bulkAsyncLimit = parseInt(
+		window.kraken_options.bulk_async_limit,
+		10
+	);
+	const _ids = [];
 
-	if ( undefined === id ) {
+	for ( let i = 0; i < bulkAsyncLimit; i++ ) {
+		const id = ids.shift();
+		if ( undefined !== id ) {
+			_ids.push( id );
+		}
+	}
+
+	if ( _ids.length === 0 ) {
 		if ( page < pages ) {
 			page = page + 1;
-			getUnoptimizedImagesPages( $el, optimized, pages, page );
+			getUnoptimizedImages( optimized, pages, page );
 		} else {
-			$spinner.removeClass( 'is-active' );
+			$( '.kraken-button-bulk-optimize .spinner' ).removeClass(
+				'is-active'
+			);
 		}
 
 		return false;
 	}
 
-	optimized = optimized + 1;
-
-	const $table = $el
-		.parents( '.kraken-bulk-optimizer' )
-		.find( '.kraken-bulk-table tbody' );
+	optimized = optimized + _ids.length;
 
 	$.ajax( {
 		type: 'POST',
 		url: window.kraken_options.ajax_url,
 		data: {
-			action: 'kraken_optimize_image',
-			id,
+			action: 'kraken_optimize_images',
+			ids: _ids,
 			type: 'bulk',
 			nonce: window.kraken_options.nonce,
 		},
 		success( response ) {
 			if ( response.success ) {
-				$table.append( $( response.data.html ) );
+				const $table = $( '.kraken-bulk-table tbody' );
+				response.data.forEach( ( element ) => {
+					$table.append( $( element.bulk_stats_html ) );
+					$( 'tr#post-' + element.id )
+						.find( '.kraken-stats-media-column' )
+						.replaceWith( element.stats_html );
+				} );
 			}
-			$( '.optimized' ).text( optimized );
+			$( '.kraken-bulk-actions .optimized' ).text( optimized );
 
-			optimizeImageAjaxCallback( $el, ids, optimized, pages, page );
+			bulkOptimizeImages( ids, pages, page, optimized );
 		},
 		error() {
-			$( '.optimized' ).text( optimized );
-			optimizeImageAjaxCallback( $el, ids, optimized, pages, page );
+			$( '.kraken-bulk-actions .optimized' ).text( optimized );
+			bulkOptimizeImages( ids, pages, page, optimized );
 		},
 	} );
 }
 
-function getUnoptimizedImagesPages( $el, optimized, pages, page ) {
+function getUnoptimizedImages( optimized, pages, page ) {
 	$.ajax( {
 		type: 'POST',
 		url: window.kraken_options.ajax_url,
 		data: {
-			action: 'kraken_get_bulk_pages',
-			paged: page,
+			action: 'kraken_get_unoptimized_images',
 			nonce: window.kraken_options.nonce,
 		},
 		success( response ) {
 			const data = response.data;
 			if ( data.ids.length > 0 ) {
-				optimizeImageAjaxCallback(
-					$el,
-					data.ids,
-					optimized,
-					pages,
-					page
-				);
+				bulkOptimizeImages( data.ids, pages, page, optimized );
 			}
 		},
 		error() {},
 	} );
 }
 
-$( document ).on( 'click', '.kraken-bulk-close-modal', function ( e ) {
-	e.preventDefault();
+$( document ).on( 'submit', '#posts-filter', function ( e ) {
+	const formData = new FormData( e.target );
+	const action = formData.get( 'action' );
+	const action2 = formData.get( 'action2' );
+	const media = formData.getAll( 'media[]' );
 
-	$( this ).parents( '.kraken-modal' ).removeClass( 'is-active' );
+	if ( action === 'kraken_bulk' || action2 === 'kraken_bulk' ) {
+		e.preventDefault();
+		$( '.kraken-modal' ).addClass( 'is-active' );
+
+		if ( media.length ) {
+			$( '.kraken-bulk-images-info' ).text(
+				window.kraken_options.texts.images_to_optimize.replace(
+					'%s',
+					media.length
+				)
+			);
+			$( '.kraken-bulk-actions' ).removeAttr( 'hidden' );
+			$( '.kraken-bulk-actions .total' ).text( media.length );
+			$( '.kraken-button-bulk-optimize' ).attr(
+				'data-ids',
+				JSON.stringify( media )
+			);
+			$( '.kraken-button-bulk-optimize' ).attr(
+				'data-total',
+				media.length
+			);
+		}
+	}
+} );
+
+$( document ).on( 'click', '.kraken-bulk-close-modal', function () {
+	$( '.kraken-modal' ).removeClass( 'is-active' );
 } );
 
 function drawCircle( $el, width ) {

@@ -52,6 +52,7 @@
 			}
 
 			p {
+
 				.widefat & {
 					font-size: 12px;
 					margin-bottom: 0.6em;
@@ -81,9 +82,10 @@
 
 		&-optimizer {
 			width: 100%;
-			max-width: 600px;
+			max-width: 700px;
 			background: #fff;
-			border: 1px solid #ddd;
+			border: 1px solid #c3c4c7;
+			overflow: hidden;
 
 			.kraken-modal & {
 				margin: 0 10px 10px 10px;
@@ -104,17 +106,17 @@
 
 		&-close-modal {
 			display: none;
-			font-size: 30px;
+			font-size: 22px;
 			color: #454545;
 			padding: 0;
 			background: transparent;
 			border: none;
 			line-height: 1;
-			width: 25px;
-			height: auto;
+			width: 40px;
+			height: 40px;
 			position: absolute;
 			top: 50%;
-			right: 15px;
+			right: 5px;
 			transform: translateY(-50%);
 			cursor: pointer;
 
@@ -124,18 +126,19 @@
 		}
 
 		&-header {
-			font-size: 16px;
-			font-weight: 700;
 			padding: 15px 50px 15px 20px;
-			border-bottom: 1px solid #ddd;
+			border-bottom: 1px solid #c3c4c7;
 			margin: 0;
-			background: #fafafa;
 			position: relative;
 		}
 
 		&-actions {
 			display: flex;
 			align-items: center;
+
+			&[hidden] {
+				display: none;
+			}
 
 			.progress {
 				margin-left: 15px;
@@ -162,18 +165,53 @@
 		}
 	}
 
+	&-bulk-content {
+		border-top: 1px solid #c3c4c7;
+		margin: -1px;
+
+		.kraken-modal & {
+			max-height: calc(100vh - 220px);
+			overflow-y: auto;
+		}
+	}
+
 	&-bulk-table {
-		width: 100%;
 		border-collapse: collapse;
 		font-size: 1em;
+		width: 100%;
 
 		td {
 			padding: 10px 20px;
-			border: 1px solid #ddd;
+			border-right: 1px solid #c3c4c7;
+			border-bottom: 1px solid #c3c4c7;
 		}
 
-		&-header td {
-			background: #fafafa;
+		&-header {
+			box-shadow: 0 0 0 1px #c3c4c7;
+			position: sticky;
+			top: 0;
+
+			td {
+				padding: 15px 20px;
+				background: #fff;
+				border-bottom: 0;
+			}
+		}
+
+		&-column-image {
+			width: 50%;
+		}
+
+		&-image {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		&-thumbnail {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
 		}
 	}
 
@@ -181,7 +219,7 @@
 		width: 100%;
 		max-width: 600px;
 		background: #fff;
-		border: 1px solid #ddd;
+		border: 1px solid #c3c4c7;
 		padding: 15px;
 		display: flex;
 
@@ -214,7 +252,7 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			border: 10px solid #ddd;
+			border: 10px solid #c3c4c7;
 			border-radius: 50%;
 			box-sizing: border-box;
 		}

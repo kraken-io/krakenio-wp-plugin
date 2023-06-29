@@ -201,9 +201,11 @@ class Kraken_IO {
 			'ajax_url' => admin_url( 'admin-ajax.php', 'relative' ),
 			'nonce'    => wp_create_nonce( 'kraken-io-nonce' ),
 			'texts'    => [
-				'reset_image'      => esc_html__( 'Are you sure you want to remove Kraken metadata for this image?', 'kraken-io' ),
-				'reset_all_images' => esc_html__( 'This will immediately remove all Kraken metadata associated with your images. Are you sure you want to do this?', 'kraken-io' ),
-				'error_reset'      => esc_html__( 'Something went wrong. Please reload the page and try again.', 'kraken-io' ),
+				'bulk_async_limit'   => $this->options['bulk_async_limit'],
+				'reset_image'        => esc_html__( 'Are you sure you want to remove Kraken metadata for this image?', 'kraken-io' ),
+				'reset_all_images'   => esc_html__( 'This will immediately remove all Kraken metadata associated with your images. Are you sure you want to do this?', 'kraken-io' ),
+				'error_reset'        => esc_html__( 'Something went wrong. Please reload the page and try again.', 'kraken-io' ),
+				'images_to_optimize' => esc_html__( '%s images will be optimized.', 'kraken-io' ),
 			],
 		];
 

@@ -451,16 +451,15 @@ class Kraken_IO_Optimization {
 	 *
 	 * @since  2.7
 	 * @access public
-	 * @param  int $paged
+	 * @param  int $posts_per_page
 	 * @return array $data
 	 */
-	public function get_unoptimized_images( $paged = 1, $posts_per_page = 30 ) {
+	public function get_unoptimized_images( $posts_per_page = 30 ) {
 
 		$args = [
 			'post_type'      => 'attachment',
 			'post_status'    => 'inherit',
 			'posts_per_page' => $posts_per_page,
-			'paged'          => $paged,
 			'meta_query'     => [
 				'relation' => 'OR',
 				[
