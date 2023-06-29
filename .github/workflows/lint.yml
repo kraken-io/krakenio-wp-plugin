@@ -34,4 +34,4 @@ jobs:
         npm run lint
     - name: Run tests
       run: |
-        npm run test
+        php7.4 ./vendor/bin/phpunit
