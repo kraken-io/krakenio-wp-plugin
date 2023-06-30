@@ -19,6 +19,15 @@ $summary = $stats['stats']; ?>
 
 			<a href="<?php echo esc_url( admin_url( 'options-general.php?page=wp-krakenio&tab=general' ) ); ?>"><?php esc_html_e( 'Connect your account', 'kraken-io' ); ?></a>
 
+		<?php elseif ( $stats['api_errors'] ) : ?>
+
+			<div class="kraken-stats-failed-optimize">
+				<p class="kraken-stats-action-detail">
+					<strong><?php esc_html_e( 'Failed with errors', 'kraken-io' ); ?></strong><br>
+					<?php echo esc_html( implode( '<br>', $stats['api_errors'] ) ); ?>
+				</p>
+			</div>
+
 		<?php elseif ( $stats['is_optimized'] ) : ?>
 
 			<?php if ( $stats['show_button'] ) : ?>
@@ -112,10 +121,10 @@ $summary = $stats['stats']; ?>
 
 			<?php if ( $stats['has_error'] ) : ?>
 				<div class="kraken-stats-failed-optimize">
-					<?php
-						/* translators: %s error */
-						echo esc_html( sprintf( __( 'Failed with errors %s', 'kraken-io' ), $stats['has_error'] ) );
-					?>
+					<p class="kraken-stats-action-detail">
+						<strong><?php esc_html_e( 'Failed with errors', 'kraken-io' ); ?></strong><br>
+						<?php echo esc_html( $stats['has_error'] ); ?>
+					</p>
 				</div>
 			<?php endif; ?>
 

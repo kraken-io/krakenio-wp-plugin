@@ -241,20 +241,26 @@ class Kraken_IO_Optimization {
 
 		$optimized_image = $this->get_optimized_image( $path, $type );
 
-		if ( isset( $optimized_image['success'] ) ) {
+		if ( isset( $optimized_image['success'] ) && $optimized_image['success'] ) {
 
 			if ( ! isset( $optimized_image['kraked_url'] ) ) {
-				return false;
+				return [
+					'error' => __( 'Could not get optimized image URL.', 'kraken-io' ),
+				];
 			}
 
 			if ( ! $this->replace_image( $path, $optimized_image['kraked_url'] ) ) {
-				return false;
+				return [
+					'error' => __( 'Could not overwrite original file. Please ensure that your files are writable by plugins.', 'kraken-io' ),
+				];
 			}
 
 			return $optimized_image;
 		}
 
-		return false;
+		return [
+			'error' => isset( $optimized_image['message'] ) ? $optimized_image['message'] : __( 'Unknown error.', 'kraken-io' ),
+		];
 	}
 
 	/**
@@ -274,7 +280,7 @@ class Kraken_IO_Optimization {
 
 		$optimized_image = $this->get_optimized_image( $path, $type, true );
 
-		if ( isset( $optimized_image['success'] ) ) {
+		if ( isset( $optimized_image['success'] ) && $optimized_image['success'] ) {
 
 			if ( ! isset( $optimized_image['kraked_url'] ) ) {
 				return false;
@@ -296,6 +302,9 @@ class Kraken_IO_Optimization {
 	 *
 	 * @since  2.7
 	 * @access public
+	 * @param  int $id
+	 * @param  string $type
+	 * @return bool|array True if optimized, array with error message if not.
 	 */
 	public function optimize_main_image( $id, $type = null ) {
 		kraken_io()->define( 'KRAKEN_IO_OPTIMIZE', true );
@@ -310,21 +319,23 @@ class Kraken_IO_Optimization {
 
 		// the image doesn't exist
 		if ( ! $path ) {
-			return false;
+			return [
+				'error' => __( 'Could not find image.', 'kraken-io' ),
+			];
 		}
 
-		$optimized_image = $this->optimize_single_image( $path, $type );
+		$response = $this->optimize_single_image( $path, $type );
 		$this->optimize_single_image_webp( $path, $type );
 
-		if ( $optimized_image ) {
+		if ( isset( $response['success'] ) && $response['success'] ) {
 
-			$data = $this->format_optimization_response( $optimized_image, $id );
+			$data = $this->format_optimization_response( $response, $id );
 			update_post_meta( $id, '_kraken_size', $data );
 
 			return true;
 		}
 
-		return false;
+		return $response;
 	}
 
 	/**
@@ -332,6 +343,9 @@ class Kraken_IO_Optimization {
 	 *
 	 * @since  2.7
 	 * @access public
+	 * @param  int $id
+	 * @param  string $type
+	 * @return bool|string True if optimized, array with error message if not.
 	 */
 	public function optimize_thumbnails( $id, $type = null ) {
 		kraken_io()->define( 'KRAKEN_IO_OPTIMIZE', true );
@@ -356,21 +370,25 @@ class Kraken_IO_Optimization {
 		$upload_base_path = $upload_dir['basedir'];
 		$upload_full_path = $upload_base_path . '/' . $upload_subdir;
 
+		$error_responses = [];
+
 		foreach ( $metadata['sizes'] as $key => $size ) {
 
 			if ( in_array( $key, $sizes, true ) ) {
-				$path            = $upload_full_path . '/' . $size['file'];
-				$optimized_image = $this->optimize_single_image( $path, $type );
+				$path     = $upload_full_path . '/' . $size['file'];
+				$response = $this->optimize_single_image( $path, $type );
 				$this->optimize_single_image_webp( $path, $type );
 
-				if ( $optimized_image ) {
+				if ( isset( $response['success'] ) && $response['success'] ) {
 					$thumb_data[] = [
 						'thumb'         => $key,
 						'file'          => $size['file'],
-						'original_size' => $optimized_image['original_size'],
-						'kraked_size'   => $optimized_image['kraked_size'],
-						'type'          => $optimized_image['type'],
+						'original_size' => $response['original_size'],
+						'kraked_size'   => $response['kraked_size'],
+						'type'          => $response['type'],
 					];
+				} else {
+					$error_responses[] = $response['error'];
 				}
 			}
 		}
@@ -381,7 +399,11 @@ class Kraken_IO_Optimization {
 			return true;
 		}
 
-		return false;
+		$error_responses = array_unique( $error_responses );
+
+		return [
+			'error' => isset( $error_responses[0] ) ? $error_responses[0] : __( 'There are no image sizes to optimize.', 'kraken-io' ),
+		];
 	}
 
 	/**
@@ -389,17 +411,37 @@ class Kraken_IO_Optimization {
 	 *
 	 * @since  2.7
 	 * @access public
+	 * @param  int $id
+	 * @param  string $type
+	 * @return bool|string True on success, error message on failure
 	 */
 	public function optimize_image( $id, $type = null ) {
+		$error_messages = [];
+		$options        = kraken_io()->get_options();
+		$sizes          = kraken_io()->get_image_sizes_to_optimize();
 
-		$optimized_main_image = $this->optimize_main_image( $id, $type );
-		$optimized_thumbnails = $this->optimize_thumbnails( $id, $type );
-
-		if ( $optimized_main_image || $optimized_thumbnails ) {
-			return true;
+		if ( $options['optimize_main_image'] ) {
+			$optimized_main_image = $this->optimize_main_image( $id, $type );
+			if ( isset( $optimized_main_image['error'] ) ) {
+				$error_messages[] = $optimized_main_image['error'];
+			}
 		}
 
-		return false;
+		$optimized_thumbnails = $this->optimize_thumbnails( $id, $type );
+
+		if ( $sizes && isset( $optimized_thumbnails['error'] ) ) {
+			$error_messages[] = $optimized_thumbnails['error'];
+		}
+
+		$error_messages = array_unique( $error_messages );
+
+		if ( $error_messages ) {
+			return [
+				'errors' => $error_messages,
+			];
+		}
+
+		return true;
 	}
 
 	/**
