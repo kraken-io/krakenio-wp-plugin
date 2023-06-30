@@ -366,6 +366,13 @@ class Kraken_IO {
 		return round( pow( 1024, $base - floor( $base ) ), $precision ) . $suffixes[ floor( $base ) ];
 	}
 
+	/**
+	 * Convert KB to bytes.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  string  $str
+	 */
 	public function kb_string_to_bytes( $str ) {
 		$temp = floatVal( $str );
 		$rv   = false;

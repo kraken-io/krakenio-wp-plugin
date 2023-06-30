@@ -162,12 +162,24 @@ class Kraken_IO_Optimization {
 	 *
 	 * @since  2.7
 	 * @access private
+	 * @param  string $image_path
+	 * @param  array $args
+	 * @return array
 	 */
-	private function get_optimized_image( $image_path, $type = '', $webp = false ) {
+	private function get_optimized_image( $image_path, $args = [] ) {
 		$settings = $this->options;
 
-		if ( ! empty( $type ) ) {
-			$lossy = 'lossy' === $type;
+		$args = wp_parse_args(
+			$args,
+			[
+				'type'   => '',
+				'webp'   => false,
+				'resize' => true,
+			]
+		);
+
+		if ( ! empty( $args['type'] ) ) {
+			$lossy = 'lossy' === $args['type'];
 		} else {
 			$lossy = 'lossy' === $settings['api_lossy'];
 		}
@@ -177,7 +189,7 @@ class Kraken_IO_Optimization {
 			'wait'   => true,
 			'lossy'  => $lossy,
 			'origin' => 'wp',
-			'webp'   => $webp,
+			'webp'   => $args['webp'],
 		];
 
 		$preserve_meta = $this->get_preserve_meta_options( $settings );
@@ -194,7 +206,7 @@ class Kraken_IO_Optimization {
 			$params['auto_orient'] = true;
 		}
 
-		if ( ! empty( $settings['resize_width'] ) || ! empty( $settings['resize_height'] ) ) {
+		if ( $args['resize'] && ( ! empty( $settings['resize_width'] ) || ! empty( $settings['resize_height'] ) ) ) {
 
 			$width  = (int) $settings['resize_width'];
 			$height = (int) $settings['resize_height'];
@@ -234,12 +246,12 @@ class Kraken_IO_Optimization {
 	 * @since  2.7
 	 * @access public
 	 * @param  string $path
-	 * @param  string $type
+	 * @param  array $args
 	 * @return bool
 	 */
-	public function optimize_single_image( $path, $type = null ) {
+	public function optimize_single_image( $path, $args = [] ) {
 
-		$optimized_image = $this->get_optimized_image( $path, $type );
+		$optimized_image = $this->get_optimized_image( $path, $args );
 
 		if ( isset( $optimized_image['success'] ) && $optimized_image['success'] ) {
 
@@ -272,13 +284,21 @@ class Kraken_IO_Optimization {
 	 * @param  string $type
 	 * @return bool
 	 */
-	public function optimize_single_image_webp( $path, $type = null ) {
+	public function optimize_single_image_webp( $path, $args = [] ) {
 
 		if ( empty( $this->options['create_webp'] ) ) {
 			return false;
 		}
 
-		$optimized_image = $this->get_optimized_image( $path, $type, true );
+		$optimized_image = $this->get_optimized_image(
+			$path,
+			wp_parse_args(
+				$args,
+				[
+					'webp' => true,
+				]
+			)
+		);
 
 		if ( isset( $optimized_image['success'] ) && $optimized_image['success'] ) {
 
@@ -287,6 +307,7 @@ class Kraken_IO_Optimization {
 			}
 
 			$path = $path . '.webp';
+
 			if ( ! $this->replace_image( $path, $optimized_image['kraked_url'] ) ) {
 				return false;
 			}
@@ -303,10 +324,10 @@ class Kraken_IO_Optimization {
 	 * @since  2.7
 	 * @access public
 	 * @param  int $id
-	 * @param  string $type
+	 * @param  array $args
 	 * @return bool|array True if optimized, array with error message if not.
 	 */
-	public function optimize_main_image( $id, $type = null ) {
+	public function optimize_main_image( $id, $args = [] ) {
 		kraken_io()->define( 'KRAKEN_IO_OPTIMIZE', true );
 
 		$kraked_size = get_post_meta( $id, '_kraken_size', true );
@@ -320,17 +341,26 @@ class Kraken_IO_Optimization {
 		// the image doesn't exist
 		if ( ! $path ) {
 			return [
-				'error' => __( 'Could not find image.', 'kraken-io' ),
+				'error' => __( "Couldn't find the image path.", 'kraken-io' ),
 			];
 		}
 
-		$response = $this->optimize_single_image( $path, $type );
-		$this->optimize_single_image_webp( $path, $type );
+		$response = $this->optimize_single_image( $path, $args );
+		$this->optimize_single_image_webp( $path, $args );
 
 		if ( isset( $response['success'] ) && $response['success'] ) {
 
 			$data = $this->format_optimization_response( $response, $id );
 			update_post_meta( $id, '_kraken_size', $data );
+
+			$metadata = wp_get_attachment_metadata( $id );
+
+			if ( ! empty( $response['kraked_width'] ) && ! empty( $response['kraked_height'] ) ) {
+				$metadata['width']  = $data['kraked_width'];
+				$metadata['height'] = $data['kraked_height'];
+			}
+
+			wp_update_attachment_metadata( $id, $metadata );
 
 			return true;
 		}
@@ -344,10 +374,10 @@ class Kraken_IO_Optimization {
 	 * @since  2.7
 	 * @access public
 	 * @param  int $id
-	 * @param  string $type
+	 * @param  array $args
 	 * @return bool|string True if optimized, array with error message if not.
 	 */
-	public function optimize_thumbnails( $id, $type = null ) {
+	public function optimize_thumbnails( $id, $args = [] ) {
 		kraken_io()->define( 'KRAKEN_IO_OPTIMIZE', true );
 
 		$kraked_thumbs = get_post_meta( $id, '_kraked_thumbs', true );
@@ -355,6 +385,13 @@ class Kraken_IO_Optimization {
 		if ( $kraked_thumbs ) {
 			return true;
 		}
+
+		$args = wp_parse_args(
+			$args,
+			[
+				'resize' => false,
+			]
+		);
 
 		$metadata   = wp_get_attachment_metadata( $id );
 		$sizes      = kraken_io()->get_image_sizes_to_optimize();
@@ -376,8 +413,8 @@ class Kraken_IO_Optimization {
 
 			if ( in_array( $key, $sizes, true ) ) {
 				$path     = $upload_full_path . '/' . $size['file'];
-				$response = $this->optimize_single_image( $path, $type );
-				$this->optimize_single_image_webp( $path, $type );
+				$response = $this->optimize_single_image( $path, $args );
+				$this->optimize_single_image_webp( $path, $args );
 
 				if ( isset( $response['success'] ) && $response['success'] ) {
 					$thumb_data[] = [
@@ -412,24 +449,23 @@ class Kraken_IO_Optimization {
 	 * @since  2.7
 	 * @access public
 	 * @param  int $id
-	 * @param  string $type
+	 * @param  array $args
 	 * @return bool|string True on success, error message on failure
 	 */
-	public function optimize_image( $id, $type = null ) {
+	public function optimize_image( $id, $args = [] ) {
 		$error_messages = [];
 		$options        = kraken_io()->get_options();
-		$sizes          = kraken_io()->get_image_sizes_to_optimize();
 
 		if ( $options['optimize_main_image'] ) {
-			$optimized_main_image = $this->optimize_main_image( $id, $type );
+			$optimized_main_image = $this->optimize_main_image( $id, $args );
 			if ( isset( $optimized_main_image['error'] ) ) {
 				$error_messages[] = $optimized_main_image['error'];
 			}
 		}
 
-		$optimized_thumbnails = $this->optimize_thumbnails( $id, $type );
+		$optimized_thumbnails = $this->optimize_thumbnails( $id, $args );
 
-		if ( $sizes && isset( $optimized_thumbnails['error'] ) ) {
+		if ( isset( $optimized_thumbnails['error'] ) ) {
 			$error_messages[] = $optimized_thumbnails['error'];
 		}
 
