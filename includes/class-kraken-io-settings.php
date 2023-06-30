@@ -134,19 +134,19 @@ class Kraken_IO_Settings {
 		}
 
 		$tabs = [
-			'general'  => [
+			'general'        => [
 				'title'       => __( 'General Settings', 'kraken-io' ),
 				'description' => __( '<a href="http://kraken.io/account" target="_blank">Kraken.io</a> API Settings.', 'kraken-io' ),
 			],
-			'advanced' => [
+			'advanced'       => [
 				'title'       => __( 'Advanced Settings', 'kraken-io' ),
 				'description' => __( 'We recommend that you leave these settings at their default values.', 'kraken-io' ),
 			],
-			'tools'    => [
-				'title'       => __( 'Tools', 'kraken-io' ),
+			'bulk-optimizer' => [
+				'title'       => __( 'Bulk Optimizer', 'kraken-io' ),
 				'description' => '',
 			],
-			'stats'    => [
+			'stats'          => [
 				'title'       => __( 'Stats', 'kraken-io' ),
 				'description' => '',
 			],
