@@ -358,11 +358,21 @@ class Kraken_IO {
 	 * @param  string  $value
 	 */
 	public function format_bytes( $size, $precision = 2 ) {
+		if ( $size <= 0 ) {
+			return '0 bytes';
+		}
 		$base     = log( $size, 1024 );
 		$suffixes = [ ' bytes', 'KB', 'MB', 'GB', 'TB' ];
 		return round( pow( 1024, $base - floor( $base ) ), $precision ) . $suffixes[ floor( $base ) ];
 	}
 
+	/**
+	 * Convert KB to bytes.
+	 *
+	 * @since  2.7
+	 * @access public
+	 * @param  string  $str
+	 */
 	public function kb_string_to_bytes( $str ) {
 		$temp = floatVal( $str );
 		$rv   = false;

@@ -136,9 +136,10 @@ class Kraken_IO_Stats {
 	 * @since  2.7
 	 * @access public
 	 * @param  int $post_id Attachment ID
+	 * @param  bool|string $api_errors API error messages
 	 * @return array $stats
 	 */
-	public function get_image_stats( $id ) {
+	public function get_image_stats( $id, $api_errors = false ) {
 
 		$type                = $this->options['api_lossy'];
 		$optimize_main_image = $this->options['optimize_main_image'];
@@ -153,6 +154,7 @@ class Kraken_IO_Stats {
 			'show_button'  => false,
 			'show_reset'   => false,
 			'stats'        => [],
+			'api_errors'   => $api_errors,
 			'size'         => $this->get_original_size( $id ),
 		];
 

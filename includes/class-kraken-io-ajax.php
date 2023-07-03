@@ -110,9 +110,14 @@ class Kraken_IO_Ajax {
 			wp_send_json_error();
 		}
 
-		kraken_io()->optimization->optimize_image( $id );
+		$api_errors      = false;
+		$optimized_image = kraken_io()->optimization->optimize_image( $id );
 
-		$stats     = kraken_io()->stats->get_image_stats( $id );
+		if ( isset( $optimized_image['errors'] ) ) {
+			$api_errors = $optimized_image['errors'];
+		}
+
+		$stats     = kraken_io()->stats->get_image_stats( $id, $api_errors );
 		$file      = get_attached_file( $id );
 		$size      = kraken_io()->format_bytes( filesize( $file ) );
 		$filename  = basename( get_attached_file( $id ) );
