@@ -28,6 +28,14 @@ $summary = $stats['stats']; ?>
 				</p>
 			</div>
 
+		<?php elseif ( $stats['is_optimizing'] ) : ?>
+
+			<div class="kraken-stats-failed-optimize">
+				<p class="kraken-stats-action-detail">
+					<?php esc_html_e( 'Optimizing...', 'kraken-io' ); ?>
+				</p>
+			</div>
+
 		<?php elseif ( $stats['is_optimized'] ) : ?>
 
 			<?php if ( $stats['show_button'] ) : ?>

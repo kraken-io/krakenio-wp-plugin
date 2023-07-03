@@ -145,17 +145,18 @@ class Kraken_IO_Stats {
 		$optimize_main_image = $this->options['optimize_main_image'];
 
 		$stats = [
-			'id'           => $id,
-			'type'         => $type,
-			'is_image'     => false,
-			'is_optimized' => false,
-			'has_savings'  => true,
-			'has_error'    => false,
-			'show_button'  => false,
-			'show_reset'   => false,
-			'stats'        => [],
-			'api_errors'   => $api_errors,
-			'size'         => $this->get_original_size( $id ),
+			'id'            => $id,
+			'type'          => $type,
+			'is_image'      => false,
+			'is_optimizing' => false,
+			'is_optimized'  => false,
+			'has_savings'   => true,
+			'has_error'     => false,
+			'show_button'   => false,
+			'show_reset'    => false,
+			'stats'         => [],
+			'api_errors'    => $api_errors,
+			'size'          => $this->get_original_size( $id ),
 		];
 
 		$image_url = wp_get_attachment_url( $id );
@@ -186,6 +187,17 @@ class Kraken_IO_Stats {
 			} elseif ( isset( $meta['error'] ) ) {
 				$stats['has_error'] = $meta['error'];
 			}
+		}
+
+		$is_optimizing_main_image = get_post_meta( $id, '_kraken_io_is_optimizing_main_image', true );
+		$is_optimizing_thumbnails = get_post_meta( $id, '_kraken_io_is_optimizing_thumbnails', true );
+
+		if ( ! isset( $meta['kraked_size'] ) && $optimize_main_image && $is_optimizing_main_image ) {
+			$stats['is_optimizing'] = true;
+		}
+
+		if ( empty( $thumbs_meta ) && $is_optimizing_thumbnails ) {
+			$stats['is_optimizing'] = true;
 		}
 
 		return $stats;
