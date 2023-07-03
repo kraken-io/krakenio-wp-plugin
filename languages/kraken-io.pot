@@ -9,9 +9,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-06-29T20:05:45+00:00\n"
+"POT-Creation-Date: 2023-07-03T13:04:11+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.7.1\n"
+"X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: kraken-io\n"
 
 #. Plugin Name of the plugin
@@ -32,6 +32,26 @@ msgstr ""
 
 #. Author URI of the plugin
 msgid "https://kraken.io"
+msgstr ""
+
+#: includes/class-kraken-io-optimization.php:260
+msgid "Could not get optimized image URL."
+msgstr ""
+
+#: includes/class-kraken-io-optimization.php:266
+msgid "Could not overwrite original file. Please ensure that your files are writable by plugins."
+msgstr ""
+
+#: includes/class-kraken-io-optimization.php:274
+msgid "Unknown error."
+msgstr ""
+
+#: includes/class-kraken-io-optimization.php:344
+msgid "Couldn't find the image path."
+msgstr ""
+
+#: includes/class-kraken-io-optimization.php:452
+msgid "There are no image sizes to optimize."
 msgstr ""
 
 #: includes/class-kraken-io-settings.php:68
@@ -72,7 +92,7 @@ msgid "We recommend that you leave these settings at their default values."
 msgstr ""
 
 #: includes/class-kraken-io-settings.php:146
-msgid "Tools"
+msgid "Bulk Optimizer"
 msgstr ""
 
 #: includes/class-kraken-io-settings.php:150
@@ -124,7 +144,7 @@ msgid "Lossless"
 msgstr ""
 
 #: includes/class-kraken-io-settings.php:642
-#: templates/media-column-stats.php:74
+#: templates/media-column-stats.php:91
 msgid "Optimization mode"
 msgstr ""
 
@@ -386,25 +406,36 @@ msgstr ""
 msgid "%1$s / %2$s images have been optimized."
 msgstr ""
 
-#. translators: %1$s percentage %2$s total
 #: templates/bulk-optimizer-stats.php:32
-#: templates/media-column-stats.php:40
+#: templates/media-column-stats.php:26
+#: templates/media-column-stats.php:133
+msgid "Failed with errors"
+msgstr ""
+
+#: templates/bulk-optimizer-stats.php:41
+#: templates/media-column-stats.php:35
+msgid "Optimizing..."
+msgstr ""
+
+#. translators: %1$s percentage %2$s total
+#: templates/bulk-optimizer-stats.php:51
+#: templates/media-column-stats.php:57
 msgid "Saved %1$s (%2$s)"
 msgstr ""
 
-#: templates/bulk-optimizer-stats.php:34
-#: templates/media-column-stats.php:90
+#: templates/bulk-optimizer-stats.php:56
+#: templates/media-column-stats.php:107
 msgid "No savings"
 msgstr ""
 
 #. translators: %s optimization type
-#: templates/bulk-optimizer-stats.php:39
-#: templates/media-column-stats.php:108
+#: templates/bulk-optimizer-stats.php:64
+#: templates/media-column-stats.php:125
 msgid "No savings found for type %s"
 msgstr ""
 
-#: templates/bulk-optimizer-stats.php:46
-#: templates/media-column-stats.php:128
+#: templates/bulk-optimizer-stats.php:71
+#: templates/media-column-stats.php:145
 msgid "N/A"
 msgstr ""
 
@@ -445,40 +476,35 @@ msgstr ""
 msgid "Kraken.io Stats"
 msgstr ""
 
-#: templates/media-column-stats.php:29
+#: templates/media-column-stats.php:46
 msgid "Optimize Main Image"
 msgstr ""
 
-#: templates/media-column-stats.php:44
+#: templates/media-column-stats.php:61
 msgid "Show Details"
 msgstr ""
 
-#: templates/media-column-stats.php:50
+#: templates/media-column-stats.php:67
 msgid "Main image savings"
 msgstr ""
 
 #. translators: %1$s bytes %2$s percentage
-#: templates/media-column-stats.php:53
-#: templates/media-column-stats.php:68
+#: templates/media-column-stats.php:70
+#: templates/media-column-stats.php:85
 msgid "%1$s (%2$s saved)"
 msgstr ""
 
 #. translators: %s count
-#: templates/media-column-stats.php:63
+#: templates/media-column-stats.php:80
 msgid "Savings on %s thumbnails"
 msgstr ""
 
-#: templates/media-column-stats.php:80
+#: templates/media-column-stats.php:97
 msgid "Reset Image"
 msgstr ""
 
-#: templates/media-column-stats.php:100
-msgid "Optimize"
-msgstr ""
-
-#. translators: %s error
 #: templates/media-column-stats.php:117
-msgid "Failed with errors %s"
+msgid "Optimize"
 msgstr ""
 
 #: templates/stats.php:28

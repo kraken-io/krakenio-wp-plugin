@@ -345,6 +345,8 @@ class Kraken_IO_Optimization {
 			];
 		}
 
+		update_post_meta( $id, '_kraken_io_is_optimizing_main_image', true );
+
 		$response = $this->optimize_single_image( $path, $args );
 		$this->optimize_single_image_webp( $path, $args );
 
@@ -362,8 +364,12 @@ class Kraken_IO_Optimization {
 
 			wp_update_attachment_metadata( $id, $metadata );
 
+			delete_post_meta( $id, '_kraken_io_is_optimizing_main_image' );
+
 			return true;
 		}
+
+		delete_post_meta( $id, '_kraken_io_is_optimizing_main_image' );
 
 		return $response;
 	}
@@ -385,6 +391,8 @@ class Kraken_IO_Optimization {
 		if ( $kraked_thumbs ) {
 			return true;
 		}
+
+		update_post_meta( $id, '_kraken_io_is_optimizing_thumbnails', true );
 
 		$args = wp_parse_args(
 			$args,
@@ -429,6 +437,8 @@ class Kraken_IO_Optimization {
 				}
 			}
 		}
+
+		delete_post_meta( $id, '_kraken_io_is_optimizing_thumbnails' );
 
 		if ( $thumb_data ) {
 			update_post_meta( $id, '_kraked_thumbs', $thumb_data, false );
@@ -505,6 +515,7 @@ class Kraken_IO_Optimization {
 			];
 			kraken_io()->bg_process->push_to_queue( $data );
 			kraken_io()->bg_process->save()->dispatch();
+			update_post_meta( $id, '_kraken_io_is_optimizing_main_image', true );
 		} else {
 			$this->optimize_main_image( $id );
 		}
@@ -525,6 +536,7 @@ class Kraken_IO_Optimization {
 			];
 			kraken_io()->bg_process->push_to_queue( $data );
 			kraken_io()->bg_process->save()->dispatch();
+			update_post_meta( $id, '_kraken_io_is_optimizing_thumbnails', true );
 		} else {
 			$this->optimize_thumbnails( $id );
 		}
