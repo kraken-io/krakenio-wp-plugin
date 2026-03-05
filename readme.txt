@@ -3,9 +3,9 @@ Contributors: karim79
 Tags: anigif, compress image, exif, image optimizer, image resize, jpg, media, Optimization, optimize, optimize animated gif, optimize gif, optimize jpeg, optimize png, PageRank, PageSpeed Insights, performance, photos, png, Reduce Image Size, retina, seo, sitespeed, speed up site, svg, upload, svg, upload, gtmetrix speed test, EXIF, image resize, kraken.io, smush
 Requires at least: 4.9
 Requires PHP: 5.6
-Tested up to: 6.2
+Tested up to: 6.7
 Donate link: https://kraken.io
-Stable tag: 2.7
+Stable tag: 2.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -112,6 +112,39 @@ You will need to switch the Media Library from the Grid view to the List view. I
 Kraken.io's service emphasizes finding the precise balance between image quality and file size reduction. Our API utilizes various mechanisms for ensuring that the result cannot be distinguished from the original by the human eye, even upon close inspection. If want to get the greatest possible savings without ever having to check the optimized image against the original, this is the plugin for you.
 
 == Changelog ==
+
+= 2.7.0 =
+* Complete plugin rewrite with modular OOP architecture
+* Added WebP image generation and display support
+* Added background processing for image optimization
+* Added support for WP Retina 2x, NextGen Gallery, and WP Offload Media
+* Security: Added capability and nonce checks to reset_all_images AJAX handler
+* Security: Added input sanitization for POST parameters
+* Security: Added whitelist validation for settings tab parameter
+* Bug fix: Fixed undefined variable in optimization type handling
+* Bug fix: Fixed image reset logic that could silently fail
+* Bug fix: Added default return to savings calculation
+* Code quality: Replaced file_get_contents with wp_remote_get for remote requests
+* Code quality: Fixed multiple typos in user-facing strings
+* Code quality: Removed error suppression operators
+* Code quality: Improved POST request detection method
+* Requires PHP 5.6+
+* Requires WordPress 4.9+
+
+= 2.6.8 =
+* Security release - added nonce checking to "reset all metadata" feature in Settings->Kraken.io.
+
+= 2.6.7 =
+* Security release - added more escape mechanisms just to be sure.
+
+= 2.6.6 =
+* Security release to solve https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-38454
+
+= 2.6.5 =
+* Security and maintenance release
+
+= 2.6.4 =
+* Security and maintenance release
 
 = 2.6.3 =
 * Verified the plugin's compatibility with PHP 7 and WordPress 4.9
