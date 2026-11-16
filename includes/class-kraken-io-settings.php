@@ -68,7 +68,7 @@ class Kraken_IO_Settings
 	 */
 	public function plugin_action_links($links)
 	{
-		$links['settings'] = '<a href="' . esc_url(admin_url('options-general.php?page=wp-krakenio')) . '" aria-label="' . esc_attr__('Kraken.io Settings', 'kraken-io') . '">' . esc_attr__('Settings', 'kraken-io') . '</a>';
+		$links['settings'] = '<a href="' . esc_url(admin_url('options-general.php?page=wp-krakenio')) . '" aria-label="' . esc_attr__('Kraken.io Settings', 'kraken-image-optimizer') . '">' . esc_attr__('Settings', 'kraken-image-optimizer') . '</a>';
 		return $links;
 	}
 
@@ -82,7 +82,7 @@ class Kraken_IO_Settings
 	 */
 	public function register_bulk_optimize_option($actions)
 	{
-		$actions['kraken_bulk'] = esc_html__("Krak 'em all", 'kraken-io');
+		$actions['kraken_bulk'] = esc_html__("Krak 'em all", 'kraken-image-optimizer');
 		return $actions;
 	}
 
@@ -115,8 +115,8 @@ class Kraken_IO_Settings
 	public function add_options_page()
 	{
 		add_options_page(
-			esc_html__('Kraken.io Settings', 'kraken-io'),
-			esc_html__('Kraken.io', 'kraken-io'),
+			esc_html__('Kraken.io Settings', 'kraken-image-optimizer'),
+			esc_html__('Kraken.io', 'kraken-image-optimizer'),
 			'manage_options',
 			'wp-krakenio',
 			[$this, 'create_options_page']
@@ -126,8 +126,8 @@ class Kraken_IO_Settings
 		// in one click from where users manage their library (not buried in a
 		// Settings tab).
 		add_media_page(
-			esc_html__('Bulk Optimize with Kraken.io', 'kraken-io'),
-			esc_html__('Bulk Optimize with Kraken.io', 'kraken-io'),
+			esc_html__('Bulk Optimize with Kraken.io', 'kraken-image-optimizer'),
+			esc_html__('Bulk Optimize with Kraken.io', 'kraken-image-optimizer'),
 			'manage_options',
 			'kraken-bulk-optimizer',
 			[$this, 'create_bulk_optimizer_page']
@@ -147,7 +147,7 @@ class Kraken_IO_Settings
 		$unoptimized_images = kraken_io()->optimization->get_unoptimized_images();
 		?>
 		<div class="wrap">
-			<h1 class="wp-heading-inline"><?php esc_html_e('Bulk Optimize with Kraken.io', 'kraken-io'); ?></h1>
+			<h1 class="wp-heading-inline"><?php esc_html_e('Bulk Optimize with Kraken.io', 'kraken-image-optimizer'); ?></h1>
 			<hr class="wp-header-end">
 
 			<?php
@@ -184,23 +184,23 @@ class Kraken_IO_Settings
 
 		$tabs = [
 			'general' => [
-				'title' => __('General Settings', 'kraken-io'),
-				'description' => __('<a href="http://kraken.io/account" target="_blank">Kraken.io</a> API Settings.', 'kraken-io'),
+				'title' => __('General Settings', 'kraken-image-optimizer'),
+				'description' => __('<a href="http://kraken.io/account" target="_blank">Kraken.io</a> API Settings.', 'kraken-image-optimizer'),
 			],
 			'advanced' => [
-				'title' => __('Advanced Settings', 'kraken-io'),
-				'description' => __('We recommend that you leave these settings at their default values.', 'kraken-io'),
+				'title' => __('Advanced Settings', 'kraken-image-optimizer'),
+				'description' => __('We recommend that you leave these settings at their default values.', 'kraken-image-optimizer'),
 			],
 			'bulk-optimizer' => [
-				'title' => __('Bulk Optimizer', 'kraken-io'),
+				'title' => __('Bulk Optimizer', 'kraken-image-optimizer'),
 				'description' => '',
 			],
 			'stats' => [
-				'title' => __('Stats', 'kraken-io'),
+				'title' => __('Stats', 'kraken-image-optimizer'),
 				'description' => '',
 			],
 			'support' => [
-				'title' => __('Support', 'kraken-io'),
+				'title' => __('Support', 'kraken-image-optimizer'),
 				'description' => '',
 			],
 		];
@@ -210,7 +210,7 @@ class Kraken_IO_Settings
 
 		?>
 		<div class="wrap kraken wraps">
-			<h1 class="wp-heading-inline"><?php esc_html_e('Kraken.io Settings', 'kraken-io'); ?></h1>
+			<h1 class="wp-heading-inline"><?php esc_html_e('Kraken.io Settings', 'kraken-image-optimizer'); ?></h1>
 			<hr class="wp-header-end">
 
 			<?php $this->settings_notices(); ?>
@@ -255,7 +255,7 @@ class Kraken_IO_Settings
 				<?php if ('general' === $active_tab || 'advanced' === $active_tab): ?>
 					<p class="submit">
 						<input type="submit" name="submit" class="button button-primary"
-							value="<?php esc_attr_e('Save Changes', 'kraken-io'); ?>">
+							value="<?php esc_attr_e('Save Changes', 'kraken-image-optimizer'); ?>">
 					</p>
 					<?php
 				elseif ('stats' === $active_tab):
@@ -294,14 +294,14 @@ class Kraken_IO_Settings
 		<div class="kraken-savebar<?php echo esc_attr($saved_class); ?>" id="kraken-savebar">
 			<span class="kraken-savebar__status kraken-savebar__status--saved">
 				<span class="dashicons dashicons-yes-alt" aria-hidden="true"></span>
-				<?php esc_html_e('All changes saved', 'kraken-io'); ?>
+				<?php esc_html_e('All changes saved', 'kraken-image-optimizer'); ?>
 			</span>
 			<span class="kraken-savebar__status kraken-savebar__status--unsaved" role="status">
 				<span class="dashicons dashicons-warning" aria-hidden="true"></span>
-				<?php esc_html_e('You have unsaved changes — don’t forget to save.', 'kraken-io'); ?>
+				<?php esc_html_e('You have unsaved changes — don’t forget to save.', 'kraken-image-optimizer'); ?>
 			</span>
 			<input type="submit" name="submit" class="button button-primary kraken-savebar__button"
-				value="<?php esc_attr_e('Save Changes', 'kraken-io'); ?>">
+				value="<?php esc_attr_e('Save Changes', 'kraken-image-optimizer'); ?>">
 		</div>
 		<?php
 	}
@@ -393,12 +393,12 @@ class Kraken_IO_Settings
 		$settings = $this->settings[$active];
 
 		if (!wp_verify_nonce($_POST['kraken_io_settings_nonce'], 'kraken_io_settings')) {
-			$this->settings_errors[] = __('Please refresh the page and try again.', 'kraken-io');
+			$this->settings_errors[] = __('Please refresh the page and try again.', 'kraken-image-optimizer');
 			return false;
 		}
 
 		if (!isset($_POST['kraken_options'])) {
-			$this->settings_errors[] = __('There are no Kraken options.', 'kraken-io');
+			$this->settings_errors[] = __('There are no Kraken options.', 'kraken-image-optimizer');
 			return false;
 		}
 
@@ -431,7 +431,7 @@ class Kraken_IO_Settings
 		kraken_io()->maybe_reinit_api($old_options, $options);
 		kraken_io()->maybe_flush_rewrite_rules($old_options, $options);
 
-		$this->settings_success[] = __('Settings Saved', 'kraken-io');
+		$this->settings_success[] = __('Settings Saved', 'kraken-image-optimizer');
 	}
 
 	/**
@@ -617,7 +617,7 @@ class Kraken_IO_Settings
 	 */
 	public function do_settings_field_notice($settings, $value)
 	{
-		echo '<p class="kraken-status-error"><strong>' . esc_html__('Deprecated', 'kraken-io') . '</strong></p>';
+		echo '<p class="kraken-status-error"><strong>' . esc_html__('Deprecated', 'kraken-image-optimizer') . '</strong></p>';
 	}
 
 	/**
@@ -644,10 +644,10 @@ class Kraken_IO_Settings
 		);
 
 		if ($has_value) {
-			$label = isset($settings['title']) ? $settings['title'] : __('value', 'kraken-io');
+			$label = isset($settings['title']) ? $settings['title'] : __('value', 'kraken-image-optimizer');
 			echo '<p class="description">' . sprintf(
 				/* translators: %s is the field label, e.g. "API Key" or "API Secret". */
-				esc_html__('Your %s is saved. Leave this blank to keep it, or paste a new one to replace it.', 'kraken-io'),
+				esc_html__('Your %s is saved. Leave this blank to keep it, or paste a new one to replace it.', 'kraken-image-optimizer'),
 				esc_html($label)
 			) . '</p>';
 		}
@@ -784,9 +784,9 @@ class Kraken_IO_Settings
 		$status = kraken_io()->api->status();
 
 		if ($status['success'] && isset($status['active']) && true === $status['active']) {
-			echo '<p><span class="kraken-status-success dashicons dashicons-yes-alt"></span> ' . esc_html__('Your credentials are valid.', 'kraken-io') . '</p>';
+			echo '<p><span class="kraken-status-success dashicons dashicons-yes-alt"></span> ' . esc_html__('Your credentials are valid.', 'kraken-image-optimizer') . '</p>';
 		} else {
-			echo '<p><span class="kraken-status-error  dashicons dashicons-warning"></span> ' . esc_html__('There is a problem with your credentials.', 'kraken-io') . '</p>';
+			echo '<p><span class="kraken-status-error  dashicons dashicons-warning"></span> ' . esc_html__('There is a problem with your credentials.', 'kraken-image-optimizer') . '</p>';
 		}
 	}
 
@@ -833,19 +833,19 @@ class Kraken_IO_Settings
 					'id' => 'api_key',
 					'type' => 'secret',
 					'sanitize_callback' => 'sanitize_text_field',
-					'title' => __('API Key', 'kraken-io'),
+					'title' => __('API Key', 'kraken-image-optimizer'),
 					'default' => '',
 				],
 				[
 					'id' => 'api_secret',
 					'type' => 'secret',
 					'sanitize_callback' => 'sanitize_text_field',
-					'title' => __('API Secret', 'kraken-io'),
+					'title' => __('API Secret', 'kraken-image-optimizer'),
 					'default' => '',
 				],
 				[
 					'type' => 'api_status',
-					'title' => __('API Status', 'kraken-io'),
+					'title' => __('API Status', 'kraken-image-optimizer'),
 					'default' => '',
 				],
 				[
@@ -853,17 +853,17 @@ class Kraken_IO_Settings
 					'type' => 'select',
 					'validate_callback' => [$this, 'validate_select_radio'],
 					'options' => [
-						'' => __('Don\'t convert (keep original format)', 'kraken-io'),
-						'jpeg' => __('JPEG', 'kraken-io'),
-						'png' => __('PNG', 'kraken-io'),
-						'gif' => __('GIF', 'kraken-io'),
-						'webp' => __('WebP', 'kraken-io'),
-						'avif' => __('AVIF', 'kraken-io'),
+						'' => __('Don\'t convert (keep original format)', 'kraken-image-optimizer'),
+						'jpeg' => __('JPEG', 'kraken-image-optimizer'),
+						'png' => __('PNG', 'kraken-image-optimizer'),
+						'gif' => __('GIF', 'kraken-image-optimizer'),
+						'webp' => __('WebP', 'kraken-image-optimizer'),
+						'avif' => __('AVIF', 'kraken-image-optimizer'),
 					],
 					'default' => '',
-					'title' => __('Convert uploads to', 'kraken-io'),
+					'title' => __('Convert uploads to', 'kraken-image-optimizer'),
 					'description' => [
-						__('Automatically convert new image uploads to the selected format during optimization. Leave as "Don\'t convert" to keep each image in its original format.', 'kraken-io'),
+						__('Automatically convert new image uploads to the selected format during optimization. Leave as "Don\'t convert" to keep each image in its original format.', 'kraken-image-optimizer'),
 					],
 				],
 				[
@@ -872,13 +872,13 @@ class Kraken_IO_Settings
 					'validate_callback' => [$this, 'validate_select_radio'],
 					'default' => 'lossy',
 					'options' => [
-						'lossy' => __('Intelligent lossy', 'kraken-io'),
-						'lossless' => __('Lossless', 'kraken-io'),
+						'lossy' => __('Intelligent lossy', 'kraken-image-optimizer'),
+						'lossless' => __('Lossless', 'kraken-image-optimizer'),
 					],
-					'title' => __('Optimization mode', 'kraken-io'),
+					'title' => __('Optimization mode', 'kraken-image-optimizer'),
 					'description' => [
-						__('The Intelligent Lossy mode will yield the greatest savings without perceivable reducing the quality of your images, and so we recommend this setting to users.', 'kraken-io'),
-						__('The Lossless mode will result in an unchanged image, however, will yield reduced savings as the image will not be recompressed.', 'kraken-io'),
+						__('The Intelligent Lossy mode will yield the greatest savings without perceivable reducing the quality of your images, and so we recommend this setting to users.', 'kraken-image-optimizer'),
+						__('The Lossless mode will result in an unchanged image, however, will yield reduced savings as the image will not be recompressed.', 'kraken-image-optimizer'),
 					],
 				],
 				[
@@ -886,11 +886,41 @@ class Kraken_IO_Settings
 					'type' => 'checkbox',
 					'sanitize_callback' => [$this, 'sanitize_checkbox'],
 					'default' => true,
-					'title' => __('Optimize uploads', 'kraken-io'),
-					'label' => __('Automatically optimize uploads', 'kraken-io'),
+					'title' => __('Optimize uploads', 'kraken-image-optimizer'),
+					'label' => __('Automatically optimize uploads', 'kraken-image-optimizer'),
 					'description' => [
-						__('Enabled by default. This setting causes images uploaded through the Media Uploader to be optimized on-the-fly.', 'kraken-io'),
-						__('If you do not wish to do this, or wish to optimize images later, disable this setting by unchecking the box.', 'kraken-io'),
+						__('Enabled by default. This setting causes images uploaded through the Media Uploader to be optimized on-the-fly.', 'kraken-image-optimizer'),
+						__('If you do not wish to do this, or wish to optimize images later, disable this setting by unchecking the box.', 'kraken-image-optimizer'),
+					],
+				],
+				[
+					'id' => 'optimize_pdf',
+					'type' => 'checkbox',
+					'sanitize_callback' => [$this, 'sanitize_checkbox'],
+					'default' => false,
+					'title' => __('PDF uploads', 'kraken-image-optimizer'),
+					'label' => __('Optimize PDF uploads', 'kraken-image-optimizer'),
+					'description' => [
+						__('Off by default. When enabled, uploaded PDF files (and their generated preview thumbnails) are sent to Kraken.io for optimization just like images.', 'kraken-image-optimizer'),
+						__('Leave this off if you want new PDFs to be stored as-is and not counted against your Kraken.io quota — you can still optimize individual PDFs on demand from the Media Library.', 'kraken-image-optimizer'),
+					],
+				],
+				[
+					'id' => 'pdf_level',
+					'type' => 'select',
+					'validate_callback' => [$this, 'validate_select_radio'],
+					'options' => [
+						'' => __('Automatic (recommended)', 'kraken-image-optimizer'),
+						'screen' => __('Screen — smallest files, for on-screen viewing', 'kraken-image-optimizer'),
+						'ebook' => __('Ebook — balanced size and quality', 'kraken-image-optimizer'),
+						'printer' => __('Printer — higher quality, for printing', 'kraken-image-optimizer'),
+						'prepress' => __('Prepress — maximum quality, for professional print', 'kraken-image-optimizer'),
+					],
+					'default' => '',
+					'title' => __('PDF compression level', 'kraken-image-optimizer'),
+					'description' => [
+						__('How strongly PDFs are compressed, whether optimized automatically on upload or manually from the Media Library. "Automatic" lets Kraken.io choose the best settings for each document based on its content (image-heavy, text-heavy or mixed).', 'kraken-image-optimizer'),
+						__('PDFs are always compressed in lossy mode: the images embedded in the document are re-encoded and resampled. Text and vector content are kept as-is.', 'kraken-image-optimizer'),
 					],
 				],
 				[
@@ -898,12 +928,12 @@ class Kraken_IO_Settings
 					'type' => 'checkbox',
 					'sanitize_callback' => [$this, 'sanitize_checkbox'],
 					'default' => true,
-					'title' => __('Optimize images', 'kraken-io'),
-					'label' => __('Optimize main image', 'kraken-io'),
+					'title' => __('Optimize images', 'kraken-image-optimizer'),
+					'label' => __('Optimize main image', 'kraken-image-optimizer'),
 					'description' => [
-						__('Enabled by default. This option causes the image uploaded by the user to get optimized, as well as all sizes generated by WordPress.', 'kraken-io'),
-						__('Disabling this option results in faster uploading, since the main image is not sent to our system for optimization.', 'kraken-io'),
-						__('Disable this option if you never use the "main" image upload in your posts, or speed of image uploading is an issue.', 'kraken-io'),
+						__('Enabled by default. This option causes the image uploaded by the user to get optimized, as well as all sizes generated by WordPress.', 'kraken-image-optimizer'),
+						__('Disabling this option results in faster uploading, since the main image is not sent to our system for optimization.', 'kraken-image-optimizer'),
+						__('Disable this option if you never use the "main" image upload in your posts, or speed of image uploading is an issue.', 'kraken-image-optimizer'),
 					],
 				],
 				[
@@ -911,19 +941,19 @@ class Kraken_IO_Settings
 					'type' => 'multi_text',
 					'sanitize_callback' => 'abs',
 					'options' => [
-						'resize_width' => __('Max width (px)', 'kraken-io'),
-						'resize_height' => __('Max height (px)', 'kraken-io'),
+						'resize_width' => __('Max width (px)', 'kraken-image-optimizer'),
+						'resize_height' => __('Max height (px)', 'kraken-image-optimizer'),
 					],
 					'default' => [
 						'resize_width' => '0',
 						'resize_height' => '0',
 					],
-					'title' => __('Resize main image', 'kraken-io'),
+					'title' => __('Resize main image', 'kraken-image-optimizer'),
 					'description' => [
-						__('You can restrict the maximum dimensions of image uploads by width and/or height.', 'kraken-io'),
+						__('You can restrict the maximum dimensions of image uploads by width and/or height.', 'kraken-image-optimizer'),
 						__(
 							'It is especially useful if you wish to prevent unnecessarily large photos with extremely high resolutions from being uploaded, for example, photos shot with a recent-model iPhone. Note: you can restrict the dimensions by width, height, or both. A value of zero disables.',
-							'kraken-io'
+							'kraken-image-optimizer'
 						),
 					],
 				],
@@ -933,17 +963,17 @@ class Kraken_IO_Settings
 					'validate_callback' => [$this, 'validate_select_radio'],
 					'options' => array_replace(
 						[
-							0 => __('Intelligent lossy (recommended)', 'kraken-io'),
+							0 => __('Intelligent lossy (recommended)', 'kraken-image-optimizer'),
 						],
 						array_combine(range(99, 25), range(99, 25))
 					),
 					'default' => '0',
-					'title' => __('JPEG quality setting', 'kraken-io'),
+					'title' => __('JPEG quality setting', 'kraken-image-optimizer'),
 					'description' => [
-						__('Advanced users can force the quality of JPEG images to a discrete "q" value between 25 and 100 using this setting.', 'kraken-io'),
-						__('For example, forcing the quality to 60 or 70 might yield greater savings, but the resulting quality might be affected, depending on the image.', 'kraken-io'),
-						__('We therefore recommend keeping the <strong>Intelligent Lossy</strong> setting, which will not allow a resulting image of unacceptable quality.', 'kraken-io'),
-						__('This setting will be ignored when using the <strong>lossless</strong> optimization mode.', 'kraken-io'),
+						__('Advanced users can force the quality of JPEG images to a discrete "q" value between 25 and 100 using this setting.', 'kraken-image-optimizer'),
+						__('For example, forcing the quality to 60 or 70 might yield greater savings, but the resulting quality might be affected, depending on the image.', 'kraken-image-optimizer'),
+						__('We therefore recommend keeping the <strong>Intelligent Lossy</strong> setting, which will not allow a resulting image of unacceptable quality.', 'kraken-image-optimizer'),
+						__('This setting will be ignored when using the <strong>lossless</strong> optimization mode.', 'kraken-image-optimizer'),
 					],
 				],
 				[
@@ -952,16 +982,16 @@ class Kraken_IO_Settings
 					'validate_callback' => [$this, 'validate_select_radio'],
 					'default' => '4:2:0',
 					'options' => [
-						'4:2:0' => __('4:2:0 (default)', 'kraken-io'),
-						'4:2:2' => __('4:2:2', 'kraken-io'),
-						'4:4:4' => __('4:4:4 (no subsampling)', 'kraken-io'),
+						'4:2:0' => __('4:2:0 (default)', 'kraken-image-optimizer'),
+						'4:2:2' => __('4:2:2', 'kraken-image-optimizer'),
+						'4:4:4' => __('4:4:4 (no subsampling)', 'kraken-image-optimizer'),
 					],
-					'title' => __('Chroma subsampling scheme', 'kraken-io'),
+					'title' => __('Chroma subsampling scheme', 'kraken-image-optimizer'),
 					'description' => [
-						__('Advanced users can also set the resolution at which colour is encoded for JPEG images.', 'kraken-io'),
-						__('In short, the default setting of 4:2:0 is suitable for most images, and will result in the lowest possible optimized file size.', 'kraken-io'),
-						__('Images containing high contrast text or bright red areas on flat backgrounds might benefit from disabling chroma subsampling (by setting it to 4:4:4). ', 'kraken-io'),
-						__('More information can be found in our <a href="https://kraken.io/docs/chroma-subsampling" target="_blank">documentation</a>.', 'kraken-io'),
+						__('Advanced users can also set the resolution at which colour is encoded for JPEG images.', 'kraken-image-optimizer'),
+						__('In short, the default setting of 4:2:0 is suitable for most images, and will result in the lowest possible optimized file size.', 'kraken-image-optimizer'),
+						__('Images containing high contrast text or bright red areas on flat backgrounds might benefit from disabling chroma subsampling (by setting it to 4:4:4). ', 'kraken-image-optimizer'),
+						__('More information can be found in our <a href="https://kraken.io/docs/chroma-subsampling" target="_blank">documentation</a>.', 'kraken-image-optimizer'),
 					],
 				],
 			],
@@ -971,16 +1001,16 @@ class Kraken_IO_Settings
 					'type' => 'select',
 					'validate_callback' => [$this, 'validate_select_radio'],
 					'options' => [
-						'read'           => __('All logged-in users', 'kraken-io'),
-						'upload_files'   => __('Users who can upload media (Author and above)', 'kraken-io'),
-						'manage_options' => __('Administrators only', 'kraken-io'),
+						'read'           => __('All logged-in users', 'kraken-image-optimizer'),
+						'upload_files'   => __('Users who can upload media (Author and above)', 'kraken-image-optimizer'),
+						'manage_options' => __('Administrators only', 'kraken-image-optimizer'),
 					],
 					'default' => 'upload_files',
-					'title' => __('Who can optimize images', 'kraken-io'),
+					'title' => __('Who can optimize images', 'kraken-image-optimizer'),
 					'description' => [
-						__('Controls which logged-in users may trigger optimization actions (single optimize, bulk optimize, reset) from the Media Library.', 'kraken-io'),
-						__('Optimization consumes your paid Kraken.io quota and rewrites your media, so a user can only act on attachments they are allowed to edit, and by default only users who can upload media (Author and above) may optimize. On sites with open registration (membership, WooCommerce, forums), keep this restricted so untrusted accounts cannot consume your quota or alter media.', 'kraken-io'),
-						__('• All logged-in users — anyone signed in who can also edit the attachment (most permissive). • Users who can upload media — Authors, Editors and Administrators (default). • Administrators only — most restrictive.', 'kraken-io'),
+						__('Controls which logged-in users may trigger optimization actions (single optimize, bulk optimize, reset) from the Media Library.', 'kraken-image-optimizer'),
+						__('Optimization consumes your paid Kraken.io quota and rewrites your media, so a user can only act on attachments they are allowed to edit, and by default only users who can upload media (Author and above) may optimize. On sites with open registration (membership, WooCommerce, forums), keep this restricted so untrusted accounts cannot consume your quota or alter media.', 'kraken-image-optimizer'),
+						__('• All logged-in users — anyone signed in who can also edit the attachment (most permissive). • Users who can upload media — Authors, Editors and Administrators (default). • Administrators only — most restrictive.', 'kraken-image-optimizer'),
 					],
 				],
 				[
@@ -989,11 +1019,11 @@ class Kraken_IO_Settings
 					'sanitize_callback' => [$this, 'sanitize_checkbox'],
 					'default' => $this->get_prefixed_image_sizes('to-optimize'),
 					'options' => $this->get_prefixed_image_sizes(),
-					'title' => __('Image sizes to Krak', 'kraken-io'),
+					'title' => __('Image sizes to Krak', 'kraken-image-optimizer'),
 					'description' => [
-						__('Every time you upload an image, WordPress generates several resized copies (thumbnail, medium, large, and so on). These resized versions — not the original — are what your visitors actually download, through responsive <code>srcset</code> images. Each size you tick here gets optimized, so the images people really load are compressed.', 'kraken-io'),
-						__('If you untick a size, that copy is still created and still served to your visitors — just <strong>left unoptimized</strong>, at its full original weight. Keeping these on is what delivers the page-speed gain across your whole site, not just on the original file.', 'kraken-io'),
-						__('The trade-off: each ticked size is a separate optimization that uses your Kraken.io quota. For that reason the large retina sizes <code>1536×1536</code> and <code>2048×2048</code> are <strong>left off by default</strong> — most themes never serve them. If your theme does use them (for high-DPI screens), just tick them here and they\'ll be optimized too. Already-optimized images are never touched by this.', 'kraken-io'),
+						__('Every time you upload an image, WordPress generates several resized copies (thumbnail, medium, large, and so on). These resized versions — not the original — are what your visitors actually download, through responsive <code>srcset</code> images. Each size you tick here gets optimized, so the images people really load are compressed.', 'kraken-image-optimizer'),
+						__('If you untick a size, that copy is still created and still served to your visitors — just <strong>left unoptimized</strong>, at its full original weight. Keeping these on is what delivers the page-speed gain across your whole site, not just on the original file.', 'kraken-image-optimizer'),
+						__('The trade-off: each ticked size is a separate optimization that uses your Kraken.io quota. For that reason the large retina sizes <code>1536×1536</code> and <code>2048×2048</code> are <strong>left off by default</strong> — most themes never serve them. If your theme does use them (for high-DPI screens), just tick them here and they\'ll be optimized too. Already-optimized images are never touched by this.', 'kraken-image-optimizer'),
 					],
 				],
 				[
@@ -1001,11 +1031,11 @@ class Kraken_IO_Settings
 					'type' => 'multi_checkbox',
 					'sanitize_callback' => [$this, 'sanitize_checkbox'],
 					'options' => [
-						'preserve_meta_date' => __('Date', 'kraken-io'),
-						'preserve_meta_copyright' => __('Copyright', 'kraken-io'),
-						'preserve_meta_geotag' => __('Geotag', 'kraken-io'),
-						'preserve_meta_orientation' => __('Orientation', 'kraken-io'),
-						'preserve_meta_profile' => __('Profile', 'kraken-io'),
+						'preserve_meta_date' => __('Date', 'kraken-image-optimizer'),
+						'preserve_meta_copyright' => __('Copyright', 'kraken-image-optimizer'),
+						'preserve_meta_geotag' => __('Geotag', 'kraken-image-optimizer'),
+						'preserve_meta_orientation' => __('Orientation', 'kraken-image-optimizer'),
+						'preserve_meta_profile' => __('Profile', 'kraken-image-optimizer'),
 					],
 					'default' => [
 						'preserve_meta_date' => '',
@@ -1014,18 +1044,18 @@ class Kraken_IO_Settings
 						'preserve_meta_orientation' => '',
 						'preserve_meta_profile' => '',
 					],
-					'title' => __('Preserve EXIF Metadata', 'kraken-io'),
+					'title' => __('Preserve EXIF Metadata', 'kraken-image-optimizer'),
 				],
 				[
 					'id' => 'auto_orient',
 					'type' => 'checkbox',
 					'sanitize_callback' => [$this, 'sanitize_checkbox'],
 					'default' => true,
-					'title' => __('Image orientation', 'kraken-io'),
-					'label' => __('Automatically orient images', 'kraken-io'),
+					'title' => __('Image orientation', 'kraken-image-optimizer'),
+					'label' => __('Automatically orient images', 'kraken-image-optimizer'),
 					'description' => [
-						__('This setting will rotate the JPEG image according to its Orientation EXIF metadata such that it will always be correctly displayed in Web Browsers.', 'kraken-io'),
-						__('Enable this setting if many of your image uploads come from smart phones or digital cameras which set the orientation based on how they are held at the time of shooting.', 'kraken-io'),
+						__('This setting will rotate the JPEG image according to its Orientation EXIF metadata such that it will always be correctly displayed in Web Browsers.', 'kraken-image-optimizer'),
+						__('Enable this setting if many of your image uploads come from smart phones or digital cameras which set the orientation based on how they are held at the time of shooting.', 'kraken-image-optimizer'),
 					],
 				],
 				[
@@ -1033,12 +1063,12 @@ class Kraken_IO_Settings
 					'type' => 'checkbox',
 					'sanitize_callback' => [$this, 'sanitize_checkbox'],
 					'default' => false,
-					'title' => __('Metadata reset per image', 'kraken-io'),
-					'label' => __('Show reset button', 'kraken-io'),
+					'title' => __('Metadata reset per image', 'kraken-image-optimizer'),
+					'label' => __('Show reset button', 'kraken-image-optimizer'),
 					'description' => [
-						__('Checking this option will add a Reset button in the "Show Details" popup in the Kraken Stats column for each optimized image.', 'kraken-io'),
-						__('Resetting an image will remove the Kraken.io metadata associated with it, effectively making your blog forget that it had been optimized in the first place, allowing further optimization in some cases.', 'kraken-io'),
-						__('If an image has been optimized using the lossless setting, lossless optimization will not yield any greater savings. If in doubt, please contact support@kraken.io', 'kraken-io'),
+						__('Checking this option will add a Reset button in the "Show Details" popup in the Kraken Stats column for each optimized image.', 'kraken-image-optimizer'),
+						__('Resetting an image will remove the Kraken.io metadata associated with it, effectively making your blog forget that it had been optimized in the first place, allowing further optimization in some cases.', 'kraken-image-optimizer'),
+						__('If an image has been optimized using the lossless setting, lossless optimization will not yield any greater savings. If in doubt, please contact support@kraken.io', 'kraken-image-optimizer'),
 					],
 				],
 				[
@@ -1046,10 +1076,10 @@ class Kraken_IO_Settings
 					'type' => 'checkbox',
 					'sanitize_callback' => [$this, 'sanitize_checkbox'],
 					'default' => true,
-					'title' => __('Savings badge', 'kraken-io'),
-					'label' => __('Show a savings badge on optimized thumbnails', 'kraken-io'),
+					'title' => __('Savings badge', 'kraken-image-optimizer'),
+					'label' => __('Show a savings badge on optimized thumbnails', 'kraken-image-optimizer'),
 					'description' => [
-						__('Displays the percentage saved in the corner of each optimized image thumbnail in the Media Library.', 'kraken-io'),
+						__('Displays the percentage saved in the corner of each optimized image thumbnail in the Media Library.', 'kraken-image-optimizer'),
 					],
 				],
 				[
@@ -1057,19 +1087,19 @@ class Kraken_IO_Settings
 					'type' => 'checkbox',
 					'sanitize_callback' => [$this, 'sanitize_checkbox'],
 					'default' => true,
-					'title' => __('Background process', 'kraken-io'),
-					'label' => __('Process image optimization in background', 'kraken-io'),
+					'title' => __('Background process', 'kraken-image-optimizer'),
+					'label' => __('Process image optimization in background', 'kraken-image-optimizer'),
 					'description' => [
-						__('This setting will optimize images in background when using the option "Automatically optimize uploads" resulting in faster image uploads.', 'kraken-io'),
+						__('This setting will optimize images in background when using the option "Automatically optimize uploads" resulting in faster image uploads.', 'kraken-image-optimizer'),
 					],
 				],
 				[
 					'type' => 'notice',
 					'default' => '',
-					'title' => __('WebP / next-gen formats', 'kraken-io'),
+					'title' => __('WebP / next-gen formats', 'kraken-image-optimizer'),
 					'description' => [
-						__('The old "Create WebP" and "Display WebP" options are deprecated. They created a separate .webp companion for every image and depended on Apache .htaccess rewrite rules, which did not work behind a CDN.', 'kraken-io'),
-						__('To serve WebP (or AVIF) now, use "Convert uploads to → WebP" in the General settings tab. Each upload is converted to the modern format directly, so the file is served as-is by any server or CDN — no companion files and no rewrite rules required.', 'kraken-io'),
+						__('The old "Create WebP" and "Display WebP" options are deprecated. They created a separate .webp companion for every image and depended on Apache .htaccess rewrite rules, which did not work behind a CDN.', 'kraken-image-optimizer'),
+						__('To serve WebP (or AVIF) now, use "Convert uploads to → WebP" in the General settings tab. Each upload is converted to the modern format directly, so the file is served as-is by any server or CDN — no companion files and no rewrite rules required.', 'kraken-image-optimizer'),
 					],
 				],
 				[
@@ -1078,10 +1108,10 @@ class Kraken_IO_Settings
 					'validate_callback' => [$this, 'validate_select_radio'],
 					'options' => array_combine(range(1, 10), range(1, 10)),
 					'default' => 4,
-					'title' => __('Bulk concurrency', 'kraken-io'),
+					'title' => __('Bulk concurrency', 'kraken-image-optimizer'),
 					'description' => [
-						__('This settings defines how many images can be processed at the same time using the bulk optimizer. The recommended (and default) value is 4.', 'kraken-io'),
-						__('For blogs on very small hosting plans, or with reduced connectivity, a lower number might be necessary to avoid hitting request limits.', 'kraken-io'),
+						__('This settings defines how many images can be processed at the same time using the bulk optimizer. The recommended (and default) value is 4.', 'kraken-image-optimizer'),
+						__('For blogs on very small hosting plans, or with reduced connectivity, a lower number might be necessary to avoid hitting request limits.', 'kraken-image-optimizer'),
 					],
 				],
 			],

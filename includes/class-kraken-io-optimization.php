@@ -66,9 +66,13 @@ class Kraken_IO_Optimization
 			return;
 		}
 
+		if ('application/pdf' === (string) get_post_mime_type($id) && empty($this->options['optimize_pdf'])) {
+			return;
+		}
+
 		// When converting, defer to maybe_convert_on_metadata so WordPress
 		// finishes generating the original metadata against the original file.
-		if ($this->get_convert_format()) {
+		if ($this->converts_on_upload($id)) {
 			return;
 		}
 
@@ -93,11 +97,22 @@ class Kraken_IO_Optimization
 			return $metadata;
 		}
 
-		$convert = $this->get_convert_format();
-
-		if (!$convert || !kraken_io()->is_supported_attachment($id)) {
+		// PDF opt-in gate: when the user has NOT opted in to PDF optimization,
+		// convert-on-upload must also skip PDFs. Without this, a site with a
+		// global "Convert uploads to" format set would silently send the
+		// uploaded PDF to Kraken, download the converted image, and
+		// wp_delete_file() the original PDF — data loss for a user who
+		// explicitly opted out.
+		if ('application/pdf' === (string) get_post_mime_type($id) && empty($this->options['optimize_pdf'])) {
 			return $metadata;
 		}
+
+		// Only images are converted; PDFs are optimized via on_upload instead.
+		if (!$this->converts_on_upload($id) || !kraken_io()->is_supported_attachment($id)) {
+			return $metadata;
+		}
+
+		$convert = $this->get_convert_format();
 
 		// With background processing on, conversion must not block the upload
 		// request (an AVIF encode can take ~30s — long enough that users close
@@ -140,6 +155,10 @@ class Kraken_IO_Optimization
 	 */
 	public function optimize_or_convert($id)
 	{
+		// No PDF opt-in gate here: this is the explicit, per-file path (the
+		// Optimize button). "Optimize PDF uploads" only controls AUTOMATIC
+		// optimization on upload; a user can always optimize a PDF by hand.
+		// Bulk optimization excludes PDFs separately (get_unoptimized_images).
 		$format = $this->get_convert_format();
 		$mime   = (string) get_post_mime_type($id);
 		$target = ('jpeg' === $format) ? 'image/jpeg' : 'image/' . $format;
@@ -152,7 +171,7 @@ class Kraken_IO_Optimization
 			}
 
 			return [
-				'errors' => [isset($result['error']) ? $result['error'] : __('Conversion failed.', 'kraken-io')],
+				'errors' => [isset($result['error']) ? $result['error'] : __('Conversion failed.', 'kraken-image-optimizer')],
 			];
 		}
 
@@ -331,7 +350,12 @@ class Kraken_IO_Optimization
 			$params['auto_orient'] = true;
 		}
 
-		if ($args['resize'] && (!empty($settings['resize_width']) || !empty($settings['resize_height']))) {
+		// Never send resize for PDFs: the API would run the document through an
+		// image resizer, rasterizing every page (text stops being text, fonts are
+		// dropped and the file usually grows). Resize is an image-only setting.
+		$is_pdf = 'pdf' === strtolower((string) pathinfo($image_path, PATHINFO_EXTENSION));
+
+		if (!$is_pdf && $args['resize'] && (!empty($settings['resize_width']) || !empty($settings['resize_height']))) {
 
 			$width = (int) $settings['resize_width'];
 			$height = (int) $settings['resize_height'];
@@ -353,6 +377,12 @@ class Kraken_IO_Optimization
 					'height' => $height,
 				];
 			}
+		}
+
+		// PDF compression level (screen|ebook|printer|prepress). Empty means
+		// "Automatic": the API picks settings from the document's content.
+		if ($is_pdf && !empty($settings['pdf_level']) && in_array($settings['pdf_level'], ['screen', 'ebook', 'printer', 'prepress'], true)) {
+			$params['level'] = $settings['pdf_level'];
 		}
 
 		if (isset($settings['jpeg_quality']) && $settings['jpeg_quality'] > 0) {
@@ -397,13 +427,24 @@ class Kraken_IO_Optimization
 
 			if (!isset($optimized_image['kraked_url'])) {
 				return [
-					'error' => __('Could not get optimized image URL.', 'kraken-io'),
+					'error' => __('Could not get optimized image URL.', 'kraken-image-optimizer'),
 				];
+			}
+
+			// Keep the original when the result is not smaller. The API can return
+			// a larger file (e.g. small text-only PDFs) while reporting
+			// saved_bytes = 0; overwriting would silently grow the file.
+			if (isset($optimized_image['original_size'], $optimized_image['kraked_size'])
+				&& (float) $optimized_image['kraked_size'] >= (float) $optimized_image['original_size']) {
+				$optimized_image['kraked_size'] = $optimized_image['original_size'];
+				$optimized_image['saved_bytes'] = 0;
+
+				return $optimized_image;
 			}
 
 			if (!$this->replace_image($path, $optimized_image['kraked_url'])) {
 				return [
-					'error' => __('Could not overwrite original file. Please ensure that your files are writable by plugins.', 'kraken-io'),
+					'error' => __('Could not overwrite original file. Please ensure that your files are writable by plugins.', 'kraken-image-optimizer'),
 				];
 			}
 
@@ -444,10 +485,10 @@ class Kraken_IO_Optimization
 
 			if (!empty($response['type'])) {
 				$map = [
-					'no_auth'           => __('Your Kraken.io API credentials are missing or invalid.', 'kraken-io'),
-					'empty_data'        => __('There was nothing to send for optimization.', 'kraken-io'),
-					'file_not_provided' => __('No file was provided to optimize.', 'kraken-io'),
-					'file_not_found'    => __('The image file could not be found on the server.', 'kraken-io'),
+					'no_auth'           => __('Your Kraken.io API credentials are missing or invalid.', 'kraken-image-optimizer'),
+					'empty_data'        => __('There was nothing to send for optimization.', 'kraken-image-optimizer'),
+					'file_not_provided' => __('No file was provided to optimize.', 'kraken-image-optimizer'),
+					'file_not_found'    => __('The image file could not be found on the server.', 'kraken-image-optimizer'),
 				];
 
 				if (isset($map[$response['type']])) {
@@ -456,7 +497,7 @@ class Kraken_IO_Optimization
 			}
 		}
 
-		return '' !== $fallback ? $fallback : __('Unknown error.', 'kraken-io');
+		return '' !== $fallback ? $fallback : __('Unknown error.', 'kraken-image-optimizer');
 	}
 
 	/**
@@ -552,7 +593,7 @@ class Kraken_IO_Optimization
 		// the image doesn't exist
 		if (!$path) {
 			return [
-				'error' => __("Couldn't find the image path.", 'kraken-io'),
+				'error' => __("Couldn't find the image path.", 'kraken-image-optimizer'),
 			];
 		}
 
@@ -591,7 +632,7 @@ class Kraken_IO_Optimization
 		// modal can surface it (the `has_error` branch reads `_kraken_size['error']`).
 		// Without this the error is lost: the spinner just times out and the image
 		// silently falls back to the "Optimize" button with no reason shown.
-		$error_message = isset($response['error']) ? $response['error'] : __('Optimization failed.', 'kraken-io');
+		$error_message = isset($response['error']) ? $response['error'] : __('Optimization failed.', 'kraken-image-optimizer');
 		update_post_meta($id, '_kraken_size', ['error' => $error_message]);
 
 		return $response;
@@ -633,19 +674,18 @@ class Kraken_IO_Optimization
 		$sizes = kraken_io()->get_image_sizes_to_optimize();
 		$thumb_data = [];
 
-		$upload_dir = wp_upload_dir();
-		$path_parts = pathinfo($metadata['file']);
-
-		// e.g. 04/02, for use in getting correct path or URL
-		$upload_subdir = $path_parts['dirname'];
-
-		// all the way up to /uploads
-		$upload_base_path = $upload_dir['basedir'];
-		$upload_full_path = $upload_base_path . '/' . $upload_subdir;
+		// Sub-sizes live next to the attached file. Derive the directory from
+		// the attached file itself, not $metadata['file']: WordPress does not
+		// set 'file' in the metadata of PDFs (only 'sizes' for the generated
+		// preview images), which made every PDF thumbnail path wrong
+		// ("uploads/./name-pdf-150x150.jpg") and manual optimization fail.
+		$attached_file    = get_attached_file($id);
+		$upload_full_path = $attached_file ? dirname($attached_file) : '';
 
 		$error_responses = [];
+		$sizes_meta      = (is_array($metadata) && !empty($metadata['sizes']) && is_array($metadata['sizes'])) ? $metadata['sizes'] : [];
 
-		foreach ($metadata['sizes'] as $key => $size) {
+		foreach ($sizes_meta as $key => $size) {
 
 			if (in_array($key, $sizes, true)) {
 				$path = $upload_full_path . '/' . $size['file'];
@@ -744,6 +784,24 @@ class Kraken_IO_Optimization
 	}
 
 	/**
+	 * Whether a fresh upload goes through the convert flow. Conversion only
+	 * ever applies to images: "Convert uploads to" turns image uploads into
+	 * another image format. Non-images (PDFs) are never converted — doing so
+	 * would replace the document with a raster of its first page and delete
+	 * the original file. They are optimized like any other upload instead.
+	 *
+	 * @since  3.1.0
+	 * @access public
+	 * @param  int $id Attachment ID.
+	 * @return bool
+	 */
+	public function converts_on_upload($id)
+	{
+		return '' !== (string) $this->get_convert_format()
+			&& 0 === strpos((string) get_post_mime_type($id), 'image/');
+	}
+
+	/**
 	 * Optimize AND convert an attachment to another format, then re-point the
 	 * WordPress attachment at the new file (extension, mime, intermediate sizes).
 	 *
@@ -758,17 +816,19 @@ class Kraken_IO_Optimization
 		$valid = ['jpeg', 'png', 'gif', 'webp', 'avif'];
 
 		if (!in_array($format, $valid, true)) {
-			return ['error' => __('Unsupported conversion format.', 'kraken-io')];
+			return ['error' => __('Unsupported conversion format.', 'kraken-image-optimizer')];
 		}
 
-		if (!kraken_io()->is_supported_attachment($id)) {
-			return ['error' => __('This file cannot be converted.', 'kraken-io')];
+		// Defense in depth: never convert a non-image (e.g. a PDF). Converting
+		// would replace the document with an image and delete the original.
+		if (!kraken_io()->is_supported_attachment($id) || 0 !== strpos((string) get_post_mime_type($id), 'image/')) {
+			return ['error' => __('This file cannot be converted.', 'kraken-image-optimizer')];
 		}
 
 		$path = get_attached_file($id);
 
 		if (!$path || !file_exists($path)) {
-			return ['error' => __("Couldn't find the image path.", 'kraken-io')];
+			return ['error' => __("Couldn't find the image path.", 'kraken-image-optimizer')];
 		}
 
 		// Heavier formats (notably AVIF) can transiently time out on the encoder
@@ -796,7 +856,7 @@ class Kraken_IO_Optimization
 
 		if (empty($response['success']) || empty($response['kraked_url'])) {
 			return [
-				'error' => $this->resolve_error_message($response, __('Conversion failed.', 'kraken-io')),
+				'error' => $this->resolve_error_message($response, __('Conversion failed.', 'kraken-image-optimizer')),
 			];
 		}
 
@@ -810,12 +870,12 @@ class Kraken_IO_Optimization
 		$body   = !is_wp_error($remote) ? wp_remote_retrieve_body($remote) : false;
 
 		if (!$body) {
-			return ['error' => __('Could not download the converted image.', 'kraken-io')];
+			return ['error' => __('Could not download the converted image.', 'kraken-image-optimizer')];
 		}
 
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_file_put_contents
 		if (false === file_put_contents($new_path, $body)) {
-			return ['error' => __('Could not write the converted image. Please ensure your uploads are writable.', 'kraken-io')];
+			return ['error' => __('Could not write the converted image. Please ensure your uploads are writable.', 'kraken-image-optimizer')];
 		}
 
 		// If the extension changed, retire the old files and re-point the attachment.
@@ -918,9 +978,13 @@ class Kraken_IO_Optimization
 	 */
 	public function optimize_thumbnails_on_resize($metadata, $id)
 	{
+		if ('application/pdf' === (string) get_post_mime_type($id) && empty($this->options['optimize_pdf'])) {
+			return $metadata;
+		}
+
 		// When converting, thumbnails are regenerated in the new format by the
 		// convert flow — don't optimize the soon-to-be-replaced originals.
-		if ($this->get_convert_format()) {
+		if ($this->converts_on_upload($id)) {
 			return $metadata;
 		}
 
@@ -951,13 +1015,22 @@ class Kraken_IO_Optimization
 	public function get_unoptimized_images($posts_per_page = 30)
 	{
 
+		$mime_types = array_values(kraken_io()->get_supported_mime_types());
+		// When PDF optimization is off, exclude application/pdf so PDFs don't
+		// count toward the bulk queue and don't get re-processed forever.
+		if (empty($this->options['optimize_pdf'])) {
+			$mime_types = array_values(array_filter($mime_types, function ($m) {
+				return 'application/pdf' !== $m;
+			}));
+		}
+
 		$args = [
 			'post_type' => 'attachment',
 			'post_status' => 'inherit',
 			// Only count/list attachments we can actually optimize. Without this
 			// the query also matched non-images (HTML, zips, docs, …) that never
 			// optimize, so the bulk count was inflated and never reached zero.
-			'post_mime_type' => array_values(kraken_io()->get_supported_mime_types()),
+			'post_mime_type' => $mime_types,
 			'posts_per_page' => $posts_per_page,
 			'meta_query' => [
 				// A file is "unoptimized" only when it has NEITHER marker: no

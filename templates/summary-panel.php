@@ -33,13 +33,13 @@ $active   = ( $has_auth && $is_valid );
 			<img class="kraken-summary__logo" src="<?php echo esc_url( $data['logo'] ); ?>" alt="Kraken.io" />
 
 			<?php if ( ! $has_auth ) : ?>
-				<span class="kraken-summary__badge kraken-summary__badge--muted"><?php esc_html_e( 'Not connected', 'kraken-io' ); ?></span>
+				<span class="kraken-summary__badge kraken-summary__badge--muted"><?php esc_html_e( 'Not connected', 'kraken-image-optimizer' ); ?></span>
 			<?php elseif ( ! $is_valid ) : ?>
-				<span class="kraken-summary__badge kraken-summary__badge--error"><?php esc_html_e( 'Invalid credentials', 'kraken-io' ); ?></span>
+				<span class="kraken-summary__badge kraken-summary__badge--error"><?php esc_html_e( 'Invalid credentials', 'kraken-image-optimizer' ); ?></span>
 			<?php elseif ( ! empty( $data['overdue'] ) ) : ?>
-				<span class="kraken-summary__badge kraken-summary__badge--error"><span class="dashicons dashicons-warning"></span> <?php esc_html_e( 'Payment overdue', 'kraken-io' ); ?></span>
+				<span class="kraken-summary__badge kraken-summary__badge--error"><span class="dashicons dashicons-warning"></span> <?php esc_html_e( 'Payment overdue', 'kraken-image-optimizer' ); ?></span>
 			<?php else : ?>
-				<span class="kraken-summary__badge kraken-summary__badge--ok"><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e( 'Connected', 'kraken-io' ); ?></span>
+				<span class="kraken-summary__badge kraken-summary__badge--ok"><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e( 'Connected', 'kraken-image-optimizer' ); ?></span>
 			<?php endif; ?>
 		</div>
 
@@ -50,7 +50,7 @@ $active   = ( $has_auth && $is_valid );
 			$remaining = isset( $account['quota_remaining'] ) ? (float) $account['quota_remaining'] : max( 0, $total - $used );
 			$percent   = $total > 0 ? min( 100, round( $used / $total * 100 ) ) : 0;
 			$bar_class = $percent >= 90 ? 'is-danger' : ( $percent >= 70 ? 'is-warning' : '' );
-			$plan_name = isset( $account['plan_name'] ) ? $account['plan_name'] : __( 'Active plan', 'kraken-io' );
+			$plan_name = isset( $account['plan_name'] ) ? $account['plan_name'] : __( 'Active plan', 'kraken-image-optimizer' );
 			?>
 			<div class="kraken-summary__usage">
 				<span class="kraken-summary__plan"><?php echo esc_html( $plan_name ); ?></span>
@@ -59,7 +59,7 @@ $active   = ( $has_auth && $is_valid );
 					<?php
 					printf(
 						/* translators: %1$s used %2$s total %3$s remaining */
-						esc_html__( '%1$s / %2$s · %3$s left', 'kraken-io' ),
+						esc_html__( '%1$s / %2$s · %3$s left', 'kraken-image-optimizer' ),
 						esc_html( kraken_io()->format_bytes( $used ) ),
 						esc_html( kraken_io()->format_bytes( $total ) ),
 						esc_html( kraken_io()->format_bytes( $remaining ) )
@@ -71,8 +71,8 @@ $active   = ( $has_auth && $is_valid );
 
 		<?php if ( $active ) : ?>
 			<div class="kraken-summary__actions">
-				<a class="kraken-summary__stats-link" href="<?php echo esc_url( $data['stats_url'] ); ?>"><?php esc_html_e( 'View full stats', 'kraken-io' ); ?> &rarr;</a>
-				<button type="button" class="kraken-summary__toggle" aria-expanded="false"><?php esc_html_e( 'Settings', 'kraken-io' ); ?><span class="dashicons dashicons-arrow-down-alt2"></span></button>
+				<a class="kraken-summary__stats-link" href="<?php echo esc_url( $data['stats_url'] ); ?>"><?php esc_html_e( 'View full stats', 'kraken-image-optimizer' ); ?> &rarr;</a>
+				<button type="button" class="kraken-summary__toggle" aria-expanded="false"><?php esc_html_e( 'Settings', 'kraken-image-optimizer' ); ?><span class="dashicons dashicons-arrow-down-alt2"></span></button>
 			</div>
 		<?php endif; ?>
 	</div>
@@ -86,15 +86,15 @@ $active   = ( $has_auth && $is_valid );
 	<?php if ( ! $has_auth ) : ?>
 
 		<div class="kraken-summary__notice kraken-summary__notice--warning">
-			<p><strong><?php esc_html_e( 'No API credentials found.', 'kraken-io' ); ?></strong> <?php esc_html_e( 'Connect your Kraken.io account to start optimizing your images.', 'kraken-io' ); ?></p>
-			<a class="button button-primary" href="<?php echo esc_url( $data['settings_url'] ); ?>"><?php esc_html_e( 'Add API credentials', 'kraken-io' ); ?></a>
+			<p><strong><?php esc_html_e( 'No API credentials found.', 'kraken-image-optimizer' ); ?></strong> <?php esc_html_e( 'Connect your Kraken.io account to start optimizing your images.', 'kraken-image-optimizer' ); ?></p>
+			<a class="button button-primary" href="<?php echo esc_url( $data['settings_url'] ); ?>"><?php esc_html_e( 'Add API credentials', 'kraken-image-optimizer' ); ?></a>
 		</div>
 
 	<?php elseif ( ! $is_valid ) : ?>
 
 		<div class="kraken-summary__notice kraken-summary__notice--error">
-			<p><strong><?php esc_html_e( 'Your Kraken.io API credentials are invalid.', 'kraken-io' ); ?></strong> <?php esc_html_e( 'Please check your API key and secret in the plugin settings.', 'kraken-io' ); ?></p>
-			<a class="button button-primary" href="<?php echo esc_url( $data['settings_url'] ); ?>"><?php esc_html_e( 'Review credentials', 'kraken-io' ); ?></a>
+			<p><strong><?php esc_html_e( 'Your Kraken.io API credentials are invalid.', 'kraken-image-optimizer' ); ?></strong> <?php esc_html_e( 'Please check your API key and secret in the plugin settings.', 'kraken-image-optimizer' ); ?></p>
+			<a class="button button-primary" href="<?php echo esc_url( $data['settings_url'] ); ?>"><?php esc_html_e( 'Review credentials', 'kraken-image-optimizer' ); ?></a>
 		</div>
 
 	<?php else : ?>
@@ -102,8 +102,8 @@ $active   = ( $has_auth && $is_valid );
 		<?php if ( ! empty( $data['overdue'] ) ) : ?>
 			<div class="kraken-summary__alert kraken-summary__alert--error">
 				<span class="dashicons dashicons-warning"></span>
-				<span><strong><?php esc_html_e( 'Payment overdue — your API access has been restricted.', 'kraken-io' ); ?></strong> <?php esc_html_e( 'Please complete your payment from your kraken.io account to resume optimizing.', 'kraken-io' ); ?></span>
-				<a class="kraken-summary__alert-link" href="<?php echo esc_url( $data['links']['billing'] ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Complete payment', 'kraken-io' ); ?></a>
+				<span><strong><?php esc_html_e( 'Payment overdue — your API access has been restricted.', 'kraken-image-optimizer' ); ?></strong> <?php esc_html_e( 'Please complete your payment from your kraken.io account to resume optimizing.', 'kraken-image-optimizer' ); ?></span>
+				<a class="kraken-summary__alert-link" href="<?php echo esc_url( $data['links']['billing'] ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Complete payment', 'kraken-image-optimizer' ); ?></a>
 			</div>
 		<?php endif; ?>
 
@@ -111,11 +111,11 @@ $active   = ( $has_auth && $is_valid );
 			<div class="kraken-summary__alert kraken-summary__alert--warning">
 				<span class="dashicons dashicons-warning"></span>
 				<?php if ( ! empty( $data['is_free'] ) ) : ?>
-					<span><strong><?php esc_html_e( 'Free test quota used up.', 'kraken-io' ); ?></strong> <?php esc_html_e( 'Upgrade to a paid plan to keep optimizing, or email support@kraken.io to request more test quota.', 'kraken-io' ); ?></span>
-					<a class="kraken-summary__alert-link" href="<?php echo esc_url( $data['links']['pricing'] ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Upgrade plan', 'kraken-io' ); ?></a>
+					<span><strong><?php esc_html_e( 'Free test quota used up.', 'kraken-image-optimizer' ); ?></strong> <?php esc_html_e( 'Upgrade to a paid plan to keep optimizing, or email support@kraken.io to request more test quota.', 'kraken-image-optimizer' ); ?></span>
+					<a class="kraken-summary__alert-link" href="<?php echo esc_url( $data['links']['pricing'] ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Upgrade plan', 'kraken-image-optimizer' ); ?></a>
 				<?php else : ?>
-					<span><strong><?php esc_html_e( 'Monthly quota exceeded.', 'kraken-io' ); ?></strong> <?php esc_html_e( 'Further optimizations will be billed at the end of your billing period.', 'kraken-io' ); ?></span>
-					<a class="kraken-summary__alert-link" href="<?php echo esc_url( $data['links']['account'] ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'View account', 'kraken-io' ); ?></a>
+					<span><strong><?php esc_html_e( 'Monthly quota exceeded.', 'kraken-image-optimizer' ); ?></strong> <?php esc_html_e( 'Further optimizations will be billed at the end of your billing period.', 'kraken-image-optimizer' ); ?></span>
+					<a class="kraken-summary__alert-link" href="<?php echo esc_url( $data['links']['account'] ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'View account', 'kraken-image-optimizer' ); ?></a>
 				<?php endif; ?>
 			</div>
 		<?php endif; ?>
@@ -128,7 +128,7 @@ $active   = ( $has_auth && $is_valid );
 			?>
 			<div class="kraken-summary__convert">
 				<?php if ( $can_manage ) : ?>
-					<label for="kraken-convert-select"><?php esc_html_e( 'Convert uploads to:', 'kraken-io' ); ?></label>
+					<label for="kraken-convert-select"><?php esc_html_e( 'Convert uploads to:', 'kraken-image-optimizer' ); ?></label>
 					<select id="kraken-convert-select" class="kraken-summary__convert-select">
 						<?php foreach ( $data['convert_formats'] as $value => $label ) : ?>
 							<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $data['convert_format'], $value ); ?>><?php echo esc_html( $label ); ?></option>
@@ -146,7 +146,7 @@ $active   = ( $has_auth && $is_valid );
 						<?php
 						printf(
 							/* translators: %s number of images */
-							esc_html__( 'Bulk optimize (%s)', 'kraken-io' ),
+							esc_html__( 'Bulk optimize (%s)', 'kraken-image-optimizer' ),
 							esc_html( number_format_i18n( $unoptimized['total'] ) )
 						);
 						?>
@@ -158,7 +158,7 @@ $active   = ( $has_auth && $is_valid );
 		<div class="kraken-summary__details">
 			<div class="kraken-summary__settings">
 				<div class="kraken-summary__group">
-					<span class="kraken-summary__group-title"><?php esc_html_e( 'General', 'kraken-io' ); ?></span>
+					<span class="kraken-summary__group-title"><?php esc_html_e( 'General', 'kraken-image-optimizer' ); ?></span>
 					<?php foreach ( $data['general'] as $item ) : ?>
 						<span class="kraken-summary__pill">
 							<?php echo esc_html( $item['label'] ); ?>
@@ -167,13 +167,13 @@ $active   = ( $has_auth && $is_valid );
 							<?php endif; ?>
 						</span>
 					<?php endforeach; ?>
-					<a class="kraken-summary__edit" href="<?php echo esc_url( $data['settings_url'] ); ?>"><?php esc_html_e( 'Edit', 'kraken-io' ); ?></a>
+					<a class="kraken-summary__edit" href="<?php echo esc_url( $data['settings_url'] ); ?>"><?php esc_html_e( 'Edit', 'kraken-image-optimizer' ); ?></a>
 				</div>
 
 				<div class="kraken-summary__group">
-					<span class="kraken-summary__group-title"><?php esc_html_e( 'Advanced', 'kraken-io' ); ?></span>
+					<span class="kraken-summary__group-title"><?php esc_html_e( 'Advanced', 'kraken-image-optimizer' ); ?></span>
 					<?php if ( empty( $data['advanced'] ) ) : ?>
-						<span class="kraken-summary__none"><?php esc_html_e( 'None enabled', 'kraken-io' ); ?></span>
+						<span class="kraken-summary__none"><?php esc_html_e( 'None enabled', 'kraken-image-optimizer' ); ?></span>
 					<?php else : ?>
 						<?php foreach ( $data['advanced'] as $item ) : ?>
 							<span class="kraken-summary__pill">
@@ -184,11 +184,11 @@ $active   = ( $has_auth && $is_valid );
 							</span>
 						<?php endforeach; ?>
 					<?php endif; ?>
-					<a class="kraken-summary__edit" href="<?php echo esc_url( $data['advanced_url'] ); ?>"><?php esc_html_e( 'Edit', 'kraken-io' ); ?></a>
+					<a class="kraken-summary__edit" href="<?php echo esc_url( $data['advanced_url'] ); ?>"><?php esc_html_e( 'Edit', 'kraken-image-optimizer' ); ?></a>
 				</div>
 
 				<div class="kraken-summary__formats">
-					<span class="kraken-summary__formats-label"><?php esc_html_e( 'Supported:', 'kraken-io' ); ?></span>
+					<span class="kraken-summary__formats-label"><?php esc_html_e( 'Supported:', 'kraken-image-optimizer' ); ?></span>
 					<?php foreach ( $data['formats'] as $format ) : ?>
 						<span class="kraken-summary__format"><?php echo esc_html( $format ); ?></span>
 					<?php endforeach; ?>

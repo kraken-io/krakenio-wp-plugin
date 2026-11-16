@@ -59,7 +59,7 @@ class Kraken_IO_Background_Process extends Kraken_IO_WP_Background_Process
 			if (!$is_optimized && $item['count'] > 3) {
 				$message = is_array($result) && isset($result['error'])
 					? $result['error']
-					: __('Conversion failed.', 'kraken-io');
+					: __('Conversion failed.', 'kraken-image-optimizer');
 				update_post_meta($item['id'], '_kraken_size', ['error' => $message]);
 				delete_post_meta($item['id'], '_kraken_io_is_optimizing_main_image');
 				delete_post_meta($item['id'], '_kraken_io_optimizing_started');

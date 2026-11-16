@@ -234,7 +234,7 @@ class Kraken_IO_Ajax
 					'percent'    => $total > 0 ? min(100, round($used / $total * 100)) : 0,
 					'usage_text' => sprintf(
 						/* translators: %1$s used %2$s total %3$s remaining */
-						esc_html__('%1$s / %2$s · %3$s left', 'kraken-io'),
+						esc_html__('%1$s / %2$s · %3$s left', 'kraken-image-optimizer'),
 						kraken_io()->format_bytes($used),
 						kraken_io()->format_bytes($total),
 						kraken_io()->format_bytes($remaining)

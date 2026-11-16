@@ -318,7 +318,7 @@ class Kraken_IO_Stats
 	 */
 	public function add_media_columns($columns)
 	{
-		$columns['kraken-stats'] = esc_html__('Kraken.io', 'kraken-io');
+		$columns['kraken-stats'] = esc_html__('Kraken.io', 'kraken-image-optimizer');
 		return $columns;
 	}
 
@@ -361,7 +361,7 @@ class Kraken_IO_Stats
 		$template = ob_get_clean();
 
 		$form_fields['kraken-stats'] = [
-			'label' => esc_html__('Kraken.io', 'kraken-io'),
+			'label' => esc_html__('Kraken.io', 'kraken-image-optimizer'),
 			'input' => 'html',
 			'html' => $template,
 			'show_in_edit' => true,
@@ -432,6 +432,7 @@ class Kraken_IO_Stats
 			'is_image' => false,
 			'is_optimizing' => false,
 			'is_optimized' => false,
+			'pdf_disabled' => ('application/pdf' === (string) get_post_mime_type($id) && empty(kraken_io()->get_options()['optimize_pdf'])),
 			'has_savings' => true,
 			'has_error' => false,
 			'show_button' => false,

@@ -29,7 +29,7 @@ $summary = $stats['stats']; ?>
 
 					<div class="kraken-stats-failed-optimize">
 						<p class="kraken-stats-action-detail">
-							<strong><?php esc_html_e( 'Failed with errors', 'kraken-io' ); ?></strong><br>
+							<strong><?php esc_html_e( 'Failed with errors', 'kraken-image-optimizer' ); ?></strong><br>
 							<?php echo esc_html( implode( '<br>', $stats['api_errors'] ) ); ?>
 						</p>
 					</div>
@@ -38,7 +38,7 @@ $summary = $stats['stats']; ?>
 
 					<div class="kraken-stats-failed-optimize">
 						<p class="kraken-stats-action-detail">
-							<?php esc_html_e( 'Optimizing...', 'kraken-io' ); ?>
+							<?php esc_html_e( 'Optimizing...', 'kraken-image-optimizer' ); ?>
 						</p>
 					</div>
 
@@ -48,12 +48,12 @@ $summary = $stats['stats']; ?>
 
 						<?php
 						/* translators: %1$s percentage %2$s total */
-						echo esc_html( sprintf( __( 'Saved %1$s (%2$s)', 'kraken-io' ), $summary['percentage'], $summary['total'] ) );
+						echo esc_html( sprintf( __( 'Saved %1$s (%2$s)', 'kraken-image-optimizer' ), $summary['percentage'], $summary['total'] ) );
 						?>
 
 					<?php else : ?>
 
-						<?php esc_html_e( 'No savings', 'kraken-io' ); ?>
+						<?php esc_html_e( 'No savings', 'kraken-image-optimizer' ); ?>
 
 					<?php endif; ?>
 
@@ -61,14 +61,14 @@ $summary = $stats['stats']; ?>
 
 					<?php
 					/* translators: %s optimization type */
-					echo esc_html( sprintf( __( 'No savings found for type %s', 'kraken-io' ), $stats['type'] ) );
+					echo esc_html( sprintf( __( 'No savings found for type %s', 'kraken-image-optimizer' ), $stats['type'] ) );
 					?>
 
 				<?php endif; ?>
 			</div>
 			<?php
 		else :
-			esc_html_e( 'N/A', 'kraken-io' );
+			esc_html_e( 'N/A', 'kraken-image-optimizer' );
 		endif;
 		?>
 	</td>

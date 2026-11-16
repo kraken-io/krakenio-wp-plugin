@@ -11,7 +11,7 @@ defined('ABSPATH') || exit;
 if (!kraken_io()->api->has_auth()): ?>
 
 	<p><a
-			href="<?php echo esc_url(admin_url('options-general.php?page=wp-krakenio&tab=general')); ?>"><?php esc_html_e('Connect your account', 'kraken-io'); ?></a>
+			href="<?php echo esc_url(admin_url('options-general.php?page=wp-krakenio&tab=general')); ?>"><?php esc_html_e('Connect your account', 'kraken-image-optimizer'); ?></a>
 	</p>
 
 	<?php
@@ -20,13 +20,13 @@ else:
 	$number = $args['total'];
 
 	/* translators: %s number of images */
-	$text = sprintf(_n('%s image will be optimized.', '%s images will be optimized.', $number, 'kraken-io'), $number);
+	$text = sprintf(_n('%s image will be optimized.', '%s images will be optimized.', $number, 'kraken-image-optimizer'), $number);
 
 	if ($number < 1) {
 		if ('modal' === $args['type']) {
-			$text = __('Selected images are already optimized', 'kraken-io');
+			$text = __('Selected images are already optimized', 'kraken-image-optimizer');
 		} else {
-			$text = __('All images are already optimized', 'kraken-io');
+			$text = __('All images are already optimized', 'kraken-image-optimizer');
 		}
 	}
 
@@ -41,7 +41,7 @@ else:
 	<div class="kraken-bulk-optimizer-wrapper<?php echo esc_attr($class); ?>">
 		<div class="kraken-bulk-optimizer">
 			<div class="kraken-bulk-header">
-				<h3 class="kraken-bulk-heading"><?php esc_html_e('Kraken Bulk Image Optimization', 'kraken-io'); ?></h3>
+				<h3 class="kraken-bulk-heading"><?php esc_html_e('Kraken Bulk Image Optimization', 'kraken-image-optimizer'); ?></h3>
 				<button type="button" class="kraken-bulk-close-modal dashicons dashicons-no"></button>
 			</div>
 
@@ -51,7 +51,7 @@ else:
 					<button type="button" class="kraken-button-bulk-optimize"
 						data-total="<?php echo esc_html($number); ?>" data-pages="<?php echo esc_attr($args['pages']); ?>"
 						data-ids="<?php echo esc_attr(wp_json_encode($args['ids'])); ?>">
-						<?php esc_html_e("Krak 'em all", 'kraken-io'); ?>
+						<?php esc_html_e("Krak 'em all", 'kraken-image-optimizer'); ?>
 						<span class="spinner"></span>
 					</button>
 					<span class="progress"><span class="optimized">0</span> / <span
@@ -62,11 +62,11 @@ else:
 				<table class="kraken-bulk-table">
 					<thead>
 						<tr class="kraken-bulk-table-header">
-							<td class="kraken-bulk-table-column-image"><?php esc_html_e('Image', 'kraken-io'); ?></td>
-							<td class="kraken-bulk-table-column-size"><?php esc_html_e('Original Size', 'kraken-io'); ?>
+							<td class="kraken-bulk-table-column-image"><?php esc_html_e('Image', 'kraken-image-optimizer'); ?></td>
+							<td class="kraken-bulk-table-column-size"><?php esc_html_e('Original Size', 'kraken-image-optimizer'); ?>
 							</td>
 							<td class="kraken-bulk-table-column-stats">
-								<?php esc_html_e('Kraken.io Stats', 'kraken-io'); ?>
+								<?php esc_html_e('Kraken.io Stats', 'kraken-image-optimizer'); ?>
 							</td>
 						</tr>
 					</thead>

@@ -57,46 +57,46 @@ $show_usage = ( 'free' === $state || 'paid' === $state ) && ! empty( $account ) 
 			switch ( $state ) :
 				case 'disconnected':
 					?>
-					<span class="kraken-hero__badge kraken-hero__badge--muted"><?php esc_html_e( 'Not connected', 'kraken-io' ); ?></span>
-					<h2 class="kraken-hero__title"><?php esc_html_e( 'Connect your Kraken.io account', 'kraken-io' ); ?></h2>
-					<p class="kraken-hero__text"><?php esc_html_e( 'Enter your API key and secret below to start optimizing your images. Don\'t have an account yet? Create one in seconds.', 'kraken-io' ); ?></p>
+					<span class="kraken-hero__badge kraken-hero__badge--muted"><?php esc_html_e( 'Not connected', 'kraken-image-optimizer' ); ?></span>
+					<h2 class="kraken-hero__title"><?php esc_html_e( 'Connect your Kraken.io account', 'kraken-image-optimizer' ); ?></h2>
+					<p class="kraken-hero__text"><?php esc_html_e( 'Enter your API key and secret below to start optimizing your images. Don\'t have an account yet? Create one in seconds.', 'kraken-image-optimizer' ); ?></p>
 					<?php
 					break;
 
 				case 'invalid':
 					?>
-					<span class="kraken-hero__badge kraken-hero__badge--error"><?php esc_html_e( 'Invalid credentials', 'kraken-io' ); ?></span>
-					<h2 class="kraken-hero__title"><?php esc_html_e( 'Your API credentials are invalid', 'kraken-io' ); ?></h2>
-					<p class="kraken-hero__text"><?php esc_html_e( 'Double-check the API key and secret below, or grab fresh credentials from your Kraken.io account.', 'kraken-io' ); ?></p>
+					<span class="kraken-hero__badge kraken-hero__badge--error"><?php esc_html_e( 'Invalid credentials', 'kraken-image-optimizer' ); ?></span>
+					<h2 class="kraken-hero__title"><?php esc_html_e( 'Your API credentials are invalid', 'kraken-image-optimizer' ); ?></h2>
+					<p class="kraken-hero__text"><?php esc_html_e( 'Double-check the API key and secret below, or grab fresh credentials from your Kraken.io account.', 'kraken-image-optimizer' ); ?></p>
 					<?php
 					break;
 
 				case 'overdue':
 					?>
-					<span class="kraken-hero__badge kraken-hero__badge--error"><?php esc_html_e( 'Payment overdue', 'kraken-io' ); ?></span>
-					<h2 class="kraken-hero__title"><?php esc_html_e( 'Your Kraken.io payment is overdue', 'kraken-io' ); ?></h2>
-					<p class="kraken-hero__text"><?php esc_html_e( 'Optimization may be paused until your billing is up to date.', 'kraken-io' ); ?></p>
+					<span class="kraken-hero__badge kraken-hero__badge--error"><?php esc_html_e( 'Payment overdue', 'kraken-image-optimizer' ); ?></span>
+					<h2 class="kraken-hero__title"><?php esc_html_e( 'Your Kraken.io payment is overdue', 'kraken-image-optimizer' ); ?></h2>
+					<p class="kraken-hero__text"><?php esc_html_e( 'Optimization may be paused until your billing is up to date.', 'kraken-image-optimizer' ); ?></p>
 					<?php
 					break;
 
 				case 'free':
 					?>
-					<span class="kraken-hero__badge kraken-hero__badge--ok"><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e( 'Connected', 'kraken-io' ); ?></span>
-					<h2 class="kraken-hero__title"><?php esc_html_e( 'You\'re on the Free plan', 'kraken-io' ); ?></h2>
-					<p class="kraken-hero__text"><?php esc_html_e( 'Upgrade to a paid plan for more monthly quota and larger file sizes.', 'kraken-io' ); ?></p>
+					<span class="kraken-hero__badge kraken-hero__badge--ok"><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e( 'Connected', 'kraken-image-optimizer' ); ?></span>
+					<h2 class="kraken-hero__title"><?php esc_html_e( 'You\'re on the Free plan', 'kraken-image-optimizer' ); ?></h2>
+					<p class="kraken-hero__text"><?php esc_html_e( 'Upgrade to a paid plan for more monthly quota and larger file sizes.', 'kraken-image-optimizer' ); ?></p>
 					<?php
 					break;
 
 				default:
 					?>
-					<span class="kraken-hero__badge kraken-hero__badge--ok"><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e( 'Connected', 'kraken-io' ); ?></span>
+					<span class="kraken-hero__badge kraken-hero__badge--ok"><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e( 'Connected', 'kraken-image-optimizer' ); ?></span>
 					<h2 class="kraken-hero__title">
 						<?php
 						/* translators: %s plan name */
-						printf( esc_html__( 'Connected — %s plan', 'kraken-io' ), esc_html( $data['plan_name'] ) );
+						printf( esc_html__( 'Connected — %s plan', 'kraken-image-optimizer' ), esc_html( $data['plan_name'] ) );
 						?>
 					</h2>
-					<p class="kraken-hero__text"><?php esc_html_e( 'Your Kraken.io account is active and optimizing your images.', 'kraken-io' ); ?></p>
+					<p class="kraken-hero__text"><?php esc_html_e( 'Your Kraken.io account is active and optimizing your images.', 'kraken-image-optimizer' ); ?></p>
 					<?php
 					break;
 			endswitch;
@@ -116,13 +116,13 @@ $show_usage = ( 'free' === $state || 'paid' === $state ) && ! empty( $account ) 
 			?>
 			<div class="kraken-hero__usage">
 				<div class="kraken-hero__usage-head">
-					<span><?php esc_html_e( 'Monthly quota', 'kraken-io' ); ?></span>
+					<span><?php esc_html_e( 'Monthly quota', 'kraken-image-optimizer' ); ?></span>
 					<span class="kraken-hero__usage-pct"><?php echo esc_html( $percent ); ?>%</span>
 				</div>
 				<span class="kraken-summary__track"><span class="kraken-summary__fill <?php echo esc_attr( $bar_class ); ?>" style="width:<?php echo esc_attr( $percent ); ?>%"></span></span>
 				<div class="kraken-hero__usage-foot">
-					<span><?php printf( /* translators: %1$s used %2$s total */ esc_html__( '%1$s of %2$s used', 'kraken-io' ), esc_html( kraken_io()->format_bytes( $used ) ), esc_html( kraken_io()->format_bytes( $total ) ) ); ?></span>
-					<span><?php printf( /* translators: %s remaining */ esc_html__( '%s left', 'kraken-io' ), esc_html( kraken_io()->format_bytes( $remaining ) ) ); ?></span>
+					<span><?php printf( /* translators: %1$s used %2$s total */ esc_html__( '%1$s of %2$s used', 'kraken-image-optimizer' ), esc_html( kraken_io()->format_bytes( $used ) ), esc_html( kraken_io()->format_bytes( $total ) ) ); ?></span>
+					<span><?php printf( /* translators: %s remaining */ esc_html__( '%s left', 'kraken-image-optimizer' ), esc_html( kraken_io()->format_bytes( $remaining ) ) ); ?></span>
 				</div>
 			</div>
 		<?php endif; ?>
@@ -132,34 +132,34 @@ $show_usage = ( 'free' === $state || 'paid' === $state ) && ! empty( $account ) 
 			switch ( $state ) :
 				case 'disconnected':
 					?>
-					<a class="button button-primary button-hero" href="<?php echo esc_url( $link_to( 'signup' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Create an account', 'kraken-io' ); ?></a>
-					<a class="button" href="<?php echo esc_url( $link_to( 'credentials' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Get API credentials', 'kraken-io' ); ?></a>
+					<a class="button button-primary button-hero" href="<?php echo esc_url( $link_to( 'signup' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Create an account', 'kraken-image-optimizer' ); ?></a>
+					<a class="button" href="<?php echo esc_url( $link_to( 'credentials' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Get API credentials', 'kraken-image-optimizer' ); ?></a>
 					<?php
 					break;
 
 				case 'invalid':
 					?>
-					<a class="button button-primary" href="<?php echo esc_url( $link_to( 'credentials' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Get API credentials', 'kraken-io' ); ?></a>
+					<a class="button button-primary" href="<?php echo esc_url( $link_to( 'credentials' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Get API credentials', 'kraken-image-optimizer' ); ?></a>
 					<?php
 					break;
 
 				case 'overdue':
 					?>
-					<a class="button button-primary" href="<?php echo esc_url( $link_to( 'account' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Update billing', 'kraken-io' ); ?></a>
+					<a class="button button-primary" href="<?php echo esc_url( $link_to( 'account' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Update billing', 'kraken-image-optimizer' ); ?></a>
 					<?php
 					break;
 
 				case 'free':
 					?>
-					<a class="button button-primary button-hero" href="<?php echo esc_url( $link_to( 'pricing' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Subscribe to a plan', 'kraken-io' ); ?></a>
-					<a class="button" href="<?php echo esc_url( $link_to( 'account' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Manage account', 'kraken-io' ); ?></a>
+					<a class="button button-primary button-hero" href="<?php echo esc_url( $link_to( 'pricing' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Subscribe to a plan', 'kraken-image-optimizer' ); ?></a>
+					<a class="button" href="<?php echo esc_url( $link_to( 'account' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Manage account', 'kraken-image-optimizer' ); ?></a>
 					<?php
 					break;
 
 				default:
 					?>
-					<a class="button button-primary" href="<?php echo esc_url( $link_to( 'account' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Manage account', 'kraken-io' ); ?></a>
-					<a class="button" href="<?php echo esc_url( $link_to( 'pricing' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Upgrade plan', 'kraken-io' ); ?></a>
+					<a class="button button-primary" href="<?php echo esc_url( $link_to( 'account' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Manage account', 'kraken-image-optimizer' ); ?></a>
+					<a class="button" href="<?php echo esc_url( $link_to( 'pricing' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Upgrade plan', 'kraken-image-optimizer' ); ?></a>
 					<?php
 					break;
 			endswitch;

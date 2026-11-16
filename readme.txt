@@ -5,7 +5,7 @@ Requires at least: 4.9
 Requires PHP: 5.6
 Tested up to: 7.0
 Donate link: https://kraken.io
-Stable tag: 3.0.3
+Stable tag: 3.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -173,6 +173,15 @@ The plugin is free. It connects to the Kraken.io service, which offers a free ac
 
 == Changelog ==
 
+= 3.1.0 =
+* New: automatic PDF optimization is now opt-in. Enable "Optimize PDF uploads" in Settings → Kraken.io to send PDF uploads (and their generated preview thumbnails) to Kraken; disabled by default so existing installs won't unexpectedly consume quota on PDFs. Individual PDFs can always be optimized by hand from the Media Library.
+* New: "PDF compression level" setting — Automatic (default), Screen, Ebook, Printer or Prepress — to choose how strongly PDFs are compressed.
+* Fixed: when "Convert uploads to" is set, uploaded PDFs are no longer converted into an image (which replaced the original PDF file). Conversion now applies to images only; PDFs keep their format and are optimized as PDFs.
+* Fixed: the "Resize" setting is no longer applied to PDFs. Resizing ran the document through an image resizer, turning its text into pixels and often making the file larger.
+* Fixed: the preview images WordPress generates for PDFs are now optimized too, and optimizing a PDF by hand no longer fails with "The image file could not be found on the server."
+* Fixed: an optimized file is never saved over the original when it is not smaller (some small, text-only PDFs came back larger).
+* Maintenance: plugin text domain now matches the WordPress.org slug (kraken-image-optimizer) so wp.org can generate official language packs; bundled translations unaffected.
+
 = 3.0.3 =
 * New: the plugin is now translated into 64 locales, covering 39 languages — Albanian (Shqip), Arabic (العربية), Belarusian (Беларуская), Bosnian (Bosanski), Bulgarian (Български), Chinese (中文 — Simplified, Traditional and Hong Kong), Croatian (Hrvatski), Czech (Čeština), Danish (Dansk), Dutch (Nederlands — Netherlands and Belgium), Estonian (Eesti), Finnish (Suomi), French (Français — France, Canada and Belgium), German (Deutsch — informal, formal, Austrian and Swiss), Greek (Ελληνικά), Hebrew (עברית), Hungarian (Magyar), Icelandic (Íslenska), Indonesian (Bahasa Indonesia), Italian (Italiano), Japanese (日本語), Korean (한국어), Latvian (Latviešu), Lithuanian (Lietuvių), Macedonian (Македонски), Norwegian (Norsk — Bokmål and Nynorsk), Polish (Polski), Portuguese (Português — Portugal, Brazil and Angola), Romanian (Română), Russian (Русский), Serbian (Српски), Slovak (Slovenčina), Slovenian (Slovenščina), Spanish (Español — Spain, Mexico, Argentina, Chile, Colombia, Costa Rica, Dominican Republic, Ecuador, Guatemala, Honduras, Peru, Puerto Rico, Uruguay and Venezuela), Swedish (Svenska), Thai (ไทย), Turkish (Türkçe), Ukrainian (Українська) and Vietnamese (Tiếng Việt).
 * New: a "Savings on this site" panel on the Stats screen — a clear breakdown of how much your full-size images and their thumbnails were each reduced (from how much, to how much), calculated from your own data and kept separate from the shared account quota.
@@ -236,6 +245,9 @@ The plugin is free. It connects to the Kraken.io service, which offers a free ac
 For the full version history of older releases, see the plugin's WordPress.org changelog.
 
 == Upgrade Notice ==
+
+= 3.1.0 =
+Automatic PDF optimization is now off by default — turn on "Optimize PDF uploads" in Settings → Kraken.io to keep optimizing new PDFs automatically. Also fixes PDFs being converted to images when "Convert uploads to" is set.
 
 = 3.0.0 =
 Major update: WebP/AVIF/HEIC/PDF support, convert-on-upload, a new control panel and Bulk Optimize screen, live savings badges, and write-only masked API credentials. Recommended for everyone.

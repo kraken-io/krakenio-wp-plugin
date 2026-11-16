@@ -781,6 +781,19 @@ function krakenInitUploadPage() {
 			if ( $item.data( 'krakenSeen' ) ) {
 				return;
 			}
+			// PDFs only show the optimizing indicator when the PDF opt-in is
+			// on — otherwise the server-side gate skips optimization and a
+			// spinner would be misleading. Detect by filename since the
+			// classic uploader row doesn't carry a mime attribute.
+			if ( ! krakenOpts.optimize_pdf ) {
+				const name = ( $item.find( '.filename' ).first().text() || '' )
+					.toLowerCase()
+					.trim();
+				if ( name.endsWith( '.pdf' ) ) {
+					$item.data( 'krakenSeen', true );
+					return;
+				}
+			}
 			// The attachment id only exists once the upload finishes and the
 			// details (with the Edit link) are rendered; until then, skip and
 			// let a later mutation catch it.

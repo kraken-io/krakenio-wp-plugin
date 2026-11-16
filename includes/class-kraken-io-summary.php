@@ -43,7 +43,7 @@ class Kraken_IO_Summary {
 
 		wp_add_dashboard_widget(
 			'kraken_io_summary',
-			esc_html__( 'Kraken.io Image Optimizer', 'kraken-io' ),
+			esc_html__( 'Kraken.io Image Optimizer', 'kraken-image-optimizer' ),
 			[ $this, 'render_dashboard_widget' ]
 		);
 	}
@@ -168,12 +168,12 @@ class Kraken_IO_Summary {
 		$data['auto_optimize']  = ! empty( $options['auto_optimize'] );
 		$data['can_manage']     = current_user_can( 'manage_options' );
 		$data['convert_formats'] = [
-			''     => __( 'No conversion', 'kraken-io' ),
-			'jpeg' => __( 'JPEG', 'kraken-io' ),
-			'png'  => __( 'PNG', 'kraken-io' ),
-			'gif'  => __( 'GIF', 'kraken-io' ),
-			'webp' => __( 'WebP', 'kraken-io' ),
-			'avif' => __( 'AVIF', 'kraken-io' ),
+			''     => __( 'No conversion', 'kraken-image-optimizer' ),
+			'jpeg' => __( 'JPEG', 'kraken-image-optimizer' ),
+			'png'  => __( 'PNG', 'kraken-image-optimizer' ),
+			'gif'  => __( 'GIF', 'kraken-image-optimizer' ),
+			'webp' => __( 'WebP', 'kraken-image-optimizer' ),
+			'avif' => __( 'AVIF', 'kraken-image-optimizer' ),
 		];
 
 		return $data;
@@ -319,19 +319,19 @@ class Kraken_IO_Summary {
 
 		// --- General ---
 		$general[] = [
-			'label' => __( 'Optimization mode', 'kraken-io' ),
-			'value' => ( 'lossless' === $get( 'api_lossy' ) ) ? __( 'Lossless', 'kraken-io' ) : __( 'Intelligent lossy', 'kraken-io' ),
+			'label' => __( 'Optimization mode', 'kraken-image-optimizer' ),
+			'value' => ( 'lossless' === $get( 'api_lossy' ) ) ? __( 'Lossless', 'kraken-image-optimizer' ) : __( 'Intelligent lossy', 'kraken-image-optimizer' ),
 		];
 
 		if ( $get( 'auto_optimize' ) ) {
 			$general[] = [
-				'label' => __( 'Automatically optimize uploads', 'kraken-io' ),
+				'label' => __( 'Automatically optimize uploads', 'kraken-image-optimizer' ),
 				'value' => null,
 			];
 		}
 		if ( $get( 'optimize_main_image' ) ) {
 			$general[] = [
-				'label' => __( 'Optimize main image', 'kraken-io' ),
+				'label' => __( 'Optimize main image', 'kraken-image-optimizer' ),
 				'value' => null,
 			];
 		}
@@ -340,7 +340,7 @@ class Kraken_IO_Summary {
 		$rh = (int) $get( 'resize_height' );
 		if ( $rw > 0 || $rh > 0 ) {
 			$general[] = [
-				'label' => __( 'Resize main image', 'kraken-io' ),
+				'label' => __( 'Resize main image', 'kraken-image-optimizer' ),
 				'value' => sprintf( '%d × %d px', $rw, $rh ),
 			];
 		}
@@ -348,14 +348,14 @@ class Kraken_IO_Summary {
 		$jq = (int) $get( 'jpeg_quality' );
 		if ( $jq > 0 ) {
 			$general[] = [
-				'label' => __( 'JPEG quality', 'kraken-io' ),
+				'label' => __( 'JPEG quality', 'kraken-image-optimizer' ),
 				'value' => (string) $jq,
 			];
 		}
 
 		if ( $get( 'chroma' ) ) {
 			$general[] = [
-				'label' => __( 'Chroma subsampling', 'kraken-io' ),
+				'label' => __( 'Chroma subsampling', 'kraken-image-optimizer' ),
 				'value' => $get( 'chroma' ),
 			];
 		}
@@ -363,13 +363,13 @@ class Kraken_IO_Summary {
 		// --- Advanced (only the ones that are turned on) ---
 		if ( $get( 'auto_orient' ) ) {
 			$advanced[] = [
-				'label' => __( 'Automatically orient images', 'kraken-io' ),
+				'label' => __( 'Automatically orient images', 'kraken-image-optimizer' ),
 				'value' => null,
 			];
 		}
 		if ( $get( 'background_process' ) ) {
 			$advanced[] = [
-				'label' => __( 'Background processing', 'kraken-io' ),
+				'label' => __( 'Background processing', 'kraken-image-optimizer' ),
 				'value' => null,
 			];
 		}
@@ -377,18 +377,18 @@ class Kraken_IO_Summary {
 		// feature, so they are no longer surfaced as active settings.
 		if ( $get( 'show_reset' ) ) {
 			$advanced[] = [
-				'label' => __( 'Per-image reset button', 'kraken-io' ),
+				'label' => __( 'Per-image reset button', 'kraken-image-optimizer' ),
 				'value' => null,
 			];
 		}
 
 		$preserve = [];
 		$meta_map = [
-			'preserve_meta_date'        => __( 'Date', 'kraken-io' ),
-			'preserve_meta_copyright'   => __( 'Copyright', 'kraken-io' ),
-			'preserve_meta_geotag'      => __( 'Geotag', 'kraken-io' ),
-			'preserve_meta_orientation' => __( 'Orientation', 'kraken-io' ),
-			'preserve_meta_profile'     => __( 'Profile', 'kraken-io' ),
+			'preserve_meta_date'        => __( 'Date', 'kraken-image-optimizer' ),
+			'preserve_meta_copyright'   => __( 'Copyright', 'kraken-image-optimizer' ),
+			'preserve_meta_geotag'      => __( 'Geotag', 'kraken-image-optimizer' ),
+			'preserve_meta_orientation' => __( 'Orientation', 'kraken-image-optimizer' ),
+			'preserve_meta_profile'     => __( 'Profile', 'kraken-image-optimizer' ),
 		];
 		foreach ( $meta_map as $meta_key => $meta_label ) {
 			if ( $get( $meta_key ) ) {
@@ -397,7 +397,7 @@ class Kraken_IO_Summary {
 		}
 		if ( ! empty( $preserve ) ) {
 			$advanced[] = [
-				'label' => __( 'Preserve EXIF metadata', 'kraken-io' ),
+				'label' => __( 'Preserve EXIF metadata', 'kraken-image-optimizer' ),
 				'value' => implode( ', ', $preserve ),
 			];
 		}
@@ -410,9 +410,9 @@ class Kraken_IO_Summary {
 		}
 		if ( $sizes > 0 ) {
 			$advanced[] = [
-				'label' => __( 'Image sizes optimized', 'kraken-io' ),
+				'label' => __( 'Image sizes optimized', 'kraken-image-optimizer' ),
 				/* translators: %d number of image sizes */
-				'value' => sprintf( _n( '%d size', '%d sizes', $sizes, 'kraken-io' ), $sizes ),
+				'value' => sprintf( _n( '%d size', '%d sizes', $sizes, 'kraken-image-optimizer' ), $sizes ),
 			];
 		}
 

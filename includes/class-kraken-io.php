@@ -367,19 +367,23 @@ class Kraken_IO {
 			// which verb). convert_format is the global "convert uploads to".
 			'auto_optimize'    => ! empty( $this->options['auto_optimize'] ) ? '1' : '',
 			'convert_format'   => isset( $this->options['convert_format'] ) ? $this->options['convert_format'] : '',
+			// Whether PDF uploads are opted in for optimization. Used by the
+			// Upload New Media indicator to avoid showing a spinner on a PDF
+			// that the server-side gate will skip.
+			'optimize_pdf'     => ! empty( $this->options['optimize_pdf'] ) ? '1' : '',
 			'texts'            => [
 				'bulk_async_limit'   => $this->options['bulk_async_limit'],
-				'reset_image'        => esc_html__( 'Are you sure you want to remove Kraken metadata for this image?', 'kraken-io' ),
-				'reset_all_images'   => esc_html__( 'This will immediately remove all Kraken metadata associated with your images. Are you sure you want to do this?', 'kraken-io' ),
-				'error_reset'        => esc_html__( 'Something went wrong. Please reload the page and try again.', 'kraken-io' ),
-				'optimizing'         => esc_html__( 'Optimizing…', 'kraken-io' ),
-				'converting'         => esc_html__( 'Converting…', 'kraken-io' ),
-				'optimized'          => esc_html__( 'Optimized', 'kraken-io' ),
+				'reset_image'        => esc_html__( 'Are you sure you want to remove Kraken metadata for this image?', 'kraken-image-optimizer' ),
+				'reset_all_images'   => esc_html__( 'This will immediately remove all Kraken metadata associated with your images. Are you sure you want to do this?', 'kraken-image-optimizer' ),
+				'error_reset'        => esc_html__( 'Something went wrong. Please reload the page and try again.', 'kraken-image-optimizer' ),
+				'optimizing'         => esc_html__( 'Optimizing…', 'kraken-image-optimizer' ),
+				'converting'         => esc_html__( 'Converting…', 'kraken-image-optimizer' ),
+				'optimized'          => esc_html__( 'Optimized', 'kraken-image-optimizer' ),
 				/* translators: %s number of images */
-				'images_to_optimize' => esc_html__( '%s images will be optimized.', 'kraken-io' ),
+				'images_to_optimize' => esc_html__( '%s images will be optimized.', 'kraken-image-optimizer' ),
 				/* translators: %1$s optimized %2$s total */
-				'images_optimized'   => esc_html__( '%1$s / %2$s images have been optimized.', 'kraken-io' ),
-				'support_copied'     => esc_html__( 'Copied!', 'kraken-io' ),
+				'images_optimized'   => esc_html__( '%1$s / %2$s images have been optimized.', 'kraken-image-optimizer' ),
+				'support_copied'     => esc_html__( 'Copied!', 'kraken-image-optimizer' ),
 			],
 		];
 
@@ -429,7 +433,15 @@ class Kraken_IO {
 	 * @access public
 	 */
 	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'kraken-io', false, plugin_basename( dirname( KRAKEN_PLUGIN_FILE ) ) . '/languages' );
+		// Textdomain rename fallback (kraken-io -> kraken-image-optimizer):
+		// load any hand-installed .mo files still under the old domain so
+		// custom translations don't suddenly vanish after the 3.1.0 upgrade.
+		// Remove in a future release once translators have migrated.
+		load_textdomain(
+			'kraken-image-optimizer',
+			WP_LANG_DIR . '/plugins/kraken-io-' . determine_locale() . '.mo'
+		);
+		load_plugin_textdomain( 'kraken-image-optimizer', false, plugin_basename( dirname( KRAKEN_PLUGIN_FILE ) ) . '/languages' );
 	}
 
 	/**
