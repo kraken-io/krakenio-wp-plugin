@@ -1,0 +1,1035 @@
+# Translation of Kraken.io Image Optimizer (Vietnamese).
+# This file is distributed under the same license as the plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Kraken Image Optimizer 3.0.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kraken-image-optimizer\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: kraken-i18n\n"
+
+#. Plugin Name of the plugin
+#: kraken.php
+msgid "Kraken Image Optimizer"
+msgstr "Kraken Image Optimizer"
+
+#. Plugin URI of the plugin
+#: kraken.php
+msgid "http://wordpress.org/plugins/kraken-image-optimizer/"
+msgstr "http://wordpress.org/plugins/kraken-image-optimizer/"
+
+#. Description of the plugin
+#: kraken.php
+msgid "This plugin allows you to optimize your WordPress images through the Kraken API, the world's most advanced image optimization solution."
+msgstr "Plugin này cho phép bạn tối ưu hóa hình ảnh WordPress của mình thông qua API Kraken, giải pháp tối ưu hóa hình ảnh tiên tiến nhất thế giới."
+
+#. Author of the plugin
+#: kraken.php
+#: includes/class-kraken-io-settings.php:119
+#: includes/class-kraken-io-stats.php:156
+#: includes/class-kraken-io-stats.php:199
+msgid "Kraken.io"
+msgstr "Kraken.io"
+
+#. Author URI of the plugin
+#: kraken.php
+msgid "https://kraken.io"
+msgstr "https://kraken.io"
+
+#. translators: %1$s used %2$s total %3$s remaining
+#: includes/class-kraken-io-ajax.php:237
+#: templates/summary-panel.php:62
+msgid "%1$s / %2$s · %3$s left"
+msgstr "%1$s / %2$s · còn %3$s"
+
+#: includes/class-kraken-io-background-process.php:62
+#: includes/class-kraken-io-optimization.php:155
+#: includes/class-kraken-io-optimization.php:799
+msgid "Conversion failed."
+msgstr "Chuyển đổi thất bại."
+
+#: includes/class-kraken-io-optimization.php:400
+msgid "Could not get optimized image URL."
+msgstr "Không thể lấy URL của hình ảnh đã tối ưu."
+
+#: includes/class-kraken-io-optimization.php:406
+msgid "Could not overwrite original file. Please ensure that your files are writable by plugins."
+msgstr "Không thể ghi đè tệp gốc. Vui lòng đảm bảo các tệp của bạn cho phép plugin ghi."
+
+#: includes/class-kraken-io-optimization.php:447
+msgid "Your Kraken.io API credentials are missing or invalid."
+msgstr "Thông tin xác thực API Kraken.io của bạn bị thiếu hoặc không hợp lệ."
+
+#: includes/class-kraken-io-optimization.php:448
+msgid "There was nothing to send for optimization."
+msgstr "Không có gì để gửi đi tối ưu hóa."
+
+#: includes/class-kraken-io-optimization.php:449
+msgid "No file was provided to optimize."
+msgstr "Không có tệp nào được cung cấp để tối ưu hóa."
+
+#: includes/class-kraken-io-optimization.php:450
+msgid "The image file could not be found on the server."
+msgstr "Không tìm thấy tệp hình ảnh trên máy chủ."
+
+#: includes/class-kraken-io-optimization.php:459
+msgid "Unknown error."
+msgstr "Lỗi không xác định."
+
+#: includes/class-kraken-io-optimization.php:555
+#: includes/class-kraken-io-optimization.php:771
+msgid "Couldn't find the image path."
+msgstr "Không tìm thấy đường dẫn hình ảnh."
+
+#: includes/class-kraken-io-optimization.php:594
+msgid "Optimization failed."
+msgstr "Tối ưu hóa thất bại."
+
+#: includes/class-kraken-io-optimization.php:761
+msgid "Unsupported conversion format."
+msgstr "Định dạng chuyển đổi không được hỗ trợ."
+
+#: includes/class-kraken-io-optimization.php:765
+msgid "This file cannot be converted."
+msgstr "Không thể chuyển đổi tệp này."
+
+#: includes/class-kraken-io-optimization.php:813
+msgid "Could not download the converted image."
+msgstr "Không thể tải xuống hình ảnh đã chuyển đổi."
+
+#: includes/class-kraken-io-optimization.php:818
+msgid "Could not write the converted image. Please ensure your uploads are writable."
+msgstr "Không thể ghi hình ảnh đã chuyển đổi. Vui lòng đảm bảo thư mục tải lên của bạn cho phép ghi."
+
+#: includes/class-kraken-io-settings.php:71
+#: includes/class-kraken-io-settings.php:118
+#: includes/class-kraken-io-settings.php:213
+msgid "Kraken.io Settings"
+msgstr "Cài đặt Kraken.io"
+
+#: includes/class-kraken-io-settings.php:71
+#: templates/summary-panel.php:74
+msgid "Settings"
+msgstr "Cài đặt"
+
+#: includes/class-kraken-io-settings.php:85
+#: templates/bulk-optimizer.php:54
+msgid "Krak 'em all"
+msgstr "Krak tất cả"
+
+#: includes/class-kraken-io-settings.php:129
+#: includes/class-kraken-io-settings.php:130
+#: includes/class-kraken-io-settings.php:150
+msgid "Bulk Optimize with Kraken.io"
+msgstr "Tối ưu hóa hàng loạt với Kraken.io"
+
+#: includes/class-kraken-io-settings.php:187
+msgid "General Settings"
+msgstr "Cài đặt chung"
+
+#: includes/class-kraken-io-settings.php:188
+msgid "<a href=\"http://kraken.io/account\" target=\"_blank\">Kraken.io</a> API Settings."
+msgstr "Cài đặt API <a href=\"http://kraken.io/account\" target=\"_blank\">Kraken.io</a>."
+
+#: includes/class-kraken-io-settings.php:191
+msgid "Advanced Settings"
+msgstr "Cài đặt nâng cao"
+
+#: includes/class-kraken-io-settings.php:192
+msgid "We recommend that you leave these settings at their default values."
+msgstr "Chúng tôi khuyên bạn nên giữ các cài đặt này ở giá trị mặc định."
+
+#: includes/class-kraken-io-settings.php:195
+msgid "Bulk Optimizer"
+msgstr "Công cụ tối ưu hóa hàng loạt"
+
+#: includes/class-kraken-io-settings.php:199
+msgid "Stats"
+msgstr "Thống kê"
+
+#: includes/class-kraken-io-settings.php:203
+msgid "Support"
+msgstr "Hỗ trợ"
+
+#: includes/class-kraken-io-settings.php:249
+msgid "Save Changes"
+msgstr "Lưu thay đổi"
+
+#: includes/class-kraken-io-settings.php:354
+msgid "Please refresh the page and try again."
+msgstr "Vui lòng làm mới trang và thử lại."
+
+#: includes/class-kraken-io-settings.php:359
+msgid "There are no Kraken options."
+msgstr "Không có tùy chọn Kraken nào."
+
+#: includes/class-kraken-io-settings.php:392
+msgid "Settings Saved"
+msgstr "Đã lưu cài đặt"
+
+#: includes/class-kraken-io-settings.php:578
+msgid "Deprecated"
+msgstr "Không còn dùng nữa"
+
+#: includes/class-kraken-io-settings.php:605
+msgid "value"
+msgstr "giá trị"
+
+#. translators: %s is the field label, e.g. "API Key" or "API Secret".
+#: includes/class-kraken-io-settings.php:608
+msgid "Your %s is saved. Leave this blank to keep it, or paste a new one to replace it."
+msgstr "%s của bạn đã được lưu. Để trống để giữ nguyên, hoặc dán giá trị mới để thay thế."
+
+#: includes/class-kraken-io-settings.php:745
+msgid "Your credentials are valid."
+msgstr "Thông tin xác thực của bạn hợp lệ."
+
+#: includes/class-kraken-io-settings.php:747
+msgid "There is a problem with your credentials."
+msgstr "Có vấn đề với thông tin xác thực của bạn."
+
+#: includes/class-kraken-io-settings.php:794
+msgid "API Key"
+msgstr "API Key"
+
+#: includes/class-kraken-io-settings.php:801
+msgid "API Secret"
+msgstr "API Secret"
+
+#: includes/class-kraken-io-settings.php:806
+msgid "API Status"
+msgstr "Trạng thái API"
+
+#: includes/class-kraken-io-settings.php:814
+msgid "Don't convert (keep original format)"
+msgstr "Không chuyển đổi (giữ định dạng gốc)"
+
+#: includes/class-kraken-io-settings.php:815
+#: includes/class-kraken-io-summary.php:172
+msgid "JPEG"
+msgstr "JPEG"
+
+#: includes/class-kraken-io-settings.php:816
+#: includes/class-kraken-io-summary.php:173
+msgid "PNG"
+msgstr "PNG"
+
+#: includes/class-kraken-io-settings.php:817
+#: includes/class-kraken-io-summary.php:174
+msgid "GIF"
+msgstr "GIF"
+
+#: includes/class-kraken-io-settings.php:818
+#: includes/class-kraken-io-summary.php:175
+msgid "WebP"
+msgstr "WebP"
+
+#: includes/class-kraken-io-settings.php:819
+#: includes/class-kraken-io-summary.php:176
+msgid "AVIF"
+msgstr "AVIF"
+
+#: includes/class-kraken-io-settings.php:822
+msgid "Convert uploads to"
+msgstr "Chuyển đổi tệp tải lên thành"
+
+#: includes/class-kraken-io-settings.php:824
+msgid "Automatically convert new image uploads to the selected format during optimization. Leave as \"Don't convert\" to keep each image in its original format."
+msgstr "Tự động chuyển đổi hình ảnh mới tải lên sang định dạng đã chọn trong quá trình tối ưu hóa. Giữ tùy chọn \"Không chuyển đổi\" để giữ mỗi hình ảnh ở định dạng gốc."
+
+#: includes/class-kraken-io-settings.php:833
+#: includes/class-kraken-io-summary.php:323
+msgid "Intelligent lossy"
+msgstr "Giảm chất lượng thông minh"
+
+#: includes/class-kraken-io-settings.php:834
+#: includes/class-kraken-io-summary.php:323
+msgid "Lossless"
+msgstr "Không mất dữ liệu"
+
+#: includes/class-kraken-io-settings.php:836
+#: includes/class-kraken-io-summary.php:322
+#: templates/media-column-stats.php:91
+msgid "Optimization mode"
+msgstr "Chế độ tối ưu hóa"
+
+#: includes/class-kraken-io-settings.php:838
+msgid "The Intelligent Lossy mode will yield the greatest savings without perceivable reducing the quality of your images, and so we recommend this setting to users."
+msgstr "Chế độ Giảm chất lượng thông minh sẽ mang lại mức tiết kiệm lớn nhất mà không làm giảm chất lượng hình ảnh một cách rõ rệt, vì vậy chúng tôi khuyến nghị bạn dùng cài đặt này."
+
+#: includes/class-kraken-io-settings.php:839
+msgid "The Lossless mode will result in an unchanged image, however, will yield reduced savings as the image will not be recompressed."
+msgstr "Chế độ Không mất dữ liệu sẽ giữ nguyên hình ảnh, tuy nhiên mức tiết kiệm sẽ ít hơn vì hình ảnh không được nén lại."
+
+#: includes/class-kraken-io-settings.php:847
+msgid "Optimize uploads"
+msgstr "Tối ưu hóa tệp tải lên"
+
+#: includes/class-kraken-io-settings.php:848
+#: includes/class-kraken-io-summary.php:328
+msgid "Automatically optimize uploads"
+msgstr "Tự động tối ưu hóa tệp tải lên"
+
+#: includes/class-kraken-io-settings.php:850
+msgid "Enabled by default. This setting causes images uploaded through the Media Uploader to be optimized on-the-fly."
+msgstr "Bật theo mặc định. Cài đặt này giúp các hình ảnh tải lên qua Trình tải phương tiện được tối ưu hóa ngay lập tức."
+
+#: includes/class-kraken-io-settings.php:851
+msgid "If you do not wish to do this, or wish to optimize images later, disable this setting by unchecking the box."
+msgstr "Nếu bạn không muốn làm điều này, hoặc muốn tối ưu hóa hình ảnh sau, hãy tắt cài đặt này bằng cách bỏ chọn ô."
+
+#: includes/class-kraken-io-settings.php:859
+msgid "Optimize images"
+msgstr "Tối ưu hóa hình ảnh"
+
+#: includes/class-kraken-io-settings.php:860
+#: includes/class-kraken-io-summary.php:334
+msgid "Optimize main image"
+msgstr "Tối ưu hóa hình ảnh chính"
+
+#: includes/class-kraken-io-settings.php:862
+msgid "Enabled by default. This option causes the image uploaded by the user to get optimized, as well as all sizes generated by WordPress."
+msgstr "Bật theo mặc định. Tùy chọn này giúp hình ảnh do người dùng tải lên được tối ưu hóa, cùng với tất cả các kích thước do WordPress tạo ra."
+
+#: includes/class-kraken-io-settings.php:863
+msgid "Disabling this option results in faster uploading, since the main image is not sent to our system for optimization."
+msgstr "Tắt tùy chọn này giúp tải lên nhanh hơn, vì hình ảnh chính sẽ không được gửi đến hệ thống của chúng tôi để tối ưu hóa."
+
+#: includes/class-kraken-io-settings.php:864
+msgid "Disable this option if you never use the \"main\" image upload in your posts, or speed of image uploading is an issue."
+msgstr "Tắt tùy chọn này nếu bạn không bao giờ dùng hình ảnh \"chính\" tải lên trong các bài viết, hoặc nếu tốc độ tải lên hình ảnh là vấn đề."
+
+#: includes/class-kraken-io-settings.php:872
+msgid "Max width (px)"
+msgstr "Chiều rộng tối đa (px)"
+
+#: includes/class-kraken-io-settings.php:873
+msgid "Max height (px)"
+msgstr "Chiều cao tối đa (px)"
+
+#: includes/class-kraken-io-settings.php:879
+#: includes/class-kraken-io-summary.php:343
+msgid "Resize main image"
+msgstr "Thay đổi kích thước hình ảnh chính"
+
+#: includes/class-kraken-io-settings.php:881
+msgid "You can restrict the maximum dimensions of image uploads by width and/or height."
+msgstr "Bạn có thể giới hạn kích thước tối đa của hình ảnh tải lên theo chiều rộng và/hoặc chiều cao."
+
+#: includes/class-kraken-io-settings.php:882
+msgid "It is especially useful if you wish to prevent unnecessarily large photos with extremely high resolutions from being uploaded, for example, photos shot with a recent-model iPhone. Note: you can restrict the dimensions by width, height, or both. A value of zero disables."
+msgstr "Điều này đặc biệt hữu ích nếu bạn muốn ngăn việc tải lên những bức ảnh lớn không cần thiết với độ phân giải cực cao, ví dụ như ảnh chụp bằng iPhone đời mới. Lưu ý: bạn có thể giới hạn kích thước theo chiều rộng, chiều cao, hoặc cả hai. Giá trị bằng không sẽ tắt tính năng này."
+
+#: includes/class-kraken-io-settings.php:894
+msgid "Intelligent lossy (recommended)"
+msgstr "Giảm chất lượng thông minh (khuyến nghị)"
+
+#: includes/class-kraken-io-settings.php:899
+msgid "JPEG quality setting"
+msgstr "Cài đặt chất lượng JPEG"
+
+#: includes/class-kraken-io-settings.php:901
+msgid "Advanced users can force the quality of JPEG images to a discrete \"q\" value between 25 and 100 using this setting."
+msgstr "Người dùng nâng cao có thể ép chất lượng của hình ảnh JPEG về một giá trị \"q\" cụ thể trong khoảng từ 25 đến 100 bằng cài đặt này."
+
+#: includes/class-kraken-io-settings.php:902
+msgid "For example, forcing the quality to 60 or 70 might yield greater savings, but the resulting quality might be affected, depending on the image."
+msgstr "Ví dụ, ép chất lượng về 60 hoặc 70 có thể mang lại mức tiết kiệm lớn hơn, nhưng chất lượng kết quả có thể bị ảnh hưởng, tùy thuộc vào hình ảnh."
+
+#: includes/class-kraken-io-settings.php:903
+msgid "We therefore recommend keeping the <strong>Intelligent Lossy</strong> setting, which will not allow a resulting image of unacceptable quality."
+msgstr "Do đó chúng tôi khuyến nghị giữ cài đặt <strong>Giảm chất lượng thông minh</strong>, vốn sẽ không cho phép tạo ra hình ảnh có chất lượng không thể chấp nhận được."
+
+#: includes/class-kraken-io-settings.php:904
+msgid "This setting will be ignored when using the <strong>lossless</strong> optimization mode."
+msgstr "Cài đặt này sẽ bị bỏ qua khi sử dụng chế độ tối ưu hóa <strong>không mất dữ liệu</strong>."
+
+#: includes/class-kraken-io-settings.php:913
+msgid "4:2:0 (default)"
+msgstr "4:2:0 (mặc định)"
+
+#: includes/class-kraken-io-settings.php:914
+msgid "4:2:2"
+msgstr "4:2:2"
+
+#: includes/class-kraken-io-settings.php:915
+msgid "4:4:4 (no subsampling)"
+msgstr "4:4:4 (không lấy mẫu phụ)"
+
+#: includes/class-kraken-io-settings.php:917
+msgid "Chroma subsampling scheme"
+msgstr "Cơ chế lấy mẫu phụ màu (chroma subsampling)"
+
+#: includes/class-kraken-io-settings.php:919
+msgid "Advanced users can also set the resolution at which colour is encoded for JPEG images."
+msgstr "Người dùng nâng cao cũng có thể đặt độ phân giải mã hóa màu cho hình ảnh JPEG."
+
+#: includes/class-kraken-io-settings.php:920
+msgid "In short, the default setting of 4:2:0 is suitable for most images, and will result in the lowest possible optimized file size."
+msgstr "Tóm lại, cài đặt mặc định 4:2:0 phù hợp với hầu hết các hình ảnh, và sẽ cho ra kích thước tệp đã tối ưu nhỏ nhất có thể."
+
+#: includes/class-kraken-io-settings.php:921
+msgid "Images containing high contrast text or bright red areas on flat backgrounds might benefit from disabling chroma subsampling (by setting it to 4:4:4). "
+msgstr "Những hình ảnh chứa văn bản có độ tương phản cao hoặc các vùng màu đỏ tươi trên nền phẳng có thể được hưởng lợi từ việc tắt lấy mẫu phụ màu (bằng cách đặt thành 4:4:4). "
+
+#: includes/class-kraken-io-settings.php:922
+msgid "More information can be found in our <a href=\"https://kraken.io/docs/chroma-subsampling\" target=\"_blank\">documentation</a>."
+msgstr "Có thể tìm thêm thông tin trong <a href=\"https://kraken.io/docs/chroma-subsampling\" target=\"_blank\">tài liệu</a> của chúng tôi."
+
+#: includes/class-kraken-io-settings.php:932
+msgid "All logged-in users"
+msgstr "Tất cả người dùng đã đăng nhập"
+
+#: includes/class-kraken-io-settings.php:933
+msgid "Users who can upload media (Author and above)"
+msgstr "Người dùng có thể tải lên phương tiện (Tác giả trở lên)"
+
+#: includes/class-kraken-io-settings.php:934
+msgid "Administrators only"
+msgstr "Chỉ quản trị viên"
+
+#: includes/class-kraken-io-settings.php:937
+msgid "Who can optimize images"
+msgstr "Ai có thể tối ưu hóa hình ảnh"
+
+#: includes/class-kraken-io-settings.php:939
+msgid "Controls which logged-in users may trigger optimization actions (single optimize, bulk optimize, reset) from the Media Library."
+msgstr "Kiểm soát những người dùng đã đăng nhập nào có thể thực hiện các thao tác tối ưu hóa (tối ưu hóa đơn lẻ, tối ưu hóa hàng loạt, đặt lại) từ Thư viện phương tiện."
+
+#: includes/class-kraken-io-settings.php:940
+msgid "Optimization consumes your paid Kraken.io quota and rewrites your media, so a user can only act on attachments they are allowed to edit, and by default only users who can upload media (Author and above) may optimize. On sites with open registration (membership, WooCommerce, forums), keep this restricted so untrusted accounts cannot consume your quota or alter media."
+msgstr "Tối ưu hóa tiêu tốn hạn mức Kraken.io trả phí của bạn và ghi đè phương tiện của bạn, vì vậy mỗi người dùng chỉ có thể thao tác trên những tệp đính kèm mà họ được phép chỉnh sửa, và theo mặc định chỉ những người dùng có thể tải lên phương tiện (Tác giả trở lên) mới có thể tối ưu hóa. Trên các trang cho phép đăng ký mở (thành viên, WooCommerce, diễn đàn), hãy giữ tùy chọn này ở mức hạn chế để các tài khoản không đáng tin cậy không thể tiêu tốn hạn mức hoặc thay đổi phương tiện của bạn."
+
+#: includes/class-kraken-io-settings.php:941
+msgid "• All logged-in users — anyone signed in who can also edit the attachment (most permissive). • Users who can upload media — Authors, Editors and Administrators (default). • Administrators only — most restrictive."
+msgstr "• Tất cả người dùng đã đăng nhập — bất kỳ ai đã đăng nhập và cũng có thể chỉnh sửa tệp đính kèm (cho phép rộng nhất). • Người dùng có thể tải lên phương tiện — Tác giả, Biên tập viên và Quản trị viên (mặc định). • Chỉ quản trị viên — hạn chế nhất."
+
+#: includes/class-kraken-io-settings.php:950
+msgid "Image sizes to Krak"
+msgstr "Kích thước hình ảnh cần Krak"
+
+#: includes/class-kraken-io-settings.php:952
+msgid "Every time you upload an image, WordPress generates several resized copies (thumbnail, medium, large, and so on). These resized versions — not the original — are what your visitors actually download, through responsive <code>srcset</code> images. Each size you tick here gets optimized, so the images people really load are compressed."
+msgstr "Mỗi khi bạn tải lên một hình ảnh, WordPress tạo ra một số bản sao đã thay đổi kích thước (ảnh thu nhỏ, vừa, lớn, v.v.). Chính những phiên bản đã thay đổi kích thước này — chứ không phải bản gốc — mới là thứ mà khách truy cập của bạn thực sự tải xuống, thông qua hình ảnh đáp ứng <code>srcset</code>. Mỗi kích thước bạn đánh dấu ở đây sẽ được tối ưu hóa, nhờ đó các hình ảnh mà mọi người thực sự tải về đều được nén."
+
+#: includes/class-kraken-io-settings.php:953
+msgid "If you untick a size, that copy is still created and still served to your visitors — just <strong>left unoptimized</strong>, at its full original weight. Keeping these on is what delivers the page-speed gain across your whole site, not just on the original file."
+msgstr "Nếu bạn bỏ đánh dấu một kích thước, bản sao đó vẫn được tạo và vẫn được phục vụ cho khách truy cập của bạn — chỉ là <strong>không được tối ưu hóa</strong>, ở dung lượng gốc đầy đủ. Việc giữ những kích thước này được bật chính là điều mang lại lợi ích về tốc độ trang trên toàn bộ trang của bạn, chứ không chỉ trên tệp gốc."
+
+#: includes/class-kraken-io-settings.php:954
+msgid "The trade-off: each ticked size is a separate optimization that uses your Kraken.io quota. For that reason the large retina sizes <code>1536×1536</code> and <code>2048×2048</code> are <strong>left off by default</strong> — most themes never serve them. If your theme does use them (for high-DPI screens), just tick them here and they'll be optimized too. Already-optimized images are never touched by this."
+msgstr "Sự đánh đổi: mỗi kích thước được đánh dấu là một lần tối ưu hóa riêng biệt và sử dụng hạn mức Kraken.io của bạn. Vì lý do đó, các kích thước retina lớn <code>1536×1536</code> và <code>2048×2048</code> <strong>được tắt theo mặc định</strong> — hầu hết các giao diện không bao giờ phục vụ chúng. Nếu giao diện của bạn có sử dụng chúng (cho màn hình mật độ điểm ảnh cao), chỉ cần đánh dấu chúng ở đây và chúng cũng sẽ được tối ưu hóa. Những hình ảnh đã được tối ưu hóa sẽ không bao giờ bị ảnh hưởng bởi tùy chọn này."
+
+#: includes/class-kraken-io-settings.php:962
+#: includes/class-kraken-io-summary.php:387
+msgid "Date"
+msgstr "Ngày"
+
+#: includes/class-kraken-io-settings.php:963
+#: includes/class-kraken-io-summary.php:388
+msgid "Copyright"
+msgstr "Bản quyền"
+
+#: includes/class-kraken-io-settings.php:964
+#: includes/class-kraken-io-summary.php:389
+msgid "Geotag"
+msgstr "Gắn thẻ địa lý"
+
+#: includes/class-kraken-io-settings.php:965
+#: includes/class-kraken-io-summary.php:390
+msgid "Orientation"
+msgstr "Hướng"
+
+#: includes/class-kraken-io-settings.php:975
+msgid "Preserve EXIF Metadata"
+msgstr "Giữ lại siêu dữ liệu EXIF"
+
+#: includes/class-kraken-io-settings.php:982
+msgid "Image orientation"
+msgstr "Hướng hình ảnh"
+
+#: includes/class-kraken-io-settings.php:983
+#: includes/class-kraken-io-summary.php:366
+msgid "Automatically orient images"
+msgstr "Tự động định hướng hình ảnh"
+
+#: includes/class-kraken-io-settings.php:985
+msgid "This setting will rotate the JPEG image according to its Orientation EXIF metadata such that it will always be correctly displayed in Web Browsers."
+msgstr "Cài đặt này sẽ xoay hình ảnh JPEG theo siêu dữ liệu EXIF Orientation của nó sao cho hình ảnh luôn được hiển thị chính xác trong trình duyệt web."
+
+#: includes/class-kraken-io-settings.php:986
+msgid "Enable this setting if many of your image uploads come from smart phones or digital cameras which set the orientation based on how they are held at the time of shooting."
+msgstr "Bật cài đặt này nếu nhiều hình ảnh bạn tải lên đến từ điện thoại thông minh hoặc máy ảnh kỹ thuật số, những thiết bị đặt hướng dựa trên cách cầm máy tại thời điểm chụp."
+
+#: includes/class-kraken-io-settings.php:994
+msgid "Metadata reset per image"
+msgstr "Đặt lại siêu dữ liệu cho từng hình ảnh"
+
+#: includes/class-kraken-io-settings.php:995
+msgid "Show reset button"
+msgstr "Hiển thị nút đặt lại"
+
+#: includes/class-kraken-io-settings.php:997
+msgid "Checking this option will add a Reset button in the \"Show Details\" popup in the Kraken Stats column for each optimized image."
+msgstr "Đánh dấu tùy chọn này sẽ thêm một nút Đặt lại trong cửa sổ \"Hiện chi tiết\" ở cột Thống kê Kraken cho mỗi hình ảnh đã tối ưu."
+
+#: includes/class-kraken-io-settings.php:998
+msgid "Resetting an image will remove the Kraken.io metadata associated with it, effectively making your blog forget that it had been optimized in the first place, allowing further optimization in some cases."
+msgstr "Đặt lại một hình ảnh sẽ xóa siêu dữ liệu Kraken.io liên kết với nó, khiến blog của bạn quên rằng hình ảnh đó đã từng được tối ưu hóa, cho phép tối ưu hóa thêm trong một số trường hợp."
+
+#: includes/class-kraken-io-settings.php:999
+msgid "If an image has been optimized using the lossless setting, lossless optimization will not yield any greater savings. If in doubt, please contact support@kraken.io"
+msgstr "Nếu một hình ảnh đã được tối ưu hóa bằng cài đặt không mất dữ liệu, thì tối ưu hóa không mất dữ liệu sẽ không mang lại mức tiết kiệm lớn hơn. Nếu còn nghi ngờ, vui lòng liên hệ support@kraken.io"
+
+#: includes/class-kraken-io-settings.php:1007
+msgid "Savings badge"
+msgstr "Huy hiệu tiết kiệm"
+
+#: includes/class-kraken-io-settings.php:1008
+msgid "Show a savings badge on optimized thumbnails"
+msgstr "Hiển thị huy hiệu tiết kiệm trên các ảnh thu nhỏ đã tối ưu"
+
+#: includes/class-kraken-io-settings.php:1010
+msgid "Displays the percentage saved in the corner of each optimized image thumbnail in the Media Library."
+msgstr "Hiển thị phần trăm đã tiết kiệm ở góc của mỗi ảnh thu nhỏ đã tối ưu trong Thư viện phương tiện."
+
+#: includes/class-kraken-io-settings.php:1018
+msgid "Background process"
+msgstr "Tiến trình nền"
+
+#: includes/class-kraken-io-settings.php:1019
+msgid "Process image optimization in background"
+msgstr "Xử lý tối ưu hóa hình ảnh trong nền"
+
+#: includes/class-kraken-io-settings.php:1021
+msgid "This setting will optimize images in background when using the option \"Automatically optimize uploads\" resulting in faster image uploads."
+msgstr "Cài đặt này sẽ tối ưu hóa hình ảnh trong nền khi sử dụng tùy chọn \"Tự động tối ưu hóa tệp tải lên\", giúp tải lên hình ảnh nhanh hơn."
+
+#: includes/class-kraken-io-settings.php:1027
+msgid "WebP / next-gen formats"
+msgstr "WebP / định dạng thế hệ mới"
+
+#: includes/class-kraken-io-settings.php:1029
+msgid "The old \"Create WebP\" and \"Display WebP\" options are deprecated. They created a separate .webp companion for every image and depended on Apache .htaccess rewrite rules, which did not work behind a CDN."
+msgstr "Các tùy chọn cũ \"Tạo WebP\" và \"Hiển thị WebP\" không còn được dùng nữa. Chúng tạo ra một tệp .webp đi kèm riêng cho mỗi hình ảnh và phụ thuộc vào các quy tắc viết lại trong Apache .htaccess, vốn không hoạt động phía sau CDN."
+
+#: includes/class-kraken-io-settings.php:1030
+msgid "To serve WebP (or AVIF) now, use \"Convert uploads to → WebP\" in the General settings tab. Each upload is converted to the modern format directly, so the file is served as-is by any server or CDN — no companion files and no rewrite rules required."
+msgstr "Để phục vụ WebP (hoặc AVIF) ngay bây giờ, hãy sử dụng \"Chuyển đổi tệp tải lên thành → WebP\" trong tab cài đặt Chung. Mỗi tệp tải lên được chuyển đổi trực tiếp sang định dạng hiện đại, nhờ đó tệp được phục vụ nguyên trạng bởi bất kỳ máy chủ hoặc CDN nào — không cần tệp đi kèm và không cần quy tắc viết lại."
+
+#: includes/class-kraken-io-settings.php:1039
+msgid "Bulk concurrency"
+msgstr "Số lượng xử lý đồng thời hàng loạt"
+
+#: includes/class-kraken-io-settings.php:1041
+msgid "This settings defines how many images can be processed at the same time using the bulk optimizer. The recommended (and default) value is 4."
+msgstr "Cài đặt này xác định số lượng hình ảnh có thể được xử lý cùng lúc bằng công cụ tối ưu hóa hàng loạt. Giá trị khuyến nghị (và mặc định) là 4."
+
+#: includes/class-kraken-io-settings.php:1042
+msgid "For blogs on very small hosting plans, or with reduced connectivity, a lower number might be necessary to avoid hitting request limits."
+msgstr "Đối với các blog dùng gói lưu trữ rất nhỏ, hoặc có kết nối hạn chế, có thể cần một giá trị thấp hơn để tránh chạm giới hạn số lượng yêu cầu."
+
+#: includes/class-kraken-io-summary.php:46
+msgid "Kraken.io Image Optimizer"
+msgstr "Kraken.io Image Optimizer"
+
+#: includes/class-kraken-io-summary.php:171
+msgid "No conversion"
+msgstr "Không chuyển đổi"
+
+#: includes/class-kraken-io-summary.php:351
+msgid "JPEG quality"
+msgstr "Chất lượng JPEG"
+
+#: includes/class-kraken-io-summary.php:358
+msgid "Chroma subsampling"
+msgstr "Lấy mẫu phụ màu (chroma subsampling)"
+
+#: includes/class-kraken-io-summary.php:372
+msgid "Background processing"
+msgstr "Xử lý trong nền"
+
+#: includes/class-kraken-io-summary.php:380
+msgid "Per-image reset button"
+msgstr "Nút đặt lại cho từng hình ảnh"
+
+#: includes/class-kraken-io-summary.php:391
+msgid "Profile"
+msgstr "Hồ sơ"
+
+#: includes/class-kraken-io-summary.php:400
+msgid "Preserve EXIF metadata"
+msgstr "Giữ lại siêu dữ liệu EXIF"
+
+#: includes/class-kraken-io-summary.php:413
+msgid "Image sizes optimized"
+msgstr "Kích thước hình ảnh đã tối ưu"
+
+#. translators: %d number of image sizes
+#: includes/class-kraken-io-summary.php:415
+msgid "%d size"
+msgid_plural "%d sizes"
+msgstr[0] "%d kích thước"
+
+#: includes/class-kraken-io.php:372
+msgid "Are you sure you want to remove Kraken metadata for this image?"
+msgstr "Bạn có chắc chắn muốn xóa siêu dữ liệu Kraken của hình ảnh này không?"
+
+#: includes/class-kraken-io.php:373
+msgid "This will immediately remove all Kraken metadata associated with your images. Are you sure you want to do this?"
+msgstr "Thao tác này sẽ xóa ngay lập tức tất cả siêu dữ liệu Kraken liên kết với hình ảnh của bạn. Bạn có chắc chắn muốn làm điều này không?"
+
+#: includes/class-kraken-io.php:374
+msgid "Something went wrong. Please reload the page and try again."
+msgstr "Đã xảy ra lỗi. Vui lòng tải lại trang và thử lại."
+
+#: includes/class-kraken-io.php:375
+msgid "Optimizing…"
+msgstr "Đang tối ưu hóa…"
+
+#: includes/class-kraken-io.php:376
+msgid "Converting…"
+msgstr "Đang chuyển đổi…"
+
+#: includes/class-kraken-io.php:377
+msgid "Optimized"
+msgstr "Đã tối ưu hóa"
+
+#. translators: %s number of images
+#: includes/class-kraken-io.php:379
+msgid "%s images will be optimized."
+msgstr "%s hình ảnh sẽ được tối ưu hóa."
+
+#. translators: %1$s optimized %2$s total
+#: includes/class-kraken-io.php:381
+msgid "%1$s / %2$s images have been optimized."
+msgstr "%1$s / %2$s hình ảnh đã được tối ưu hóa."
+
+#: includes/class-kraken-io.php:382
+msgid "Copied!"
+msgstr "Đã sao chép!"
+
+#: templates/account-hero.php:60
+#: templates/summary-panel.php:36
+msgid "Not connected"
+msgstr "Chưa kết nối"
+
+#: templates/account-hero.php:61
+msgid "Connect your Kraken.io account"
+msgstr "Kết nối tài khoản Kraken.io của bạn"
+
+#: templates/account-hero.php:62
+msgid "Enter your API key and secret below to start optimizing your images. Don't have an account yet? Create one in seconds."
+msgstr "Nhập API key và secret của bạn bên dưới để bắt đầu tối ưu hóa hình ảnh. Chưa có tài khoản? Tạo một tài khoản chỉ trong vài giây."
+
+#: templates/account-hero.php:68
+#: templates/summary-panel.php:38
+msgid "Invalid credentials"
+msgstr "Thông tin xác thực không hợp lệ"
+
+#: templates/account-hero.php:69
+msgid "Your API credentials are invalid"
+msgstr "Thông tin xác thực API của bạn không hợp lệ"
+
+#: templates/account-hero.php:70
+msgid "Double-check the API key and secret below, or grab fresh credentials from your Kraken.io account."
+msgstr "Kiểm tra lại API key và secret bên dưới, hoặc lấy thông tin xác thực mới từ tài khoản Kraken.io của bạn."
+
+#: templates/account-hero.php:76
+#: templates/summary-panel.php:40
+msgid "Payment overdue"
+msgstr "Quá hạn thanh toán"
+
+#: templates/account-hero.php:77
+msgid "Your Kraken.io payment is overdue"
+msgstr "Khoản thanh toán Kraken.io của bạn đã quá hạn"
+
+#: templates/account-hero.php:78
+msgid "Optimization may be paused until your billing is up to date."
+msgstr "Quá trình tối ưu hóa có thể bị tạm dừng cho đến khi việc thanh toán của bạn được cập nhật."
+
+#: templates/account-hero.php:84
+#: templates/account-hero.php:92
+#: templates/summary-panel.php:42
+msgid "Connected"
+msgstr "Đã kết nối"
+
+#: templates/account-hero.php:85
+msgid "You're on the Free plan"
+msgstr "Bạn đang dùng gói Miễn phí"
+
+#: templates/account-hero.php:86
+msgid "Upgrade to a paid plan for more monthly quota and larger file sizes."
+msgstr "Nâng cấp lên gói trả phí để có nhiều hạn mức hàng tháng hơn và kích thước tệp lớn hơn."
+
+#. translators: %s plan name
+#: templates/account-hero.php:96
+msgid "Connected — %s plan"
+msgstr "Đã kết nối — gói %s"
+
+#: templates/account-hero.php:99
+msgid "Your Kraken.io account is active and optimizing your images."
+msgstr "Tài khoản Kraken.io của bạn đang hoạt động và tối ưu hóa hình ảnh của bạn."
+
+#: templates/account-hero.php:119
+msgid "Monthly quota"
+msgstr "Hạn mức hàng tháng"
+
+#. translators: %1$s used %2$s total
+#: templates/account-hero.php:124
+msgid "%1$s of %2$s used"
+msgstr "Đã dùng %1$s trong %2$s"
+
+#. translators: %s remaining
+#: templates/account-hero.php:125
+msgid "%s left"
+msgstr "còn %s"
+
+#: templates/account-hero.php:135
+msgid "Create an account"
+msgstr "Tạo tài khoản"
+
+#: templates/account-hero.php:136
+#: templates/account-hero.php:142
+msgid "Get API credentials"
+msgstr "Lấy thông tin xác thực API"
+
+#: templates/account-hero.php:148
+msgid "Update billing"
+msgstr "Cập nhật thanh toán"
+
+#: templates/account-hero.php:154
+msgid "Subscribe to a plan"
+msgstr "Đăng ký gói"
+
+#: templates/account-hero.php:155
+#: templates/account-hero.php:161
+msgid "Manage account"
+msgstr "Quản lý tài khoản"
+
+#: templates/account-hero.php:162
+#: templates/summary-panel.php:113
+msgid "Upgrade plan"
+msgstr "Nâng cấp gói"
+
+#: templates/bulk-optimizer-stats.php:32
+#: templates/media-column-stats.php:26
+#: templates/media-column-stats.php:133
+msgid "Failed with errors"
+msgstr "Thất bại với lỗi"
+
+#: templates/bulk-optimizer-stats.php:41
+#: templates/media-column-stats.php:35
+msgid "Optimizing..."
+msgstr "Đang tối ưu hóa..."
+
+#. translators: %1$s percentage %2$s total
+#: templates/bulk-optimizer-stats.php:51
+#: templates/media-column-stats.php:57
+msgid "Saved %1$s (%2$s)"
+msgstr "Đã tiết kiệm %1$s (%2$s)"
+
+#: templates/bulk-optimizer-stats.php:56
+#: templates/media-column-stats.php:107
+msgid "No savings"
+msgstr "Không tiết kiệm"
+
+#. translators: %s optimization type
+#: templates/bulk-optimizer-stats.php:64
+#: templates/media-column-stats.php:125
+msgid "No savings found for type %s"
+msgstr "Không tìm thấy mức tiết kiệm cho loại %s"
+
+#: templates/bulk-optimizer-stats.php:71
+#: templates/media-column-stats.php:146
+msgid "N/A"
+msgstr "Không có"
+
+#: templates/bulk-optimizer.php:14
+#: templates/media-column-stats.php:20
+#: templates/stats.php:13
+msgid "Connect your account"
+msgstr "Kết nối tài khoản của bạn"
+
+#. translators: %s number of images
+#: templates/bulk-optimizer.php:23
+msgid "%s image will be optimized."
+msgid_plural "%s images will be optimized."
+msgstr[0] "%s hình ảnh sẽ được tối ưu hóa."
+
+#: templates/bulk-optimizer.php:27
+msgid "Selected images are already optimized"
+msgstr "Các hình ảnh đã chọn đều đã được tối ưu hóa"
+
+#: templates/bulk-optimizer.php:29
+msgid "All images are already optimized"
+msgstr "Tất cả hình ảnh đều đã được tối ưu hóa"
+
+#: templates/bulk-optimizer.php:44
+msgid "Kraken Bulk Image Optimization"
+msgstr "Tối ưu hóa hình ảnh hàng loạt với Kraken"
+
+#: templates/bulk-optimizer.php:65
+msgid "Image"
+msgstr "Hình ảnh"
+
+#: templates/bulk-optimizer.php:66
+msgid "Original Size"
+msgstr "Kích thước gốc"
+
+#: templates/bulk-optimizer.php:69
+msgid "Kraken.io Stats"
+msgstr "Thống kê Kraken.io"
+
+#: templates/conflicts-notice.php:23
+msgid "Other image optimizers detected"
+msgstr "Phát hiện công cụ tối ưu hóa hình ảnh khác"
+
+#: templates/conflicts-notice.php:26
+msgid "Running more than one image optimizer on the same uploads wastes quota and can double-compress your images. For best results with Kraken.io, deactivate the plugins below."
+msgstr "Chạy nhiều hơn một công cụ tối ưu hóa hình ảnh trên cùng các tệp tải lên sẽ lãng phí hạn mức và có thể nén kép hình ảnh của bạn. Để có kết quả tốt nhất với Kraken.io, hãy vô hiệu hóa các plugin bên dưới."
+
+#: templates/conflicts-notice.php:33
+msgid "Deactivate"
+msgstr "Vô hiệu hóa"
+
+#: templates/media-column-stats.php:46
+msgid "Optimize Main Image"
+msgstr "Tối ưu hóa hình ảnh chính"
+
+#: templates/media-column-stats.php:61
+msgid "Show Details"
+msgstr "Hiện chi tiết"
+
+#: templates/media-column-stats.php:67
+msgid "Main image savings"
+msgstr "Mức tiết kiệm của hình ảnh chính"
+
+#. translators: %1$s bytes %2$s percentage
+#: templates/media-column-stats.php:70
+#: templates/media-column-stats.php:85
+msgid "%1$s (%2$s saved)"
+msgstr "%1$s (tiết kiệm %2$s)"
+
+#. translators: %s count
+#: templates/media-column-stats.php:80
+msgid "Savings on %s thumbnails"
+msgstr "Mức tiết kiệm trên %s ảnh thu nhỏ"
+
+#: templates/media-column-stats.php:97
+msgid "Reset Image"
+msgstr "Đặt lại hình ảnh"
+
+#: templates/media-column-stats.php:117
+msgid "Optimize"
+msgstr "Tối ưu hóa"
+
+#: templates/stats.php:28
+msgid "Plan Level"
+msgstr "Cấp độ gói"
+
+#: templates/stats.php:32
+msgid "Quota"
+msgstr "Hạn mức"
+
+#: templates/stats.php:36
+msgid "Current Usage"
+msgstr "Mức sử dụng hiện tại"
+
+#: templates/stats.php:40
+msgid "Remaining"
+msgstr "Còn lại"
+
+#: templates/summary-panel.php:53
+msgid "Active plan"
+msgstr "Gói đang hoạt động"
+
+#: templates/summary-panel.php:73
+msgid "View full stats"
+msgstr "Xem toàn bộ thống kê"
+
+#: templates/summary-panel.php:87
+msgid "No API credentials found."
+msgstr "Không tìm thấy thông tin xác thực API."
+
+#: templates/summary-panel.php:87
+msgid "Connect your Kraken.io account to start optimizing your images."
+msgstr "Kết nối tài khoản Kraken.io của bạn để bắt đầu tối ưu hóa hình ảnh."
+
+#: templates/summary-panel.php:88
+msgid "Add API credentials"
+msgstr "Thêm thông tin xác thực API"
+
+#: templates/summary-panel.php:94
+msgid "Your Kraken.io API credentials are invalid."
+msgstr "Thông tin xác thực API Kraken.io của bạn không hợp lệ."
+
+#: templates/summary-panel.php:94
+msgid "Please check your API key and secret in the plugin settings."
+msgstr "Vui lòng kiểm tra API key và secret của bạn trong cài đặt plugin."
+
+#: templates/summary-panel.php:95
+msgid "Review credentials"
+msgstr "Xem lại thông tin xác thực"
+
+#: templates/summary-panel.php:103
+msgid "Payment overdue — your API access has been restricted."
+msgstr "Quá hạn thanh toán — quyền truy cập API của bạn đã bị hạn chế."
+
+#: templates/summary-panel.php:103
+msgid "Please complete your payment from your kraken.io account to resume optimizing."
+msgstr "Vui lòng hoàn tất thanh toán từ tài khoản kraken.io của bạn để tiếp tục tối ưu hóa."
+
+#: templates/summary-panel.php:104
+msgid "Complete payment"
+msgstr "Hoàn tất thanh toán"
+
+#: templates/summary-panel.php:112
+msgid "Free test quota used up."
+msgstr "Đã dùng hết hạn mức dùng thử miễn phí."
+
+#: templates/summary-panel.php:112
+msgid "Upgrade to a paid plan to keep optimizing, or email support@kraken.io to request more test quota."
+msgstr "Nâng cấp lên gói trả phí để tiếp tục tối ưu hóa, hoặc gửi email tới support@kraken.io để yêu cầu thêm hạn mức dùng thử."
+
+#: templates/summary-panel.php:115
+msgid "Monthly quota exceeded."
+msgstr "Đã vượt quá hạn mức hàng tháng."
+
+#: templates/summary-panel.php:115
+msgid "Further optimizations will be billed at the end of your billing period."
+msgstr "Các lần tối ưu hóa tiếp theo sẽ được tính phí vào cuối kỳ thanh toán của bạn."
+
+#: templates/summary-panel.php:116
+msgid "View account"
+msgstr "Xem tài khoản"
+
+#: templates/summary-panel.php:129
+msgid "Convert uploads to:"
+msgstr "Chuyển đổi tệp tải lên thành:"
+
+#. translators: %s number of images
+#: templates/summary-panel.php:147
+msgid "Bulk optimize (%s)"
+msgstr "Tối ưu hóa hàng loạt (%s)"
+
+#: templates/summary-panel.php:159
+msgid "General"
+msgstr "Chung"
+
+#: templates/summary-panel.php:168
+#: templates/summary-panel.php:185
+msgid "Edit"
+msgstr "Chỉnh sửa"
+
+#: templates/summary-panel.php:172
+msgid "Advanced"
+msgstr "Nâng cao"
+
+#: templates/summary-panel.php:174
+msgid "None enabled"
+msgstr "Không có cái nào được bật"
+
+#: templates/summary-panel.php:189
+msgid "Supported:"
+msgstr "Được hỗ trợ:"
+
+#: templates/support.php:23
+msgid "Site"
+msgstr "Trang"
+
+#: templates/support.php:24
+msgid "WordPress"
+msgstr "WordPress"
+
+#: templates/support.php:25
+msgid "PHP"
+msgstr "PHP"
+
+#: templates/support.php:26
+msgid "Plugin"
+msgstr "Plugin"
+
+#. translators: %s: site URL
+#: templates/support.php:36
+msgid "Kraken.io WordPress plugin support — %s"
+msgstr "Hỗ trợ plugin WordPress Kraken.io — %s"
+
+#: templates/support.php:39
+msgid "Describe your question or problem here."
+msgstr "Mô tả câu hỏi hoặc vấn đề của bạn tại đây."
+
+#: templates/support.php:44
+msgid "Contact us"
+msgstr "Liên hệ với chúng tôi"
+
+#: templates/support.php:46
+msgid "Have a question or hit a problem? The quickest way to reach the Kraken.io team is our WordPress.org support forum — open a thread and we will reply there. Prefer email? Use the button below to write to us from your own mail app."
+msgstr "Có câu hỏi hoặc gặp vấn đề? Cách nhanh nhất để liên hệ với nhóm Kraken.io là diễn đàn hỗ trợ WordPress.org của chúng tôi — hãy mở một chủ đề và chúng tôi sẽ trả lời ở đó. Bạn thích dùng email hơn? Sử dụng nút bên dưới để viết cho chúng tôi từ ứng dụng email của riêng bạn."
+
+#: templates/support.php:52
+msgid "Open the support forum"
+msgstr "Mở diễn đàn hỗ trợ"
+
+#: templates/support.php:56
+msgid "Email support@kraken.io"
+msgstr "Gửi email tới support@kraken.io"
+
+#: templates/support.php:62
+msgid "Please include these details so we can help faster:"
+msgstr "Vui lòng kèm theo các thông tin này để chúng tôi có thể hỗ trợ nhanh hơn:"
+
+#: templates/support.php:64
+msgid "Copy"
+msgstr "Sao chép"
+
+#: templates/support.php:74
+msgid "These links never depend on your server's email setup, so your message always reaches us."
+msgstr "Các liên kết này không bao giờ phụ thuộc vào thiết lập email trên máy chủ của bạn, nên tin nhắn của bạn luôn đến được với chúng tôi."
+
+#: includes/class-kraken-io-settings.php:293
+msgid "All changes saved"
+msgstr "Đã lưu tất cả thay đổi"
+
+#: includes/class-kraken-io-settings.php:297
+msgid "You have unsaved changes — don’t forget to save."
+msgstr "Bạn có những thay đổi chưa lưu — đừng quên lưu lại."
+
+#: templates/stats.php:62
+msgid "Savings on this site"
+msgstr "Mức tiết kiệm trên trang này"
+
+#: templates/stats.php:64
+msgid "These figures cover only the images optimized on this website — every full-size image and all of their thumbnail sizes — and are calculated from this site's own data. They are separate from the Kraken.io account quota shown above, which is shared across every site that uses your API key."
+msgstr "Những con số này chỉ tính đến các hình ảnh được tối ưu hóa trên trang web này — mọi hình ảnh kích thước đầy đủ và tất cả các kích thước ảnh thu nhỏ của chúng — và được tính từ dữ liệu của riêng trang này. Chúng tách biệt với hạn mức tài khoản Kraken.io hiển thị ở trên, vốn được chia sẻ trên mọi trang sử dụng API key của bạn."
+
+#: templates/stats.php:70
+msgid "saved on this site"
+msgstr "đã tiết kiệm trên trang này"
+
+#: templates/stats.php:79
+msgid "%s smaller overall"
+msgstr "giảm %s về tổng dung lượng"
+
+#: templates/stats.php
+msgid "Original"
+msgstr "Gốc"
+
+#: templates/stats.php
+msgid "Saved"
+msgstr "Đã tiết kiệm"
+
+#: templates/stats.php
+msgid "Full-size images"
+msgstr "Hình ảnh kích thước đầy đủ"
+
+#: templates/stats.php
+msgid "Thumbnails"
+msgstr "Ảnh thu nhỏ"
+
+#: templates/stats.php
+msgid "Total"
+msgstr "Tổng cộng"

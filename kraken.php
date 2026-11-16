@@ -1,6 +1,6 @@
 <?php
 /*
-	Copyright 2015  Karim Salman  (email : ksalman@kraken.io)
+	Copyright 2015  Kraken.io  (email : dev@kraken.io)
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License, version 2, as
@@ -21,8 +21,10 @@
  * Plugin URI: http://wordpress.org/plugins/kraken-image-optimizer/
  * Description: This plugin allows you to optimize your WordPress images through the Kraken API, the world's most advanced image optimization solution.
  * Tags: kraken, image, optimization, optimizer
- * Version: 2.7.0
- * Author: Karim Salman
+ * Version: 3.0.3
+ * Requires at least: 4.9
+ * Requires PHP: 5.6
+ * Author: Kraken.io
  * Author URI: https://kraken.io
  * Text Domain: kraken-io
  * Domain Path: /languages

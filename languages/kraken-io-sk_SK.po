@@ -1,0 +1,1039 @@
+# Translation of Kraken.io Image Optimizer (Slovak).
+# This file is distributed under the same license as the plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Kraken Image Optimizer 3.0.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kraken-image-optimizer\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sk_SK\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: kraken-i18n\n"
+
+#. Plugin Name of the plugin
+#: kraken.php
+msgid "Kraken Image Optimizer"
+msgstr "Kraken Image Optimizer"
+
+#. Plugin URI of the plugin
+#: kraken.php
+msgid "http://wordpress.org/plugins/kraken-image-optimizer/"
+msgstr "http://wordpress.org/plugins/kraken-image-optimizer/"
+
+#. Description of the plugin
+#: kraken.php
+msgid "This plugin allows you to optimize your WordPress images through the Kraken API, the world's most advanced image optimization solution."
+msgstr "Tento plugin umožňuje optimalizovať obrázky vo WordPresse pomocou rozhrania Kraken API, najpokročilejšieho riešenia na optimalizáciu obrázkov na svete."
+
+#. Author of the plugin
+#: kraken.php
+#: includes/class-kraken-io-settings.php:119
+#: includes/class-kraken-io-stats.php:156
+#: includes/class-kraken-io-stats.php:199
+msgid "Kraken.io"
+msgstr "Kraken.io"
+
+#. Author URI of the plugin
+#: kraken.php
+msgid "https://kraken.io"
+msgstr "https://kraken.io"
+
+#. translators: %1$s used %2$s total %3$s remaining
+#: includes/class-kraken-io-ajax.php:237
+#: templates/summary-panel.php:62
+msgid "%1$s / %2$s · %3$s left"
+msgstr "%1$s / %2$s · zostáva %3$s"
+
+#: includes/class-kraken-io-background-process.php:62
+#: includes/class-kraken-io-optimization.php:155
+#: includes/class-kraken-io-optimization.php:799
+msgid "Conversion failed."
+msgstr "Konverzia zlyhala."
+
+#: includes/class-kraken-io-optimization.php:400
+msgid "Could not get optimized image URL."
+msgstr "Nepodarilo sa získať URL optimalizovaného obrázka."
+
+#: includes/class-kraken-io-optimization.php:406
+msgid "Could not overwrite original file. Please ensure that your files are writable by plugins."
+msgstr "Nepodarilo sa prepísať pôvodný súbor. Skontrolujte, prosím, či majú pluginy oprávnenie zapisovať do vašich súborov."
+
+#: includes/class-kraken-io-optimization.php:447
+msgid "Your Kraken.io API credentials are missing or invalid."
+msgstr "Vaše prihlasovacie údaje k API Kraken.io chýbajú alebo sú neplatné."
+
+#: includes/class-kraken-io-optimization.php:448
+msgid "There was nothing to send for optimization."
+msgstr "Na optimalizáciu nebolo čo odoslať."
+
+#: includes/class-kraken-io-optimization.php:449
+msgid "No file was provided to optimize."
+msgstr "Na optimalizáciu nebol poskytnutý žiadny súbor."
+
+#: includes/class-kraken-io-optimization.php:450
+msgid "The image file could not be found on the server."
+msgstr "Súbor obrázka sa na serveri nepodarilo nájsť."
+
+#: includes/class-kraken-io-optimization.php:459
+msgid "Unknown error."
+msgstr "Neznáma chyba."
+
+#: includes/class-kraken-io-optimization.php:555
+#: includes/class-kraken-io-optimization.php:771
+msgid "Couldn't find the image path."
+msgstr "Nepodarilo sa nájsť cestu k obrázku."
+
+#: includes/class-kraken-io-optimization.php:594
+msgid "Optimization failed."
+msgstr "Optimalizácia zlyhala."
+
+#: includes/class-kraken-io-optimization.php:761
+msgid "Unsupported conversion format."
+msgstr "Nepodporovaný formát konverzie."
+
+#: includes/class-kraken-io-optimization.php:765
+msgid "This file cannot be converted."
+msgstr "Tento súbor sa nedá skonvertovať."
+
+#: includes/class-kraken-io-optimization.php:813
+msgid "Could not download the converted image."
+msgstr "Skonvertovaný obrázok sa nepodarilo stiahnuť."
+
+#: includes/class-kraken-io-optimization.php:818
+msgid "Could not write the converted image. Please ensure your uploads are writable."
+msgstr "Skonvertovaný obrázok sa nepodarilo zapísať. Skontrolujte, prosím, či máte oprávnenie zapisovať do priečinka nahrávaní."
+
+#: includes/class-kraken-io-settings.php:71
+#: includes/class-kraken-io-settings.php:118
+#: includes/class-kraken-io-settings.php:213
+msgid "Kraken.io Settings"
+msgstr "Nastavenia Kraken.io"
+
+#: includes/class-kraken-io-settings.php:71
+#: templates/summary-panel.php:74
+msgid "Settings"
+msgstr "Nastavenia"
+
+#: includes/class-kraken-io-settings.php:85
+#: templates/bulk-optimizer.php:54
+msgid "Krak 'em all"
+msgstr "Krakni ich všetky"
+
+#: includes/class-kraken-io-settings.php:129
+#: includes/class-kraken-io-settings.php:130
+#: includes/class-kraken-io-settings.php:150
+msgid "Bulk Optimize with Kraken.io"
+msgstr "Hromadná optimalizácia cez Kraken.io"
+
+#: includes/class-kraken-io-settings.php:187
+msgid "General Settings"
+msgstr "Všeobecné nastavenia"
+
+#: includes/class-kraken-io-settings.php:188
+msgid "<a href=\"http://kraken.io/account\" target=\"_blank\">Kraken.io</a> API Settings."
+msgstr "Nastavenia API <a href=\"http://kraken.io/account\" target=\"_blank\">Kraken.io</a>."
+
+#: includes/class-kraken-io-settings.php:191
+msgid "Advanced Settings"
+msgstr "Pokročilé nastavenia"
+
+#: includes/class-kraken-io-settings.php:192
+msgid "We recommend that you leave these settings at their default values."
+msgstr "Odporúčame ponechať tieto nastavenia na predvolených hodnotách."
+
+#: includes/class-kraken-io-settings.php:195
+msgid "Bulk Optimizer"
+msgstr "Hromadná optimalizácia"
+
+#: includes/class-kraken-io-settings.php:199
+msgid "Stats"
+msgstr "Štatistiky"
+
+#: includes/class-kraken-io-settings.php:203
+msgid "Support"
+msgstr "Podpora"
+
+#: includes/class-kraken-io-settings.php:249
+msgid "Save Changes"
+msgstr "Uložiť zmeny"
+
+#: includes/class-kraken-io-settings.php:354
+msgid "Please refresh the page and try again."
+msgstr "Obnovte, prosím, stránku a skúste to znova."
+
+#: includes/class-kraken-io-settings.php:359
+msgid "There are no Kraken options."
+msgstr "Nie sú k dispozícii žiadne možnosti Kraken."
+
+#: includes/class-kraken-io-settings.php:392
+msgid "Settings Saved"
+msgstr "Nastavenia uložené"
+
+#: includes/class-kraken-io-settings.php:578
+msgid "Deprecated"
+msgstr "Zastarané"
+
+#: includes/class-kraken-io-settings.php:605
+msgid "value"
+msgstr "hodnota"
+
+#. translators: %s is the field label, e.g. "API Key" or "API Secret".
+#: includes/class-kraken-io-settings.php:608
+msgid "Your %s is saved. Leave this blank to keep it, or paste a new one to replace it."
+msgstr "Váš %s je uložený. Ponechajte toto pole prázdne, ak ho chcete zachovať, alebo vložte nový a nahraďte ním pôvodný."
+
+#: includes/class-kraken-io-settings.php:745
+msgid "Your credentials are valid."
+msgstr "Vaše prihlasovacie údaje sú platné."
+
+#: includes/class-kraken-io-settings.php:747
+msgid "There is a problem with your credentials."
+msgstr "S vašimi prihlasovacími údajmi je problém."
+
+#: includes/class-kraken-io-settings.php:794
+msgid "API Key"
+msgstr "API kľúč"
+
+#: includes/class-kraken-io-settings.php:801
+msgid "API Secret"
+msgstr "Tajný kľúč API"
+
+#: includes/class-kraken-io-settings.php:806
+msgid "API Status"
+msgstr "Stav API"
+
+#: includes/class-kraken-io-settings.php:814
+msgid "Don't convert (keep original format)"
+msgstr "Nekonvertovať (zachovať pôvodný formát)"
+
+#: includes/class-kraken-io-settings.php:815
+#: includes/class-kraken-io-summary.php:172
+msgid "JPEG"
+msgstr "JPEG"
+
+#: includes/class-kraken-io-settings.php:816
+#: includes/class-kraken-io-summary.php:173
+msgid "PNG"
+msgstr "PNG"
+
+#: includes/class-kraken-io-settings.php:817
+#: includes/class-kraken-io-summary.php:174
+msgid "GIF"
+msgstr "GIF"
+
+#: includes/class-kraken-io-settings.php:818
+#: includes/class-kraken-io-summary.php:175
+msgid "WebP"
+msgstr "WebP"
+
+#: includes/class-kraken-io-settings.php:819
+#: includes/class-kraken-io-summary.php:176
+msgid "AVIF"
+msgstr "AVIF"
+
+#: includes/class-kraken-io-settings.php:822
+msgid "Convert uploads to"
+msgstr "Konvertovať nahrávané súbory na"
+
+#: includes/class-kraken-io-settings.php:824
+msgid "Automatically convert new image uploads to the selected format during optimization. Leave as \"Don't convert\" to keep each image in its original format."
+msgstr "Pri optimalizácii automaticky konvertuje nové nahrané obrázky do vybraného formátu. Ponechajte možnosť „Nekonvertovať“, ak chcete každý obrázok zachovať v pôvodnom formáte."
+
+#: includes/class-kraken-io-settings.php:833
+#: includes/class-kraken-io-summary.php:323
+msgid "Intelligent lossy"
+msgstr "Inteligentný stratový"
+
+#: includes/class-kraken-io-settings.php:834
+#: includes/class-kraken-io-summary.php:323
+msgid "Lossless"
+msgstr "Bezstratový"
+
+#: includes/class-kraken-io-settings.php:836
+#: includes/class-kraken-io-summary.php:322
+#: templates/media-column-stats.php:91
+msgid "Optimization mode"
+msgstr "Režim optimalizácie"
+
+#: includes/class-kraken-io-settings.php:838
+msgid "The Intelligent Lossy mode will yield the greatest savings without perceivable reducing the quality of your images, and so we recommend this setting to users."
+msgstr "Režim Inteligentný stratový prinesie najväčšiu úsporu bez badateľného zníženia kvality vašich obrázkov, a preto ho používateľom odporúčame."
+
+#: includes/class-kraken-io-settings.php:839
+msgid "The Lossless mode will result in an unchanged image, however, will yield reduced savings as the image will not be recompressed."
+msgstr "Bezstratový režim ponechá obrázok nezmenený, prinesie však menšiu úsporu, keďže obrázok sa nanovo nekomprimuje."
+
+#: includes/class-kraken-io-settings.php:847
+msgid "Optimize uploads"
+msgstr "Optimalizovať nahrávané súbory"
+
+#: includes/class-kraken-io-settings.php:848
+#: includes/class-kraken-io-summary.php:328
+msgid "Automatically optimize uploads"
+msgstr "Automaticky optimalizovať nahrávané súbory"
+
+#: includes/class-kraken-io-settings.php:850
+msgid "Enabled by default. This setting causes images uploaded through the Media Uploader to be optimized on-the-fly."
+msgstr "Predvolene zapnuté. Toto nastavenie spôsobí, že obrázky nahrané cez nástroj na nahrávanie médií sa optimalizujú za behu."
+
+#: includes/class-kraken-io-settings.php:851
+msgid "If you do not wish to do this, or wish to optimize images later, disable this setting by unchecking the box."
+msgstr "Ak si to neželáte alebo chcete obrázky optimalizovať neskôr, vypnite toto nastavenie zrušením začiarknutia."
+
+#: includes/class-kraken-io-settings.php:859
+msgid "Optimize images"
+msgstr "Optimalizovať obrázky"
+
+#: includes/class-kraken-io-settings.php:860
+#: includes/class-kraken-io-summary.php:334
+msgid "Optimize main image"
+msgstr "Optimalizovať hlavný obrázok"
+
+#: includes/class-kraken-io-settings.php:862
+msgid "Enabled by default. This option causes the image uploaded by the user to get optimized, as well as all sizes generated by WordPress."
+msgstr "Predvolene zapnuté. Táto možnosť spôsobí, že sa optimalizuje obrázok nahraný používateľom, ako aj všetky veľkosti vygenerované WordPressom."
+
+#: includes/class-kraken-io-settings.php:863
+msgid "Disabling this option results in faster uploading, since the main image is not sent to our system for optimization."
+msgstr "Vypnutie tejto možnosti zrýchli nahrávanie, keďže hlavný obrázok sa do nášho systému na optimalizáciu neodosiela."
+
+#: includes/class-kraken-io-settings.php:864
+msgid "Disable this option if you never use the \"main\" image upload in your posts, or speed of image uploading is an issue."
+msgstr "Vypnite túto možnosť, ak v príspevkoch nikdy nepoužívate „hlavný“ nahraný obrázok alebo ak je problémom rýchlosť nahrávania obrázkov."
+
+#: includes/class-kraken-io-settings.php:872
+msgid "Max width (px)"
+msgstr "Max. šírka (px)"
+
+#: includes/class-kraken-io-settings.php:873
+msgid "Max height (px)"
+msgstr "Max. výška (px)"
+
+#: includes/class-kraken-io-settings.php:879
+#: includes/class-kraken-io-summary.php:343
+msgid "Resize main image"
+msgstr "Zmeniť veľkosť hlavného obrázka"
+
+#: includes/class-kraken-io-settings.php:881
+msgid "You can restrict the maximum dimensions of image uploads by width and/or height."
+msgstr "Maximálne rozmery nahrávaných obrázkov môžete obmedziť šírkou a/alebo výškou."
+
+#: includes/class-kraken-io-settings.php:882
+msgid "It is especially useful if you wish to prevent unnecessarily large photos with extremely high resolutions from being uploaded, for example, photos shot with a recent-model iPhone. Note: you can restrict the dimensions by width, height, or both. A value of zero disables."
+msgstr "Je to užitočné najmä vtedy, ak chcete zabrániť nahrávaniu zbytočne veľkých fotografií s extrémne vysokým rozlíšením, napríklad fotografií z novších modelov iPhonu. Poznámka: rozmery môžete obmedziť šírkou, výškou alebo oboma. Hodnota nula obmedzenie vypne."
+
+#: includes/class-kraken-io-settings.php:894
+msgid "Intelligent lossy (recommended)"
+msgstr "Inteligentný stratový (odporúčané)"
+
+#: includes/class-kraken-io-settings.php:899
+msgid "JPEG quality setting"
+msgstr "Nastavenie kvality JPEG"
+
+#: includes/class-kraken-io-settings.php:901
+msgid "Advanced users can force the quality of JPEG images to a discrete \"q\" value between 25 and 100 using this setting."
+msgstr "Pokročilí používatelia môžu týmto nastavením vynútiť kvalitu obrázkov JPEG na konkrétnu hodnotu „q“ od 25 do 100."
+
+#: includes/class-kraken-io-settings.php:902
+msgid "For example, forcing the quality to 60 or 70 might yield greater savings, but the resulting quality might be affected, depending on the image."
+msgstr "Napríklad vynútenie kvality na 60 alebo 70 môže priniesť väčšiu úsporu, ale výsledná kvalita môže byť v závislosti od obrázka ovplyvnená."
+
+#: includes/class-kraken-io-settings.php:903
+msgid "We therefore recommend keeping the <strong>Intelligent Lossy</strong> setting, which will not allow a resulting image of unacceptable quality."
+msgstr "Preto odporúčame ponechať nastavenie <strong>Inteligentný stratový</strong>, ktoré nedovolí vznik obrázka s neprijateľnou kvalitou."
+
+#: includes/class-kraken-io-settings.php:904
+msgid "This setting will be ignored when using the <strong>lossless</strong> optimization mode."
+msgstr "Toto nastavenie sa pri použití <strong>bezstratového</strong> režimu optimalizácie ignoruje."
+
+#: includes/class-kraken-io-settings.php:913
+msgid "4:2:0 (default)"
+msgstr "4:2:0 (predvolené)"
+
+#: includes/class-kraken-io-settings.php:914
+msgid "4:2:2"
+msgstr "4:2:2"
+
+#: includes/class-kraken-io-settings.php:915
+msgid "4:4:4 (no subsampling)"
+msgstr "4:4:4 (bez podvzorkovania)"
+
+#: includes/class-kraken-io-settings.php:917
+msgid "Chroma subsampling scheme"
+msgstr "Schéma podvzorkovania farebnosti"
+
+#: includes/class-kraken-io-settings.php:919
+msgid "Advanced users can also set the resolution at which colour is encoded for JPEG images."
+msgstr "Pokročilí používatelia môžu tiež nastaviť rozlíšenie, v ktorom sa pre obrázky JPEG kóduje farba."
+
+#: includes/class-kraken-io-settings.php:920
+msgid "In short, the default setting of 4:2:0 is suitable for most images, and will result in the lowest possible optimized file size."
+msgstr "Stručne povedané, predvolené nastavenie 4:2:0 je vhodné pre väčšinu obrázkov a vedie k najmenšej možnej veľkosti optimalizovaného súboru."
+
+#: includes/class-kraken-io-settings.php:921
+msgid "Images containing high contrast text or bright red areas on flat backgrounds might benefit from disabling chroma subsampling (by setting it to 4:4:4). "
+msgstr "Obrázkom s vysoko kontrastným textom alebo s jasne červenými plochami na rovnomernom pozadí môže prospieť vypnutie podvzorkovania farebnosti (nastavením na 4:4:4). "
+
+#: includes/class-kraken-io-settings.php:922
+msgid "More information can be found in our <a href=\"https://kraken.io/docs/chroma-subsampling\" target=\"_blank\">documentation</a>."
+msgstr "Viac informácií nájdete v našej <a href=\"https://kraken.io/docs/chroma-subsampling\" target=\"_blank\">dokumentácii</a>."
+
+#: includes/class-kraken-io-settings.php:932
+msgid "All logged-in users"
+msgstr "Všetci prihlásení používatelia"
+
+#: includes/class-kraken-io-settings.php:933
+msgid "Users who can upload media (Author and above)"
+msgstr "Používatelia, ktorí môžu nahrávať médiá (Autor a vyššie)"
+
+#: includes/class-kraken-io-settings.php:934
+msgid "Administrators only"
+msgstr "Len administrátori"
+
+#: includes/class-kraken-io-settings.php:937
+msgid "Who can optimize images"
+msgstr "Kto môže optimalizovať obrázky"
+
+#: includes/class-kraken-io-settings.php:939
+msgid "Controls which logged-in users may trigger optimization actions (single optimize, bulk optimize, reset) from the Media Library."
+msgstr "Určuje, ktorí prihlásení používatelia môžu z knižnice médií spúšťať akcie optimalizácie (jednotlivá optimalizácia, hromadná optimalizácia, reset)."
+
+#: includes/class-kraken-io-settings.php:940
+msgid "Optimization consumes your paid Kraken.io quota and rewrites your media, so a user can only act on attachments they are allowed to edit, and by default only users who can upload media (Author and above) may optimize. On sites with open registration (membership, WooCommerce, forums), keep this restricted so untrusted accounts cannot consume your quota or alter media."
+msgstr "Optimalizácia spotrebúva vašu platenú kvótu Kraken.io a prepisuje vaše médiá, takže používateľ môže pracovať len s prílohami, ktoré smie upravovať, a predvolene môžu optimalizovať len používatelia, ktorí môžu nahrávať médiá (Autor a vyššie). Na stránkach s otvorenou registráciou (členské sekcie, WooCommerce, fóra) ponechajte toto nastavenie obmedzené, aby nedôveryhodné účty nemohli spotrebovať vašu kvótu ani meniť médiá."
+
+#: includes/class-kraken-io-settings.php:941
+msgid "• All logged-in users — anyone signed in who can also edit the attachment (most permissive). • Users who can upload media — Authors, Editors and Administrators (default). • Administrators only — most restrictive."
+msgstr "• Všetci prihlásení používatelia — ktokoľvek prihlásený, kto môže prílohu zároveň upravovať (najmenej obmedzujúce). • Používatelia, ktorí môžu nahrávať médiá — Autori, Editori a Administrátori (predvolené). • Len administrátori — najviac obmedzujúce."
+
+#: includes/class-kraken-io-settings.php:950
+msgid "Image sizes to Krak"
+msgstr "Veľkosti obrázkov na krakenie"
+
+#: includes/class-kraken-io-settings.php:952
+msgid "Every time you upload an image, WordPress generates several resized copies (thumbnail, medium, large, and so on). These resized versions — not the original — are what your visitors actually download, through responsive <code>srcset</code> images. Each size you tick here gets optimized, so the images people really load are compressed."
+msgstr "Pri každom nahratí obrázka WordPress vygeneruje niekoľko zmenšených kópií (náhľad, stredná, veľká a podobne). Práve tieto zmenšené verzie — nie originál — si vaši návštevníci v skutočnosti sťahujú prostredníctvom responzívnych obrázkov <code>srcset</code>. Každá veľkosť, ktorú tu začiarknete, sa optimalizuje, takže obrázky, ktoré ľudia naozaj načítavajú, sú komprimované."
+
+#: includes/class-kraken-io-settings.php:953
+msgid "If you untick a size, that copy is still created and still served to your visitors — just <strong>left unoptimized</strong>, at its full original weight. Keeping these on is what delivers the page-speed gain across your whole site, not just on the original file."
+msgstr "Ak začiarknutie veľkosti zrušíte, daná kópia sa aj tak vytvorí a aj tak sa návštevníkom poskytuje — len <strong>neoptimalizovaná</strong>, v plnej pôvodnej veľkosti. Práve ponechanie týchto možností zapnutých prináša zrýchlenie načítania na celom webe, nielen pri pôvodnom súbore."
+
+#: includes/class-kraken-io-settings.php:954
+msgid "The trade-off: each ticked size is a separate optimization that uses your Kraken.io quota. For that reason the large retina sizes <code>1536×1536</code> and <code>2048×2048</code> are <strong>left off by default</strong> — most themes never serve them. If your theme does use them (for high-DPI screens), just tick them here and they'll be optimized too. Already-optimized images are never touched by this."
+msgstr "Kompromis: každá začiarknutá veľkosť je samostatná optimalizácia, ktorá spotrebúva vašu kvótu Kraken.io. Preto sú veľké retina veľkosti <code>1536×1536</code> a <code>2048×2048</code> <strong>predvolene vypnuté</strong> — väčšina šablón ich nikdy nepoužíva. Ak ich vaša šablóna používa (pre obrazovky s vysokým DPI), jednoducho ich tu začiarknite a optimalizujú sa tiež. Už optimalizovaných obrázkov sa toto nedotkne."
+
+#: includes/class-kraken-io-settings.php:962
+#: includes/class-kraken-io-summary.php:387
+msgid "Date"
+msgstr "Dátum"
+
+#: includes/class-kraken-io-settings.php:963
+#: includes/class-kraken-io-summary.php:388
+msgid "Copyright"
+msgstr "Autorské práva"
+
+#: includes/class-kraken-io-settings.php:964
+#: includes/class-kraken-io-summary.php:389
+msgid "Geotag"
+msgstr "Geoznačka"
+
+#: includes/class-kraken-io-settings.php:965
+#: includes/class-kraken-io-summary.php:390
+msgid "Orientation"
+msgstr "Orientácia"
+
+#: includes/class-kraken-io-settings.php:975
+msgid "Preserve EXIF Metadata"
+msgstr "Zachovať metadáta EXIF"
+
+#: includes/class-kraken-io-settings.php:982
+msgid "Image orientation"
+msgstr "Orientácia obrázka"
+
+#: includes/class-kraken-io-settings.php:983
+#: includes/class-kraken-io-summary.php:366
+msgid "Automatically orient images"
+msgstr "Automaticky otáčať obrázky"
+
+#: includes/class-kraken-io-settings.php:985
+msgid "This setting will rotate the JPEG image according to its Orientation EXIF metadata such that it will always be correctly displayed in Web Browsers."
+msgstr "Toto nastavenie otočí obrázok JPEG podľa jeho metadát EXIF o orientácii tak, aby sa vo webových prehliadačoch vždy zobrazoval správne."
+
+#: includes/class-kraken-io-settings.php:986
+msgid "Enable this setting if many of your image uploads come from smart phones or digital cameras which set the orientation based on how they are held at the time of shooting."
+msgstr "Zapnite toto nastavenie, ak veľká časť vašich nahrávaných obrázkov pochádza zo smartfónov alebo digitálnych fotoaparátov, ktoré nastavujú orientáciu podľa toho, ako boli pri snímaní držané."
+
+#: includes/class-kraken-io-settings.php:994
+msgid "Metadata reset per image"
+msgstr "Reset metadát pri jednotlivom obrázku"
+
+#: includes/class-kraken-io-settings.php:995
+msgid "Show reset button"
+msgstr "Zobraziť tlačidlo resetu"
+
+#: includes/class-kraken-io-settings.php:997
+msgid "Checking this option will add a Reset button in the \"Show Details\" popup in the Kraken Stats column for each optimized image."
+msgstr "Začiarknutím tejto možnosti pridáte tlačidlo Reset do vyskakovacieho okna „Zobraziť podrobnosti“ v stĺpci Štatistiky Kraken pri každom optimalizovanom obrázku."
+
+#: includes/class-kraken-io-settings.php:998
+msgid "Resetting an image will remove the Kraken.io metadata associated with it, effectively making your blog forget that it had been optimized in the first place, allowing further optimization in some cases."
+msgstr "Resetovanie obrázka odstráni metadáta Kraken.io, ktoré sú s ním spojené, čím váš blog v podstate zabudne, že obrázok už bol optimalizovaný, čo v niektorých prípadoch umožní jeho ďalšiu optimalizáciu."
+
+#: includes/class-kraken-io-settings.php:999
+msgid "If an image has been optimized using the lossless setting, lossless optimization will not yield any greater savings. If in doubt, please contact support@kraken.io"
+msgstr "Ak bol obrázok optimalizovaný bezstratovo, ďalšia bezstratová optimalizácia neprinesie väčšiu úsporu. V prípade pochybností sa, prosím, obráťte na support@kraken.io"
+
+#: includes/class-kraken-io-settings.php:1007
+msgid "Savings badge"
+msgstr "Odznak úspory"
+
+#: includes/class-kraken-io-settings.php:1008
+msgid "Show a savings badge on optimized thumbnails"
+msgstr "Zobraziť odznak úspory na optimalizovaných náhľadoch"
+
+#: includes/class-kraken-io-settings.php:1010
+msgid "Displays the percentage saved in the corner of each optimized image thumbnail in the Media Library."
+msgstr "Zobrazí ušetrené percento v rohu náhľadu každého optimalizovaného obrázka v knižnici médií."
+
+#: includes/class-kraken-io-settings.php:1018
+msgid "Background process"
+msgstr "Proces na pozadí"
+
+#: includes/class-kraken-io-settings.php:1019
+msgid "Process image optimization in background"
+msgstr "Spracúvať optimalizáciu obrázkov na pozadí"
+
+#: includes/class-kraken-io-settings.php:1021
+msgid "This setting will optimize images in background when using the option \"Automatically optimize uploads\" resulting in faster image uploads."
+msgstr "Toto nastavenie optimalizuje obrázky na pozadí pri použití možnosti „Automaticky optimalizovať nahrávané súbory“, čím sa zrýchli nahrávanie obrázkov."
+
+#: includes/class-kraken-io-settings.php:1027
+msgid "WebP / next-gen formats"
+msgstr "WebP / formáty novej generácie"
+
+#: includes/class-kraken-io-settings.php:1029
+msgid "The old \"Create WebP\" and \"Display WebP\" options are deprecated. They created a separate .webp companion for every image and depended on Apache .htaccess rewrite rules, which did not work behind a CDN."
+msgstr "Staré možnosti „Vytvoriť WebP“ a „Zobraziť WebP“ sú zastarané. Vytvárali pre každý obrázok samostatný sprievodný súbor .webp a záviseli od prepisovacích pravidiel Apache .htaccess, ktoré za sieťou CDN nefungovali."
+
+#: includes/class-kraken-io-settings.php:1030
+msgid "To serve WebP (or AVIF) now, use \"Convert uploads to → WebP\" in the General settings tab. Each upload is converted to the modern format directly, so the file is served as-is by any server or CDN — no companion files and no rewrite rules required."
+msgstr "Ak chcete teraz poskytovať WebP (alebo AVIF), použite na karte Všeobecné nastavenia možnosť „Konvertovať nahrávané súbory na → WebP“. Každý nahraný súbor sa priamo skonvertuje do moderného formátu, takže ho ľubovoľný server alebo CDN poskytne tak, ako je — bez sprievodných súborov a bez prepisovacích pravidiel."
+
+#: includes/class-kraken-io-settings.php:1039
+msgid "Bulk concurrency"
+msgstr "Súbežnosť hromadnej optimalizácie"
+
+#: includes/class-kraken-io-settings.php:1041
+msgid "This settings defines how many images can be processed at the same time using the bulk optimizer. The recommended (and default) value is 4."
+msgstr "Toto nastavenie určuje, koľko obrázkov možno pri hromadnej optimalizácii spracúvať súčasne. Odporúčaná (a predvolená) hodnota je 4."
+
+#: includes/class-kraken-io-settings.php:1042
+msgid "For blogs on very small hosting plans, or with reduced connectivity, a lower number might be necessary to avoid hitting request limits."
+msgstr "Pri blogoch na veľmi malých hostingových programoch alebo s obmedzeným pripojením môže byť na zabránenie prekročeniu limitov požiadaviek potrebná nižšia hodnota."
+
+#: includes/class-kraken-io-summary.php:46
+msgid "Kraken.io Image Optimizer"
+msgstr "Kraken.io Image Optimizer"
+
+#: includes/class-kraken-io-summary.php:171
+msgid "No conversion"
+msgstr "Bez konverzie"
+
+#: includes/class-kraken-io-summary.php:351
+msgid "JPEG quality"
+msgstr "Kvalita JPEG"
+
+#: includes/class-kraken-io-summary.php:358
+msgid "Chroma subsampling"
+msgstr "Podvzorkovanie farebnosti"
+
+#: includes/class-kraken-io-summary.php:372
+msgid "Background processing"
+msgstr "Spracovanie na pozadí"
+
+#: includes/class-kraken-io-summary.php:380
+msgid "Per-image reset button"
+msgstr "Tlačidlo resetu pri jednotlivom obrázku"
+
+#: includes/class-kraken-io-summary.php:391
+msgid "Profile"
+msgstr "Profil"
+
+#: includes/class-kraken-io-summary.php:400
+msgid "Preserve EXIF metadata"
+msgstr "Zachovať metadáta EXIF"
+
+#: includes/class-kraken-io-summary.php:413
+msgid "Image sizes optimized"
+msgstr "Optimalizované veľkosti obrázkov"
+
+#. translators: %d number of image sizes
+#: includes/class-kraken-io-summary.php:415
+msgid "%d size"
+msgid_plural "%d sizes"
+msgstr[0] "%d veľkosť"
+msgstr[1] "%d veľkosti"
+msgstr[2] "%d veľkostí"
+
+#: includes/class-kraken-io.php:372
+msgid "Are you sure you want to remove Kraken metadata for this image?"
+msgstr "Naozaj chcete pri tomto obrázku odstrániť metadáta Kraken?"
+
+#: includes/class-kraken-io.php:373
+msgid "This will immediately remove all Kraken metadata associated with your images. Are you sure you want to do this?"
+msgstr "Týmto sa okamžite odstránia všetky metadáta Kraken spojené s vašimi obrázkami. Naozaj to chcete urobiť?"
+
+#: includes/class-kraken-io.php:374
+msgid "Something went wrong. Please reload the page and try again."
+msgstr "Niečo sa pokazilo. Znova, prosím, načítajte stránku a skúste to znova."
+
+#: includes/class-kraken-io.php:375
+msgid "Optimizing…"
+msgstr "Optimalizuje sa…"
+
+#: includes/class-kraken-io.php:376
+msgid "Converting…"
+msgstr "Konvertuje sa…"
+
+#: includes/class-kraken-io.php:377
+msgid "Optimized"
+msgstr "Optimalizované"
+
+#. translators: %s number of images
+#: includes/class-kraken-io.php:379
+msgid "%s images will be optimized."
+msgstr "Optimalizuje sa %s obrázkov."
+
+#. translators: %1$s optimized %2$s total
+#: includes/class-kraken-io.php:381
+msgid "%1$s / %2$s images have been optimized."
+msgstr "Optimalizovaných bolo %1$s / %2$s obrázkov."
+
+#: includes/class-kraken-io.php:382
+msgid "Copied!"
+msgstr "Skopírované!"
+
+#: templates/account-hero.php:60
+#: templates/summary-panel.php:36
+msgid "Not connected"
+msgstr "Nepripojené"
+
+#: templates/account-hero.php:61
+msgid "Connect your Kraken.io account"
+msgstr "Pripojte svoj účet Kraken.io"
+
+#: templates/account-hero.php:62
+msgid "Enter your API key and secret below to start optimizing your images. Don't have an account yet? Create one in seconds."
+msgstr "Zadajte nižšie svoj API kľúč a tajný kľúč a začnite optimalizovať svoje obrázky. Ešte nemáte účet? Vytvorte si ho za pár sekúnd."
+
+#: templates/account-hero.php:68
+#: templates/summary-panel.php:38
+msgid "Invalid credentials"
+msgstr "Neplatné prihlasovacie údaje"
+
+#: templates/account-hero.php:69
+msgid "Your API credentials are invalid"
+msgstr "Vaše prihlasovacie údaje k API sú neplatné"
+
+#: templates/account-hero.php:70
+msgid "Double-check the API key and secret below, or grab fresh credentials from your Kraken.io account."
+msgstr "Skontrolujte nižšie svoj API kľúč a tajný kľúč alebo si vo svojom účte Kraken.io vygenerujte nové prihlasovacie údaje."
+
+#: templates/account-hero.php:76
+#: templates/summary-panel.php:40
+msgid "Payment overdue"
+msgstr "Platba po splatnosti"
+
+#: templates/account-hero.php:77
+msgid "Your Kraken.io payment is overdue"
+msgstr "Vaša platba za Kraken.io je po splatnosti"
+
+#: templates/account-hero.php:78
+msgid "Optimization may be paused until your billing is up to date."
+msgstr "Optimalizácia môže byť pozastavená, kým si nevyrovnáte fakturáciu."
+
+#: templates/account-hero.php:84
+#: templates/account-hero.php:92
+#: templates/summary-panel.php:42
+msgid "Connected"
+msgstr "Pripojené"
+
+#: templates/account-hero.php:85
+msgid "You're on the Free plan"
+msgstr "Používate program Free"
+
+#: templates/account-hero.php:86
+msgid "Upgrade to a paid plan for more monthly quota and larger file sizes."
+msgstr "Prejdite na platený program pre väčšiu mesačnú kvótu a väčšie súbory."
+
+#. translators: %s plan name
+#: templates/account-hero.php:96
+msgid "Connected — %s plan"
+msgstr "Pripojené — program %s"
+
+#: templates/account-hero.php:99
+msgid "Your Kraken.io account is active and optimizing your images."
+msgstr "Váš účet Kraken.io je aktívny a optimalizuje vaše obrázky."
+
+#: templates/account-hero.php:119
+msgid "Monthly quota"
+msgstr "Mesačná kvóta"
+
+#. translators: %1$s used %2$s total
+#: templates/account-hero.php:124
+msgid "%1$s of %2$s used"
+msgstr "Použité %1$s z %2$s"
+
+#. translators: %s remaining
+#: templates/account-hero.php:125
+msgid "%s left"
+msgstr "zostáva %s"
+
+#: templates/account-hero.php:135
+msgid "Create an account"
+msgstr "Vytvoriť účet"
+
+#: templates/account-hero.php:136
+#: templates/account-hero.php:142
+msgid "Get API credentials"
+msgstr "Získať prihlasovacie údaje k API"
+
+#: templates/account-hero.php:148
+msgid "Update billing"
+msgstr "Aktualizovať fakturáciu"
+
+#: templates/account-hero.php:154
+msgid "Subscribe to a plan"
+msgstr "Predplatiť si program"
+
+#: templates/account-hero.php:155
+#: templates/account-hero.php:161
+msgid "Manage account"
+msgstr "Spravovať účet"
+
+#: templates/account-hero.php:162
+#: templates/summary-panel.php:113
+msgid "Upgrade plan"
+msgstr "Prejsť na vyšší program"
+
+#: templates/bulk-optimizer-stats.php:32
+#: templates/media-column-stats.php:26
+#: templates/media-column-stats.php:133
+msgid "Failed with errors"
+msgstr "Dokončené s chybami"
+
+#: templates/bulk-optimizer-stats.php:41
+#: templates/media-column-stats.php:35
+msgid "Optimizing..."
+msgstr "Optimalizuje sa..."
+
+#. translators: %1$s percentage %2$s total
+#: templates/bulk-optimizer-stats.php:51
+#: templates/media-column-stats.php:57
+msgid "Saved %1$s (%2$s)"
+msgstr "Ušetrené %1$s (%2$s)"
+
+#: templates/bulk-optimizer-stats.php:56
+#: templates/media-column-stats.php:107
+msgid "No savings"
+msgstr "Žiadna úspora"
+
+#. translators: %s optimization type
+#: templates/bulk-optimizer-stats.php:64
+#: templates/media-column-stats.php:125
+msgid "No savings found for type %s"
+msgstr "Pre typ %s sa nezistila žiadna úspora"
+
+#: templates/bulk-optimizer-stats.php:71
+#: templates/media-column-stats.php:146
+msgid "N/A"
+msgstr "—"
+
+#: templates/bulk-optimizer.php:14
+#: templates/media-column-stats.php:20
+#: templates/stats.php:13
+msgid "Connect your account"
+msgstr "Pripojte svoj účet"
+
+#. translators: %s number of images
+#: templates/bulk-optimizer.php:23
+msgid "%s image will be optimized."
+msgid_plural "%s images will be optimized."
+msgstr[0] "Optimalizuje sa %s obrázok."
+msgstr[1] "Optimalizujú sa %s obrázky."
+msgstr[2] "Optimalizuje sa %s obrázkov."
+
+#: templates/bulk-optimizer.php:27
+msgid "Selected images are already optimized"
+msgstr "Vybrané obrázky sú už optimalizované"
+
+#: templates/bulk-optimizer.php:29
+msgid "All images are already optimized"
+msgstr "Všetky obrázky sú už optimalizované"
+
+#: templates/bulk-optimizer.php:44
+msgid "Kraken Bulk Image Optimization"
+msgstr "Hromadná optimalizácia obrázkov cez Kraken"
+
+#: templates/bulk-optimizer.php:65
+msgid "Image"
+msgstr "Obrázok"
+
+#: templates/bulk-optimizer.php:66
+msgid "Original Size"
+msgstr "Pôvodná veľkosť"
+
+#: templates/bulk-optimizer.php:69
+msgid "Kraken.io Stats"
+msgstr "Štatistiky Kraken.io"
+
+#: templates/conflicts-notice.php:23
+msgid "Other image optimizers detected"
+msgstr "Zistené ďalšie optimalizátory obrázkov"
+
+#: templates/conflicts-notice.php:26
+msgid "Running more than one image optimizer on the same uploads wastes quota and can double-compress your images. For best results with Kraken.io, deactivate the plugins below."
+msgstr "Spúšťanie viac ako jedného optimalizátora obrázkov nad tými istými nahranými súbormi plytvá kvótou a môže vaše obrázky komprimovať dvakrát. Pre najlepšie výsledky s Kraken.io deaktivujte nižšie uvedené pluginy."
+
+#: templates/conflicts-notice.php:33
+msgid "Deactivate"
+msgstr "Deaktivovať"
+
+#: templates/media-column-stats.php:46
+msgid "Optimize Main Image"
+msgstr "Optimalizovať hlavný obrázok"
+
+#: templates/media-column-stats.php:61
+msgid "Show Details"
+msgstr "Zobraziť podrobnosti"
+
+#: templates/media-column-stats.php:67
+msgid "Main image savings"
+msgstr "Úspora pri hlavnom obrázku"
+
+#. translators: %1$s bytes %2$s percentage
+#: templates/media-column-stats.php:70
+#: templates/media-column-stats.php:85
+msgid "%1$s (%2$s saved)"
+msgstr "%1$s (ušetrené %2$s)"
+
+#. translators: %s count
+#: templates/media-column-stats.php:80
+msgid "Savings on %s thumbnails"
+msgstr "Úspora pri %s náhľadoch"
+
+#: templates/media-column-stats.php:97
+msgid "Reset Image"
+msgstr "Resetovať obrázok"
+
+#: templates/media-column-stats.php:117
+msgid "Optimize"
+msgstr "Optimalizovať"
+
+#: templates/stats.php:28
+msgid "Plan Level"
+msgstr "Úroveň programu"
+
+#: templates/stats.php:32
+msgid "Quota"
+msgstr "Kvóta"
+
+#: templates/stats.php:36
+msgid "Current Usage"
+msgstr "Aktuálne využitie"
+
+#: templates/stats.php:40
+msgid "Remaining"
+msgstr "Zostáva"
+
+#: templates/summary-panel.php:53
+msgid "Active plan"
+msgstr "Aktívny program"
+
+#: templates/summary-panel.php:73
+msgid "View full stats"
+msgstr "Zobraziť úplné štatistiky"
+
+#: templates/summary-panel.php:87
+msgid "No API credentials found."
+msgstr "Nenašli sa žiadne prihlasovacie údaje k API."
+
+#: templates/summary-panel.php:87
+msgid "Connect your Kraken.io account to start optimizing your images."
+msgstr "Pripojte svoj účet Kraken.io a začnite optimalizovať svoje obrázky."
+
+#: templates/summary-panel.php:88
+msgid "Add API credentials"
+msgstr "Pridať prihlasovacie údaje k API"
+
+#: templates/summary-panel.php:94
+msgid "Your Kraken.io API credentials are invalid."
+msgstr "Vaše prihlasovacie údaje k API Kraken.io sú neplatné."
+
+#: templates/summary-panel.php:94
+msgid "Please check your API key and secret in the plugin settings."
+msgstr "Skontrolujte, prosím, svoj API kľúč a tajný kľúč v nastaveniach pluginu."
+
+#: templates/summary-panel.php:95
+msgid "Review credentials"
+msgstr "Skontrolovať prihlasovacie údaje"
+
+#: templates/summary-panel.php:103
+msgid "Payment overdue — your API access has been restricted."
+msgstr "Platba po splatnosti — váš prístup k API bol obmedzený."
+
+#: templates/summary-panel.php:103
+msgid "Please complete your payment from your kraken.io account to resume optimizing."
+msgstr "Ak chcete pokračovať v optimalizácii, dokončite, prosím, platbu vo svojom účte kraken.io."
+
+#: templates/summary-panel.php:104
+msgid "Complete payment"
+msgstr "Dokončiť platbu"
+
+#: templates/summary-panel.php:112
+msgid "Free test quota used up."
+msgstr "Bezplatná testovacia kvóta je vyčerpaná."
+
+#: templates/summary-panel.php:112
+msgid "Upgrade to a paid plan to keep optimizing, or email support@kraken.io to request more test quota."
+msgstr "Ak chcete pokračovať v optimalizácii, prejdite na platený program alebo o väčšiu testovaciu kvótu požiadajte e-mailom na support@kraken.io."
+
+#: templates/summary-panel.php:115
+msgid "Monthly quota exceeded."
+msgstr "Mesačná kvóta prekročená."
+
+#: templates/summary-panel.php:115
+msgid "Further optimizations will be billed at the end of your billing period."
+msgstr "Ďalšie optimalizácie sa vyúčtujú na konci vášho fakturačného obdobia."
+
+#: templates/summary-panel.php:116
+msgid "View account"
+msgstr "Zobraziť účet"
+
+#: templates/summary-panel.php:129
+msgid "Convert uploads to:"
+msgstr "Konvertovať nahrávané súbory na:"
+
+#. translators: %s number of images
+#: templates/summary-panel.php:147
+msgid "Bulk optimize (%s)"
+msgstr "Hromadne optimalizovať (%s)"
+
+#: templates/summary-panel.php:159
+msgid "General"
+msgstr "Všeobecné"
+
+#: templates/summary-panel.php:168
+#: templates/summary-panel.php:185
+msgid "Edit"
+msgstr "Upraviť"
+
+#: templates/summary-panel.php:172
+msgid "Advanced"
+msgstr "Pokročilé"
+
+#: templates/summary-panel.php:174
+msgid "None enabled"
+msgstr "Žiadne nie je zapnuté"
+
+#: templates/summary-panel.php:189
+msgid "Supported:"
+msgstr "Podporované:"
+
+#: templates/support.php:23
+msgid "Site"
+msgstr "Stránka"
+
+#: templates/support.php:24
+msgid "WordPress"
+msgstr "WordPress"
+
+#: templates/support.php:25
+msgid "PHP"
+msgstr "PHP"
+
+#: templates/support.php:26
+msgid "Plugin"
+msgstr "Plugin"
+
+#. translators: %s: site URL
+#: templates/support.php:36
+msgid "Kraken.io WordPress plugin support — %s"
+msgstr "Podpora pre WordPress plugin Kraken.io — %s"
+
+#: templates/support.php:39
+msgid "Describe your question or problem here."
+msgstr "Tu opíšte svoju otázku alebo problém."
+
+#: templates/support.php:44
+msgid "Contact us"
+msgstr "Kontaktujte nás"
+
+#: templates/support.php:46
+msgid "Have a question or hit a problem? The quickest way to reach the Kraken.io team is our WordPress.org support forum — open a thread and we will reply there. Prefer email? Use the button below to write to us from your own mail app."
+msgstr "Máte otázku alebo ste narazili na problém? Najrýchlejšie sa k tímu Kraken.io dostanete cez naše podporné fórum na WordPress.org — založte vlákno a odpovieme vám tam. Uprednostňujete e-mail? Tlačidlom nižšie nám napíšte zo svojej vlastnej poštovej aplikácie."
+
+#: templates/support.php:52
+msgid "Open the support forum"
+msgstr "Otvoriť podporné fórum"
+
+#: templates/support.php:56
+msgid "Email support@kraken.io"
+msgstr "Napísať na support@kraken.io"
+
+#: templates/support.php:62
+msgid "Please include these details so we can help faster:"
+msgstr "Uveďte, prosím, tieto údaje, aby sme vám mohli pomôcť rýchlejšie:"
+
+#: templates/support.php:64
+msgid "Copy"
+msgstr "Kopírovať"
+
+#: templates/support.php:74
+msgid "These links never depend on your server's email setup, so your message always reaches us."
+msgstr "Tieto odkazy nikdy nezávisia od nastavenia e-mailu na vašom serveri, takže vaša správa nám vždy dorazí."
+
+#: includes/class-kraken-io-settings.php:293
+msgid "All changes saved"
+msgstr "Všetky zmeny uložené"
+
+#: includes/class-kraken-io-settings.php:297
+msgid "You have unsaved changes — don’t forget to save."
+msgstr "Máte neuložené zmeny — nezabudnite ich uložiť."
+
+#: templates/stats.php:62
+msgid "Savings on this site"
+msgstr "Úspora na tejto stránke"
+
+#: templates/stats.php:64
+msgid "These figures cover only the images optimized on this website — every full-size image and all of their thumbnail sizes — and are calculated from this site's own data. They are separate from the Kraken.io account quota shown above, which is shared across every site that uses your API key."
+msgstr "Tieto čísla zahŕňajú len obrázky optimalizované na tejto webovej stránke — každý obrázok v plnej veľkosti a všetky jeho veľkosti náhľadov — a vychádzajú z údajov samotnej tejto stránky. Sú oddelené od kvóty účtu Kraken.io zobrazenej vyššie, ktorá je zdieľaná naprieč všetkými stránkami používajúcimi váš API kľúč."
+
+#: templates/stats.php:70
+msgid "saved on this site"
+msgstr "ušetrené na tejto stránke"
+
+#: templates/stats.php:79
+msgid "%s smaller overall"
+msgstr "celkovo o %s menej"
+
+#: templates/stats.php
+msgid "Original"
+msgstr "Originál"
+
+#: templates/stats.php
+msgid "Saved"
+msgstr "Ušetrené"
+
+#: templates/stats.php
+msgid "Full-size images"
+msgstr "Obrázky v plnej veľkosti"
+
+#: templates/stats.php
+msgid "Thumbnails"
+msgstr "Náhľady"
+
+#: templates/stats.php
+msgid "Total"
+msgstr "Spolu"

@@ -1,0 +1,1037 @@
+# Translation of Kraken.io Image Optimizer (Icelandic).
+# This file is distributed under the same license as the plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Kraken Image Optimizer 3.0.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kraken-image-optimizer\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: is_IS\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
+"X-Generator: kraken-i18n\n"
+
+#. Plugin Name of the plugin
+#: kraken.php
+msgid "Kraken Image Optimizer"
+msgstr "Kraken Image Optimizer"
+
+#. Plugin URI of the plugin
+#: kraken.php
+msgid "http://wordpress.org/plugins/kraken-image-optimizer/"
+msgstr "http://wordpress.org/plugins/kraken-image-optimizer/"
+
+#. Description of the plugin
+#: kraken.php
+msgid "This plugin allows you to optimize your WordPress images through the Kraken API, the world's most advanced image optimization solution."
+msgstr "Þessi viðbót gerir þér kleift að fínstilla WordPress-myndirnar þínar í gegnum Kraken API, fullkomnustu myndfínstillingarlausn heims."
+
+#. Author of the plugin
+#: kraken.php
+#: includes/class-kraken-io-settings.php:119
+#: includes/class-kraken-io-stats.php:156
+#: includes/class-kraken-io-stats.php:199
+msgid "Kraken.io"
+msgstr "Kraken.io"
+
+#. Author URI of the plugin
+#: kraken.php
+msgid "https://kraken.io"
+msgstr "https://kraken.io"
+
+#. translators: %1$s used %2$s total %3$s remaining
+#: includes/class-kraken-io-ajax.php:237
+#: templates/summary-panel.php:62
+msgid "%1$s / %2$s · %3$s left"
+msgstr "%1$s / %2$s · %3$s eftir"
+
+#: includes/class-kraken-io-background-process.php:62
+#: includes/class-kraken-io-optimization.php:155
+#: includes/class-kraken-io-optimization.php:799
+msgid "Conversion failed."
+msgstr "Umbreyting mistókst."
+
+#: includes/class-kraken-io-optimization.php:400
+msgid "Could not get optimized image URL."
+msgstr "Tókst ekki að ná í slóð fínstilltrar myndar."
+
+#: includes/class-kraken-io-optimization.php:406
+msgid "Could not overwrite original file. Please ensure that your files are writable by plugins."
+msgstr "Tókst ekki að skrifa yfir upprunalegu skrána. Gakktu úr skugga um að viðbætur geti skrifað í skrárnar þínar."
+
+#: includes/class-kraken-io-optimization.php:447
+msgid "Your Kraken.io API credentials are missing or invalid."
+msgstr "Kraken.io API-auðkennin þín vantar eða eru ógild."
+
+#: includes/class-kraken-io-optimization.php:448
+msgid "There was nothing to send for optimization."
+msgstr "Ekkert var til að senda í fínstillingu."
+
+#: includes/class-kraken-io-optimization.php:449
+msgid "No file was provided to optimize."
+msgstr "Engin skrá var gefin til fínstillingar."
+
+#: includes/class-kraken-io-optimization.php:450
+msgid "The image file could not be found on the server."
+msgstr "Myndskráin fannst ekki á þjóninum."
+
+#: includes/class-kraken-io-optimization.php:459
+msgid "Unknown error."
+msgstr "Óþekkt villa."
+
+#: includes/class-kraken-io-optimization.php:555
+#: includes/class-kraken-io-optimization.php:771
+msgid "Couldn't find the image path."
+msgstr "Tókst ekki að finna slóð myndarinnar."
+
+#: includes/class-kraken-io-optimization.php:594
+msgid "Optimization failed."
+msgstr "Fínstilling mistókst."
+
+#: includes/class-kraken-io-optimization.php:761
+msgid "Unsupported conversion format."
+msgstr "Óstutt umbreytingarsnið."
+
+#: includes/class-kraken-io-optimization.php:765
+msgid "This file cannot be converted."
+msgstr "Ekki er hægt að umbreyta þessari skrá."
+
+#: includes/class-kraken-io-optimization.php:813
+msgid "Could not download the converted image."
+msgstr "Tókst ekki að sækja umbreyttu myndina."
+
+#: includes/class-kraken-io-optimization.php:818
+msgid "Could not write the converted image. Please ensure your uploads are writable."
+msgstr "Tókst ekki að skrifa umbreyttu myndina. Gakktu úr skugga um að hægt sé að skrifa í innhlaðningarmöppuna þína."
+
+#: includes/class-kraken-io-settings.php:71
+#: includes/class-kraken-io-settings.php:118
+#: includes/class-kraken-io-settings.php:213
+msgid "Kraken.io Settings"
+msgstr "Kraken.io-stillingar"
+
+#: includes/class-kraken-io-settings.php:71
+#: templates/summary-panel.php:74
+msgid "Settings"
+msgstr "Stillingar"
+
+#: includes/class-kraken-io-settings.php:85
+#: templates/bulk-optimizer.php:54
+msgid "Krak 'em all"
+msgstr "Krakaðu þær allar"
+
+#: includes/class-kraken-io-settings.php:129
+#: includes/class-kraken-io-settings.php:130
+#: includes/class-kraken-io-settings.php:150
+msgid "Bulk Optimize with Kraken.io"
+msgstr "Fjöldafínstilla með Kraken.io"
+
+#: includes/class-kraken-io-settings.php:187
+msgid "General Settings"
+msgstr "Almennar stillingar"
+
+#: includes/class-kraken-io-settings.php:188
+msgid "<a href=\"http://kraken.io/account\" target=\"_blank\">Kraken.io</a> API Settings."
+msgstr "<a href=\"http://kraken.io/account\" target=\"_blank\">Kraken.io</a> API-stillingar."
+
+#: includes/class-kraken-io-settings.php:191
+msgid "Advanced Settings"
+msgstr "Ítarlegar stillingar"
+
+#: includes/class-kraken-io-settings.php:192
+msgid "We recommend that you leave these settings at their default values."
+msgstr "Við mælum með að þú látir þessar stillingar halda sjálfgefnum gildum sínum."
+
+#: includes/class-kraken-io-settings.php:195
+msgid "Bulk Optimizer"
+msgstr "Fjöldafínstilling"
+
+#: includes/class-kraken-io-settings.php:199
+msgid "Stats"
+msgstr "Tölfræði"
+
+#: includes/class-kraken-io-settings.php:203
+msgid "Support"
+msgstr "Aðstoð"
+
+#: includes/class-kraken-io-settings.php:249
+msgid "Save Changes"
+msgstr "Vista breytingar"
+
+#: includes/class-kraken-io-settings.php:354
+msgid "Please refresh the page and try again."
+msgstr "Endurhlaðaðu síðuna og reyndu aftur."
+
+#: includes/class-kraken-io-settings.php:359
+msgid "There are no Kraken options."
+msgstr "Engir Kraken-valkostir eru til."
+
+#: includes/class-kraken-io-settings.php:392
+msgid "Settings Saved"
+msgstr "Stillingar vistaðar"
+
+#: includes/class-kraken-io-settings.php:578
+msgid "Deprecated"
+msgstr "Úrelt"
+
+#: includes/class-kraken-io-settings.php:605
+msgid "value"
+msgstr "gildi"
+
+#. translators: %s is the field label, e.g. "API Key" or "API Secret".
+#: includes/class-kraken-io-settings.php:608
+msgid "Your %s is saved. Leave this blank to keep it, or paste a new one to replace it."
+msgstr "Búið er að vista %s. Skildu reitinn eftir auðan til að halda óbreyttu, eða límdu inn nýtt gildi til að skipta út."
+
+#: includes/class-kraken-io-settings.php:745
+msgid "Your credentials are valid."
+msgstr "Auðkennin þín eru gild."
+
+#: includes/class-kraken-io-settings.php:747
+msgid "There is a problem with your credentials."
+msgstr "Vandamál er með auðkennin þín."
+
+#: includes/class-kraken-io-settings.php:794
+msgid "API Key"
+msgstr "API-lykill"
+
+#: includes/class-kraken-io-settings.php:801
+msgid "API Secret"
+msgstr "API-leyndarmál"
+
+#: includes/class-kraken-io-settings.php:806
+msgid "API Status"
+msgstr "API-staða"
+
+#: includes/class-kraken-io-settings.php:814
+msgid "Don't convert (keep original format)"
+msgstr "Ekki umbreyta (halda upprunalegu sniði)"
+
+#: includes/class-kraken-io-settings.php:815
+#: includes/class-kraken-io-summary.php:172
+msgid "JPEG"
+msgstr "JPEG"
+
+#: includes/class-kraken-io-settings.php:816
+#: includes/class-kraken-io-summary.php:173
+msgid "PNG"
+msgstr "PNG"
+
+#: includes/class-kraken-io-settings.php:817
+#: includes/class-kraken-io-summary.php:174
+msgid "GIF"
+msgstr "GIF"
+
+#: includes/class-kraken-io-settings.php:818
+#: includes/class-kraken-io-summary.php:175
+msgid "WebP"
+msgstr "WebP"
+
+#: includes/class-kraken-io-settings.php:819
+#: includes/class-kraken-io-summary.php:176
+msgid "AVIF"
+msgstr "AVIF"
+
+#: includes/class-kraken-io-settings.php:822
+msgid "Convert uploads to"
+msgstr "Umbreyta innhlöðnum myndum í"
+
+#: includes/class-kraken-io-settings.php:824
+msgid "Automatically convert new image uploads to the selected format during optimization. Leave as \"Don't convert\" to keep each image in its original format."
+msgstr "Umbreytir nýjum innhlöðnum myndum sjálfkrafa í valið snið meðan á fínstillingu stendur. Hafðu „Ekki umbreyta“ valið til að halda hverri mynd á upprunalegu sniði sínu."
+
+#: includes/class-kraken-io-settings.php:833
+#: includes/class-kraken-io-summary.php:323
+msgid "Intelligent lossy"
+msgstr "Snjöll fínstilling með gagnatapi"
+
+#: includes/class-kraken-io-settings.php:834
+#: includes/class-kraken-io-summary.php:323
+msgid "Lossless"
+msgstr "Taplaust"
+
+#: includes/class-kraken-io-settings.php:836
+#: includes/class-kraken-io-summary.php:322
+#: templates/media-column-stats.php:91
+msgid "Optimization mode"
+msgstr "Fínstillingarhamur"
+
+#: includes/class-kraken-io-settings.php:838
+msgid "The Intelligent Lossy mode will yield the greatest savings without perceivable reducing the quality of your images, and so we recommend this setting to users."
+msgstr "Snjalli hamurinn með gagnatapi skilar mestum sparnaði án merkjanlegrar gæðarýrnunar á myndunum þínum, og því mælum við með þessari stillingu."
+
+#: includes/class-kraken-io-settings.php:839
+msgid "The Lossless mode will result in an unchanged image, however, will yield reduced savings as the image will not be recompressed."
+msgstr "Taplausi hamurinn skilar óbreyttri mynd, en gefur minni sparnað þar sem myndin verður ekki endurþjöppuð."
+
+#: includes/class-kraken-io-settings.php:847
+msgid "Optimize uploads"
+msgstr "Fínstilla innhlaðnar myndir"
+
+#: includes/class-kraken-io-settings.php:848
+#: includes/class-kraken-io-summary.php:328
+msgid "Automatically optimize uploads"
+msgstr "Fínstilla innhlaðnar myndir sjálfkrafa"
+
+#: includes/class-kraken-io-settings.php:850
+msgid "Enabled by default. This setting causes images uploaded through the Media Uploader to be optimized on-the-fly."
+msgstr "Virkt sjálfgefið. Þessi stilling lætur myndir sem hlaðið er inn í gegnum margmiðlunarinnhleðsluna fínstillast jafnóðum."
+
+#: includes/class-kraken-io-settings.php:851
+msgid "If you do not wish to do this, or wish to optimize images later, disable this setting by unchecking the box."
+msgstr "Ef þú vilt ekki gera þetta, eða vilt fínstilla myndir síðar, slökktu á þessari stillingu með því að taka hakið úr reitnum."
+
+#: includes/class-kraken-io-settings.php:859
+msgid "Optimize images"
+msgstr "Fínstilla myndir"
+
+#: includes/class-kraken-io-settings.php:860
+#: includes/class-kraken-io-summary.php:334
+msgid "Optimize main image"
+msgstr "Fínstilla aðalmynd"
+
+#: includes/class-kraken-io-settings.php:862
+msgid "Enabled by default. This option causes the image uploaded by the user to get optimized, as well as all sizes generated by WordPress."
+msgstr "Virkt sjálfgefið. Þessi valkostur lætur myndina sem notandinn hleður inn fínstillast, ásamt öllum stærðum sem WordPress býr til."
+
+#: includes/class-kraken-io-settings.php:863
+msgid "Disabling this option results in faster uploading, since the main image is not sent to our system for optimization."
+msgstr "Ef slökkt er á þessum valkosti verður innhleðsla hraðari, þar sem aðalmyndin er ekki send í kerfið okkar til fínstillingar."
+
+#: includes/class-kraken-io-settings.php:864
+msgid "Disable this option if you never use the \"main\" image upload in your posts, or speed of image uploading is an issue."
+msgstr "Slökktu á þessum valkosti ef þú notar aldrei „aðalmyndina“ í færslunum þínum, eða ef hraði innhleðslu mynda er vandamál."
+
+#: includes/class-kraken-io-settings.php:872
+msgid "Max width (px)"
+msgstr "Hámarksbreidd (px)"
+
+#: includes/class-kraken-io-settings.php:873
+msgid "Max height (px)"
+msgstr "Hámarkshæð (px)"
+
+#: includes/class-kraken-io-settings.php:879
+#: includes/class-kraken-io-summary.php:343
+msgid "Resize main image"
+msgstr "Breyta stærð aðalmyndar"
+
+#: includes/class-kraken-io-settings.php:881
+msgid "You can restrict the maximum dimensions of image uploads by width and/or height."
+msgstr "Þú getur takmarkað hámarksstærð innhlaðinna mynda eftir breidd og/eða hæð."
+
+#: includes/class-kraken-io-settings.php:882
+msgid "It is especially useful if you wish to prevent unnecessarily large photos with extremely high resolutions from being uploaded, for example, photos shot with a recent-model iPhone. Note: you can restrict the dimensions by width, height, or both. A value of zero disables."
+msgstr "Þetta er sérstaklega gagnlegt ef þú vilt koma í veg fyrir að óþarflega stórar ljósmyndir með afar hárri upplausn séu hlaðnar inn, til dæmis ljósmyndir teknar með nýlegum iPhone. Athugaðu: þú getur takmarkað stærðina eftir breidd, hæð eða hvoru tveggja. Gildið núll slekkur á takmörkuninni."
+
+#: includes/class-kraken-io-settings.php:894
+msgid "Intelligent lossy (recommended)"
+msgstr "Snjöll fínstilling með gagnatapi (mælt með)"
+
+#: includes/class-kraken-io-settings.php:899
+msgid "JPEG quality setting"
+msgstr "JPEG-gæðastilling"
+
+#: includes/class-kraken-io-settings.php:901
+msgid "Advanced users can force the quality of JPEG images to a discrete \"q\" value between 25 and 100 using this setting."
+msgstr "Lengra komnir notendur geta þvingað gæði JPEG-mynda á tiltekið „q“-gildi á milli 25 og 100 með þessari stillingu."
+
+#: includes/class-kraken-io-settings.php:902
+msgid "For example, forcing the quality to 60 or 70 might yield greater savings, but the resulting quality might be affected, depending on the image."
+msgstr "Til dæmis gæti það að þvinga gæðin niður í 60 eða 70 skilað meiri sparnaði, en gæðin sem af því leiða gætu orðið fyrir áhrifum, eftir myndinni."
+
+#: includes/class-kraken-io-settings.php:903
+msgid "We therefore recommend keeping the <strong>Intelligent Lossy</strong> setting, which will not allow a resulting image of unacceptable quality."
+msgstr "Við mælum því með að halda <strong>snjöllu fínstillingunni með gagnatapi</strong>, sem leyfir ekki mynd af óásættanlegum gæðum."
+
+#: includes/class-kraken-io-settings.php:904
+msgid "This setting will be ignored when using the <strong>lossless</strong> optimization mode."
+msgstr "Þessi stilling er hunsuð þegar notaður er <strong>taplausi</strong> fínstillingarhamurinn."
+
+#: includes/class-kraken-io-settings.php:913
+msgid "4:2:0 (default)"
+msgstr "4:2:0 (sjálfgefið)"
+
+#: includes/class-kraken-io-settings.php:914
+msgid "4:2:2"
+msgstr "4:2:2"
+
+#: includes/class-kraken-io-settings.php:915
+msgid "4:4:4 (no subsampling)"
+msgstr "4:4:4 (engin undirskönnun)"
+
+#: includes/class-kraken-io-settings.php:917
+msgid "Chroma subsampling scheme"
+msgstr "Litundirskönnunaraðferð"
+
+#: includes/class-kraken-io-settings.php:919
+msgid "Advanced users can also set the resolution at which colour is encoded for JPEG images."
+msgstr "Lengra komnir notendur geta einnig stillt upplausnina sem litur er kóðaður í fyrir JPEG-myndir."
+
+#: includes/class-kraken-io-settings.php:920
+msgid "In short, the default setting of 4:2:0 is suitable for most images, and will result in the lowest possible optimized file size."
+msgstr "Í stuttu máli hentar sjálfgefna stillingin 4:2:0 flestum myndum og skilar minnstu mögulegu fínstilltu skráarstærð."
+
+#: includes/class-kraken-io-settings.php:921
+msgid "Images containing high contrast text or bright red areas on flat backgrounds might benefit from disabling chroma subsampling (by setting it to 4:4:4). "
+msgstr "Myndir sem innihalda texta með mikla birtuskil eða skærrauð svæði á sléttum bakgrunni gætu notið góðs af því að slökkva á litundirskönnun (með því að stilla hana á 4:4:4). "
+
+#: includes/class-kraken-io-settings.php:922
+msgid "More information can be found in our <a href=\"https://kraken.io/docs/chroma-subsampling\" target=\"_blank\">documentation</a>."
+msgstr "Frekari upplýsingar má finna í <a href=\"https://kraken.io/docs/chroma-subsampling\" target=\"_blank\">skjölunum</a> okkar."
+
+#: includes/class-kraken-io-settings.php:932
+msgid "All logged-in users"
+msgstr "Allir innskráðir notendur"
+
+#: includes/class-kraken-io-settings.php:933
+msgid "Users who can upload media (Author and above)"
+msgstr "Notendur sem geta hlaðið inn margmiðlun (höfundur og ofar)"
+
+#: includes/class-kraken-io-settings.php:934
+msgid "Administrators only"
+msgstr "Aðeins stjórnendur"
+
+#: includes/class-kraken-io-settings.php:937
+msgid "Who can optimize images"
+msgstr "Hverjir geta fínstillt myndir"
+
+#: includes/class-kraken-io-settings.php:939
+msgid "Controls which logged-in users may trigger optimization actions (single optimize, bulk optimize, reset) from the Media Library."
+msgstr "Stýrir því hvaða innskráðu notendur mega setja af stað fínstillingaraðgerðir (stök fínstilling, fjöldafínstilling, endurstilling) úr margmiðlunarsafninu."
+
+#: includes/class-kraken-io-settings.php:940
+msgid "Optimization consumes your paid Kraken.io quota and rewrites your media, so a user can only act on attachments they are allowed to edit, and by default only users who can upload media (Author and above) may optimize. On sites with open registration (membership, WooCommerce, forums), keep this restricted so untrusted accounts cannot consume your quota or alter media."
+msgstr "Fínstilling notar greiddan Kraken.io-kvótann þinn og endurskrifar margmiðlunina þína, þannig að notandi getur aðeins unnið með viðhengi sem hann hefur leyfi til að breyta, og sjálfgefið mega aðeins notendur sem geta hlaðið inn margmiðlun (höfundur og ofar) fínstilla. Á vefsvæðum með opinni nýskráningu (félagsaðild, WooCommerce, spjallborð) skaltu halda þessu takmörkuðu svo ótraustir aðgangar geti ekki notað kvótann þinn eða breytt margmiðlun."
+
+#: includes/class-kraken-io-settings.php:941
+msgid "• All logged-in users — anyone signed in who can also edit the attachment (most permissive). • Users who can upload media — Authors, Editors and Administrators (default). • Administrators only — most restrictive."
+msgstr "• Allir innskráðir notendur — allir innskráðir sem geta einnig breytt viðhenginu (víðtækast). • Notendur sem geta hlaðið inn margmiðlun — höfundar, ritstjórar og stjórnendur (sjálfgefið). • Aðeins stjórnendur — þrengsta heimildin."
+
+#: includes/class-kraken-io-settings.php:950
+msgid "Image sizes to Krak"
+msgstr "Myndstærðir til að kraka"
+
+#: includes/class-kraken-io-settings.php:952
+msgid "Every time you upload an image, WordPress generates several resized copies (thumbnail, medium, large, and so on). These resized versions — not the original — are what your visitors actually download, through responsive <code>srcset</code> images. Each size you tick here gets optimized, so the images people really load are compressed."
+msgstr "Í hvert sinn sem þú hleður inn mynd býr WordPress til nokkur afrit í breyttri stærð (smámynd, miðstærð, stór og svo framvegis). Þessar útgáfur í breyttri stærð — ekki upprunalega myndin — eru það sem gestir þínir sækja í raun, í gegnum svörunarhæfar <code>srcset</code>-myndir. Hver stærð sem þú hakar við hér verður fínstillt, þannig að myndirnar sem fólk raunverulega hleður eru þjappaðar."
+
+#: includes/class-kraken-io-settings.php:953
+msgid "If you untick a size, that copy is still created and still served to your visitors — just <strong>left unoptimized</strong>, at its full original weight. Keeping these on is what delivers the page-speed gain across your whole site, not just on the original file."
+msgstr "Ef þú tekur hakið af stærð er það afrit eftir sem áður búið til og enn afhent gestum þínum — bara <strong>ófínstillt</strong>, á fullri upprunalegri þyngd. Að hafa þessar kveiktar er það sem skilar hraðabót á síðum um allt vefsvæðið þitt, ekki bara á upprunalegu skránni."
+
+#: includes/class-kraken-io-settings.php:954
+msgid "The trade-off: each ticked size is a separate optimization that uses your Kraken.io quota. For that reason the large retina sizes <code>1536×1536</code> and <code>2048×2048</code> are <strong>left off by default</strong> — most themes never serve them. If your theme does use them (for high-DPI screens), just tick them here and they'll be optimized too. Already-optimized images are never touched by this."
+msgstr "Málamiðlunin: hver stærð sem hakað er við er sérstök fínstilling sem notar Kraken.io-kvótann þinn. Þess vegna eru stóru retina-stærðirnar <code>1536×1536</code> og <code>2048×2048</code> <strong>sjálfgefið slökktar</strong> — flest þemu afhenda þær aldrei. Ef þemað þitt notar þær (fyrir háupplausnarskjái) skaltu bara haka við þær hér og þær verða líka fínstilltar. Myndir sem þegar eru fínstilltar eru aldrei snertar af þessu."
+
+#: includes/class-kraken-io-settings.php:962
+#: includes/class-kraken-io-summary.php:387
+msgid "Date"
+msgstr "Dagsetning"
+
+#: includes/class-kraken-io-settings.php:963
+#: includes/class-kraken-io-summary.php:388
+msgid "Copyright"
+msgstr "Höfundarréttur"
+
+#: includes/class-kraken-io-settings.php:964
+#: includes/class-kraken-io-summary.php:389
+msgid "Geotag"
+msgstr "Staðsetningarmerking"
+
+#: includes/class-kraken-io-settings.php:965
+#: includes/class-kraken-io-summary.php:390
+msgid "Orientation"
+msgstr "Stefna"
+
+#: includes/class-kraken-io-settings.php:975
+msgid "Preserve EXIF Metadata"
+msgstr "Varðveita EXIF-lýsigögn"
+
+#: includes/class-kraken-io-settings.php:982
+msgid "Image orientation"
+msgstr "Myndstefna"
+
+#: includes/class-kraken-io-settings.php:983
+#: includes/class-kraken-io-summary.php:366
+msgid "Automatically orient images"
+msgstr "Snúa myndum sjálfkrafa rétt"
+
+#: includes/class-kraken-io-settings.php:985
+msgid "This setting will rotate the JPEG image according to its Orientation EXIF metadata such that it will always be correctly displayed in Web Browsers."
+msgstr "Þessi stilling snýr JPEG-myndinni samkvæmt Orientation EXIF-lýsigögnum hennar þannig að hún birtist alltaf rétt í vafra."
+
+#: includes/class-kraken-io-settings.php:986
+msgid "Enable this setting if many of your image uploads come from smart phones or digital cameras which set the orientation based on how they are held at the time of shooting."
+msgstr "Virkjaðu þessa stillingu ef margar af innhlöðnum myndum þínum koma frá snjallsímum eða stafrænum myndavélum sem stilla stefnuna eftir því hvernig þeim er haldið þegar myndin er tekin."
+
+#: includes/class-kraken-io-settings.php:994
+msgid "Metadata reset per image"
+msgstr "Endurstilling lýsigagna á hverja mynd"
+
+#: includes/class-kraken-io-settings.php:995
+msgid "Show reset button"
+msgstr "Sýna endurstillingarhnapp"
+
+#: includes/class-kraken-io-settings.php:997
+msgid "Checking this option will add a Reset button in the \"Show Details\" popup in the Kraken Stats column for each optimized image."
+msgstr "Ef hakað er við þennan valkost bætist endurstillingarhnappur við í „Sýna nánar“-glugganum í Kraken-tölfræðidálkinum fyrir hverja fínstillta mynd."
+
+#: includes/class-kraken-io-settings.php:998
+msgid "Resetting an image will remove the Kraken.io metadata associated with it, effectively making your blog forget that it had been optimized in the first place, allowing further optimization in some cases."
+msgstr "Endurstilling myndar fjarlægir Kraken.io-lýsigögnin sem henni tengjast, sem fær bloggið þitt í reynd til að gleyma því að hún hafi yfirhöfuð verið fínstillt, og leyfir þannig frekari fínstillingu í sumum tilvikum."
+
+#: includes/class-kraken-io-settings.php:999
+msgid "If an image has been optimized using the lossless setting, lossless optimization will not yield any greater savings. If in doubt, please contact support@kraken.io"
+msgstr "Ef mynd hefur verið fínstillt með taplausu stillingunni mun taplaus fínstilling ekki skila neinum meiri sparnaði. Ef þú ert í vafa skaltu hafa samband við support@kraken.io"
+
+#: includes/class-kraken-io-settings.php:1007
+msgid "Savings badge"
+msgstr "Sparnaðarmerki"
+
+#: includes/class-kraken-io-settings.php:1008
+msgid "Show a savings badge on optimized thumbnails"
+msgstr "Sýna sparnaðarmerki á fínstilltum smámyndum"
+
+#: includes/class-kraken-io-settings.php:1010
+msgid "Displays the percentage saved in the corner of each optimized image thumbnail in the Media Library."
+msgstr "Birtir prósentuna sem sparaðist í horni hverrar fínstilltu myndsmámyndar í margmiðlunarsafninu."
+
+#: includes/class-kraken-io-settings.php:1018
+msgid "Background process"
+msgstr "Bakgrunnsferli"
+
+#: includes/class-kraken-io-settings.php:1019
+msgid "Process image optimization in background"
+msgstr "Vinna myndfínstillingu í bakgrunni"
+
+#: includes/class-kraken-io-settings.php:1021
+msgid "This setting will optimize images in background when using the option \"Automatically optimize uploads\" resulting in faster image uploads."
+msgstr "Þessi stilling fínstillir myndir í bakgrunni þegar valkosturinn „Fínstilla innhlaðnar myndir sjálfkrafa“ er notaður, sem leiðir til hraðari innhleðslu mynda."
+
+#: includes/class-kraken-io-settings.php:1027
+msgid "WebP / next-gen formats"
+msgstr "WebP / nýrri kynslóð sniða"
+
+#: includes/class-kraken-io-settings.php:1029
+msgid "The old \"Create WebP\" and \"Display WebP\" options are deprecated. They created a separate .webp companion for every image and depended on Apache .htaccess rewrite rules, which did not work behind a CDN."
+msgstr "Gömlu valkostirnir „Búa til WebP“ og „Birta WebP“ eru úreltir. Þeir bjuggu til sérstaka .webp-fylgiskrá fyrir hverja mynd og reiddu sig á Apache .htaccess-endurskrifunarreglur, sem virkuðu ekki á bak við CDN."
+
+#: includes/class-kraken-io-settings.php:1030
+msgid "To serve WebP (or AVIF) now, use \"Convert uploads to → WebP\" in the General settings tab. Each upload is converted to the modern format directly, so the file is served as-is by any server or CDN — no companion files and no rewrite rules required."
+msgstr "Til að afhenda WebP (eða AVIF) núna skaltu nota „Umbreyta innhlöðnum myndum í → WebP“ á flipanum Almennar stillingar. Hverri innhlaðinni mynd er umbreytt beint í nútímalega sniðið, þannig að skráin er afhent eins og hún er af hvaða þjóni eða CDN sem er — engar fylgiskrár og engar endurskrifunarreglur þarf."
+
+#: includes/class-kraken-io-settings.php:1039
+msgid "Bulk concurrency"
+msgstr "Samtímavinnsla við fjöldafínstillingu"
+
+#: includes/class-kraken-io-settings.php:1041
+msgid "This settings defines how many images can be processed at the same time using the bulk optimizer. The recommended (and default) value is 4."
+msgstr "Þessi stilling skilgreinir hve margar myndir má vinna á sama tíma með fjöldafínstillingunni. Mælt (og sjálfgefið) gildi er 4."
+
+#: includes/class-kraken-io-settings.php:1042
+msgid "For blogs on very small hosting plans, or with reduced connectivity, a lower number might be necessary to avoid hitting request limits."
+msgstr "Fyrir blogg á mjög litlum hýsingaráætlunum, eða með skerta tengingu, gæti lægri tala verið nauðsynleg til að forðast að rekast á beiðnamörk."
+
+#: includes/class-kraken-io-summary.php:46
+msgid "Kraken.io Image Optimizer"
+msgstr "Kraken.io Image Optimizer"
+
+#: includes/class-kraken-io-summary.php:171
+msgid "No conversion"
+msgstr "Engin umbreyting"
+
+#: includes/class-kraken-io-summary.php:351
+msgid "JPEG quality"
+msgstr "JPEG-gæði"
+
+#: includes/class-kraken-io-summary.php:358
+msgid "Chroma subsampling"
+msgstr "Litundirskönnun"
+
+#: includes/class-kraken-io-summary.php:372
+msgid "Background processing"
+msgstr "Bakgrunnsvinnsla"
+
+#: includes/class-kraken-io-summary.php:380
+msgid "Per-image reset button"
+msgstr "Endurstillingarhnappur á hverja mynd"
+
+#: includes/class-kraken-io-summary.php:391
+msgid "Profile"
+msgstr "Prófíll"
+
+#: includes/class-kraken-io-summary.php:400
+msgid "Preserve EXIF metadata"
+msgstr "Varðveita EXIF-lýsigögn"
+
+#: includes/class-kraken-io-summary.php:413
+msgid "Image sizes optimized"
+msgstr "Fínstilltar myndstærðir"
+
+#. translators: %d number of image sizes
+#: includes/class-kraken-io-summary.php:415
+msgid "%d size"
+msgid_plural "%d sizes"
+msgstr[0] "%d stærð"
+msgstr[1] "%d stærðir"
+
+#: includes/class-kraken-io.php:372
+msgid "Are you sure you want to remove Kraken metadata for this image?"
+msgstr "Ertu viss um að þú viljir fjarlægja Kraken-lýsigögn fyrir þessa mynd?"
+
+#: includes/class-kraken-io.php:373
+msgid "This will immediately remove all Kraken metadata associated with your images. Are you sure you want to do this?"
+msgstr "Þetta fjarlægir samstundis öll Kraken-lýsigögn sem tengjast myndunum þínum. Ertu viss um að þú viljir gera þetta?"
+
+#: includes/class-kraken-io.php:374
+msgid "Something went wrong. Please reload the page and try again."
+msgstr "Eitthvað fór úrskeiðis. Endurhlaðaðu síðuna og reyndu aftur."
+
+#: includes/class-kraken-io.php:375
+msgid "Optimizing…"
+msgstr "Fínstilli…"
+
+#: includes/class-kraken-io.php:376
+msgid "Converting…"
+msgstr "Umbreyti…"
+
+#: includes/class-kraken-io.php:377
+msgid "Optimized"
+msgstr "Fínstillt"
+
+#. translators: %s number of images
+#: includes/class-kraken-io.php:379
+msgid "%s images will be optimized."
+msgstr "%s myndir verða fínstilltar."
+
+#. translators: %1$s optimized %2$s total
+#: includes/class-kraken-io.php:381
+msgid "%1$s / %2$s images have been optimized."
+msgstr "%1$s / %2$s myndir hafa verið fínstilltar."
+
+#: includes/class-kraken-io.php:382
+msgid "Copied!"
+msgstr "Afritað!"
+
+#: templates/account-hero.php:60
+#: templates/summary-panel.php:36
+msgid "Not connected"
+msgstr "Ekki tengt"
+
+#: templates/account-hero.php:61
+msgid "Connect your Kraken.io account"
+msgstr "Tengdu Kraken.io-aðganginn þinn"
+
+#: templates/account-hero.php:62
+msgid "Enter your API key and secret below to start optimizing your images. Don't have an account yet? Create one in seconds."
+msgstr "Sláðu inn API-lykilinn þinn og leyndarmálið hér fyrir neðan til að byrja að fínstilla myndirnar þínar. Ertu ekki enn með aðgang? Búðu til einn á örskotsstundu."
+
+#: templates/account-hero.php:68
+#: templates/summary-panel.php:38
+msgid "Invalid credentials"
+msgstr "Ógild auðkenni"
+
+#: templates/account-hero.php:69
+msgid "Your API credentials are invalid"
+msgstr "API-auðkennin þín eru ógild"
+
+#: templates/account-hero.php:70
+msgid "Double-check the API key and secret below, or grab fresh credentials from your Kraken.io account."
+msgstr "Tvítékkaðu API-lykilinn og leyndarmálið hér fyrir neðan, eða náðu í ný auðkenni frá Kraken.io-aðganginum þínum."
+
+#: templates/account-hero.php:76
+#: templates/summary-panel.php:40
+msgid "Payment overdue"
+msgstr "Greiðsla í vanskilum"
+
+#: templates/account-hero.php:77
+msgid "Your Kraken.io payment is overdue"
+msgstr "Kraken.io-greiðslan þín er í vanskilum"
+
+#: templates/account-hero.php:78
+msgid "Optimization may be paused until your billing is up to date."
+msgstr "Fínstilling gæti verið sett í bið þar til greiðslustaða þín er uppfærð."
+
+#: templates/account-hero.php:84
+#: templates/account-hero.php:92
+#: templates/summary-panel.php:42
+msgid "Connected"
+msgstr "Tengt"
+
+#: templates/account-hero.php:85
+msgid "You're on the Free plan"
+msgstr "Þú ert á ókeypis áætluninni"
+
+#: templates/account-hero.php:86
+msgid "Upgrade to a paid plan for more monthly quota and larger file sizes."
+msgstr "Uppfærðu í greidda áætlun fyrir meiri mánaðarkvóta og stærri skrár."
+
+#. translators: %s plan name
+#: templates/account-hero.php:96
+msgid "Connected — %s plan"
+msgstr "Tengt — %s áætlun"
+
+#: templates/account-hero.php:99
+msgid "Your Kraken.io account is active and optimizing your images."
+msgstr "Kraken.io-aðgangurinn þinn er virkur og fínstillir myndirnar þínar."
+
+#: templates/account-hero.php:119
+msgid "Monthly quota"
+msgstr "Mánaðarkvóti"
+
+#. translators: %1$s used %2$s total
+#: templates/account-hero.php:124
+msgid "%1$s of %2$s used"
+msgstr "%1$s af %2$s notað"
+
+#. translators: %s remaining
+#: templates/account-hero.php:125
+msgid "%s left"
+msgstr "%s eftir"
+
+#: templates/account-hero.php:135
+msgid "Create an account"
+msgstr "Búa til aðgang"
+
+#: templates/account-hero.php:136
+#: templates/account-hero.php:142
+msgid "Get API credentials"
+msgstr "Sækja API-auðkenni"
+
+#: templates/account-hero.php:148
+msgid "Update billing"
+msgstr "Uppfæra greiðsluupplýsingar"
+
+#: templates/account-hero.php:154
+msgid "Subscribe to a plan"
+msgstr "Gerast áskrifandi að áætlun"
+
+#: templates/account-hero.php:155
+#: templates/account-hero.php:161
+msgid "Manage account"
+msgstr "Stjórna aðgangi"
+
+#: templates/account-hero.php:162
+#: templates/summary-panel.php:113
+msgid "Upgrade plan"
+msgstr "Uppfæra áætlun"
+
+#: templates/bulk-optimizer-stats.php:32
+#: templates/media-column-stats.php:26
+#: templates/media-column-stats.php:133
+msgid "Failed with errors"
+msgstr "Mistókst með villum"
+
+#: templates/bulk-optimizer-stats.php:41
+#: templates/media-column-stats.php:35
+msgid "Optimizing..."
+msgstr "Fínstilli..."
+
+#. translators: %1$s percentage %2$s total
+#: templates/bulk-optimizer-stats.php:51
+#: templates/media-column-stats.php:57
+msgid "Saved %1$s (%2$s)"
+msgstr "Sparaði %1$s (%2$s)"
+
+#: templates/bulk-optimizer-stats.php:56
+#: templates/media-column-stats.php:107
+msgid "No savings"
+msgstr "Enginn sparnaður"
+
+#. translators: %s optimization type
+#: templates/bulk-optimizer-stats.php:64
+#: templates/media-column-stats.php:125
+msgid "No savings found for type %s"
+msgstr "Enginn sparnaður fannst fyrir tegund %s"
+
+#: templates/bulk-optimizer-stats.php:71
+#: templates/media-column-stats.php:146
+msgid "N/A"
+msgstr "Á ekki við"
+
+#: templates/bulk-optimizer.php:14
+#: templates/media-column-stats.php:20
+#: templates/stats.php:13
+msgid "Connect your account"
+msgstr "Tengdu aðganginn þinn"
+
+#. translators: %s number of images
+#: templates/bulk-optimizer.php:23
+msgid "%s image will be optimized."
+msgid_plural "%s images will be optimized."
+msgstr[0] "%s mynd verður fínstillt."
+msgstr[1] "%s myndir verða fínstilltar."
+
+#: templates/bulk-optimizer.php:27
+msgid "Selected images are already optimized"
+msgstr "Valdar myndir eru þegar fínstilltar"
+
+#: templates/bulk-optimizer.php:29
+msgid "All images are already optimized"
+msgstr "Allar myndir eru þegar fínstilltar"
+
+#: templates/bulk-optimizer.php:44
+msgid "Kraken Bulk Image Optimization"
+msgstr "Fjöldafínstilling mynda með Kraken"
+
+#: templates/bulk-optimizer.php:65
+msgid "Image"
+msgstr "Mynd"
+
+#: templates/bulk-optimizer.php:66
+msgid "Original Size"
+msgstr "Upprunaleg stærð"
+
+#: templates/bulk-optimizer.php:69
+msgid "Kraken.io Stats"
+msgstr "Kraken.io-tölfræði"
+
+#: templates/conflicts-notice.php:23
+msgid "Other image optimizers detected"
+msgstr "Aðrir myndfínstillarar fundust"
+
+#: templates/conflicts-notice.php:26
+msgid "Running more than one image optimizer on the same uploads wastes quota and can double-compress your images. For best results with Kraken.io, deactivate the plugins below."
+msgstr "Að keyra fleiri en einn myndfínstillara á sömu innhlöðnu myndirnar sóar kvóta og getur tvíþjappað myndirnar þínar. Til að ná bestum árangri með Kraken.io skaltu afvirkja viðbæturnar hér fyrir neðan."
+
+#: templates/conflicts-notice.php:33
+msgid "Deactivate"
+msgstr "Afvirkja"
+
+#: templates/media-column-stats.php:46
+msgid "Optimize Main Image"
+msgstr "Fínstilla aðalmynd"
+
+#: templates/media-column-stats.php:61
+msgid "Show Details"
+msgstr "Sýna nánar"
+
+#: templates/media-column-stats.php:67
+msgid "Main image savings"
+msgstr "Sparnaður aðalmyndar"
+
+#. translators: %1$s bytes %2$s percentage
+#: templates/media-column-stats.php:70
+#: templates/media-column-stats.php:85
+msgid "%1$s (%2$s saved)"
+msgstr "%1$s (%2$s sparað)"
+
+#. translators: %s count
+#: templates/media-column-stats.php:80
+msgid "Savings on %s thumbnails"
+msgstr "Sparnaður á %s smámyndum"
+
+#: templates/media-column-stats.php:97
+msgid "Reset Image"
+msgstr "Endurstilla mynd"
+
+#: templates/media-column-stats.php:117
+msgid "Optimize"
+msgstr "Fínstilla"
+
+#: templates/stats.php:28
+msgid "Plan Level"
+msgstr "Áætlunarstig"
+
+#: templates/stats.php:32
+msgid "Quota"
+msgstr "Kvóti"
+
+#: templates/stats.php:36
+msgid "Current Usage"
+msgstr "Núverandi notkun"
+
+#: templates/stats.php:40
+msgid "Remaining"
+msgstr "Eftir"
+
+#: templates/summary-panel.php:53
+msgid "Active plan"
+msgstr "Virk áætlun"
+
+#: templates/summary-panel.php:73
+msgid "View full stats"
+msgstr "Skoða heildartölfræði"
+
+#: templates/summary-panel.php:87
+msgid "No API credentials found."
+msgstr "Engin API-auðkenni fundust."
+
+#: templates/summary-panel.php:87
+msgid "Connect your Kraken.io account to start optimizing your images."
+msgstr "Tengdu Kraken.io-aðganginn þinn til að byrja að fínstilla myndirnar þínar."
+
+#: templates/summary-panel.php:88
+msgid "Add API credentials"
+msgstr "Bæta við API-auðkennum"
+
+#: templates/summary-panel.php:94
+msgid "Your Kraken.io API credentials are invalid."
+msgstr "Kraken.io API-auðkennin þín eru ógild."
+
+#: templates/summary-panel.php:94
+msgid "Please check your API key and secret in the plugin settings."
+msgstr "Athugaðu API-lykilinn þinn og leyndarmálið í stillingum viðbótarinnar."
+
+#: templates/summary-panel.php:95
+msgid "Review credentials"
+msgstr "Yfirfara auðkenni"
+
+#: templates/summary-panel.php:103
+msgid "Payment overdue — your API access has been restricted."
+msgstr "Greiðsla í vanskilum — API-aðgangur þinn hefur verið takmarkaður."
+
+#: templates/summary-panel.php:103
+msgid "Please complete your payment from your kraken.io account to resume optimizing."
+msgstr "Ljúktu greiðslunni frá kraken.io-aðganginum þínum til að halda áfram að fínstilla."
+
+#: templates/summary-panel.php:104
+msgid "Complete payment"
+msgstr "Ljúka greiðslu"
+
+#: templates/summary-panel.php:112
+msgid "Free test quota used up."
+msgstr "Ókeypis prófunarkvóti uppurinn."
+
+#: templates/summary-panel.php:112
+msgid "Upgrade to a paid plan to keep optimizing, or email support@kraken.io to request more test quota."
+msgstr "Uppfærðu í greidda áætlun til að halda áfram að fínstilla, eða sendu tölvupóst á support@kraken.io til að óska eftir meiri prófunarkvóta."
+
+#: templates/summary-panel.php:115
+msgid "Monthly quota exceeded."
+msgstr "Farið yfir mánaðarkvóta."
+
+#: templates/summary-panel.php:115
+msgid "Further optimizations will be billed at the end of your billing period."
+msgstr "Frekari fínstillingar verða rukkaðar í lok greiðslutímabilsins þíns."
+
+#: templates/summary-panel.php:116
+msgid "View account"
+msgstr "Skoða aðgang"
+
+#: templates/summary-panel.php:129
+msgid "Convert uploads to:"
+msgstr "Umbreyta innhlöðnum myndum í:"
+
+#. translators: %s number of images
+#: templates/summary-panel.php:147
+msgid "Bulk optimize (%s)"
+msgstr "Fjöldafínstilla (%s)"
+
+#: templates/summary-panel.php:159
+msgid "General"
+msgstr "Almennt"
+
+#: templates/summary-panel.php:168
+#: templates/summary-panel.php:185
+msgid "Edit"
+msgstr "Breyta"
+
+#: templates/summary-panel.php:172
+msgid "Advanced"
+msgstr "Ítarlegt"
+
+#: templates/summary-panel.php:174
+msgid "None enabled"
+msgstr "Ekkert virkt"
+
+#: templates/summary-panel.php:189
+msgid "Supported:"
+msgstr "Studd:"
+
+#: templates/support.php:23
+msgid "Site"
+msgstr "Vefsvæði"
+
+#: templates/support.php:24
+msgid "WordPress"
+msgstr "WordPress"
+
+#: templates/support.php:25
+msgid "PHP"
+msgstr "PHP"
+
+#: templates/support.php:26
+msgid "Plugin"
+msgstr "Viðbót"
+
+#. translators: %s: site URL
+#: templates/support.php:36
+msgid "Kraken.io WordPress plugin support — %s"
+msgstr "Aðstoð fyrir Kraken.io WordPress-viðbótina — %s"
+
+#: templates/support.php:39
+msgid "Describe your question or problem here."
+msgstr "Lýstu spurningunni þinni eða vandamálinu hér."
+
+#: templates/support.php:44
+msgid "Contact us"
+msgstr "Hafðu samband"
+
+#: templates/support.php:46
+msgid "Have a question or hit a problem? The quickest way to reach the Kraken.io team is our WordPress.org support forum — open a thread and we will reply there. Prefer email? Use the button below to write to us from your own mail app."
+msgstr "Ertu með spurningu eða lentir í vandamáli? Fljótlegasta leiðin til að ná í Kraken.io-teymið er WordPress.org-aðstoðarspjallborðið okkar — opnaðu þráð og við svörum þar. Vilt þú frekar tölvupóst? Notaðu hnappinn hér fyrir neðan til að skrifa okkur úr þínu eigin tölvupóstforriti."
+
+#: templates/support.php:52
+msgid "Open the support forum"
+msgstr "Opna aðstoðarspjallborðið"
+
+#: templates/support.php:56
+msgid "Email support@kraken.io"
+msgstr "Senda tölvupóst á support@kraken.io"
+
+#: templates/support.php:62
+msgid "Please include these details so we can help faster:"
+msgstr "Hafðu þessar upplýsingar með svo við getum aðstoðað hraðar:"
+
+#: templates/support.php:64
+msgid "Copy"
+msgstr "Afrita"
+
+#: templates/support.php:74
+msgid "These links never depend on your server's email setup, so your message always reaches us."
+msgstr "Þessir tenglar reiða sig aldrei á tölvupóstuppsetningu þjónsins þíns, þannig að skilaboðin þín berast okkur alltaf."
+
+#: includes/class-kraken-io-settings.php:293
+msgid "All changes saved"
+msgstr "Allar breytingar vistaðar"
+
+#: includes/class-kraken-io-settings.php:297
+msgid "You have unsaved changes — don’t forget to save."
+msgstr "Þú ert með óvistaðar breytingar — ekki gleyma að vista."
+
+#: templates/stats.php:62
+msgid "Savings on this site"
+msgstr "Sparnaður á þessu vefsvæði"
+
+#: templates/stats.php:64
+msgid "These figures cover only the images optimized on this website — every full-size image and all of their thumbnail sizes — and are calculated from this site's own data. They are separate from the Kraken.io account quota shown above, which is shared across every site that uses your API key."
+msgstr "Þessar tölur ná aðeins yfir myndirnar sem fínstilltar voru á þessu vefsvæði — sérhverja mynd í fullri stærð og allar smámyndastærðir þeirra — og eru reiknaðar út frá gögnum þessa vefsvæðis sjálfs. Þær eru aðskildar frá Kraken.io-aðgangskvótanum sem sýndur er hér að ofan, sem deilist á milli allra vefsvæða sem nota API-lykilinn þinn."
+
+#: templates/stats.php:70
+msgid "saved on this site"
+msgstr "sparað á þessu vefsvæði"
+
+#: templates/stats.php:79
+msgid "%s smaller overall"
+msgstr "%s minna í heild"
+
+#: templates/stats.php
+msgid "Original"
+msgstr "Upprunaleg"
+
+#: templates/stats.php
+msgid "Saved"
+msgstr "Sparað"
+
+#: templates/stats.php
+msgid "Full-size images"
+msgstr "Myndir í fullri stærð"
+
+#: templates/stats.php
+msgid "Thumbnails"
+msgstr "Smámyndir"
+
+#: templates/stats.php
+msgid "Total"
+msgstr "Samtals"

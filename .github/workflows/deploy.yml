@@ -1,0 +1,69 @@
+name: Deploy to WordPress.org
+
+# Safely publishes the plugin to the WordPress.org SVN repository.
+#
+# Two ways to run it:
+#   1. DRY RUN (no risk) — Actions tab > "Deploy to WordPress.org" > "Run
+#      workflow", leave "Dry run" checked. It does everything EXCEPT the final
+#      SVN commit and prints exactly which files would ship. Nothing goes live.
+#   2. REAL DEPLOY — publish a GitHub Release whose tag is the version number
+#      (e.g. 3.0.0, matching "Stable tag" in readme.txt). That, and only that,
+#      commits to WordPress.org.
+#
+# One-time setup — add two repository secrets under
+# Settings > Secrets and variables > Actions:
+#   SVN_USERNAME  WordPress.org username (must be a committer on the plugin)
+#   SVN_PASSWORD  WordPress.org password
+#
+# What it does (the same steps as a manual `svn` release, automated): mirrors
+# the repo to trunk minus .distignore, copies trunk to tags/<version>, copies
+# .wordpress-org/ to the SVN /assets dir, and commits. Rollback if ever needed
+# is a one-line "Stable tag" change in trunk/readme.txt (see DEPLOY.md).
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (preview only — no commit to WordPress.org)'
+        type: boolean
+        default: true
+
+jobs:
+  deploy:
+    name: Deploy to WordPress.org
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Version comes from the release tag on a real deploy, or from readme.txt's
+      # Stable tag on a manual dry run (so the preview targets the right tag).
+      - name: Resolve version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            echo "v=${{ github.event.release.tag_name }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "v=$(grep -i '^Stable tag:' readme.txt | awk '{print $3}')" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Deploy
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        with:
+          generate-zip: true
+          dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: kraken-image-optimizer
+          ASSETS_DIR: .wordpress-org
+          VERSION: ${{ steps.version.outputs.v }}
+
+      - name: Upload built zip artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kraken-image-optimizer-${{ steps.version.outputs.v }}
+          path: ${{ github.workspace }}/kraken-image-optimizer.zip
+          if-no-files-found: ignore

@@ -1,290 +1,241 @@
-=== Kraken.io Image Optimizer ===
+=== Kraken.io Image Optimizer – Compress, Convert to WebP & AVIF, Resize & Bulk Optimize ===
 Contributors: karim79
-Tags: anigif, compress image, exif, image optimizer, image resize, jpg, media, Optimization, optimize, optimize animated gif, optimize gif, optimize jpeg, optimize png, PageRank, PageSpeed Insights, performance, photos, png, Reduce Image Size, retina, seo, sitespeed, speed up site, svg, upload, svg, upload, gtmetrix speed test, EXIF, image resize, kraken.io, smush
+Tags: image optimization, optimize images, compress images, convert webp, avif
 Requires at least: 4.9
 Requires PHP: 5.6
-Tested up to: 6.7
+Tested up to: 7.0
 Donate link: https://kraken.io
-Stable tag: 2.7.0
+Stable tag: 3.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
-This plugin allows you to optimize your WordPress images through the Kraken.io API, the world's most advanced image optimization and resizing API.
+Optimize images automatically — compress, resize and convert to WebP, AVIF & more with Kraken.io. Faster pages, smaller files, same quality.
 
 == Description ==
 
-This plugin allows you to optimize and resize new and existing Wordpress image uploads through [Kraken.io Image Optimizer's](https://kraken.io "Kraken.io Image Optimizer") API. Both lossless and intelligent lossy optimization modes are supported. Supported filetypes are JPEG, PNG and GIF (including animated GIF). Maximum filesize limit is 32 MB. Even when using Kraken.io's lossy optimization, our system goes the extra mile to ensure that the results are of high quality, every time. You can just install the plugin and stop worrying.
-For more details, including detailed documentation and plans and pricing, please visit [Kraken.io](https://kraken.io "Kraken.io Image Optimizer").
+**⚡ Compress, resize and convert your WordPress images to WebP, AVIF and more — automatically. Faster pages, smaller files, same quality.**
 
-> **Get your FREE account with us, or a subscription starting from just [USD $5 per month](https://kraken.io/plans "Kraken.io - Plans and Pricing")**
+Slow pages cost you visitors, search rankings and sales — and over-sized images are almost always the culprit. **Kraken.io Image Optimizer** fixes that on autopilot: it compresses, resizes and converts every image you upload — *and* every thumbnail WordPress generates — so your whole site loads lighter and faster, without you lifting a finger.
 
-> Sign up for your [FREE Kraken.io Account](https://kraken.io/plans "Kraken.io - Plans and Pricing") and try out our plugin with and the rest of our features now, including:
+Every upload is sent to [Kraken.io](https://kraken.io "Kraken.io Image Optimizer"), one of the most advanced image-optimization APIs on the web, optimized in the cloud, and pulled straight back into your Media Library. No binaries, no command line, no server tweaks — install it, add your API key, and stop worrying about heavy images.
 
-> * 100MB of free testing quota
-> * API Access, with dozens of ready-to-use libraries and modules
-> * Web Interface PRO with Image Resizing and sync-to-Dropbox
-> * URL Paster
-> * Page Cruncher
-> * Optimization Stats and History
-> * ...and more.
+At its heart is Kraken.io's **intelligent lossy** engine: for every single image it finds the exact point where the file is as small as possible while staying *visually indistinguishable from the original*. Expect to cut **60% or more** off your image weight — exactly the win Google PageSpeed and Core Web Vitals reward.
 
-= Quick start tutorial: =
-https://www.youtube.com/watch?v=Wqtl0_cavx0
+From a personal blog to a busy WooCommerce store with tens of thousands of products, it's an install-and-forget solution that just works.
 
-= About the plugin =
-* You can use your Kraken.io API key and secret on as many sites/blogs as you like. We have no per-site license.
-* All images uploaded throught the media uploader are optimized on-the-fly. All generated thumbnails are optimized too.
-* The main image upload can be optionally resized - this is useful for preventing user uploads with unnecessarily large dimensions. You can specify the maximum width and/or height in Kraken.io->Settings.
-* When restricting the maximum dimensions of the main image using the resizing feature, the resulting image is **enhanced** using various advanced techniques, to help prevent downsample artifacts and "haloing" and produce a sharper result.
-* You can optionally preserve one or more of the Date, Copyright, Geotag, Orientation, Profile EXIF metadata tags.
-* Images can be automatically oriented according to their EXIF Orientation value - no need to manually rotate images.
-* All images already present in the media library can be optimized individually, or using the Bulk Action menu "Krak 'em all" feature.
-* This plugin does not require any root or command-line access. No compilation and installation of any binaries is necessary.
-* All optimization is carried out by sending images to Kraken.io's infrastructure, and pulling the optimized files to your Wordpress installation.
-* To use this plugin, you must obtain a full API key and secret from [https://kraken.io/plans](https://kraken.io/plans "Kraken.io - Plans and Pricing"). Our free account comes with a limited quota for testing our premium features, including this plugin.
-* Works great with WPEngine hosted blogs, including the staging area.
-* Since version 1.0.4, the plugin will work with local WordPress installations; the client site does not need to be published on the web.
+= ✨ Why Kraken.io =
 
+* **Intelligent lossy & lossless** — pick maximum savings with no visible quality loss, or pixel-perfect lossless. Per-image JPEG quality and chroma subsampling control for power users.
+* **Convert between formats** — turn uploads into **WebP**, **AVIF**, **JPEG**, **PNG** or **GIF**. Reach for next-gen WebP or AVIF for the biggest savings (and to clear Google's "Serve images in next-gen formats" audit), or switch between the classics — whatever fits your site.
+* **Optimizes everything WordPress serves** — the full-size image *and* every thumbnail size (thumbnail, medium, large, …) that actually reaches your visitors through responsive `srcset`.
+* **PDFs too, not just images** — PDF files in your Media Library are compressed through the same Kraken.io engine, so documents download and embed faster.
+* **Smart resizing** — cap oversized uploads to a maximum width/height; resized images are *enhanced* to stay sharp and avoid haloing.
+* **Bulk "Krak 'em all"** — optimize your entire existing library from a dedicated Bulk Optimize screen or the Media Library bulk action, with live progress.
+* **A control panel that tells you everything** — a Kraken.io summary panel on the Media Library, Add Media and Plugins screens (plus a Dashboard widget) shows your connection status, plan, quota usage, active settings and supported formats at a glance.
+* **Per-image savings & error badges** — see exactly how much each image saved, right in the Media grid and list.
+* **Plays nice with your stack** — works with multisite, page builders, CDNs and local/dev sites. Detects other optimizer plugins and offers one-click deactivation so they don't fight over your images.
 
-> ★★★★★ **Excellent Option for Image Optimization**
-> "The real power of Kraken is their "intelligent lossy" optimization. I use it on all my sites and have never once needed to roll back an image because of too much quality degredation. While I hope to see some more advanced settings added to the WordPress plugin in the future, it is a perfect solution as is." - [collin](https://profiles.wordpress.org/collinmbarrett)
+= 🖼️ Supported formats =
+
+JPEG, PNG, animated GIF, **WebP**, **AVIF**, **HEIC/HEIF** and **PDF**. (For security, raw SVG upload is intentionally not enabled — see the FAQ.)
+
+= ⚡ Built for Core Web Vitals =
+
+Heavy images are the number-one cause of slow pages. By compressing every size, converting to WebP/AVIF and right-sizing oversized uploads, Kraken.io directly targets the audits that move your score: *Properly size images*, *Efficiently encode images*, *Serve images in next-gen formats* and *Largest Contentful Paint*.
+
+= 🎛️ Your images, your control =
+
+* Choose **intelligent lossy** or **lossless**, globally.
+* **Convert** uploads to WebP/AVIF/JPEG/PNG/GIF on the fly — synced live between the panel and settings.
+* Preserve selected **EXIF** tags (Date, Copyright, Geotag, Orientation, Profile) or strip them for the smallest files.
+* **Auto-orient** photos from phones and cameras by their EXIF orientation.
+* Decide **who can optimize** — all logged-in users, authors and up, or administrators only.
+* Pick exactly **which image sizes** to optimize (the large 1536×1536 and 2048×2048 retina sizes are off by default to save quota — turn them on if your theme serves them).
+* Optimize on upload automatically, or defer and bulk-optimize later.
+
+= 🔒 Private & secure by design =
+
+Your API credentials are stored **write-only** and masked — they are never pre-filled into the page or exposed in your site's source, so other users on the dashboard can't read them. Every action is protected by nonces and capability checks, uploads are content-verified, and all optimization happens server-to-server with Kraken.io. No secrets ever reach the browser.
+
+= 🚀 Get started for free =
+
+> **Create a [free Kraken.io account](https://kraken.io/signup "Create your free Kraken.io account")** — no credit card required — and get testing quota to try the plugin and the rest of the Kraken.io toolset:
+
+> * A fully-featured optimization **API** with official libraries for PHP, Node.js, Python, Ruby, Java, Go and .NET
+> * **Web Interface** (free) and **Web Interface PRO** with resizing and sync-to-Dropbox
+> * **URL Paster** and **Page Cruncher** to optimize images in bulk from anywhere on the web
+> * Optimization **history and stats**, and Kraken.io Cloud Storage
+
+You can use a single API key across as many sites as you like — there is no per-site license.
+
+> ★★★★★ **Excellent option for image optimization**
+> "The real power of Kraken is their 'intelligent lossy' optimization. I use it on all my sites and have never once needed to roll back an image because of too much quality degradation. It is a perfect solution as is." — [collin](https://profiles.wordpress.org/collinmbarrett)
 >
 > ★★★★★ **Quality results, quality service**
 > "The plugin works really well and effortlessly, and the support is prompt, thoughtful, and thorough. I'm hooked." — [illustrata](https://profiles.wordpress.org/illustrata)
 >
-> ★★★★★ **Optimize according to Google Pagespeed**
-> "Kraken was instrumental in optimizing images to comply with Google's Pagespeed analyzing tool. Our travel blog travelmemo.com now sports Google's 'mobile friendly' tag for mobile searches" — [Walter Schaerer](https://profiles.wordpress.org/qualterio)
+> ★★★★★ **Optimize according to Google PageSpeed**
+> "Kraken was instrumental in optimizing images to comply with Google's PageSpeed analyzing tool. Our travel blog now sports Google's 'mobile friendly' tag for mobile searches." — [Walter Schaerer](https://profiles.wordpress.org/qualterio)
 >
 > ★★★★★ **Perfect solution to speed up site!**
-> "I love this plugin! All the questions I had are quickly responded to and I see a huge saving with image size without losing the quality. I highly recommend this plugin!" — [ezone69](https://profiles.wordpress.org/ezone69)
->
-
-Once you have obtained your credentials, from your Wordpress admin, go to the Kraken.io settings page. The from there you can enter your API credentials, and select your optimization preferences. Once you have done this, click on **Save**. If everything is in order, it will simply say "settings saved" and give you a reassuring green tick that your credentials are valid. You can now start optimizing images from within Media Library. Any image you upload from now on, through any of the media upload screens will be optimized on-the-fly by Kraken.io.
-
-For advanced users, there is a third party WordPress Command Line Interface (CLI) tool to allow image optimization from the command line, or by using cron. For details, visit: https://github.com/tillkruss/wp-cli-kraken
-
-Please send bug reports, problems, feature requests and so on to support (at) Kraken dot io, or directly to the author of this plugin.
+> "I love this plugin! All my questions are quickly responded to and I see a huge saving in image size without losing quality. Highly recommend!" — [ezone69](https://profiles.wordpress.org/ezone69)
 
 = Connect with Kraken.io =
-* Website: https://kraken.io
-* [Twitter](https://twitter.com/KrakenIO "@KrakenIO")
-* [Google+](https://plus.google.com/107209047753760492207/ "Google+")
-* [Facebook](https://www.facebook.com/krakenio "Kraken Image Optimizer")
-* [Github](https://github.com/kraken-io "Kraken.io on Github")
+
+* Website: [https://kraken.io](https://kraken.io)
+* Plans & pricing: [https://kraken.io/pricing](https://kraken.io/pricing)
+* [Twitter / X](https://twitter.com/KrakenIO "@KrakenIO") · [Facebook](https://www.facebook.com/krakenio "Kraken.io") · [GitHub](https://github.com/kraken-io "Kraken.io on GitHub")
 
 == Installation ==
 
-To install the Kraken Wordpress Plugin:
+You can be optimizing images in a couple of minutes — no servers to configure and no command line.
 
-1. Upload `kraken.php` to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Enter your Kraken.io API key and secret into the new **Kraken.io Settings** section of Settings->Media.
-4. Any images you upload from now on using Wordpress's Media Upload will be optimized according to your settings. Auto-generated thumbnails will also be optimized.
-5. Images already present can be optimized from within the Media Library.
-
-== Screenshots ==
-
-1. This screenshot shows the Kraken.io Settings page. You must enter your credentials, and select your optimization mode from there, then hit **save**. Advanced options are also available.
-2. This screenshot shows the two columns added by Kraken.io Image Optimizer: **original image** and **Kraked size**, as well as the new **Optimize This Image** button which is present for images which already exist in your media library. Stats and optimization type are shown for optimized images.
-3. This screenshot shows the bulk optimizer aka the "Krak 'em all" feature which appears as an overlay.
+1. **Install the plugin.** From your WordPress admin, go to **Plugins → Add New**, search for **Kraken.io Image Optimizer**, then click **Install Now** and **Activate**. (Prefer to do it manually? Upload the plugin folder to `/wp-content/plugins/` and activate it from the **Plugins** menu.)
+2. **Create your free Kraken.io account.** [Sign up here](https://kraken.io/signup "Create your free Kraken.io account") — no credit card required, and you get testing quota to try the plugin right away.
+3. **Copy your API credentials.** Open your [API Credentials](https://kraken.io/account/api-credentials "Your Kraken.io API credentials") page and copy your **API Key** and **API Secret**.
+4. **Connect the plugin.** Back in WordPress, go to **Settings → Kraken.io**, paste your **API Key** and **API Secret**, choose your optimization preferences, and click **Save Changes**. A green check confirms your credentials are valid.
+5. **That's it.** Every image you upload from now on — and all of its generated thumbnails — is optimized automatically. To compress images already in your library, use the **Bulk Optimize with Kraken.io** screen under **Media**, or the **Optimize** button in the Media Library list view.
 
 == Frequently Asked Questions ==
 
-= Can I test the plugin before I purchase an account from Kraken.io? =
+= Will optimization reduce my image quality? =
 
-Yes you can. All of our plans require that you first create your free Kraken.io account. No credit card is required, and we give you free testing quota of 50 MB, with which you can test all the features we offer, including this plugin.
+With **intelligent lossy** mode (the default), Kraken.io recompresses each image to a quality level below the threshold of human perception — you'll find it very hard to tell the optimized image from the original, even up close, while saving well over half the file size. Prefer pixel-perfect results? Switch to **lossless** mode in the settings.
 
-Additionally, if you would like to test the performance and results of Kraken.io Image Optimizer, you can try the free Web Interface at https://kraken.io/web-interface which does not require any registration.
+= Are my original images kept, and what happens if I uninstall the plugin? =
 
-= Where can I purchase an API key and secret? =
+The plugin replaces each image file with its optimized version, so optimized images stay on your site permanently — even after you deactivate or uninstall the plugin. Nothing reverts. (Keep your own backups as you would for any media, especially before bulk-optimizing.)
 
-From our plans page, right [here](https://kraken.io/plans "Kraken.io plans and pricing"). In addition to being able to use our Wordpress Plugin, you can also use the API in your own applications, and take advantage of our [Web Interface PRO ](https://kraken.io/pro "Kraken.io Web Interface PRO") feature (and much more!) for as little as USD $5 per month.
+= How do I optimize images I uploaded before installing the plugin? =
 
-= Will the optimized images remain on my blog if I uninstall the plugin? =
+Two ways: open **Media → Bulk Optimize with Kraken.io** and run **Krak 'em all** to process your whole library with live progress, or switch the Media Library to **List** view and click **Optimize** in the Kraken.io column for any individual image.
 
-Yes, of course they will. Our plugin simply replaces the image files on your blog with the ones optimized by us.
+= How do I serve WebP or AVIF images? =
 
-= Where can I find the option to optimize my Media Libary images? =
+Set **Convert uploads to** (in the panel or under Settings → Kraken.io) to **WebP** or **AVIF**. New uploads are converted to that next-gen format and the smaller files are served to browsers that support them — exactly what Google PageSpeed's "Serve images in next-gen formats" audit asks for.
 
-You will need to switch the Media Library from the Grid view to the List view. In the "Kraked Size" column, you will then see the "Optimize This Image" button for unoptimized images, or the results of the optimization where the image has already been optimized by our plugin.
+= Which file types are supported? =
 
-= What is the difference between Kraken.io and other plugins such as Optimus, EWWW, WP Smush, Imagify and TinyPNG/TinyJPG? =
-Kraken.io's service emphasizes finding the precise balance between image quality and file size reduction. Our API utilizes various mechanisms for ensuring that the result cannot be distinguished from the original by the human eye, even upon close inspection. If want to get the greatest possible savings without ever having to check the optimized image against the original, this is the plugin for you.
+JPEG, PNG, animated GIF, WebP, AVIF, HEIC/HEIF and PDF.
+
+= Why can't I upload or optimize SVG files? =
+
+SVG is XML that can carry inline scripts and event handlers, which makes raw SVG uploads a stored cross-site-scripting (XSS) risk. For your site's safety the plugin does not enable raw SVG uploads. (Kraken.io's API can optimize SVG; safe in-WordPress support requires a markup sanitizer and an explicit, high-trust opt-in, which is on the roadmap.)
+
+= Can I use one account on more than one site? =
+
+Yes. A single API key and secret can be used across as many sites and blogs as you like, including multisite networks — there is no per-site license.
+
+= Does it work on local or staging sites? =
+
+Yes. Images are uploaded to Kraken.io from your server rather than fetched by URL, so the plugin works on local, staging and unpublished installations, and behind firewalls or basic auth.
+
+= How is this different from Smush, ShortPixel, Imagify, EWWW or TinyPNG? =
+
+Kraken.io's focus is the precise balance between quality and file size: its intelligent lossy engine targets the greatest possible savings while keeping results indistinguishable from the original to the human eye. If you want maximum compression without ever having to eyeball the result against the source, this is the plugin for you — backed by a mature, standalone optimization service and API.
+
+= Will it help my Google PageSpeed / Core Web Vitals scores? =
+
+Yes — that's the point. Compressing every size, converting to WebP/AVIF and capping oversized uploads directly address *Properly size images*, *Efficiently encode images*, *Serve images in next-gen formats* and Largest Contentful Paint (LCP).
+
+= Can I keep or strip EXIF metadata? =
+
+Both. Choose which EXIF tags to preserve (Date, Copyright, Geotag, Orientation, Profile) under the advanced settings; anything you don't preserve is stripped for the smallest possible files.
+
+= Can I limit who is allowed to optimize images? =
+
+Yes. The **Who can optimize images** advanced setting lets you allow all logged-in users (default), authors and above, or administrators only — useful on membership, WooCommerce or forum sites where you don't want untrusted accounts spending your quota.
+
+= Will it change my filenames, ALT text or image URLs? =
+
+No. The plugin optimizes the image bytes in place — your filenames, URLs, ALT text, titles and captions stay exactly as they are. Your links and SEO are never touched.
+
+= Can I hide my API key from other people on the dashboard? =
+
+Yes. Your API key and secret are stored **write-only** and masked — never pre-filled into the settings form and never present in the page source — so other administrators and editors can't read your credentials.
+
+= How do I report a security issue? =
+
+Please email **support@kraken.io** with the details. We take responsible disclosure seriously and will respond promptly.
+
+= Is the plugin free? Do I need a paid plan? =
+
+The plugin is free. It connects to the Kraken.io service, which offers a free account with testing quota (no credit card required) and affordable paid plans as you grow. See current plans at [https://kraken.io/pricing](https://kraken.io/pricing).
+
+== Screenshots ==
+
+1. The Media Library grid with the Kraken.io control panel — connection status, quota usage and savings badges on every optimized image.
+2. The Media Library list view with the Kraken.io column showing original size, optimized size and savings per image.
+3. The Kraken.io settings page: masked write-only API credentials, optimization mode and live convert-to-WebP/AVIF control.
+4. The Bulk Optimize with Kraken.io screen — "Krak 'em all" across your whole library with live progress.
+5. Advanced settings: image sizes to optimize (retina sizes off by default), EXIF preservation, who-can-optimize and more.
+6. The Support tab — reach the team through the WordPress.org forum or a pre-filled email, with diagnostics ready to copy.
 
 == Changelog ==
 
+= 3.0.3 =
+* New: the plugin is now translated into 64 locales, covering 39 languages — Albanian (Shqip), Arabic (العربية), Belarusian (Беларуская), Bosnian (Bosanski), Bulgarian (Български), Chinese (中文 — Simplified, Traditional and Hong Kong), Croatian (Hrvatski), Czech (Čeština), Danish (Dansk), Dutch (Nederlands — Netherlands and Belgium), Estonian (Eesti), Finnish (Suomi), French (Français — France, Canada and Belgium), German (Deutsch — informal, formal, Austrian and Swiss), Greek (Ελληνικά), Hebrew (עברית), Hungarian (Magyar), Icelandic (Íslenska), Indonesian (Bahasa Indonesia), Italian (Italiano), Japanese (日本語), Korean (한국어), Latvian (Latviešu), Lithuanian (Lietuvių), Macedonian (Македонски), Norwegian (Norsk — Bokmål and Nynorsk), Polish (Polski), Portuguese (Português — Portugal, Brazil and Angola), Romanian (Română), Russian (Русский), Serbian (Српски), Slovak (Slovenčina), Slovenian (Slovenščina), Spanish (Español — Spain, Mexico, Argentina, Chile, Colombia, Costa Rica, Dominican Republic, Ecuador, Guatemala, Honduras, Peru, Puerto Rico, Uruguay and Venezuela), Swedish (Svenska), Thai (ไทย), Turkish (Türkçe), Ukrainian (Українська) and Vietnamese (Tiếng Việt).
+* New: a "Savings on this site" panel on the Stats screen — a clear breakdown of how much your full-size images and their thumbnails were each reduced (from how much, to how much), calculated from your own data and kept separate from the shared account quota.
+* New: a sticky "Save Changes" bar on the settings screen with a live "unsaved changes" reminder, so edits — especially a freshly pasted API key and secret — are never lost by forgetting to save.
+
+= 3.0.2 =
+* Security: tightened permission checks so users can only optimize, convert or reset media they are allowed to edit.
+* Fixed: files without thumbnails (PDFs, AVIF, small images) are now handled correctly — they optimize and show their savings, and no longer report a false error or keep reappearing in the Bulk Optimize list.
+* Fixed: optimization failures now report the real reason (e.g. a timeout or a missing file) instead of a generic "Unknown error."
+* Fixed: free accounts that reach their test quota now see an upgrade prompt instead of an inaccurate paid-plan billing notice.
+
+= 3.0.1 =
+* Performance and reliability improvements to the Kraken.io API connection, with broader server compatibility.
+
+= 3.0.0 =
+* New: optimization support for **WebP, AVIF, HEIC, HEIF and PDF** (in addition to JPEG, PNG and GIF).
+* New: **convert uploads** to WebP, AVIF, JPEG, PNG or GIF on the fly, synced live between the Media panel and settings.
+* New: a **Kraken.io control panel** on the Media Library, Add Media and Plugins screens, plus a Dashboard widget — showing connection status, plan, quota usage, active settings and supported formats.
+* New: a dedicated **Bulk Optimize with Kraken.io** screen, reachable from the Media menu, the Media Library and the panel.
+* New: **per-image savings and error badges** in the Media grid and list, updated live as images optimize.
+* New: **conflicting-optimizer detection** with one-click deactivation of other image plugins.
+* New: **"Who can optimize images"** capability setting (all logged-in users by default).
+* New: a **Support** tab linking to the WordPress.org forum and a pre-filled email, with copyable diagnostics.
+* Security: API key and secret are now **write-only and masked** — never pre-filled or exposed in the page source; nonce and capability checks on all AJAX actions; uploads are content-verified; raw SVG upload disabled as an XSS precaution.
+* Change: the large **1536×1536 and 2048×2048** retina sizes are now off by default to save quota (filterable; existing choices are respected).
+* Change: legacy WebP companion options are deprecated in favour of Convert.
+* Fix: a now-resolved error no longer keeps showing an error badge after a successful re-optimization.
+* Fix: the bulk count now lists only supported image formats (no more HTML/other files).
+* Fix: division-by-zero when calculating savings on PHP 8; assets are cache-busted by file modification time.
+
 = 2.7.0 =
-* Complete plugin rewrite with modular OOP architecture
-* Added WebP image generation and display support
-* Added background processing for image optimization
-* Added support for WP Retina 2x, NextGen Gallery, and WP Offload Media
-* Security: Added capability and nonce checks to reset_all_images AJAX handler
-* Security: Added input sanitization for POST parameters
-* Security: Added whitelist validation for settings tab parameter
-* Bug fix: Fixed undefined variable in optimization type handling
-* Bug fix: Fixed image reset logic that could silently fail
-* Bug fix: Added default return to savings calculation
-* Code quality: Replaced file_get_contents with wp_remote_get for remote requests
-* Code quality: Fixed multiple typos in user-facing strings
-* Code quality: Removed error suppression operators
-* Code quality: Improved POST request detection method
-* Requires PHP 5.6+
-* Requires WordPress 4.9+
-
-= 2.6.8 =
-* Security release - added nonce checking to "reset all metadata" feature in Settings->Kraken.io.
-
-= 2.6.7 =
-* Security release - added more escape mechanisms just to be sure.
+* Complete plugin rewrite with a modular OOP architecture.
+* Added WebP image generation and display support.
+* Added background processing for image optimization.
+* Added support for WP Retina 2x, NextGen Gallery and WP Offload Media.
+* Security: capability and nonce checks on the reset-all AJAX handler; input sanitization; whitelist validation for the settings tab parameter.
+* Requires PHP 5.6+ and WordPress 4.9+.
 
 = 2.6.6 =
 * Security release to solve https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-38454
 
-= 2.6.5 =
-* Security and maintenance release
-
-= 2.6.4 =
-* Security and maintenance release
-
-= 2.6.3 =
-* Verified the plugin's compatibility with PHP 7 and WordPress 4.9
-
-= 2.6.2 =
-* Fixed a rare bug which prevented filepaths containing double-forward-slashes from getting optimized.
-
-= 2.6.1 =
-* Bug fixes related to new features
-
 = 2.6.0 =
-* Added ability to choose which post sizes get optimized (defaults to all)
-* Added ability to change the chroma subsampling scheme for JPEG images (defaults to 4:2:0)
-* Stability and compatibility improvements
-* Various frontend CSS fixes and improvements
-* WordPress version compatibility bumped to 4.6
-
-= 2.5.1 =
-* Fix fatal error on older PHP versions resulting from recent PHP array syntax
+* Added the ability to choose which image sizes get optimized.
+* Added the ability to change the chroma subsampling scheme for JPEG images.
+* Stability and compatibility improvements.
 
 = 2.5.0 =
-* Ability to disable optimization of main image, allowing faster uploads from Media Library. You can optimize the main image later from within your Media Library.
-* Ability to restrict the maximum dimensions of image uploads (resizing), by width and/or height.
-* When using resize feature, resized images are enhanced for sharper results using various advanced techniques.
-* Ability to force JPEG quality to a discrete "quality" value, for greater savings if you know what you're doing.
-* Ability to preserve certain EXIF metadata tags, including Date, Copyright, Orientation, Geotag and Profile.
-* Ability to automatically orient images according to their Orientation EXIF metadata.
-* Improvements and simplifications to interface elements and Kraken.io Settings page.
+* Optionally disable optimization of the main image for faster uploads.
+* Restrict the maximum dimensions of uploads (resizing), with sharpening enhancement.
+* Force a discrete JPEG quality value; preserve selected EXIF tags; auto-orient by EXIF.
 
 = 2.0.0 =
-* Please read! Kraken.io settings have now moved to an own section (Settings->Kraken.io), in order to reduce clutter in Media Settings, and to accomodate new features on the way.
-* Advanced settings grouped in "Advanced Settings" section of settings page.
-* Direct link to Kraken.io settings from Kraken.io in the plugins section.
-* Updated screenshots.
-* WordPress version compatibility bumped to 4.2.
-
-= 1.0.9.1 =
-* Fixed another reported bootstrap CSS conflict.
-
-= 1.0.9 =
-* Fixed potential conflict with Bootstrap Modal on blogs using Twitter Bootstrap.
-* Better bundling of scripts for faster loading of the plugin.
-
-= 1.0.8 =
-* Added the ability to control the number of images the bulk tool optimizes at once. The default settings of 4 is recommended. Blogs with limited resources, for example those on small shared hosting plans should try a lower value if they run into issues with bulk optimization. Blogs on larger hosting plans can experiment with higher values.
-
-= 1.0.7 =
-* Added the ability to reset (or remove Kraken.io metadata) from individual images or all images at once, allowing further optimization in certain cases, for example, reoptimizing a previously losslessly optimized image as lossy.
-
-= 1.0.6 =
-* Better error handling.
-
-= 1.0.5.9 =
-* Cleanup release prior to major feature release. Paved the way for "reset" feature, and more.
-* Added tags.
-
-= 1.0.5.8 =
-* Better debugging for customers by including WordPress version and Kraken.io plugin version per request.
-
-= 1.0.5.7 =
-* Added ability to disable automatic optimization of uploads.
-
-= 1.0.5.6 =
-* Rolled back to old way of replacing images in light of reported issues.
-
-= 1.0.5.5 =
-* Fixed potentially breaking change to do with new PHP syntax.
-
-= 1.0.5.4 =
-* More reliable handling of image fetching and overwriting.
-
-= 1.0.5.3 =
-* Fixed broken spinner by updating the URL to our new CDN.
-* Added link to WP-CLI tools to readme.
-
-= 1.0.5.2 =
-* Removed hack which allows uploading of filenames with non-Latin alphabet, since Kraken.io API now supports it.
-* Updated readme with information about free account.
-
-= 1.0.5.1 =
-* Tested with WordPress 4.1.
-* Better naming convention for temporary files created.
-* Updated readme.txt
-
-= 1.0.5 =
-* Fixed CURL issues related to latest PHP versions.
-* Can now optimize filenames with non-Latin alphabet (such as Germanic umlauts, Cyrillic alphabet, etc).
-* Performance improvement when optimizing through Media Library or using the bulk optimizer.
-* CURL not present warning in Media Settings page.
-* Stability and reliability improvements.
-
-= 1.0.4 =
-* Utilizes Kraken.io's upload API instead of URL. Images are uploaded to Kraken.io from WordPress installations, rather than fetched by Kraken.
-* Now works will local WordPress installations since hosted images are no longer fetched by URL, but uploaded by the client blog.
-
-= 1.0.3.4 =
-* Performance improvements.
-
-= 1.0.3.3 =
-* Bug and cleanup release prior to next feature release (Amazon S3 support, in the near future).
-* Fixed bug related to SSL certificates on some blogs.
-* Fixed bug causing preventing WPEngine users from copying live site to and from staging.
-* JavaScripts and styles now only included where they need to be.
-* Increased HTTP timeouts for users with extremely large numbers of thumbnails.
-* Fixed issue preventing optimization of images on WordPress installations using relative image URIs. One plugin which used to cause this problem is Root Relative URLs by Marcus E. Pope.
-
-= 1.0.3.2 =
-* Fixed bug related to storing optimized thumbnails metadata.
-
-= 1.0.3.1 =
-* When using the Regenerate Thumbnails plugin with kraked images, meta data is now correctly updated per image.
-* Optimization mode (lossy/lossless) is now stored with kraken.io thumbnail metadata (for future Stats page).
+* Kraken.io settings moved to their own section (Settings → Kraken.io) with grouped Advanced Settings.
 
 = 1.0.3 =
-* Bulk Actions menu in Media Library is now extended with "Krak 'em all", our Bulk Optimization feature.
-* Fixed a bug which caused old images' thumbnails to not be optimized.
-* Fixed a failure condition which occured only on WPEngine-hosted systems.
-
-= 1.0.2.1 =
-* Fixed bug which led to kraked file not being retrieved in rare cases.
-* Increase ajax timeout for media library inline kraking to be kinder to slower WordPress blogs.
-
-= 1.0.2 =
-* Thumbnails are now optimized when triggering an image optimization from within the media library.
-* Number of Kraked thumbnails is now shown in media library in "Kraked Size" column.
-* "Failed! Hover here" error notification does not persist where an image was not optimized. It goes away after page refresh.
-* Optimize Image button no longer shown for incompatible media types.
-* Information about thumbnail optimization is persisted for future fun-stats page/widget.
-* Minor CSS tweaks.
-
-= 1.0.1 =
-* Minor cleanup release.
+* Added the "Krak 'em all" bulk optimization feature to the Media Library Bulk Actions menu.
 
 = 1.0 =
-* First version. Supports lossy and lossless optimization of JPG, PNG and GIF (including aniGIF) image formats
-* Hooks to Media Uploader to optimize all uploaded images, including generated thumbnails.
-* Allows optimization of existing images in Wordpress Media Library.
+* First release: lossy and lossless optimization of JPG, PNG and GIF (including animated GIF), with automatic optimization of uploads and their thumbnails.
 
-== Notes and Incompatible plugins ==
-If you use the WP Super Cache plugin, you must **disable the plugin** prior to performing any image optimization, as it is known to cause strange and buggy behaviour with the Kraken.io Image Optimizer plugin.
+For the full version history of older releases, see the plugin's WordPress.org changelog.
 
-== Any Questions? ==
-We love to hear from you! Just shoot an email to support (at) kraken dot io and let's talk.
+== Upgrade Notice ==
+
+= 3.0.0 =
+Major update: WebP/AVIF/HEIC/PDF support, convert-on-upload, a new control panel and Bulk Optimize screen, live savings badges, and write-only masked API credentials. Recommended for everyone.

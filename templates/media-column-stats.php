@@ -30,9 +30,9 @@ $summary = $stats['stats']; ?>
 
 		<?php elseif ( $stats['is_optimizing'] ) : ?>
 
-			<div class="kraken-stats-failed-optimize">
+			<div class="kraken-stats-failed-optimize kraken-stats-optimizing" data-id="<?php echo esc_attr( $stats['id'] ); ?>">
 				<p class="kraken-stats-action-detail">
-					<?php esc_html_e( 'Optimizing...', 'kraken-io' ); ?>
+					<span class="kraken-inline-spinner"></span> <?php esc_html_e( 'Optimizing...', 'kraken-io' ); ?>
 				</p>
 			</div>
 
@@ -138,6 +138,7 @@ $summary = $stats['stats']; ?>
 
 
 		<?php endif; ?>
+
 	</div>
 
 <?php else : ?>

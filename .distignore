@@ -1,0 +1,27 @@
+# Files and folders that must NOT ship to the WordPress.org SVN trunk.
+# The deploy action mirrors the repo to trunk and drops everything listed here,
+# so trunk contains only the runtime plugin (kraken.php, includes/, templates/,
+# assets/dist/, languages/, readme.txt). Note: includes/vendor/ (the runtime
+# background-processing library) is NOT excluded — only the root /vendor (dev
+# composer dependencies) is.
+
+/.git
+/.github
+/.gitignore
+/.gitattributes
+/.distignore
+/.editorconfig
+/.wordpress-org
+*.md
+/bin
+/tests
+/node_modules
+/vendor
+/composer.json
+/composer.lock
+/package.json
+/package-lock.json
+/phpcs.xml
+/phpunit.xml
+/webpack.config.js
+/assets/src

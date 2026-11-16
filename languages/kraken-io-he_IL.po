@@ -1,0 +1,1037 @@
+# Translation of Kraken.io Image Optimizer (Hebrew).
+# This file is distributed under the same license as the plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Kraken Image Optimizer 3.0.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kraken-image-optimizer\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: he_IL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: kraken-i18n\n"
+
+#. Plugin Name of the plugin
+#: kraken.php
+msgid "Kraken Image Optimizer"
+msgstr "Kraken Image Optimizer"
+
+#. Plugin URI of the plugin
+#: kraken.php
+msgid "http://wordpress.org/plugins/kraken-image-optimizer/"
+msgstr "http://wordpress.org/plugins/kraken-image-optimizer/"
+
+#. Description of the plugin
+#: kraken.php
+msgid "This plugin allows you to optimize your WordPress images through the Kraken API, the world's most advanced image optimization solution."
+msgstr "תוסף זה מאפשר לכם לבצע אופטימיזציה לתמונות הוורדפרס שלכם דרך ה-API של Kraken, פתרון האופטימיזציה לתמונות המתקדם בעולם."
+
+#. Author of the plugin
+#: kraken.php
+#: includes/class-kraken-io-settings.php:119
+#: includes/class-kraken-io-stats.php:156
+#: includes/class-kraken-io-stats.php:199
+msgid "Kraken.io"
+msgstr "Kraken.io"
+
+#. Author URI of the plugin
+#: kraken.php
+msgid "https://kraken.io"
+msgstr "https://kraken.io"
+
+#. translators: %1$s used %2$s total %3$s remaining
+#: includes/class-kraken-io-ajax.php:237
+#: templates/summary-panel.php:62
+msgid "%1$s / %2$s · %3$s left"
+msgstr "%1$s / %2$s · נותרו %3$s"
+
+#: includes/class-kraken-io-background-process.php:62
+#: includes/class-kraken-io-optimization.php:155
+#: includes/class-kraken-io-optimization.php:799
+msgid "Conversion failed."
+msgstr "ההמרה נכשלה."
+
+#: includes/class-kraken-io-optimization.php:400
+msgid "Could not get optimized image URL."
+msgstr "לא ניתן היה לקבל את כתובת ה-URL של התמונה המאופטמת."
+
+#: includes/class-kraken-io-optimization.php:406
+msgid "Could not overwrite original file. Please ensure that your files are writable by plugins."
+msgstr "לא ניתן היה לשכתב את הקובץ המקורי. ודאו שהקבצים שלכם ניתנים לכתיבה על ידי תוספים."
+
+#: includes/class-kraken-io-optimization.php:447
+msgid "Your Kraken.io API credentials are missing or invalid."
+msgstr "פרטי הגישה ל-API של Kraken.io חסרים או שגויים."
+
+#: includes/class-kraken-io-optimization.php:448
+msgid "There was nothing to send for optimization."
+msgstr "לא היה דבר לשלוח לאופטימיזציה."
+
+#: includes/class-kraken-io-optimization.php:449
+msgid "No file was provided to optimize."
+msgstr "לא סופק קובץ לאופטימיזציה."
+
+#: includes/class-kraken-io-optimization.php:450
+msgid "The image file could not be found on the server."
+msgstr "לא ניתן היה למצוא את קובץ התמונה בשרת."
+
+#: includes/class-kraken-io-optimization.php:459
+msgid "Unknown error."
+msgstr "שגיאה לא ידועה."
+
+#: includes/class-kraken-io-optimization.php:555
+#: includes/class-kraken-io-optimization.php:771
+msgid "Couldn't find the image path."
+msgstr "לא ניתן היה למצוא את נתיב התמונה."
+
+#: includes/class-kraken-io-optimization.php:594
+msgid "Optimization failed."
+msgstr "האופטימיזציה נכשלה."
+
+#: includes/class-kraken-io-optimization.php:761
+msgid "Unsupported conversion format."
+msgstr "פורמט המרה לא נתמך."
+
+#: includes/class-kraken-io-optimization.php:765
+msgid "This file cannot be converted."
+msgstr "לא ניתן להמיר קובץ זה."
+
+#: includes/class-kraken-io-optimization.php:813
+msgid "Could not download the converted image."
+msgstr "לא ניתן היה להוריד את התמונה שהומרה."
+
+#: includes/class-kraken-io-optimization.php:818
+msgid "Could not write the converted image. Please ensure your uploads are writable."
+msgstr "לא ניתן היה לכתוב את התמונה שהומרה. ודאו שתיקיית ההעלאות שלכם ניתנת לכתיבה."
+
+#: includes/class-kraken-io-settings.php:71
+#: includes/class-kraken-io-settings.php:118
+#: includes/class-kraken-io-settings.php:213
+msgid "Kraken.io Settings"
+msgstr "הגדרות Kraken.io"
+
+#: includes/class-kraken-io-settings.php:71
+#: templates/summary-panel.php:74
+msgid "Settings"
+msgstr "הגדרות"
+
+#: includes/class-kraken-io-settings.php:85
+#: templates/bulk-optimizer.php:54
+msgid "Krak 'em all"
+msgstr "אופטימיזציה לכולן"
+
+#: includes/class-kraken-io-settings.php:129
+#: includes/class-kraken-io-settings.php:130
+#: includes/class-kraken-io-settings.php:150
+msgid "Bulk Optimize with Kraken.io"
+msgstr "אופטימיזציה מרובה עם Kraken.io"
+
+#: includes/class-kraken-io-settings.php:187
+msgid "General Settings"
+msgstr "הגדרות כלליות"
+
+#: includes/class-kraken-io-settings.php:188
+msgid "<a href=\"http://kraken.io/account\" target=\"_blank\">Kraken.io</a> API Settings."
+msgstr "הגדרות API של <a href=\"http://kraken.io/account\" target=\"_blank\">Kraken.io</a>."
+
+#: includes/class-kraken-io-settings.php:191
+msgid "Advanced Settings"
+msgstr "הגדרות מתקדמות"
+
+#: includes/class-kraken-io-settings.php:192
+msgid "We recommend that you leave these settings at their default values."
+msgstr "אנו ממליצים להשאיר הגדרות אלו בערכי ברירת המחדל שלהן."
+
+#: includes/class-kraken-io-settings.php:195
+msgid "Bulk Optimizer"
+msgstr "אופטימיזציה מרובה"
+
+#: includes/class-kraken-io-settings.php:199
+msgid "Stats"
+msgstr "סטטיסטיקות"
+
+#: includes/class-kraken-io-settings.php:203
+msgid "Support"
+msgstr "תמיכה"
+
+#: includes/class-kraken-io-settings.php:249
+msgid "Save Changes"
+msgstr "שמירת שינויים"
+
+#: includes/class-kraken-io-settings.php:354
+msgid "Please refresh the page and try again."
+msgstr "רעננו את העמוד ונסו שוב."
+
+#: includes/class-kraken-io-settings.php:359
+msgid "There are no Kraken options."
+msgstr "אין אפשרויות Kraken."
+
+#: includes/class-kraken-io-settings.php:392
+msgid "Settings Saved"
+msgstr "ההגדרות נשמרו"
+
+#: includes/class-kraken-io-settings.php:578
+msgid "Deprecated"
+msgstr "הוצא משימוש"
+
+#: includes/class-kraken-io-settings.php:605
+msgid "value"
+msgstr "ערך"
+
+#. translators: %s is the field label, e.g. "API Key" or "API Secret".
+#: includes/class-kraken-io-settings.php:608
+msgid "Your %s is saved. Leave this blank to keep it, or paste a new one to replace it."
+msgstr "ה-%s שלכם נשמר. השאירו שדה זה ריק כדי לשמור אותו, או הדביקו ערך חדש כדי להחליפו."
+
+#: includes/class-kraken-io-settings.php:745
+msgid "Your credentials are valid."
+msgstr "פרטי הגישה שלכם תקפים."
+
+#: includes/class-kraken-io-settings.php:747
+msgid "There is a problem with your credentials."
+msgstr "קיימת בעיה בפרטי הגישה שלכם."
+
+#: includes/class-kraken-io-settings.php:794
+msgid "API Key"
+msgstr "מפתח API"
+
+#: includes/class-kraken-io-settings.php:801
+msgid "API Secret"
+msgstr "סוד API"
+
+#: includes/class-kraken-io-settings.php:806
+msgid "API Status"
+msgstr "סטטוס API"
+
+#: includes/class-kraken-io-settings.php:814
+msgid "Don't convert (keep original format)"
+msgstr "ללא המרה (שמירה על הפורמט המקורי)"
+
+#: includes/class-kraken-io-settings.php:815
+#: includes/class-kraken-io-summary.php:172
+msgid "JPEG"
+msgstr "JPEG"
+
+#: includes/class-kraken-io-settings.php:816
+#: includes/class-kraken-io-summary.php:173
+msgid "PNG"
+msgstr "PNG"
+
+#: includes/class-kraken-io-settings.php:817
+#: includes/class-kraken-io-summary.php:174
+msgid "GIF"
+msgstr "GIF"
+
+#: includes/class-kraken-io-settings.php:818
+#: includes/class-kraken-io-summary.php:175
+msgid "WebP"
+msgstr "WebP"
+
+#: includes/class-kraken-io-settings.php:819
+#: includes/class-kraken-io-summary.php:176
+msgid "AVIF"
+msgstr "AVIF"
+
+#: includes/class-kraken-io-settings.php:822
+msgid "Convert uploads to"
+msgstr "המרת העלאות אל"
+
+#: includes/class-kraken-io-settings.php:824
+msgid "Automatically convert new image uploads to the selected format during optimization. Leave as \"Don't convert\" to keep each image in its original format."
+msgstr "המירו אוטומטית העלאות תמונה חדשות לפורמט הנבחר במהלך האופטימיזציה. השאירו על \"ללא המרה\" כדי לשמור כל תמונה בפורמט המקורי שלה."
+
+#: includes/class-kraken-io-settings.php:833
+#: includes/class-kraken-io-summary.php:323
+msgid "Intelligent lossy"
+msgstr "עם איבוד איכות חכם"
+
+#: includes/class-kraken-io-settings.php:834
+#: includes/class-kraken-io-summary.php:323
+msgid "Lossless"
+msgstr "ללא איבוד איכות"
+
+#: includes/class-kraken-io-settings.php:836
+#: includes/class-kraken-io-summary.php:322
+#: templates/media-column-stats.php:91
+msgid "Optimization mode"
+msgstr "מצב אופטימיזציה"
+
+#: includes/class-kraken-io-settings.php:838
+msgid "The Intelligent Lossy mode will yield the greatest savings without perceivable reducing the quality of your images, and so we recommend this setting to users."
+msgstr "המצב \"עם איבוד איכות חכם\" יניב את החיסכון הגדול ביותר ללא פגיעה מורגשת באיכות התמונות שלכם, ולכן אנו ממליצים על הגדרה זו."
+
+#: includes/class-kraken-io-settings.php:839
+msgid "The Lossless mode will result in an unchanged image, however, will yield reduced savings as the image will not be recompressed."
+msgstr "המצב \"ללא איבוד איכות\" ישמור על התמונה ללא שינוי, אך יניב חיסכון מופחת מאחר שהתמונה לא תידחס מחדש."
+
+#: includes/class-kraken-io-settings.php:847
+msgid "Optimize uploads"
+msgstr "אופטימיזציה להעלאות"
+
+#: includes/class-kraken-io-settings.php:848
+#: includes/class-kraken-io-summary.php:328
+msgid "Automatically optimize uploads"
+msgstr "אופטימיזציה אוטומטית להעלאות"
+
+#: includes/class-kraken-io-settings.php:850
+msgid "Enabled by default. This setting causes images uploaded through the Media Uploader to be optimized on-the-fly."
+msgstr "מופעל כברירת מחדל. הגדרה זו גורמת לתמונות שהועלו דרך מעלה המדיה לעבור אופטימיזציה בזמן אמת."
+
+#: includes/class-kraken-io-settings.php:851
+msgid "If you do not wish to do this, or wish to optimize images later, disable this setting by unchecking the box."
+msgstr "אם אינכם רוצים בכך, או מעדיפים לבצע אופטימיזציה לתמונות מאוחר יותר, השביתו הגדרה זו על ידי ביטול הסימון בתיבה."
+
+#: includes/class-kraken-io-settings.php:859
+msgid "Optimize images"
+msgstr "אופטימיזציה לתמונות"
+
+#: includes/class-kraken-io-settings.php:860
+#: includes/class-kraken-io-summary.php:334
+msgid "Optimize main image"
+msgstr "אופטימיזציה לתמונה הראשית"
+
+#: includes/class-kraken-io-settings.php:862
+msgid "Enabled by default. This option causes the image uploaded by the user to get optimized, as well as all sizes generated by WordPress."
+msgstr "מופעל כברירת מחדל. אפשרות זו גורמת לתמונה שהועלתה על ידי המשתמש לעבור אופטימיזציה, וכן לכל הגדלים שנוצרו על ידי וורדפרס."
+
+#: includes/class-kraken-io-settings.php:863
+msgid "Disabling this option results in faster uploading, since the main image is not sent to our system for optimization."
+msgstr "השבתת אפשרות זו מביאה להעלאה מהירה יותר, מאחר שהתמונה הראשית אינה נשלחת למערכת שלנו לאופטימיזציה."
+
+#: includes/class-kraken-io-settings.php:864
+msgid "Disable this option if you never use the \"main\" image upload in your posts, or speed of image uploading is an issue."
+msgstr "השביתו אפשרות זו אם אינכם משתמשים כלל בהעלאת התמונה \"הראשית\" בפוסטים שלכם, או אם מהירות העלאת התמונות מהווה בעיה."
+
+#: includes/class-kraken-io-settings.php:872
+msgid "Max width (px)"
+msgstr "רוחב מרבי (px)"
+
+#: includes/class-kraken-io-settings.php:873
+msgid "Max height (px)"
+msgstr "גובה מרבי (px)"
+
+#: includes/class-kraken-io-settings.php:879
+#: includes/class-kraken-io-summary.php:343
+msgid "Resize main image"
+msgstr "שינוי גודל התמונה הראשית"
+
+#: includes/class-kraken-io-settings.php:881
+msgid "You can restrict the maximum dimensions of image uploads by width and/or height."
+msgstr "ניתן להגביל את הממדים המרביים של העלאות תמונה לפי רוחב ו/או גובה."
+
+#: includes/class-kraken-io-settings.php:882
+msgid "It is especially useful if you wish to prevent unnecessarily large photos with extremely high resolutions from being uploaded, for example, photos shot with a recent-model iPhone. Note: you can restrict the dimensions by width, height, or both. A value of zero disables."
+msgstr "הדבר שימושי במיוחד אם ברצונכם למנוע העלאת תמונות גדולות שלא לצורך ברזולוציות גבוהות במיוחד, למשל תמונות שצולמו ב-iPhone מדגם חדש. הערה: ניתן להגביל את הממדים לפי רוחב, גובה או שניהם. ערך אפס מבטל את ההגבלה."
+
+#: includes/class-kraken-io-settings.php:894
+msgid "Intelligent lossy (recommended)"
+msgstr "עם איבוד איכות חכם (מומלץ)"
+
+#: includes/class-kraken-io-settings.php:899
+msgid "JPEG quality setting"
+msgstr "הגדרת איכות JPEG"
+
+#: includes/class-kraken-io-settings.php:901
+msgid "Advanced users can force the quality of JPEG images to a discrete \"q\" value between 25 and 100 using this setting."
+msgstr "משתמשים מתקדמים יכולים לאלץ את איכות תמונות ה-JPEG לערך \"q\" בדיד בין 25 ל-100 באמצעות הגדרה זו."
+
+#: includes/class-kraken-io-settings.php:902
+msgid "For example, forcing the quality to 60 or 70 might yield greater savings, but the resulting quality might be affected, depending on the image."
+msgstr "לדוגמה, אילוץ האיכות ל-60 או ל-70 עשוי להניב חיסכון גדול יותר, אך האיכות המתקבלת עלולה להיפגע, בהתאם לתמונה."
+
+#: includes/class-kraken-io-settings.php:903
+msgid "We therefore recommend keeping the <strong>Intelligent Lossy</strong> setting, which will not allow a resulting image of unacceptable quality."
+msgstr "לפיכך אנו ממליצים לשמור על הגדרת <strong>עם איבוד איכות חכם</strong>, שלא תאפשר תמונה מתקבלת באיכות בלתי מקובלת."
+
+#: includes/class-kraken-io-settings.php:904
+msgid "This setting will be ignored when using the <strong>lossless</strong> optimization mode."
+msgstr "הגדרה זו תיעלם בעת שימוש במצב אופטימיזציה <strong>ללא איבוד איכות</strong>."
+
+#: includes/class-kraken-io-settings.php:913
+msgid "4:2:0 (default)"
+msgstr "4:2:0 (ברירת מחדל)"
+
+#: includes/class-kraken-io-settings.php:914
+msgid "4:2:2"
+msgstr "4:2:2"
+
+#: includes/class-kraken-io-settings.php:915
+msgid "4:4:4 (no subsampling)"
+msgstr "4:4:4 (ללא תת-דגימה)"
+
+#: includes/class-kraken-io-settings.php:917
+msgid "Chroma subsampling scheme"
+msgstr "שיטת תת-דגימת כרומה"
+
+#: includes/class-kraken-io-settings.php:919
+msgid "Advanced users can also set the resolution at which colour is encoded for JPEG images."
+msgstr "משתמשים מתקדמים יכולים גם להגדיר את הרזולוציה שבה הצבע מקודד עבור תמונות JPEG."
+
+#: includes/class-kraken-io-settings.php:920
+msgid "In short, the default setting of 4:2:0 is suitable for most images, and will result in the lowest possible optimized file size."
+msgstr "בקצרה, הגדרת ברירת המחדל 4:2:0 מתאימה לרוב התמונות, ותניב את גודל הקובץ המאופטם הקטן ביותר האפשרי."
+
+#: includes/class-kraken-io-settings.php:921
+msgid "Images containing high contrast text or bright red areas on flat backgrounds might benefit from disabling chroma subsampling (by setting it to 4:4:4). "
+msgstr "תמונות המכילות טקסט בניגודיות גבוהה או אזורים אדומים בהירים על רקעים אחידים עשויות להפיק תועלת מהשבתת תת-דגימת הכרומה (על ידי הגדרתה ל-4:4:4). "
+
+#: includes/class-kraken-io-settings.php:922
+msgid "More information can be found in our <a href=\"https://kraken.io/docs/chroma-subsampling\" target=\"_blank\">documentation</a>."
+msgstr "מידע נוסף ניתן למצוא ב<a href=\"https://kraken.io/docs/chroma-subsampling\" target=\"_blank\">תיעוד</a> שלנו."
+
+#: includes/class-kraken-io-settings.php:932
+msgid "All logged-in users"
+msgstr "כל המשתמשים המחוברים"
+
+#: includes/class-kraken-io-settings.php:933
+msgid "Users who can upload media (Author and above)"
+msgstr "משתמשים שיכולים להעלות מדיה (כותב ומעלה)"
+
+#: includes/class-kraken-io-settings.php:934
+msgid "Administrators only"
+msgstr "מנהלים בלבד"
+
+#: includes/class-kraken-io-settings.php:937
+msgid "Who can optimize images"
+msgstr "מי רשאי לבצע אופטימיזציה לתמונות"
+
+#: includes/class-kraken-io-settings.php:939
+msgid "Controls which logged-in users may trigger optimization actions (single optimize, bulk optimize, reset) from the Media Library."
+msgstr "קובע אילו משתמשים מחוברים רשאים להפעיל פעולות אופטימיזציה (אופטימיזציה בודדת, אופטימיזציה מרובה, איפוס) מספריית המדיה."
+
+#: includes/class-kraken-io-settings.php:940
+msgid "Optimization consumes your paid Kraken.io quota and rewrites your media, so a user can only act on attachments they are allowed to edit, and by default only users who can upload media (Author and above) may optimize. On sites with open registration (membership, WooCommerce, forums), keep this restricted so untrusted accounts cannot consume your quota or alter media."
+msgstr "אופטימיזציה צורכת את המכסה בתשלום של Kraken.io ומשכתבת את המדיה שלכם, ולכן משתמש יכול לפעול רק על קבצים מצורפים שמותר לו לערוך, וכברירת מחדל רק משתמשים שיכולים להעלות מדיה (כותב ומעלה) רשאים לבצע אופטימיזציה. באתרים עם הרשמה פתוחה (חברות, WooCommerce, פורומים), שמרו על הגבלה זו כך שחשבונות לא מהימנים לא יוכלו לצרוך את המכסה שלכם או לשנות מדיה."
+
+#: includes/class-kraken-io-settings.php:941
+msgid "• All logged-in users — anyone signed in who can also edit the attachment (most permissive). • Users who can upload media — Authors, Editors and Administrators (default). • Administrators only — most restrictive."
+msgstr "• כל המשתמשים המחוברים — כל מי שמחובר ויכול גם לערוך את הקובץ המצורף (המתירני ביותר). • משתמשים שיכולים להעלות מדיה — כותבים, עורכים ומנהלים (ברירת מחדל). • מנהלים בלבד — המגביל ביותר."
+
+#: includes/class-kraken-io-settings.php:950
+msgid "Image sizes to Krak"
+msgstr "גדלי תמונה לאופטימיזציה"
+
+#: includes/class-kraken-io-settings.php:952
+msgid "Every time you upload an image, WordPress generates several resized copies (thumbnail, medium, large, and so on). These resized versions — not the original — are what your visitors actually download, through responsive <code>srcset</code> images. Each size you tick here gets optimized, so the images people really load are compressed."
+msgstr "בכל פעם שאתם מעלים תמונה, וורדפרס מייצר מספר עותקים בגדלים שונים (תמונה ממוזערת, בינוני, גדול וכן הלאה). גרסאות אלו בגדלים שונים — ולא המקור — הן מה שהמבקרים שלכם מורידים בפועל, באמצעות תמונות <code>srcset</code> רספונסיביות. כל גודל שתסמנו כאן עובר אופטימיזציה, כך שהתמונות שאנשים באמת טוענים נדחסות."
+
+#: includes/class-kraken-io-settings.php:953
+msgid "If you untick a size, that copy is still created and still served to your visitors — just <strong>left unoptimized</strong>, at its full original weight. Keeping these on is what delivers the page-speed gain across your whole site, not just on the original file."
+msgstr "אם תבטלו סימון של גודל, אותו עותק עדיין ייווצר ועדיין יוגש למבקרים שלכם — רק <strong>ללא אופטימיזציה</strong>, במשקלו המקורי המלא. השארת גדלים אלו פעילים היא מה שמספק את שיפור מהירות העמוד בכל האתר שלכם, ולא רק עבור הקובץ המקורי."
+
+#: includes/class-kraken-io-settings.php:954
+msgid "The trade-off: each ticked size is a separate optimization that uses your Kraken.io quota. For that reason the large retina sizes <code>1536×1536</code> and <code>2048×2048</code> are <strong>left off by default</strong> — most themes never serve them. If your theme does use them (for high-DPI screens), just tick them here and they'll be optimized too. Already-optimized images are never touched by this."
+msgstr "התמורה: כל גודל מסומן הוא אופטימיזציה נפרדת שצורכת מהמכסה שלכם ב-Kraken.io. מסיבה זו גדלי הרטינה הגדולים <code>1536×1536</code> ו-<code>2048×2048</code> <strong>מושארים כבויים כברירת מחדל</strong> — רוב התבניות אינן מגישות אותם כלל. אם התבנית שלכם כן משתמשת בהם (עבור מסכי DPI גבוה), פשוט סמנו אותם כאן והם יעברו אופטימיזציה גם כן. תמונות שכבר עברו אופטימיזציה לעולם אינן מושפעות מכך."
+
+#: includes/class-kraken-io-settings.php:962
+#: includes/class-kraken-io-summary.php:387
+msgid "Date"
+msgstr "תאריך"
+
+#: includes/class-kraken-io-settings.php:963
+#: includes/class-kraken-io-summary.php:388
+msgid "Copyright"
+msgstr "זכויות יוצרים"
+
+#: includes/class-kraken-io-settings.php:964
+#: includes/class-kraken-io-summary.php:389
+msgid "Geotag"
+msgstr "תיוג גאוגרפי"
+
+#: includes/class-kraken-io-settings.php:965
+#: includes/class-kraken-io-summary.php:390
+msgid "Orientation"
+msgstr "כיוון"
+
+#: includes/class-kraken-io-settings.php:975
+msgid "Preserve EXIF Metadata"
+msgstr "שמירת מטא-נתוני EXIF"
+
+#: includes/class-kraken-io-settings.php:982
+msgid "Image orientation"
+msgstr "כיוון התמונה"
+
+#: includes/class-kraken-io-settings.php:983
+#: includes/class-kraken-io-summary.php:366
+msgid "Automatically orient images"
+msgstr "כיוון אוטומטי של תמונות"
+
+#: includes/class-kraken-io-settings.php:985
+msgid "This setting will rotate the JPEG image according to its Orientation EXIF metadata such that it will always be correctly displayed in Web Browsers."
+msgstr "הגדרה זו תסובב את תמונת ה-JPEG בהתאם למטא-נתוני ה-EXIF של הכיוון שלה כך שתוצג תמיד בצורה נכונה בדפדפני אינטרנט."
+
+#: includes/class-kraken-io-settings.php:986
+msgid "Enable this setting if many of your image uploads come from smart phones or digital cameras which set the orientation based on how they are held at the time of shooting."
+msgstr "הפעילו הגדרה זו אם רבות מהעלאות התמונה שלכם מגיעות מסמארטפונים או ממצלמות דיגיטליות שמגדירים את הכיוון בהתאם לאופן האחיזה בעת הצילום."
+
+#: includes/class-kraken-io-settings.php:994
+msgid "Metadata reset per image"
+msgstr "איפוס מטא-נתונים לכל תמונה"
+
+#: includes/class-kraken-io-settings.php:995
+msgid "Show reset button"
+msgstr "הצגת כפתור איפוס"
+
+#: includes/class-kraken-io-settings.php:997
+msgid "Checking this option will add a Reset button in the \"Show Details\" popup in the Kraken Stats column for each optimized image."
+msgstr "סימון אפשרות זו יוסיף כפתור איפוס בחלון \"הצג פרטים\" בעמודת סטטיסטיקות Kraken עבור כל תמונה מאופטמת."
+
+#: includes/class-kraken-io-settings.php:998
+msgid "Resetting an image will remove the Kraken.io metadata associated with it, effectively making your blog forget that it had been optimized in the first place, allowing further optimization in some cases."
+msgstr "איפוס תמונה יסיר את מטא-נתוני Kraken.io המשויכים אליה, ובכך יגרום למעשה לבלוג שלכם לשכוח שהיא עברה אופטימיזציה מלכתחילה, ויאפשר אופטימיזציה נוספת במקרים מסוימים."
+
+#: includes/class-kraken-io-settings.php:999
+msgid "If an image has been optimized using the lossless setting, lossless optimization will not yield any greater savings. If in doubt, please contact support@kraken.io"
+msgstr "אם תמונה עברה אופטימיזציה בהגדרת ללא איבוד איכות, אופטימיזציה ללא איבוד איכות לא תניב חיסכון גדול יותר. במקרה של ספק, אנא צרו קשר עם support@kraken.io"
+
+#: includes/class-kraken-io-settings.php:1007
+msgid "Savings badge"
+msgstr "תג חיסכון"
+
+#: includes/class-kraken-io-settings.php:1008
+msgid "Show a savings badge on optimized thumbnails"
+msgstr "הצגת תג חיסכון על תמונות ממוזערות מאופטמות"
+
+#: includes/class-kraken-io-settings.php:1010
+msgid "Displays the percentage saved in the corner of each optimized image thumbnail in the Media Library."
+msgstr "מציג את אחוז החיסכון בפינת כל תמונה ממוזערת מאופטמת בספריית המדיה."
+
+#: includes/class-kraken-io-settings.php:1018
+msgid "Background process"
+msgstr "תהליך רקע"
+
+#: includes/class-kraken-io-settings.php:1019
+msgid "Process image optimization in background"
+msgstr "ביצוע אופטימיזציה של תמונות ברקע"
+
+#: includes/class-kraken-io-settings.php:1021
+msgid "This setting will optimize images in background when using the option \"Automatically optimize uploads\" resulting in faster image uploads."
+msgstr "הגדרה זו תבצע אופטימיזציה לתמונות ברקע בעת שימוש באפשרות \"אופטימיזציה אוטומטית להעלאות\", מה שמביא להעלאות תמונה מהירות יותר."
+
+#: includes/class-kraken-io-settings.php:1027
+msgid "WebP / next-gen formats"
+msgstr "WebP / פורמטים מהדור הבא"
+
+#: includes/class-kraken-io-settings.php:1029
+msgid "The old \"Create WebP\" and \"Display WebP\" options are deprecated. They created a separate .webp companion for every image and depended on Apache .htaccess rewrite rules, which did not work behind a CDN."
+msgstr "האפשרויות הישנות \"צור WebP\" ו-\"הצג WebP\" הוצאו משימוש. הן יצרו קובץ ‎.webp נלווה נפרד לכל תמונה והסתמכו על כללי שכתוב ב-‎.htaccess של Apache, שלא פעלו מאחורי CDN."
+
+#: includes/class-kraken-io-settings.php:1030
+msgid "To serve WebP (or AVIF) now, use \"Convert uploads to → WebP\" in the General settings tab. Each upload is converted to the modern format directly, so the file is served as-is by any server or CDN — no companion files and no rewrite rules required."
+msgstr "כדי להגיש WebP (או AVIF) כעת, השתמשו ב-\"המרת העלאות אל ← WebP\" בלשונית ההגדרות הכלליות. כל העלאה מומרת ישירות לפורמט המודרני, כך שהקובץ מוגש כפי שהוא על ידי כל שרת או CDN — ללא קבצים נלווים וללא כללי שכתוב."
+
+#: includes/class-kraken-io-settings.php:1039
+msgid "Bulk concurrency"
+msgstr "מקביליות אופטימיזציה מרובה"
+
+#: includes/class-kraken-io-settings.php:1041
+msgid "This settings defines how many images can be processed at the same time using the bulk optimizer. The recommended (and default) value is 4."
+msgstr "הגדרה זו קובעת כמה תמונות ניתן לעבד בו-זמנית באמצעות מנגנון האופטימיזציה המרובה. הערך המומלץ (וברירת המחדל) הוא 4."
+
+#: includes/class-kraken-io-settings.php:1042
+msgid "For blogs on very small hosting plans, or with reduced connectivity, a lower number might be necessary to avoid hitting request limits."
+msgstr "עבור בלוגים בתוכניות אחסון קטנות מאוד, או עם קישוריות מופחתת, ייתכן שיהיה צורך במספר נמוך יותר כדי להימנע מחריגה ממגבלות הבקשות."
+
+#: includes/class-kraken-io-summary.php:46
+msgid "Kraken.io Image Optimizer"
+msgstr "Kraken.io Image Optimizer"
+
+#: includes/class-kraken-io-summary.php:171
+msgid "No conversion"
+msgstr "ללא המרה"
+
+#: includes/class-kraken-io-summary.php:351
+msgid "JPEG quality"
+msgstr "איכות JPEG"
+
+#: includes/class-kraken-io-summary.php:358
+msgid "Chroma subsampling"
+msgstr "תת-דגימת כרומה"
+
+#: includes/class-kraken-io-summary.php:372
+msgid "Background processing"
+msgstr "עיבוד ברקע"
+
+#: includes/class-kraken-io-summary.php:380
+msgid "Per-image reset button"
+msgstr "כפתור איפוס לכל תמונה"
+
+#: includes/class-kraken-io-summary.php:391
+msgid "Profile"
+msgstr "פרופיל"
+
+#: includes/class-kraken-io-summary.php:400
+msgid "Preserve EXIF metadata"
+msgstr "שמירת מטא-נתוני EXIF"
+
+#: includes/class-kraken-io-summary.php:413
+msgid "Image sizes optimized"
+msgstr "גדלי תמונה שעברו אופטימיזציה"
+
+#. translators: %d number of image sizes
+#: includes/class-kraken-io-summary.php:415
+msgid "%d size"
+msgid_plural "%d sizes"
+msgstr[0] "גודל %d"
+msgstr[1] "%d גדלים"
+
+#: includes/class-kraken-io.php:372
+msgid "Are you sure you want to remove Kraken metadata for this image?"
+msgstr "האם אתם בטוחים שברצונכם להסיר את מטא-נתוני Kraken עבור תמונה זו?"
+
+#: includes/class-kraken-io.php:373
+msgid "This will immediately remove all Kraken metadata associated with your images. Are you sure you want to do this?"
+msgstr "פעולה זו תסיר מיד את כל מטא-נתוני Kraken המשויכים לתמונות שלכם. האם אתם בטוחים שברצונכם לעשות זאת?"
+
+#: includes/class-kraken-io.php:374
+msgid "Something went wrong. Please reload the page and try again."
+msgstr "משהו השתבש. אנא טענו מחדש את העמוד ונסו שוב."
+
+#: includes/class-kraken-io.php:375
+msgid "Optimizing…"
+msgstr "מבצע אופטימיזציה…"
+
+#: includes/class-kraken-io.php:376
+msgid "Converting…"
+msgstr "ממיר…"
+
+#: includes/class-kraken-io.php:377
+msgid "Optimized"
+msgstr "עבר אופטימיזציה"
+
+#. translators: %s number of images
+#: includes/class-kraken-io.php:379
+msgid "%s images will be optimized."
+msgstr "%s תמונות יעברו אופטימיזציה."
+
+#. translators: %1$s optimized %2$s total
+#: includes/class-kraken-io.php:381
+msgid "%1$s / %2$s images have been optimized."
+msgstr "%1$s / %2$s תמונות עברו אופטימיזציה."
+
+#: includes/class-kraken-io.php:382
+msgid "Copied!"
+msgstr "הועתק!"
+
+#: templates/account-hero.php:60
+#: templates/summary-panel.php:36
+msgid "Not connected"
+msgstr "לא מחובר"
+
+#: templates/account-hero.php:61
+msgid "Connect your Kraken.io account"
+msgstr "חברו את חשבון Kraken.io שלכם"
+
+#: templates/account-hero.php:62
+msgid "Enter your API key and secret below to start optimizing your images. Don't have an account yet? Create one in seconds."
+msgstr "הזינו את מפתח ה-API והסוד למטה כדי להתחיל לבצע אופטימיזציה לתמונות שלכם. עדיין אין לכם חשבון? צרו אחד תוך שניות."
+
+#: templates/account-hero.php:68
+#: templates/summary-panel.php:38
+msgid "Invalid credentials"
+msgstr "פרטי גישה שגויים"
+
+#: templates/account-hero.php:69
+msgid "Your API credentials are invalid"
+msgstr "פרטי הגישה ל-API שלכם שגויים"
+
+#: templates/account-hero.php:70
+msgid "Double-check the API key and secret below, or grab fresh credentials from your Kraken.io account."
+msgstr "בדקו שוב את מפתח ה-API והסוד למטה, או קבלו פרטי גישה חדשים מחשבון Kraken.io שלכם."
+
+#: templates/account-hero.php:76
+#: templates/summary-panel.php:40
+msgid "Payment overdue"
+msgstr "תשלום באיחור"
+
+#: templates/account-hero.php:77
+msgid "Your Kraken.io payment is overdue"
+msgstr "התשלום שלכם ל-Kraken.io באיחור"
+
+#: templates/account-hero.php:78
+msgid "Optimization may be paused until your billing is up to date."
+msgstr "ייתכן שהאופטימיזציה תושהה עד שהחיוב שלכם יעודכן."
+
+#: templates/account-hero.php:84
+#: templates/account-hero.php:92
+#: templates/summary-panel.php:42
+msgid "Connected"
+msgstr "מחובר"
+
+#: templates/account-hero.php:85
+msgid "You're on the Free plan"
+msgstr "אתם בתוכנית החינמית"
+
+#: templates/account-hero.php:86
+msgid "Upgrade to a paid plan for more monthly quota and larger file sizes."
+msgstr "שדרגו לתוכנית בתשלום לקבלת מכסה חודשית גדולה יותר וגדלי קבצים גדולים יותר."
+
+#. translators: %s plan name
+#: templates/account-hero.php:96
+msgid "Connected — %s plan"
+msgstr "מחובר — תוכנית %s"
+
+#: templates/account-hero.php:99
+msgid "Your Kraken.io account is active and optimizing your images."
+msgstr "חשבון Kraken.io שלכם פעיל ומבצע אופטימיזציה לתמונות שלכם."
+
+#: templates/account-hero.php:119
+msgid "Monthly quota"
+msgstr "מכסה חודשית"
+
+#. translators: %1$s used %2$s total
+#: templates/account-hero.php:124
+msgid "%1$s of %2$s used"
+msgstr "%1$s מתוך %2$s בשימוש"
+
+#. translators: %s remaining
+#: templates/account-hero.php:125
+msgid "%s left"
+msgstr "נותרו %s"
+
+#: templates/account-hero.php:135
+msgid "Create an account"
+msgstr "צרו חשבון"
+
+#: templates/account-hero.php:136
+#: templates/account-hero.php:142
+msgid "Get API credentials"
+msgstr "קבלו פרטי גישה ל-API"
+
+#: templates/account-hero.php:148
+msgid "Update billing"
+msgstr "עדכנו חיוב"
+
+#: templates/account-hero.php:154
+msgid "Subscribe to a plan"
+msgstr "הירשמו לתוכנית"
+
+#: templates/account-hero.php:155
+#: templates/account-hero.php:161
+msgid "Manage account"
+msgstr "ניהול חשבון"
+
+#: templates/account-hero.php:162
+#: templates/summary-panel.php:113
+msgid "Upgrade plan"
+msgstr "שדרגו תוכנית"
+
+#: templates/bulk-optimizer-stats.php:32
+#: templates/media-column-stats.php:26
+#: templates/media-column-stats.php:133
+msgid "Failed with errors"
+msgstr "נכשל עם שגיאות"
+
+#: templates/bulk-optimizer-stats.php:41
+#: templates/media-column-stats.php:35
+msgid "Optimizing..."
+msgstr "מבצע אופטימיזציה..."
+
+#. translators: %1$s percentage %2$s total
+#: templates/bulk-optimizer-stats.php:51
+#: templates/media-column-stats.php:57
+msgid "Saved %1$s (%2$s)"
+msgstr "נחסכו %1$s (%2$s)"
+
+#: templates/bulk-optimizer-stats.php:56
+#: templates/media-column-stats.php:107
+msgid "No savings"
+msgstr "ללא חיסכון"
+
+#. translators: %s optimization type
+#: templates/bulk-optimizer-stats.php:64
+#: templates/media-column-stats.php:125
+msgid "No savings found for type %s"
+msgstr "לא נמצא חיסכון עבור סוג %s"
+
+#: templates/bulk-optimizer-stats.php:71
+#: templates/media-column-stats.php:146
+msgid "N/A"
+msgstr "לא רלוונטי"
+
+#: templates/bulk-optimizer.php:14
+#: templates/media-column-stats.php:20
+#: templates/stats.php:13
+msgid "Connect your account"
+msgstr "חברו את החשבון שלכם"
+
+#. translators: %s number of images
+#: templates/bulk-optimizer.php:23
+msgid "%s image will be optimized."
+msgid_plural "%s images will be optimized."
+msgstr[0] "תמונה %s תעבור אופטימיזציה."
+msgstr[1] "%s תמונות יעברו אופטימיזציה."
+
+#: templates/bulk-optimizer.php:27
+msgid "Selected images are already optimized"
+msgstr "התמונות שנבחרו כבר עברו אופטימיזציה"
+
+#: templates/bulk-optimizer.php:29
+msgid "All images are already optimized"
+msgstr "כל התמונות כבר עברו אופטימיזציה"
+
+#: templates/bulk-optimizer.php:44
+msgid "Kraken Bulk Image Optimization"
+msgstr "אופטימיזציה מרובה של תמונות עם Kraken"
+
+#: templates/bulk-optimizer.php:65
+msgid "Image"
+msgstr "תמונה"
+
+#: templates/bulk-optimizer.php:66
+msgid "Original Size"
+msgstr "גודל מקורי"
+
+#: templates/bulk-optimizer.php:69
+msgid "Kraken.io Stats"
+msgstr "סטטיסטיקות Kraken.io"
+
+#: templates/conflicts-notice.php:23
+msgid "Other image optimizers detected"
+msgstr "זוהו כלי אופטימיזציה אחרים לתמונות"
+
+#: templates/conflicts-notice.php:26
+msgid "Running more than one image optimizer on the same uploads wastes quota and can double-compress your images. For best results with Kraken.io, deactivate the plugins below."
+msgstr "הפעלת יותר מכלי אופטימיזציה אחד על אותן העלאות מבזבזת מכסה ועלולה לדחוס את התמונות שלכם פעמיים. לתוצאות הטובות ביותר עם Kraken.io, השביתו את התוספים שלמטה."
+
+#: templates/conflicts-notice.php:33
+msgid "Deactivate"
+msgstr "השבתה"
+
+#: templates/media-column-stats.php:46
+msgid "Optimize Main Image"
+msgstr "אופטימיזציה לתמונה הראשית"
+
+#: templates/media-column-stats.php:61
+msgid "Show Details"
+msgstr "הצג פרטים"
+
+#: templates/media-column-stats.php:67
+msgid "Main image savings"
+msgstr "חיסכון בתמונה הראשית"
+
+#. translators: %1$s bytes %2$s percentage
+#: templates/media-column-stats.php:70
+#: templates/media-column-stats.php:85
+msgid "%1$s (%2$s saved)"
+msgstr "%1$s (%2$s נחסכו)"
+
+#. translators: %s count
+#: templates/media-column-stats.php:80
+msgid "Savings on %s thumbnails"
+msgstr "חיסכון ב-%s תמונות ממוזערות"
+
+#: templates/media-column-stats.php:97
+msgid "Reset Image"
+msgstr "איפוס תמונה"
+
+#: templates/media-column-stats.php:117
+msgid "Optimize"
+msgstr "אופטימיזציה"
+
+#: templates/stats.php:28
+msgid "Plan Level"
+msgstr "רמת תוכנית"
+
+#: templates/stats.php:32
+msgid "Quota"
+msgstr "מכסה"
+
+#: templates/stats.php:36
+msgid "Current Usage"
+msgstr "שימוש נוכחי"
+
+#: templates/stats.php:40
+msgid "Remaining"
+msgstr "נותר"
+
+#: templates/summary-panel.php:53
+msgid "Active plan"
+msgstr "תוכנית פעילה"
+
+#: templates/summary-panel.php:73
+msgid "View full stats"
+msgstr "הצג סטטיסטיקות מלאות"
+
+#: templates/summary-panel.php:87
+msgid "No API credentials found."
+msgstr "לא נמצאו פרטי גישה ל-API."
+
+#: templates/summary-panel.php:87
+msgid "Connect your Kraken.io account to start optimizing your images."
+msgstr "חברו את חשבון Kraken.io שלכם כדי להתחיל לבצע אופטימיזציה לתמונות שלכם."
+
+#: templates/summary-panel.php:88
+msgid "Add API credentials"
+msgstr "הוסיפו פרטי גישה ל-API"
+
+#: templates/summary-panel.php:94
+msgid "Your Kraken.io API credentials are invalid."
+msgstr "פרטי הגישה ל-API של Kraken.io שלכם שגויים."
+
+#: templates/summary-panel.php:94
+msgid "Please check your API key and secret in the plugin settings."
+msgstr "אנא בדקו את מפתח ה-API והסוד בהגדרות התוסף."
+
+#: templates/summary-panel.php:95
+msgid "Review credentials"
+msgstr "בדקו פרטי גישה"
+
+#: templates/summary-panel.php:103
+msgid "Payment overdue — your API access has been restricted."
+msgstr "תשלום באיחור — הגישה שלכם ל-API הוגבלה."
+
+#: templates/summary-panel.php:103
+msgid "Please complete your payment from your kraken.io account to resume optimizing."
+msgstr "אנא השלימו את התשלום מחשבון kraken.io שלכם כדי לחדש את האופטימיזציה."
+
+#: templates/summary-panel.php:104
+msgid "Complete payment"
+msgstr "השלימו תשלום"
+
+#: templates/summary-panel.php:112
+msgid "Free test quota used up."
+msgstr "מכסת הבדיקה החינמית נוצלה במלואה."
+
+#: templates/summary-panel.php:112
+msgid "Upgrade to a paid plan to keep optimizing, or email support@kraken.io to request more test quota."
+msgstr "שדרגו לתוכנית בתשלום כדי להמשיך לבצע אופטימיזציה, או שלחו אימייל אל support@kraken.io כדי לבקש מכסת בדיקה נוספת."
+
+#: templates/summary-panel.php:115
+msgid "Monthly quota exceeded."
+msgstr "חריגה מהמכסה החודשית."
+
+#: templates/summary-panel.php:115
+msgid "Further optimizations will be billed at the end of your billing period."
+msgstr "אופטימיזציות נוספות יחויבו בסוף תקופת החיוב שלכם."
+
+#: templates/summary-panel.php:116
+msgid "View account"
+msgstr "הצג חשבון"
+
+#: templates/summary-panel.php:129
+msgid "Convert uploads to:"
+msgstr "המרת העלאות אל:"
+
+#. translators: %s number of images
+#: templates/summary-panel.php:147
+msgid "Bulk optimize (%s)"
+msgstr "אופטימיזציה מרובה (%s)"
+
+#: templates/summary-panel.php:159
+msgid "General"
+msgstr "כללי"
+
+#: templates/summary-panel.php:168
+#: templates/summary-panel.php:185
+msgid "Edit"
+msgstr "עריכה"
+
+#: templates/summary-panel.php:172
+msgid "Advanced"
+msgstr "מתקדם"
+
+#: templates/summary-panel.php:174
+msgid "None enabled"
+msgstr "אף אחד לא מופעל"
+
+#: templates/summary-panel.php:189
+msgid "Supported:"
+msgstr "נתמך:"
+
+#: templates/support.php:23
+msgid "Site"
+msgstr "אתר"
+
+#: templates/support.php:24
+msgid "WordPress"
+msgstr "WordPress"
+
+#: templates/support.php:25
+msgid "PHP"
+msgstr "PHP"
+
+#: templates/support.php:26
+msgid "Plugin"
+msgstr "תוסף"
+
+#. translators: %s: site URL
+#: templates/support.php:36
+msgid "Kraken.io WordPress plugin support — %s"
+msgstr "תמיכת תוסף Kraken.io לוורדפרס — %s"
+
+#: templates/support.php:39
+msgid "Describe your question or problem here."
+msgstr "תארו כאן את שאלתכם או הבעיה שלכם."
+
+#: templates/support.php:44
+msgid "Contact us"
+msgstr "צרו קשר"
+
+#: templates/support.php:46
+msgid "Have a question or hit a problem? The quickest way to reach the Kraken.io team is our WordPress.org support forum — open a thread and we will reply there. Prefer email? Use the button below to write to us from your own mail app."
+msgstr "יש לכם שאלה או נתקלתם בבעיה? הדרך המהירה ביותר ליצור קשר עם צוות Kraken.io היא פורום התמיכה שלנו ב-WordPress.org — פתחו שרשור ונשיב לכם שם. מעדיפים אימייל? השתמשו בכפתור שלמטה כדי לכתוב לנו מאפליקציית הדואר שלכם."
+
+#: templates/support.php:52
+msgid "Open the support forum"
+msgstr "פתחו את פורום התמיכה"
+
+#: templates/support.php:56
+msgid "Email support@kraken.io"
+msgstr "שלחו אימייל אל support@kraken.io"
+
+#: templates/support.php:62
+msgid "Please include these details so we can help faster:"
+msgstr "אנא כללו פרטים אלו כדי שנוכל לעזור מהר יותר:"
+
+#: templates/support.php:64
+msgid "Copy"
+msgstr "העתק"
+
+#: templates/support.php:74
+msgid "These links never depend on your server's email setup, so your message always reaches us."
+msgstr "קישורים אלו אינם תלויים לעולם בהגדרת האימייל של השרת שלכם, כך שההודעה שלכם תמיד מגיעה אלינו."
+
+#: includes/class-kraken-io-settings.php:293
+msgid "All changes saved"
+msgstr "כל השינויים נשמרו"
+
+#: includes/class-kraken-io-settings.php:297
+msgid "You have unsaved changes — don’t forget to save."
+msgstr "יש לכם שינויים שלא נשמרו — אל תשכחו לשמור."
+
+#: templates/stats.php:62
+msgid "Savings on this site"
+msgstr "חיסכון באתר זה"
+
+#: templates/stats.php:64
+msgid "These figures cover only the images optimized on this website — every full-size image and all of their thumbnail sizes — and are calculated from this site's own data. They are separate from the Kraken.io account quota shown above, which is shared across every site that uses your API key."
+msgstr "נתונים אלו מכסים רק את התמונות שעברו אופטימיזציה באתר זה — כל תמונה בגודל מלא וכל גדלי התמונות הממוזערות שלהן — ומחושבים מהנתונים של האתר עצמו. הם נפרדים ממכסת חשבון Kraken.io המוצגת למעלה, המשותפת לכל אתר שמשתמש במפתח ה-API שלכם."
+
+#: templates/stats.php:70
+msgid "saved on this site"
+msgstr "נחסכו באתר זה"
+
+#: templates/stats.php:79
+msgid "%s smaller overall"
+msgstr "%s קטן יותר בסך הכול"
+
+#: templates/stats.php
+msgid "Original"
+msgstr "מקורי"
+
+#: templates/stats.php
+msgid "Saved"
+msgstr "נחסך"
+
+#: templates/stats.php
+msgid "Full-size images"
+msgstr "תמונות בגודל מלא"
+
+#: templates/stats.php
+msgid "Thumbnails"
+msgstr "תמונות ממוזערות"
+
+#: templates/stats.php
+msgid "Total"
+msgstr "סך הכול"

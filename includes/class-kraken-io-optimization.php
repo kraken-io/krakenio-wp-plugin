@@ -19,6 +19,15 @@ class Kraken_IO_Optimization
 	private $options = [];
 
 	/**
+	 * Guard so convert_image()'s own metadata regeneration doesn't re-trigger
+	 * the convert-on-upload filter (recursion).
+	 *
+	 * @var    bool
+	 * @access private
+	 */
+	private $is_converting = false;
+
+	/**
 	 * Hook in methods.
 	 *
 	 * @since  2.7
@@ -28,13 +37,126 @@ class Kraken_IO_Optimization
 	{
 		$this->options = kraken_io()->get_options();
 
+		add_action('add_attachment', [$this, 'on_upload']);
+
 		if ($this->options['auto_optimize']) {
-			add_action('add_attachment', [$this, 'optimize_image_on_upload']);
 			add_filter('wp_generate_attachment_metadata', [$this, 'optimize_thumbnails_on_resize'], 10, 2);
 		}
 
+		// Convert-on-upload runs even when auto-optimize is off (conversion also
+		// optimizes). It runs at priority 20 — after WordPress has finished
+		// generating the original metadata — so renaming the file is safe.
+		add_filter('wp_generate_attachment_metadata', [$this, 'maybe_convert_on_metadata'], 20, 2);
+
 		add_action('wp_delete_file', [$this, 'delete_image']);
 		add_filter('mod_rewrite_rules', [$this, 'webp_rewrite_rules']);
+	}
+
+	/**
+	 * Dispatcher for a freshly uploaded attachment: convert if a target format
+	 * is set, otherwise optimize when auto-optimize is enabled.
+	 *
+	 * @since  3.0.0
+	 * @access public
+	 * @param  int $id Attachment ID.
+	 */
+	public function on_upload($id)
+	{
+		if (!kraken_io()->is_supported_attachment($id)) {
+			return;
+		}
+
+		// When converting, defer to maybe_convert_on_metadata so WordPress
+		// finishes generating the original metadata against the original file.
+		if ($this->get_convert_format()) {
+			return;
+		}
+
+		if (!empty($this->options['auto_optimize'])) {
+			$this->optimize_image_on_upload($id);
+		}
+	}
+
+	/**
+	 * Convert a freshly uploaded image once WordPress has generated its metadata.
+	 *
+	 * @since  3.0.0
+	 * @access public
+	 * @param  array $metadata Generated attachment metadata.
+	 * @param  int   $id       Attachment ID.
+	 * @return array
+	 */
+	public function maybe_convert_on_metadata($metadata, $id)
+	{
+		// Skip our own internal regeneration (recursion guard).
+		if ($this->is_converting) {
+			return $metadata;
+		}
+
+		$convert = $this->get_convert_format();
+
+		if (!$convert || !kraken_io()->is_supported_attachment($id)) {
+			return $metadata;
+		}
+
+		// With background processing on, conversion must not block the upload
+		// request (an AVIF encode can take ~30s — long enough that users close
+		// the page and lose the rest of their upload queue). Queue it instead:
+		// the upload returns instantly, the grid shows the optimizing spinner,
+		// and the worker converts + re-points the attachment in the background.
+		if (!empty($this->options['background_process'])) {
+			kraken_io()->bg_process->enqueue(
+				[
+					'id' => $id,
+					'type' => 'convert',
+					'count' => 0,
+				]
+			);
+			update_post_meta($id, '_kraken_io_is_optimizing_main_image', true);
+			update_post_meta($id, '_kraken_io_optimizing_started', time());
+
+			return $metadata;
+		}
+
+		$this->convert_image($id, $convert);
+
+		$fresh = wp_get_attachment_metadata($id);
+
+		return $fresh ? $fresh : $metadata;
+	}
+
+	/**
+	 * Optimize an attachment, honouring the global "convert uploads to"
+	 * setting: images that aren't already in the target format get converted
+	 * (conversion optimizes too); everything else — PDFs, files already in the
+	 * target format, or no conversion configured — is plainly optimized. This
+	 * is what manual and bulk optimization run, so they behave exactly like
+	 * fresh uploads do.
+	 *
+	 * @since  3.0.0
+	 * @access public
+	 * @param  int $id Attachment ID.
+	 * @return bool|array True-ish on success, array with 'errors' on failure.
+	 */
+	public function optimize_or_convert($id)
+	{
+		$format = $this->get_convert_format();
+		$mime   = (string) get_post_mime_type($id);
+		$target = ('jpeg' === $format) ? 'image/jpeg' : 'image/' . $format;
+
+		if ($format && 0 === strpos($mime, 'image/') && $mime !== $target) {
+			$result = $this->convert_image($id, $format);
+
+			if (true === $result) {
+				return true;
+			}
+
+			return [
+				'errors' => [isset($result['error']) ? $result['error'] : __('Conversion failed.', 'kraken-io')],
+			];
+		}
+
+		return $this->optimize_image($id);
 	}
 
 	/**
@@ -98,7 +220,8 @@ class Kraken_IO_Optimization
 	private function format_optimization_response($response, $id)
 	{
 
-		$savings_percentage = $response['saved_bytes'] / $response['original_size'] * 100;
+		$original_size      = isset($response['original_size']) ? (float) $response['original_size'] : 0;
+		$savings_percentage = $original_size > 0 ? $response['saved_bytes'] / $original_size * 100 : 0;
 		$response['savings_percent'] = round($savings_percentage, 2) . '%';
 
 		return $response;
@@ -176,6 +299,7 @@ class Kraken_IO_Optimization
 				'type' => '',
 				'webp' => false,
 				'resize' => true,
+				'convert' => '',
 			]
 		);
 
@@ -235,8 +359,22 @@ class Kraken_IO_Optimization
 			$params['quality'] = (int) $settings['jpeg_quality'];
 		}
 
+		if (!empty($args['convert'])) {
+			$params['convert'] = [
+				'format'         => $args['convert'],
+				'keep_extension' => false,
+			];
+		}
+
 		$response = kraken_io()->api->upload($params);
-		$response['type'] = !empty($args['type']) ? $args['type'] : $settings['api_lossy'];
+
+		// Tag the optimization mode (lossy/lossless) on SUCCESS only. On failure
+		// the response may carry a machine error 'type' from the API wrapper
+		// (e.g. 'file_not_found'); overwriting it here would erase the real reason
+		// and surface downstream as a meaningless "Unknown error."
+		if (!empty($response['success'])) {
+			$response['type'] = !empty($args['type']) ? $args['type'] : $settings['api_lossy'];
+		}
 
 		return $response;
 	}
@@ -273,8 +411,52 @@ class Kraken_IO_Optimization
 		}
 
 		return [
-			'error' => isset($optimized_image['message']) ? $optimized_image['message'] : __('Unknown error.', 'kraken-io'),
+			'error' => $this->resolve_error_message($optimized_image),
 		];
+	}
+
+	/**
+	 * Turn an optimization response into a human-readable error message.
+	 *
+	 * A failure is described three different ways depending on where it happened:
+	 * the Kraken API reports its own failures in 'message'; the HTTP client
+	 * (class-kraken.php) reports transport failures — a timeout, an unreadable
+	 * file, an invalid response — in 'error'; and the API wrapper (Kraken_IO_API)
+	 * reports pre-flight failures as a machine 'type' code. Reading all three
+	 * means the user sees the real reason instead of a meaningless "Unknown error."
+	 *
+	 * @since  3.0.2
+	 * @access private
+	 * @param  mixed  $response  The optimization response array.
+	 * @param  string $fallback  Message to use when none of the above is present.
+	 * @return string
+	 */
+	private function resolve_error_message($response, $fallback = '')
+	{
+		if (is_array($response)) {
+			if (!empty($response['message'])) {
+				return $response['message'];
+			}
+
+			if (!empty($response['error'])) {
+				return $response['error'];
+			}
+
+			if (!empty($response['type'])) {
+				$map = [
+					'no_auth'           => __('Your Kraken.io API credentials are missing or invalid.', 'kraken-io'),
+					'empty_data'        => __('There was nothing to send for optimization.', 'kraken-io'),
+					'file_not_provided' => __('No file was provided to optimize.', 'kraken-io'),
+					'file_not_found'    => __('The image file could not be found on the server.', 'kraken-io'),
+				];
+
+				if (isset($map[$response['type']])) {
+					return $map[$response['type']];
+				}
+			}
+		}
+
+		return '' !== $fallback ? $fallback : __('Unknown error.', 'kraken-io');
 	}
 
 	/**
@@ -322,6 +504,26 @@ class Kraken_IO_Optimization
 	}
 
 	/**
+	 * Stamp the moment optimization started, but only if it isn't already set —
+	 * so the original enqueue time is preserved across the worker's retries.
+	 *
+	 * The "optimizing" flag and this timestamp drive is_optimizing()'s staleness
+	 * guard together; keeping them written as a pair means the guard can never
+	 * read a flag with no start time (which it treats as finished) and wrongly
+	 * hide an in-progress spinner — nor leave an orphaned flag spinning forever.
+	 *
+	 * @since  3.0.0
+	 * @access private
+	 * @param  int $id Attachment ID.
+	 */
+	private function stamp_optimizing_started($id)
+	{
+		if (!get_post_meta($id, '_kraken_io_optimizing_started', true)) {
+			update_post_meta($id, '_kraken_io_optimizing_started', time());
+		}
+	}
+
+	/**
 	 * Optimize main image.
 	 *
 	 * @since  2.7
@@ -336,7 +538,12 @@ class Kraken_IO_Optimization
 
 		$kraked_size = get_post_meta($id, '_kraken_size', true);
 
-		if ($kraked_size) {
+		// A stored success short-circuits. A stored error must NOT — otherwise a
+		// failed image (e.g. inactive credentials) could never be retried.
+		if ($kraked_size && (!is_array($kraked_size) || empty($kraked_size['error']))) {
+			// Another path (e.g. the convert flow) finished first — make sure a
+			// queued job's "optimizing" flag can't outlive the actual work.
+			delete_post_meta($id, '_kraken_io_is_optimizing_main_image');
 			return true;
 		}
 
@@ -350,6 +557,7 @@ class Kraken_IO_Optimization
 		}
 
 		update_post_meta($id, '_kraken_io_is_optimizing_main_image', true);
+		$this->stamp_optimizing_started($id);
 
 		$response = $this->optimize_single_image($path, $args);
 		$this->optimize_single_image_webp($path, $args);
@@ -370,10 +578,21 @@ class Kraken_IO_Optimization
 
 			delete_post_meta($id, '_kraken_io_is_optimizing_main_image');
 
+			// Account usage just changed — let listeners (e.g. the summary
+			// panel cache) react.
+			do_action('kraken_io_image_optimized', $id);
+
 			return true;
 		}
 
 		delete_post_meta($id, '_kraken_io_is_optimizing_main_image');
+
+		// Persist the failure so the Media list column and the attachment detail
+		// modal can surface it (the `has_error` branch reads `_kraken_size['error']`).
+		// Without this the error is lost: the spinner just times out and the image
+		// silently falls back to the "Optimize" button with no reason shown.
+		$error_message = isset($response['error']) ? $response['error'] : __('Optimization failed.', 'kraken-io');
+		update_post_meta($id, '_kraken_size', ['error' => $error_message]);
 
 		return $response;
 	}
@@ -394,10 +613,14 @@ class Kraken_IO_Optimization
 		$kraked_thumbs = get_post_meta($id, '_kraked_thumbs', true);
 
 		if ($kraked_thumbs) {
+			// Already done via another path — never leave a queued job's
+			// "optimizing" flag behind to show a phantom spinner.
+			delete_post_meta($id, '_kraken_io_is_optimizing_thumbnails');
 			return true;
 		}
 
 		update_post_meta($id, '_kraken_io_is_optimizing_thumbnails', true);
+		$this->stamp_optimizing_started($id);
 
 		$args = wp_parse_args(
 			$args,
@@ -453,8 +676,18 @@ class Kraken_IO_Optimization
 
 		$error_responses = array_unique($error_responses);
 
+		// Having no intermediate sizes to optimize is NOT a failure: PDFs and
+		// next-gen uploads (e.g. AVIF) frequently have no generated sub-sizes,
+		// and the file itself is handled by optimize_main_image(). Only surface
+		// an error when a thumbnail genuinely failed — otherwise report success
+		// ("nothing more to do") so a successful main-file optimization isn't
+		// masked as "There are no image sizes to optimize."
+		if (empty($error_responses)) {
+			return true;
+		}
+
 		return [
-			'error' => isset($error_responses[0]) ? $error_responses[0] : __('There are no image sizes to optimize.', 'kraken-io'),
+			'error' => $error_responses[0],
 		];
 	}
 
@@ -497,6 +730,155 @@ class Kraken_IO_Optimization
 	}
 
 	/**
+	 * The conversion target format to apply to a new upload. This is the global
+	 * "convert uploads to" setting, kept live-synced between the settings page
+	 * and the Kraken.io widget dropdown.
+	 *
+	 * @since  3.0.0
+	 * @access public
+	 * @return string Empty string means "do not convert".
+	 */
+	public function get_convert_format()
+	{
+		return isset($this->options['convert_format']) ? $this->options['convert_format'] : '';
+	}
+
+	/**
+	 * Optimize AND convert an attachment to another format, then re-point the
+	 * WordPress attachment at the new file (extension, mime, intermediate sizes).
+	 *
+	 * @since  3.0.0
+	 * @access public
+	 * @param  int    $id     Attachment ID.
+	 * @param  string $format Target format: jpeg|png|gif|webp|avif.
+	 * @return bool|array True on success, array with 'error' on failure.
+	 */
+	public function convert_image($id, $format)
+	{
+		$valid = ['jpeg', 'png', 'gif', 'webp', 'avif'];
+
+		if (!in_array($format, $valid, true)) {
+			return ['error' => __('Unsupported conversion format.', 'kraken-io')];
+		}
+
+		if (!kraken_io()->is_supported_attachment($id)) {
+			return ['error' => __('This file cannot be converted.', 'kraken-io')];
+		}
+
+		$path = get_attached_file($id);
+
+		if (!$path || !file_exists($path)) {
+			return ['error' => __("Couldn't find the image path.", 'kraken-io')];
+		}
+
+		// Heavier formats (notably AVIF) can transiently time out on the encoder
+		// under load. A couple of bounded attempts let those self-heal, so a
+		// single flaky response doesn't surface as a hard "Conversion failed" —
+		// on the synchronous manual/bulk path especially, which (unlike the
+		// background worker) has no outer retry. The count is filterable for
+		// sites that want to trade latency for resilience differently.
+		$attempts = (int) apply_filters('kraken_io_convert_attempts', 2, $format);
+		$attempts = max(1, min(5, $attempts));
+		$response = [];
+
+		for ($try = 1; $try <= $attempts; $try++) {
+			$response = $this->get_optimized_image($path, ['convert' => $format]);
+
+			if (!empty($response['success']) && !empty($response['kraked_url'])) {
+				break;
+			}
+
+			// Brief backoff before another attempt (skip after the last one).
+			if ($try < $attempts) {
+				sleep(1);
+			}
+		}
+
+		if (empty($response['success']) || empty($response['kraked_url'])) {
+			return [
+				'error' => $this->resolve_error_message($response, __('Conversion failed.', 'kraken-io')),
+			];
+		}
+
+		// Target extension + mime for the new format.
+		$ext      = ('jpeg' === $format) ? 'jpg' : $format;
+		$mime     = ('jpg' === $ext) ? 'image/jpeg' : 'image/' . $ext;
+		$new_path = preg_replace('/\.[^.\/\\\\]+$/', '.' . $ext, $path);
+
+		// Download the converted file.
+		$remote = wp_remote_get($response['kraked_url'], ['timeout' => 30]);
+		$body   = !is_wp_error($remote) ? wp_remote_retrieve_body($remote) : false;
+
+		if (!$body) {
+			return ['error' => __('Could not download the converted image.', 'kraken-io')];
+		}
+
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_file_put_contents
+		if (false === file_put_contents($new_path, $body)) {
+			return ['error' => __('Could not write the converted image. Please ensure your uploads are writable.', 'kraken-io')];
+		}
+
+		// If the extension changed, retire the old files and re-point the attachment.
+		if ($new_path !== $path) {
+			$old_meta = wp_get_attachment_metadata($id);
+			$dir      = trailingslashit(dirname($path));
+
+			if (!empty($old_meta['sizes']) && is_array($old_meta['sizes'])) {
+				foreach ($old_meta['sizes'] as $size) {
+					if (!empty($size['file']) && file_exists($dir . $size['file'])) {
+						wp_delete_file($dir . $size['file']);
+					}
+				}
+			}
+
+			if (file_exists($path)) {
+				wp_delete_file($path);
+			}
+
+			// Drop any stale .webp companion of the original file.
+			$this->delete_image($path);
+
+			update_attached_file($id, $new_path);
+			wp_update_post(['ID' => $id, 'post_mime_type' => $mime]);
+
+			// One-shot signal to the live poll that THIS attachment's file was
+			// re-pointed (new extension/mime). Only then must the grid re-fetch
+			// the model — a plain optimization keeps the same URLs, so it skips
+			// the extra REST round-trip (and the thumbnail flicker) entirely.
+			update_post_meta($id, '_kraken_io_converted', 1);
+		}
+
+		// Reset Kraken metadata for a clean state on the converted file.
+		delete_post_meta($id, '_kraked_thumbs');
+
+		// Regenerate intermediate sizes for the converted file (this also lets
+		// the thumbnail optimization run on the new sizes).
+		if (!function_exists('wp_generate_attachment_metadata')) {
+			require_once ABSPATH . 'wp-admin/includes/image.php';
+		}
+
+		// Guard so this regeneration doesn't re-enter maybe_convert_on_metadata.
+		$this->is_converting = true;
+		$new_meta            = wp_generate_attachment_metadata($id, $new_path);
+		$this->is_converting = false;
+
+		if (!empty($new_meta)) {
+			wp_update_attachment_metadata($id, $new_meta);
+		}
+
+		// Store the optimization stats for the converted main image.
+		$data = $this->format_optimization_response($response, $id);
+		update_post_meta($id, '_kraken_size', $data);
+
+		delete_post_meta($id, '_kraken_io_is_optimizing_main_image');
+		delete_post_meta($id, '_kraken_io_optimizing_started');
+
+		do_action('kraken_io_image_optimized', $id);
+
+		return true;
+	}
+
+	/**
 	 * Optimize images on upload.
 	 *
 	 * @since  2.7
@@ -510,7 +892,7 @@ class Kraken_IO_Optimization
 			return false;
 		}
 
-		if (!wp_attachment_is_image($id)) {
+		if (!kraken_io()->is_supported_attachment($id)) {
 			return false;
 		}
 
@@ -520,9 +902,9 @@ class Kraken_IO_Optimization
 				'type' => 'main-image',
 				'count' => 0,
 			];
-			kraken_io()->bg_process->push_to_queue($data);
-			kraken_io()->bg_process->save()->dispatch();
+			kraken_io()->bg_process->enqueue($data);
 			update_post_meta($id, '_kraken_io_is_optimizing_main_image', true);
+			update_post_meta($id, '_kraken_io_optimizing_started', time());
 		} else {
 			$this->optimize_main_image($id);
 		}
@@ -536,15 +918,21 @@ class Kraken_IO_Optimization
 	 */
 	public function optimize_thumbnails_on_resize($metadata, $id)
 	{
+		// When converting, thumbnails are regenerated in the new format by the
+		// convert flow — don't optimize the soon-to-be-replaced originals.
+		if ($this->get_convert_format()) {
+			return $metadata;
+		}
+
 		if ($this->options['background_process']) {
 			$data = [
 				'id' => $id,
 				'type' => 'thumbnails',
 				'count' => 0,
 			];
-			kraken_io()->bg_process->push_to_queue($data);
-			kraken_io()->bg_process->save()->dispatch();
+			kraken_io()->bg_process->enqueue($data);
 			update_post_meta($id, '_kraken_io_is_optimizing_thumbnails', true);
+			update_post_meta($id, '_kraken_io_optimizing_started', time());
 		} else {
 			$this->optimize_thumbnails($id);
 		}
@@ -566,9 +954,19 @@ class Kraken_IO_Optimization
 		$args = [
 			'post_type' => 'attachment',
 			'post_status' => 'inherit',
+			// Only count/list attachments we can actually optimize. Without this
+			// the query also matched non-images (HTML, zips, docs, …) that never
+			// optimize, so the bulk count was inflated and never reached zero.
+			'post_mime_type' => array_values(kraken_io()->get_supported_mime_types()),
 			'posts_per_page' => $posts_per_page,
 			'meta_query' => [
-				'relation' => 'OR',
+				// A file is "unoptimized" only when it has NEITHER marker: no
+				// optimized main image AND no optimized thumbnails. (OR here wrongly
+				// kept thumbnail-less files — PDFs, AVIF, tiny images with no sub-
+				// sizes — in the list forever, since they never get a _kraked_thumbs
+				// entry even after a successful optimization.) This mirrors how
+				// get_image_stats() decides a file is already optimized.
+				'relation' => 'AND',
 				[
 					'key' => '_kraken_size',
 					'compare' => 'NOT EXISTS',

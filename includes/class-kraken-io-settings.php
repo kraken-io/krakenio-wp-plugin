@@ -121,6 +121,49 @@ class Kraken_IO_Settings
 			'wp-krakenio',
 			[$this, 'create_options_page']
 		);
+
+		// Surface the Bulk Optimizer under the Media menu too, so it is reachable
+		// in one click from where users manage their library (not buried in a
+		// Settings tab).
+		add_media_page(
+			esc_html__('Bulk Optimize with Kraken.io', 'kraken-io'),
+			esc_html__('Bulk Optimize with Kraken.io', 'kraken-io'),
+			'manage_options',
+			'kraken-bulk-optimizer',
+			[$this, 'create_bulk_optimizer_page']
+		);
+	}
+
+	/**
+	 * Render the standalone Bulk Optimizer screen (Media → Bulk Optimize).
+	 * Uses the standard `.wrap` layout and the same Kraken.io summary widget as
+	 * the Media Library, so the title and spacing match the rest of wp-admin.
+	 *
+	 * @since  3.0.0
+	 * @access public
+	 */
+	public function create_bulk_optimizer_page()
+	{
+		$unoptimized_images = kraken_io()->optimization->get_unoptimized_images();
+		?>
+		<div class="wrap">
+			<h1 class="wp-heading-inline"><?php esc_html_e('Bulk Optimize with Kraken.io', 'kraken-io'); ?></h1>
+			<hr class="wp-header-end">
+
+			<?php
+			kraken_io()->get_template(
+				'summary-panel',
+				[
+					'data'      => kraken_io()->summary->get_data(),
+					'context'   => 'media',
+					'hide_bulk' => true,
+				]
+			);
+			?>
+
+			<?php kraken_io()->get_template('bulk-optimizer', wp_parse_args($unoptimized_images, ['type' => 'tool'])); ?>
+		</div>
+		<?php
 	}
 
 	/**
@@ -135,7 +178,7 @@ class Kraken_IO_Settings
 		$active_tab = 'general';
 
 		// phpcs:ignore WordPress.Security.NonceVerification
-		if (isset($_GET['tab']) && in_array($_GET['tab'], ['general', 'advanced', 'bulk-optimizer', 'stats'], true)) {
+		if (isset($_GET['tab']) && in_array($_GET['tab'], ['general', 'advanced', 'bulk-optimizer', 'stats', 'support'], true)) {
 			$active_tab = $_GET['tab'];
 		}
 
@@ -156,16 +199,33 @@ class Kraken_IO_Settings
 				'title' => __('Stats', 'kraken-io'),
 				'description' => '',
 			],
+			'support' => [
+				'title' => __('Support', 'kraken-io'),
+				'description' => '',
+			],
 		];
 
 		$this->options = kraken_io()->get_options();
 		$this->save_options($active_tab);
 
 		?>
-		<div class="kraken wraps">
-			<h1><?php esc_html_e('Kraken.io Settings', 'kraken-io'); ?></h1>
+		<div class="wrap kraken wraps">
+			<h1 class="wp-heading-inline"><?php esc_html_e('Kraken.io Settings', 'kraken-io'); ?></h1>
+			<hr class="wp-header-end">
 
 			<?php $this->settings_notices(); ?>
+
+			<?php
+			// Same compact Kraken.io widget as the Media Library (includes the
+			// connection state, usage, and the competing-optimizer notice).
+			kraken_io()->get_template(
+				'summary-panel',
+				[
+					'data'    => kraken_io()->summary->get_data(),
+					'context' => 'media',
+				]
+			);
+			?>
 
 			<h2 class="nav-tab-wrapper">
 				<?php
@@ -180,6 +240,15 @@ class Kraken_IO_Settings
 				action="<?php echo esc_url(admin_url('options-general.php?page=wp-krakenio&tab=' . $active_tab)); ?>">
 				<?php
 				wp_nonce_field('kraken_io_settings', 'kraken_io_settings_nonce');
+
+				// Sticky save bar at the top of the form, with a live "unsaved
+				// changes" reminder. The settings screens are long, so a
+				// bottom-only Save is easy to miss — users routinely paste their
+				// API key and secret and then navigate away without saving.
+				if ('general' === $active_tab || 'advanced' === $active_tab) {
+					$this->render_save_bar();
+				}
+
 				$this->do_settings_sections($tabs, $active_tab);
 				?>
 
@@ -192,12 +261,47 @@ class Kraken_IO_Settings
 				elseif ('stats' === $active_tab):
 					$status = kraken_io()->api->status();
 					kraken_io()->get_template('stats', ['stats' => $status]);
+				elseif ('support' === $active_tab):
+					kraken_io()->get_template('support');
 				else:
 					$unoptimized_images = kraken_io()->optimization->get_unoptimized_images();
 					kraken_io()->get_template('bulk-optimizer', wp_parse_args($unoptimized_images, ['type' => 'tool']));
 				endif;
 				?>
 			</form>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Sticky "save bar" shown at the top of the General/Advanced settings forms.
+	 *
+	 * Keeps a Save button in view while scrolling the long settings screens and
+	 * flips to an "unsaved changes" reminder the moment anything is edited (the
+	 * toggling is done in assets/admin/settings.js). All text is rendered here so
+	 * it stays translatable; the script only toggles a CSS class.
+	 *
+	 * @since  3.0.3
+	 * @access private
+	 */
+	private function render_save_bar()
+	{
+		// The "All changes saved" confirmation should appear only right after a
+		// real save — never on a fresh, untouched page load. save_options() (run
+		// earlier this request) fills settings_success only on a successful POST.
+		$saved_class = empty($this->settings_success) ? '' : ' is-saved';
+		?>
+		<div class="kraken-savebar<?php echo esc_attr($saved_class); ?>" id="kraken-savebar">
+			<span class="kraken-savebar__status kraken-savebar__status--saved">
+				<span class="dashicons dashicons-yes-alt" aria-hidden="true"></span>
+				<?php esc_html_e('All changes saved', 'kraken-io'); ?>
+			</span>
+			<span class="kraken-savebar__status kraken-savebar__status--unsaved" role="status">
+				<span class="dashicons dashicons-warning" aria-hidden="true"></span>
+				<?php esc_html_e('You have unsaved changes — don’t forget to save.', 'kraken-io'); ?>
+			</span>
+			<input type="submit" name="submit" class="button button-primary kraken-savebar__button"
+				value="<?php esc_attr_e('Save Changes', 'kraken-io'); ?>">
 		</div>
 		<?php
 	}
@@ -276,7 +380,9 @@ class Kraken_IO_Settings
 	public function save_options($active)
 	{
 
-		if ('POST' !== ($_SERVER['REQUEST_METHOD'] ?? '')) {
+		$request_method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : '';
+
+		if ('POST' !== $request_method) {
 			return false;
 		}
 
@@ -297,8 +403,24 @@ class Kraken_IO_Settings
 		}
 
 		$options = $_POST['kraken_options'];
+
+		// API key + secret are write-only: they are never pre-filled into the
+		// form, so an empty submission means "keep the saved value" rather than
+		// clearing it. Remember whether the user actually typed a new one.
+		$writeonly_submitted = [];
+		foreach (['api_key', 'api_secret'] as $cred_field) {
+			$writeonly_submitted[$cred_field] = isset($options[$cred_field]) ? trim(wp_unslash($options[$cred_field])) : '';
+		}
+
 		$options = $this->sanitize_options($options, $settings);
 		$options = $this->validate_options($options, $this->options, $settings);
+
+		foreach ($writeonly_submitted as $cred_field => $submitted) {
+			if (isset($options[$cred_field]) && '' === $submitted) {
+				$options[$cred_field] = isset($this->options[$cred_field]) ? $this->options[$cred_field] : '';
+			}
+		}
+
 		$options = array_merge($this->options, $options);
 		$options = array_merge($this->get_default_options(), $options);
 
@@ -483,6 +605,74 @@ class Kraken_IO_Settings
 	}
 
 	/**
+	 * Notice-only row (no input). The explanatory text comes from the field's
+	 * 'description' lines, rendered by do_settings_sections(); here we just flag
+	 * the row as deprecated.
+	 *
+	 * @since  3.0.0
+	 * @access public
+	 * @param  array $settings Field settings
+	 * @param  mixed $value Field value
+	 * @return void
+	 */
+	public function do_settings_field_notice($settings, $value)
+	{
+		echo '<p class="kraken-status-error"><strong>' . esc_html__('Deprecated', 'kraken-io') . '</strong></p>';
+	}
+
+	/**
+	 * Write-only secret field. The real value is never rendered into the page —
+	 * only a masked placeholder and an empty input. An empty submission keeps the
+	 * saved secret (handled in save_options).
+	 *
+	 * @since  3.0.0
+	 * @access public
+	 * @param  array $settings Field settings
+	 * @param  mixed $value Field value
+	 * @return void
+	 */
+	public function do_settings_field_secret($settings, $value)
+	{
+		$value     = (string) $value;
+		$has_value = '' !== $value;
+		$id        = esc_attr($settings['id']);
+
+		printf(
+			'<input type="password" class="regular-text" id="%1$s" name="kraken_options[%1$s]" value="" autocomplete="off" placeholder="%2$s">',
+			$id, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			$has_value ? esc_attr($this->mask_secret($value)) : ''
+		);
+
+		if ($has_value) {
+			$label = isset($settings['title']) ? $settings['title'] : __('value', 'kraken-io');
+			echo '<p class="description">' . sprintf(
+				/* translators: %s is the field label, e.g. "API Key" or "API Secret". */
+				esc_html__('Your %s is saved. Leave this blank to keep it, or paste a new one to replace it.', 'kraken-io'),
+				esc_html($label)
+			) . '</p>';
+		}
+	}
+
+	/**
+	 * Mask a secret for display — first/last few characters, the middle hidden.
+	 *
+	 * @since  3.0.0
+	 * @access private
+	 * @param  string $value Secret value.
+	 * @return string Masked representation.
+	 */
+	private function mask_secret($value)
+	{
+		$length = strlen($value);
+
+		if ($length <= 4) {
+			return str_repeat('•', max(1, $length));
+		}
+
+		return substr($value, 0, 2) . str_repeat('•', max(4, $length - 6)) . substr($value, -4);
+	}
+
+	/**
 	 * Prints out setting field for type checkbox.
 	 *
 	 * @since  2.7
@@ -493,7 +683,12 @@ class Kraken_IO_Settings
 	 */
 	public function do_settings_field_checkbox($settings, $value)
 	{
-		echo '<input type="checkbox" class="tog" id="' . esc_attr($settings['id']) . '" name="kraken_options[' . esc_attr($settings['id']) . ']" value="1" ' . checked($value, '1', false) . '>';
+		$disabled = !empty($settings['disabled']);
+		// A deprecated/disabled option always renders unchecked (off) and cannot
+		// be toggled; saving the tab then persists it as off.
+		$checked = $disabled ? '' : checked($value, '1', false);
+
+		echo '<input type="checkbox" class="tog" id="' . esc_attr($settings['id']) . '" name="kraken_options[' . esc_attr($settings['id']) . ']" value="1" ' . $checked . ( $disabled ? ' disabled' : '' ) . '>';
 		echo '<label for="' . esc_attr($settings['id']) . '">' . esc_html($settings['label']) . '</label>';
 	}
 
@@ -636,14 +831,14 @@ class Kraken_IO_Settings
 			'general' => [
 				[
 					'id' => 'api_key',
-					'type' => 'text',
+					'type' => 'secret',
 					'sanitize_callback' => 'sanitize_text_field',
 					'title' => __('API Key', 'kraken-io'),
 					'default' => '',
 				],
 				[
 					'id' => 'api_secret',
-					'type' => 'text',
+					'type' => 'secret',
 					'sanitize_callback' => 'sanitize_text_field',
 					'title' => __('API Secret', 'kraken-io'),
 					'default' => '',
@@ -652,6 +847,24 @@ class Kraken_IO_Settings
 					'type' => 'api_status',
 					'title' => __('API Status', 'kraken-io'),
 					'default' => '',
+				],
+				[
+					'id' => 'convert_format',
+					'type' => 'select',
+					'validate_callback' => [$this, 'validate_select_radio'],
+					'options' => [
+						'' => __('Don\'t convert (keep original format)', 'kraken-io'),
+						'jpeg' => __('JPEG', 'kraken-io'),
+						'png' => __('PNG', 'kraken-io'),
+						'gif' => __('GIF', 'kraken-io'),
+						'webp' => __('WebP', 'kraken-io'),
+						'avif' => __('AVIF', 'kraken-io'),
+					],
+					'default' => '',
+					'title' => __('Convert uploads to', 'kraken-io'),
+					'description' => [
+						__('Automatically convert new image uploads to the selected format during optimization. Leave as "Don\'t convert" to keep each image in its original format.', 'kraken-io'),
+					],
 				],
 				[
 					'id' => 'api_lossy',
@@ -754,12 +967,34 @@ class Kraken_IO_Settings
 			],
 			'advanced' => [
 				[
+					'id' => 'optimize_capability',
+					'type' => 'select',
+					'validate_callback' => [$this, 'validate_select_radio'],
+					'options' => [
+						'read'           => __('All logged-in users', 'kraken-io'),
+						'upload_files'   => __('Users who can upload media (Author and above)', 'kraken-io'),
+						'manage_options' => __('Administrators only', 'kraken-io'),
+					],
+					'default' => 'upload_files',
+					'title' => __('Who can optimize images', 'kraken-io'),
+					'description' => [
+						__('Controls which logged-in users may trigger optimization actions (single optimize, bulk optimize, reset) from the Media Library.', 'kraken-io'),
+						__('Optimization consumes your paid Kraken.io quota and rewrites your media, so a user can only act on attachments they are allowed to edit, and by default only users who can upload media (Author and above) may optimize. On sites with open registration (membership, WooCommerce, forums), keep this restricted so untrusted accounts cannot consume your quota or alter media.', 'kraken-io'),
+						__('• All logged-in users — anyone signed in who can also edit the attachment (most permissive). • Users who can upload media — Authors, Editors and Administrators (default). • Administrators only — most restrictive.', 'kraken-io'),
+					],
+				],
+				[
 					'id' => 'include_size',
 					'type' => 'multi_checkbox',
 					'sanitize_callback' => [$this, 'sanitize_checkbox'],
 					'default' => $this->get_prefixed_image_sizes('to-optimize'),
 					'options' => $this->get_prefixed_image_sizes(),
 					'title' => __('Image sizes to Krak', 'kraken-io'),
+					'description' => [
+						__('Every time you upload an image, WordPress generates several resized copies (thumbnail, medium, large, and so on). These resized versions — not the original — are what your visitors actually download, through responsive <code>srcset</code> images. Each size you tick here gets optimized, so the images people really load are compressed.', 'kraken-io'),
+						__('If you untick a size, that copy is still created and still served to your visitors — just <strong>left unoptimized</strong>, at its full original weight. Keeping these on is what delivers the page-speed gain across your whole site, not just on the original file.', 'kraken-io'),
+						__('The trade-off: each ticked size is a separate optimization that uses your Kraken.io quota. For that reason the large retina sizes <code>1536×1536</code> and <code>2048×2048</code> are <strong>left off by default</strong> — most themes never serve them. If your theme does use them (for high-DPI screens), just tick them here and they\'ll be optimized too. Already-optimized images are never touched by this.', 'kraken-io'),
+					],
 				],
 				[
 					'id' => 'preserve_exif_metadata',
@@ -770,7 +1005,7 @@ class Kraken_IO_Settings
 						'preserve_meta_copyright' => __('Copyright', 'kraken-io'),
 						'preserve_meta_geotag' => __('Geotag', 'kraken-io'),
 						'preserve_meta_orientation' => __('Orientation', 'kraken-io'),
-						'preserve_meta_profile' => __('Profile Profile', 'kraken-io'),
+						'preserve_meta_profile' => __('Profile', 'kraken-io'),
 					],
 					'default' => [
 						'preserve_meta_date' => '',
@@ -807,6 +1042,17 @@ class Kraken_IO_Settings
 					],
 				],
 				[
+					'id' => 'show_savings_badge',
+					'type' => 'checkbox',
+					'sanitize_callback' => [$this, 'sanitize_checkbox'],
+					'default' => true,
+					'title' => __('Savings badge', 'kraken-io'),
+					'label' => __('Show a savings badge on optimized thumbnails', 'kraken-io'),
+					'description' => [
+						__('Displays the percentage saved in the corner of each optimized image thumbnail in the Media Library.', 'kraken-io'),
+					],
+				],
+				[
 					'id' => 'background_process',
 					'type' => 'checkbox',
 					'sanitize_callback' => [$this, 'sanitize_checkbox'],
@@ -818,26 +1064,12 @@ class Kraken_IO_Settings
 					],
 				],
 				[
-					'id' => 'create_webp',
-					'type' => 'checkbox',
-					'sanitize_callback' => [$this, 'sanitize_checkbox'],
-					'default' => false,
-					'title' => __('WebP format', 'kraken-io'),
-					'label' => __('Create WebP versions of images', 'kraken-io'),
+					'type' => 'notice',
+					'default' => '',
+					'title' => __('WebP / next-gen formats', 'kraken-io'),
 					'description' => [
-						__('Checking this option will create WebP version of images.', 'kraken-io'),
-					],
-				],
-				[
-					'id' => 'display_webp',
-					'type' => 'checkbox',
-					'sanitize_callback' => [$this, 'sanitize_checkbox'],
-					'default' => false,
-					'title' => __('Display WebP', 'kraken-io'),
-					'label' => __('Display WebP images on the site', 'kraken-io'),
-					'description' => [
-						__('Currently it works only with Apache servers where it adds rewrite rules to configuration file (.htaccess).', 'kraken-io'),
-						__('This does not work with CDN.', 'kraken-io'),
+						__('The old "Create WebP" and "Display WebP" options are deprecated. They created a separate .webp companion for every image and depended on Apache .htaccess rewrite rules, which did not work behind a CDN.', 'kraken-io'),
+						__('To serve WebP (or AVIF) now, use "Convert uploads to → WebP" in the General settings tab. Each upload is converted to the modern format directly, so the file is served as-is by any server or CDN — no companion files and no rewrite rules required.', 'kraken-io'),
 					],
 				],
 				[

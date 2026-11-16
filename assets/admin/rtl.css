@@ -1,0 +1,61 @@
+/**
+ * Right-to-left (RTL) adjustments for the Kraken.io custom admin panels —
+ * summary panel, settings save bar, and the Stats "Savings on this site" table.
+ *
+ * Loaded ONLY for RTL locales (Arabic, etc.) via is_rtl(); WordPress core already
+ * mirrors the surrounding admin chrome, so this only flips the directional bits
+ * of the plugin's own panels. Hand-authored; no build step.
+ */
+
+/* Summary panel: push the right-hand actions to the start (right) side. */
+.kraken-summary__actions {
+	margin-left: 0;
+	margin-right: auto;
+}
+
+.kraken-summary__actions .kraken-summary__stats-link {
+	margin-left: 0;
+}
+
+/* Quota / savings meters fill from the right. */
+.kraken-summary__fill,
+.kraken-sitestats__meter-fill {
+	left: auto;
+	right: 0;
+}
+
+/* Save bar: accent border and button move to the start (right) side. */
+.kraken-savebar {
+	border-left: 1px solid #c3c4c7;
+	border-right: 4px solid #2271b1;
+}
+
+.kraken-savebar.is-dirty {
+	border-left-color: #c3c4c7;
+	border-right-color: #dba617;
+}
+
+.kraken-savebar__button.button {
+	margin-left: 0;
+	margin-right: auto;
+}
+
+/* Stats breakdown table: row labels to the right, numeric columns to the left. */
+.kraken-sitestats__breakdown th,
+.kraken-sitestats__breakdown td {
+	text-align: left;
+}
+
+.kraken-sitestats__breakdown .kraken-sitestats__rowhead {
+	text-align: right;
+}
+
+.kraken-sitestats__count {
+	margin-left: 0;
+	margin-right: 6px;
+}
+
+.kraken-sitestats__pct {
+	margin-left: 0;
+	margin-right: 4px;
+}

@@ -1,0 +1,225 @@
+/**
+ * Kraken.io settings screen — sticky save bar + "unsaved changes" reminder.
+ *
+ * Hand-authored (no build step). Loaded only on the Kraken.io settings page.
+ */
+
+.kraken-savebar {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 32px; /* clears the WordPress admin bar */
+	z-index: 100;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin: 16px 0;
+	padding: 10px 16px;
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-left: 4px solid #2271b1;
+	border-radius: 4px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.kraken-savebar__button.button {
+	margin-left: auto;
+}
+
+.kraken-savebar__status {
+	display: none;
+	align-items: center;
+	gap: 6px;
+	font-weight: 600;
+	line-height: 1.4;
+}
+
+.kraken-savebar__status .dashicons {
+	width: 18px;
+	height: 18px;
+	font-size: 18px;
+}
+
+/* "Saved" confirmation — shown only right after a successful save (PHP adds
+   .is-saved to the bar), never on a fresh, untouched page load. */
+.kraken-savebar__status--saved {
+	display: none;
+	color: #50575e;
+}
+
+.kraken-savebar.is-saved .kraken-savebar__status--saved {
+	display: inline-flex;
+}
+
+.kraken-savebar__status--saved .dashicons {
+	color: #00a32a;
+}
+
+/* Dirty state: the bar turns amber and nudges the user to save. */
+.kraken-savebar.is-dirty {
+	border-left-color: #dba617;
+	background: #fcf9e8;
+}
+
+.kraken-savebar.is-dirty .kraken-savebar__status--saved {
+	display: none;
+}
+
+.kraken-savebar.is-dirty .kraken-savebar__status--unsaved {
+	display: inline-flex;
+	color: #8a6d00;
+}
+
+.kraken-savebar.is-dirty .kraken-savebar__status--unsaved .dashicons {
+	color: #dba617;
+}
+
+/* The admin bar is taller on small screens, and the bar should wrap. */
+@media screen and (max-width: 782px) {
+	.kraken-savebar {
+		top: 46px;
+		flex-wrap: wrap;
+	}
+
+	.kraken-savebar__button.button {
+		margin-left: 0;
+	}
+}
+
+/* -------------------------------------------------------------------------
+ * Stats screen — "Savings on this site" section.
+ * ---------------------------------------------------------------------- */
+
+.kraken-sitestats {
+	margin: 30px 0 10px;
+	max-width: 760px;
+}
+
+.kraken-sitestats__title {
+	font-size: 18px;
+	margin: 0 0 6px;
+}
+
+.kraken-sitestats__intro {
+	color: #50575e;
+	margin: 0 0 18px;
+	max-width: 680px;
+}
+
+.kraken-sitestats__cards {
+	display: flex;
+	align-items: stretch;
+	gap: 20px;
+	flex-wrap: wrap;
+	margin-bottom: 20px;
+}
+
+.kraken-sitestats__hero {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-width: 200px;
+	padding: 22px 28px;
+	border-radius: 10px;
+	color: #fff;
+	background: linear-gradient(135deg, #2271b1, #135e96);
+	box-shadow: 0 2px 6px rgba(19, 94, 150, 0.25);
+}
+
+.kraken-sitestats__hero-value {
+	font-size: 34px;
+	font-weight: 700;
+	line-height: 1.05;
+}
+
+.kraken-sitestats__hero-label {
+	margin-top: 6px;
+	font-size: 12px;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	opacity: 0.9;
+}
+
+.kraken-sitestats__meter {
+	flex: 1 1 240px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 8px;
+}
+
+.kraken-sitestats__meter-track {
+	position: relative;
+	height: 26px;
+	background: #e9eef2;
+	border-radius: 13px;
+	overflow: hidden;
+}
+
+.kraken-sitestats__meter-fill {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	min-width: 6px;
+	background: linear-gradient(90deg, #00a32a, #00c43a);
+	border-radius: 13px;
+	transition: width 0.6s ease;
+}
+
+.kraken-sitestats__meter-label {
+	font-weight: 600;
+	color: #1d2327;
+}
+
+.kraken-sitestats__breakdown {
+	width: auto;
+	max-width: 100%;
+	border-collapse: collapse;
+}
+
+.kraken-sitestats__breakdown th,
+.kraken-sitestats__breakdown td {
+	padding: 8px 12px;
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+}
+
+.kraken-sitestats__breakdown thead th {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: #64748b;
+	font-weight: 600;
+	border-bottom: 1px solid #e2e8f0;
+}
+
+.kraken-sitestats__breakdown .kraken-sitestats__rowhead {
+	text-align: left;
+	font-weight: 600;
+	white-space: nowrap;
+	padding-right: 28px;
+}
+
+.kraken-sitestats__breakdown tfoot td {
+	border-top: 2px solid #e2e8f0;
+	font-weight: 700;
+}
+
+.kraken-sitestats__count {
+	display: inline-block;
+	margin-left: 6px;
+	padding: 1px 7px;
+	border-radius: 999px;
+	background: #eef2f7;
+	color: #64748b;
+	font-size: 11px;
+	font-weight: 600;
+}
+
+.kraken-sitestats__pct {
+	margin-left: 4px;
+	color: #00a32a;
+	font-size: 12px;
+	font-weight: 600;
+}

@@ -26,6 +26,31 @@
 				}
 			}
 		}
+
+		// "Krak 'em all" — a filled pill that matches the Kraken.io widget,
+		// instead of the default outlined WP button.
+		&-bulk-optimize {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			height: 34px;
+			padding: 0 18px;
+			font-size: 13px;
+			font-weight: 600;
+			color: #fff;
+			background: #1d4ed8;
+			border: 1px solid #1d4ed8;
+			border-radius: 999px;
+			cursor: pointer;
+			appearance: none;
+
+			&:hover,
+			&:focus {
+				background: #1e40af;
+				border-color: #1e40af;
+				color: #fff;
+			}
+		}
 	}
 
 	&-stats {
@@ -89,6 +114,14 @@
 
 			.kraken-modal & {
 				margin: 0 10px 10px 10px;
+			}
+
+			// Standalone tool/page (Media → Bulk Optimize, Settings → Bulk tab):
+			// use the full content width and round the corners to match the
+			// Kraken.io widget. The 700px cap is only for the centered modal popup.
+			.kraken-bulk-optimizer-wrapper:not(.kraken-modal) & {
+				max-width: none;
+				border-radius: 8px;
 			}
 
 			&-wrapper {
@@ -283,4 +316,1031 @@
 
 .compat-field-kraken-stats {
 	vertical-align: top;
+}
+
+/* ---------------------------------------------------------------------------
+ * Kraken.io summary banner (Media Library + Dashboard widget)
+ * A compact, horizontal status strip.
+ * ------------------------------------------------------------------------- */
+.kraken-summary {
+	$blue: #298eea;
+	$blue-dark: #1f6fc0;
+	$ink: #1f2937;
+	$muted: #64748b;
+	$line: #e2e8f0;
+	$soft: #f1f7fe;
+
+	box-sizing: border-box;
+	margin: 12px 0 16px;
+	padding: 12px 16px;
+	background: #fff;
+	border: 1px solid $line;
+	border-radius: 10px;
+	box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+	color: $ink;
+	font-size: 13px;
+	line-height: 1.4;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	/* Top strip: brand + connection, usage, stats link — all on one row. */
+	&__bar {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 10px 18px;
+	}
+
+	&__brand {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	&__logo {
+		height: 22px;
+		width: auto;
+		display: block;
+	}
+
+	&__badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		font-size: 11px;
+		font-weight: 600;
+		line-height: 1;
+		padding: 4px 9px;
+		border-radius: 999px;
+		white-space: nowrap;
+
+		.dashicons {
+			font-size: 13px;
+			width: 13px;
+			height: 13px;
+		}
+
+		&--ok {
+			color: #0f7b3f;
+			background: #e6f6ec;
+		}
+
+		&--muted {
+			color: $muted;
+			background: #f1f5f9;
+		}
+
+		&--error {
+			color: #b42318;
+			background: #fdeceb;
+		}
+	}
+
+	/* Inline quota usage. */
+	&__usage {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px;
+		min-width: 0;
+	}
+
+	&__plan {
+		font-weight: 600;
+		white-space: nowrap;
+	}
+
+	&__track {
+		width: 90px;
+		height: 6px;
+		border-radius: 999px;
+		background: #e9eef5;
+		overflow: hidden;
+		flex: none;
+	}
+
+	&__fill {
+		display: block;
+		height: 100%;
+		border-radius: 999px;
+		background: $blue;
+
+		&.is-warning {
+			background: #f59e0b;
+		}
+
+		&.is-danger {
+			background: #ef4444;
+		}
+	}
+
+	&__usage-text {
+		font-size: 12px;
+		color: $muted;
+		white-space: nowrap;
+	}
+
+	&__stats-link {
+		margin-left: auto;
+		font-size: 12px;
+		font-weight: 600;
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	/* Right-hand actions cluster (stats link + expand toggle). Grouping them
+	   keeps the pair together so long translations wrap as a unit instead of
+	   dropping the toggle onto its own line. */
+	&__actions {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
+		gap: 12px;
+		margin-left: auto;
+
+		.kraken-summary__stats-link {
+			margin-left: 0;
+		}
+
+		.kraken-summary__stats-link + .kraken-summary__toggle {
+			margin-left: 0;
+		}
+	}
+
+	/* Connection notice (shown instead of settings when inactive). */
+	&__notice {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 6px 16px;
+		margin-top: 10px;
+		padding: 10px 14px;
+		border-radius: 8px;
+		border-left: 4px solid #f59e0b;
+		background: #fff8ec;
+
+		/* stylelint-disable-next-line no-descending-specificity */
+		p {
+			margin: 0;
+			flex: 1 1 320px;
+			font-size: 13px;
+		}
+
+		&--error {
+			border-left-color: #ef4444;
+			background: #fdeceb;
+		}
+	}
+
+	/* Settings overview — only rendered when the plugin is active. */
+	&__settings {
+		margin-top: 10px;
+		padding-top: 10px;
+		border-top: 1px solid $line;
+		display: flex;
+		flex-direction: column;
+		gap: 7px;
+	}
+
+	&__group {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 6px;
+	}
+
+	&__group-title {
+		flex: none;
+		width: 72px;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: $muted;
+	}
+
+	&__pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 5px;
+		padding: 3px 9px;
+		font-size: 12px;
+		line-height: 1.4;
+		background: $soft;
+		border: 1px solid #d6e6fb;
+		border-radius: 999px;
+		color: #1d4ed8;
+		white-space: nowrap;
+
+		b {
+			font-weight: 700;
+			padding-left: 6px;
+			border-left: 1px solid #c4dbf8;
+			color: $ink;
+			font-variant-numeric: tabular-nums;
+		}
+	}
+
+	&__none {
+		font-size: 12px;
+		color: $muted;
+	}
+
+	&__edit {
+		margin-left: 4px;
+		font-size: 11px;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	&__formats {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 5px;
+		margin-top: 2px;
+	}
+
+	&__formats-label {
+		width: 72px;
+		flex: none;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: $muted;
+	}
+
+	&__format {
+		font-size: 11px;
+		font-weight: 600;
+		padding: 2px 7px;
+		border-radius: 5px;
+		background: #f1f5f9;
+		color: #475569;
+	}
+
+	/* Dashboard widget: drop the outer card chrome and let items wrap tightly. */
+	&--dashboard {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+		box-shadow: none;
+
+		.kraken-summary__group-title,
+		.kraken-summary__formats-label {
+			width: auto;
+		}
+
+		.kraken-summary__stats-link {
+			margin-left: 0;
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * "Optimizing" indicator overlaid on attachment thumbnails
+ * (media grid, media modal, and the list table icon)
+ * ------------------------------------------------------------------------- */
+@keyframes kraken-spin {
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* The overlay is injected as a REAL element (never a pseudo-element) so we
+   don't clobber WP's own ::before/::after on .attachment-preview / .thumbnail,
+   which it uses for the square aspect-ratio and selection chrome. */
+.kraken-overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 5;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	background: rgba(255, 255, 255, 0.72);
+	pointer-events: none;
+	text-align: center;
+}
+
+.kraken-overlay-label {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1px;
+	line-height: 1.2;
+}
+
+.kraken-overlay-logo {
+	width: 20px;
+	height: 20px;
+	display: block;
+	margin-bottom: 2px;
+}
+
+.kraken-overlay-brand {
+	font-size: 12px;
+	font-weight: 700;
+	color: #1f2937;
+}
+
+.kraken-overlay-sub {
+	font-size: 11px;
+	font-weight: 600;
+	color: #298eea;
+}
+
+.media-icon.kraken-is-optimizing {
+	position: relative;
+	display: inline-block;
+}
+
+/* Savings badge on optimized thumbnails. Top-left corner: the selection
+   checkbox sits top-right and WP's filename label sits along the bottom. */
+.kraken-badge {
+	position: absolute;
+	left: 6px;
+	top: 6px;
+	z-index: 4;
+	display: inline-flex;
+	align-items: center;
+	padding: 2px 7px;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 1.4;
+	color: #fff;
+	background: #16a34a;
+	border-radius: 999px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+	pointer-events: none;
+	font-variant-numeric: tabular-nums;
+}
+
+// Error variant: a failed optimization (e.g. inactive credentials, file too
+// large) gets a red badge whose tooltip carries the API message. Pointer events
+// are re-enabled so the native title tooltip shows on hover.
+.kraken-badge--error {
+	background: #dc2626;
+	pointer-events: auto;
+	cursor: help;
+}
+
+.kraken-spinner {
+	box-sizing: border-box;
+	width: 26px;
+	height: 26px;
+	border: 3px solid rgba(41, 142, 234, 0.25);
+	border-top-color: #298eea;
+	border-radius: 50%;
+	animation: kraken-spin 0.8s linear infinite;
+
+	&--sm {
+		width: 16px;
+		height: 16px;
+		border-width: 2px;
+	}
+}
+
+.kraken-inline-spinner {
+	box-sizing: border-box;
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	vertical-align: -2px;
+	border: 2px solid rgba(41, 142, 234, 0.3);
+	border-top-color: #298eea;
+	border-radius: 50%;
+	animation: kraken-spin 0.8s linear infinite;
+}
+
+/* Upload New Media page (media-new.php): per-item optimize/convert status line
+   under the filename, mirroring the grid's spinner → savings/error feedback. */
+.kraken-upload-status {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin-top: 4px;
+	font-size: 12px;
+	font-weight: 600;
+	color: #298eea;
+
+	&--done {
+		color: #16a34a;
+	}
+
+	&--error {
+		color: #dc2626;
+		font-weight: 500;
+	}
+}
+
+.kraken-inline-badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 1px 7px;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 1.5;
+	color: #fff;
+	background: #16a34a;
+	border-radius: 999px;
+	font-variant-numeric: tabular-nums;
+
+	&--error {
+		justify-content: center;
+		min-width: 18px;
+		padding: 1px 0;
+		background: #dc2626;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Summary panel: collapsible details (accordion)
+ * ------------------------------------------------------------------------- */
+.kraken-summary__toggle {
+	display: inline-flex;
+	align-items: center;
+	gap: 3px;
+	margin-left: auto;
+	padding: 0;
+	border: 0;
+	background: none;
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: 600;
+	color: #1d4ed8;
+
+	.dashicons {
+		font-size: 16px;
+		width: 16px;
+		height: 16px;
+		transition: transform 0.2s ease;
+	}
+}
+
+.kraken-summary__details {
+	display: none;
+}
+
+.kraken-summary.is-open {
+
+	.kraken-summary__details {
+		display: block;
+	}
+
+	.kraken-summary__toggle .dashicons {
+		transform: rotate(180deg);
+	}
+}
+
+/* When the usage strip is present the toggle shouldn't also grab the auto
+   margin — keep it tidy at the end of the bar. */
+.kraken-summary__bar .kraken-summary__stats-link + .kraken-summary__toggle {
+	margin-left: 12px;
+}
+
+/* ---------------------------------------------------------------------------
+ * Account hero (top of the settings page)
+ * ------------------------------------------------------------------------- */
+.kraken-hero {
+	box-sizing: border-box;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 18px 28px;
+	margin: 16px 0 22px;
+	padding: 22px 26px;
+	border-radius: 12px;
+	border: 1px solid #d6e6fb;
+	background: linear-gradient(135deg, #f5f9ff 0%, #eaf2fe 100%);
+
+	* {
+		box-sizing: border-box;
+	}
+
+	&--invalid,
+	&--overdue {
+		border-color: #f3c2bb;
+		background: linear-gradient(135deg, #fdeeec 0%, #fbe4e0 100%);
+	}
+
+	&--disconnected {
+		border-color: #f3dca8;
+		background: linear-gradient(135deg, #fff9ed 0%, #fff2db 100%);
+	}
+
+	&__main {
+		display: flex;
+		align-items: flex-start;
+		gap: 16px;
+		min-width: 0;
+		flex: 1 1 380px;
+	}
+
+	&__logo {
+		width: 44px;
+		height: 44px;
+		flex: none;
+	}
+
+	&__copy {
+		min-width: 0;
+	}
+
+	&__badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		font-size: 11px;
+		font-weight: 600;
+		line-height: 1;
+		padding: 4px 9px;
+		border-radius: 999px;
+
+		/* stylelint-disable-next-line no-descending-specificity */
+		.dashicons {
+			font-size: 13px;
+			width: 13px;
+			height: 13px;
+		}
+
+		&--ok {
+			color: #0f7b3f;
+			background: #e6f6ec;
+		}
+
+		&--muted {
+			color: #64748b;
+			background: #eef2f7;
+		}
+
+		&--error {
+			color: #b42318;
+			background: #fbe0dd;
+		}
+	}
+
+	&__title {
+		margin: 8px 0 4px;
+		padding: 0;
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 1.25;
+		color: #1f2937;
+	}
+
+	&__text {
+		margin: 0;
+		font-size: 13px;
+		line-height: 1.5;
+		color: #5b6b7f;
+		max-width: 540px;
+	}
+
+	&__side {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 12px;
+		flex: 0 0 auto;
+		min-width: 230px;
+	}
+
+	&__usage {
+		min-width: 230px;
+	}
+
+	&__usage-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		margin-bottom: 6px;
+		font-size: 12px;
+		font-weight: 600;
+		color: #5b6b7f;
+	}
+
+	&__usage-pct {
+		font-weight: 700;
+		color: #1f6fc0;
+	}
+
+	&__usage-foot {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 6px;
+		font-size: 12px;
+		color: #64748b;
+	}
+
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		justify-content: flex-end;
+
+		.button {
+			margin: 0;
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Settings page shell (tabs + form as a single card)
+ * ------------------------------------------------------------------------- */
+.kraken.wraps {
+	/* Full-width settings page (matches the Media library width). */
+	max-width: none;
+
+	> h1 {
+		font-size: 23px;
+		font-weight: 600;
+		margin: 0 0 6px;
+	}
+
+	.nav-tab-wrapper {
+		margin: 0;
+		padding: 0 6px;
+		border-bottom: 1px solid #dfe3e8;
+		background: #fbfcfe;
+		border-radius: 10px 10px 0 0;
+		border-top: 1px solid #e2e8f0;
+		border-left: 1px solid #e2e8f0;
+		border-right: 1px solid #e2e8f0;
+	}
+
+	.nav-tab {
+		margin: 0 2px -1px 0;
+		padding: 12px 18px;
+		border: 0;
+		background: none;
+		font-size: 13px;
+		font-weight: 600;
+		color: #64748b;
+		border-bottom: 2px solid transparent;
+
+		&:hover {
+			color: #1f2937;
+			background: none;
+		}
+
+		&-active,
+		&-active:hover {
+			color: #1f6fc0;
+			background: none;
+			border-bottom-color: #298eea;
+		}
+	}
+
+	form {
+		background: #fff;
+		padding: 4px 24px 20px;
+		border: 1px solid #e2e8f0;
+		border-top: 0;
+		border-radius: 0 0 10px 10px;
+		box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+
+		> p:first-child {
+			color: #5b6b7f;
+			font-size: 13px;
+		}
+	}
+
+	.kraken-form-table {
+		margin-top: 4px;
+
+		th {
+			padding: 20px 10px 20px 0;
+			font-weight: 600;
+			color: #1f2937;
+			width: 230px;
+		}
+
+		td {
+			padding: 16px 10px;
+		}
+
+		tr {
+			border-bottom: 1px solid #eef1f5;
+		}
+
+		tr:last-child {
+			border-bottom: 0;
+		}
+
+		.descriptions {
+			margin: 8px 0 0;
+
+			.description {
+				color: #6b7280;
+			}
+		}
+
+		input[type="text"],
+		select {
+			border-radius: 6px;
+		}
+	}
+
+	.submit {
+		margin: 0;
+		padding: 16px 0 4px;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Convert controls (panel pre-upload preference + per-image action)
+ * ------------------------------------------------------------------------- */
+.kraken-summary__convert {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: 1px solid #e2e8f0;
+	font-size: 12px;
+
+	label {
+		font-weight: 600;
+		color: #64748b;
+	}
+
+	&-hint {
+		font-size: 12px;
+		font-weight: 600;
+		color: #0f7b3f;
+	}
+}
+
+/* Scoped under .kraken-summary for specificity over WP's `.wp-core-ui select`,
+   and appearance:none so the pill styling actually applies (native selects
+   ignore border-radius/background). */
+.kraken-summary .kraken-summary__convert-select,
+.kraken-summary .kraken-summary__auto-optimize-select {
+	height: 28px;
+	min-height: 28px;
+	margin: 0;
+	padding: 0 28px 0 12px;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 26px;
+	color: #1d4ed8;
+	background-color: #f1f7fe;
+	/* stylelint-disable-next-line function-url-quotes */
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='%231d4ed8' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 11px center;
+	background-size: 9px 6px;
+	border: 1px solid #c4dbf8;
+	border-radius: 999px;
+	box-shadow: none;
+	cursor: pointer;
+	appearance: none;
+}
+
+/* Compact pill that sits to the right of the "Convert uploads to" control. */
+.kraken-summary__bulk-button {
+	margin-left: auto;
+	height: 28px;
+	min-height: 28px;
+	padding: 0 14px;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 26px;
+	color: #fff;
+	background: #1d4ed8;
+	border: 1px solid #1d4ed8;
+	border-radius: 999px;
+	cursor: pointer;
+	white-space: nowrap;
+	appearance: none;
+
+	&:hover,
+	&:focus {
+		background: #1e40af;
+		border-color: #1e40af;
+		color: #fff;
+	}
+}
+
+.kraken-summary__alert {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: 10px;
+	padding: 10px 12px;
+	font-size: 13px;
+	border-radius: 8px;
+
+	span {
+		flex: 1 1 auto;
+	}
+
+	.dashicons {
+		flex: 0 0 auto;
+	}
+
+	&--error {
+		color: #9a1c1c;
+		background: #fef2f2;
+		border: 1px solid #fecaca;
+
+		.dashicons {
+			color: #dc2626;
+		}
+	}
+
+	&--warning {
+		color: #92400e;
+		background: #fffbeb;
+		border: 1px solid #fde68a;
+
+		.dashicons {
+			color: #f59e0b;
+		}
+	}
+}
+
+.kraken-summary__alert-link {
+	flex: 0 0 auto;
+	padding: 3px 12px;
+	font-size: 12px;
+	font-weight: 600;
+	color: #fff;
+	text-decoration: none;
+	background: #1d4ed8;
+	border-radius: 999px;
+
+	&:hover,
+	&:focus {
+		background: #1e40af;
+		color: #fff;
+	}
+}
+
+.kraken-summary__edit {
+	display: inline-flex;
+	align-items: center;
+	margin-left: 4px;
+	padding: 2px 12px;
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 18px;
+	color: #1d4ed8;
+	text-decoration: none;
+	background: #f1f7fe;
+	border: 1px solid #c4dbf8;
+	border-radius: 999px;
+
+	&:hover,
+	&:focus {
+		background: #e0edfd;
+		color: #1e40af;
+	}
+}
+
+.kraken-support {
+	max-width: 640px;
+
+	&__title {
+		margin-top: 4px;
+		font-size: 18px;
+	}
+
+	&__intro {
+		font-size: 14px;
+	}
+
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		margin: 16px 0 4px;
+	}
+
+	&__forum,
+	&__email {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+
+		.dashicons {
+			line-height: 1;
+			// nudge the icon to vertically centre against the button label
+			margin-top: -1px;
+		}
+	}
+
+	&__copied {
+		margin-left: 8px;
+		color: #0f7b3f;
+		font-weight: 600;
+	}
+
+	&__hint {
+		margin-top: 6px;
+		color: #64748b;
+	}
+
+	&__diagnostics {
+		margin-top: 20px;
+		padding: 12px 16px;
+		font-size: 13px;
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		border-radius: 8px;
+
+		&-head {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		ul {
+			margin: 6px 0;
+		}
+
+		code {
+			font-size: 12px;
+		}
+	}
+}
+
+.kraken-conflicts {
+	margin: 12px 0;
+	padding: 12px 14px;
+	background: #fff7ed;
+	border: 1px solid #fed7aa;
+	border-left: 4px solid #f59e0b;
+	border-radius: 8px;
+
+	&__head {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 14px;
+		color: #9a3412;
+
+		.dashicons {
+			color: #f59e0b;
+		}
+	}
+
+	&__intro {
+		margin: 6px 0 10px;
+		font-size: 13px;
+		color: #7c2d12;
+	}
+
+	&__list {
+		margin: 0;
+		list-style: none;
+	}
+
+	&__item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 10px;
+		padding: 6px 0;
+		border-top: 1px solid #fde7c8;
+	}
+
+	&__name {
+		font-weight: 600;
+		color: #1f2937;
+	}
+}
+
+.kraken-stats-convert {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin-top: 8px;
+
+	.kraken-convert-format {
+		font-size: 12px;
+		max-width: 92px;
+	}
+
+	.spinner {
+		display: none;
+		float: none;
+		margin: 0;
+
+		&.is-active {
+			display: inline-block;
+		}
+	}
 }

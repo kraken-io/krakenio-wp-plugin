@@ -1,0 +1,1035 @@
+# Translation of Kraken.io Image Optimizer (Korean).
+# This file is distributed under the same license as the plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Kraken Image Optimizer 3.0.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kraken-image-optimizer\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ko_KR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: kraken-i18n\n"
+
+#. Plugin Name of the plugin
+#: kraken.php
+msgid "Kraken Image Optimizer"
+msgstr "Kraken Image Optimizer"
+
+#. Plugin URI of the plugin
+#: kraken.php
+msgid "http://wordpress.org/plugins/kraken-image-optimizer/"
+msgstr "http://wordpress.org/plugins/kraken-image-optimizer/"
+
+#. Description of the plugin
+#: kraken.php
+msgid "This plugin allows you to optimize your WordPress images through the Kraken API, the world's most advanced image optimization solution."
+msgstr "이 플러그인을 사용하면 세계에서 가장 진보된 이미지 최적화 솔루션인 Kraken API를 통해 WordPress 이미지를 최적화할 수 있습니다."
+
+#. Author of the plugin
+#: kraken.php
+#: includes/class-kraken-io-settings.php:119
+#: includes/class-kraken-io-stats.php:156
+#: includes/class-kraken-io-stats.php:199
+msgid "Kraken.io"
+msgstr "Kraken.io"
+
+#. Author URI of the plugin
+#: kraken.php
+msgid "https://kraken.io"
+msgstr "https://kraken.io"
+
+#. translators: %1$s used %2$s total %3$s remaining
+#: includes/class-kraken-io-ajax.php:237
+#: templates/summary-panel.php:62
+msgid "%1$s / %2$s · %3$s left"
+msgstr "%1$s / %2$s · %3$s 남음"
+
+#: includes/class-kraken-io-background-process.php:62
+#: includes/class-kraken-io-optimization.php:155
+#: includes/class-kraken-io-optimization.php:799
+msgid "Conversion failed."
+msgstr "변환에 실패했습니다."
+
+#: includes/class-kraken-io-optimization.php:400
+msgid "Could not get optimized image URL."
+msgstr "최적화된 이미지 URL을 가져올 수 없습니다."
+
+#: includes/class-kraken-io-optimization.php:406
+msgid "Could not overwrite original file. Please ensure that your files are writable by plugins."
+msgstr "원본 파일을 덮어쓸 수 없습니다. 플러그인이 파일에 쓸 수 있는지 확인하세요."
+
+#: includes/class-kraken-io-optimization.php:447
+msgid "Your Kraken.io API credentials are missing or invalid."
+msgstr "Kraken.io API 자격 증명이 없거나 유효하지 않습니다."
+
+#: includes/class-kraken-io-optimization.php:448
+msgid "There was nothing to send for optimization."
+msgstr "최적화할 대상이 없습니다."
+
+#: includes/class-kraken-io-optimization.php:449
+msgid "No file was provided to optimize."
+msgstr "최적화할 파일이 제공되지 않았습니다."
+
+#: includes/class-kraken-io-optimization.php:450
+msgid "The image file could not be found on the server."
+msgstr "서버에서 이미지 파일을 찾을 수 없습니다."
+
+#: includes/class-kraken-io-optimization.php:459
+msgid "Unknown error."
+msgstr "알 수 없는 오류입니다."
+
+#: includes/class-kraken-io-optimization.php:555
+#: includes/class-kraken-io-optimization.php:771
+msgid "Couldn't find the image path."
+msgstr "이미지 경로를 찾을 수 없습니다."
+
+#: includes/class-kraken-io-optimization.php:594
+msgid "Optimization failed."
+msgstr "최적화에 실패했습니다."
+
+#: includes/class-kraken-io-optimization.php:761
+msgid "Unsupported conversion format."
+msgstr "지원되지 않는 변환 형식입니다."
+
+#: includes/class-kraken-io-optimization.php:765
+msgid "This file cannot be converted."
+msgstr "이 파일은 변환할 수 없습니다."
+
+#: includes/class-kraken-io-optimization.php:813
+msgid "Could not download the converted image."
+msgstr "변환된 이미지를 다운로드할 수 없습니다."
+
+#: includes/class-kraken-io-optimization.php:818
+msgid "Could not write the converted image. Please ensure your uploads are writable."
+msgstr "변환된 이미지를 저장할 수 없습니다. 업로드 폴더에 쓸 수 있는지 확인하세요."
+
+#: includes/class-kraken-io-settings.php:71
+#: includes/class-kraken-io-settings.php:118
+#: includes/class-kraken-io-settings.php:213
+msgid "Kraken.io Settings"
+msgstr "Kraken.io 설정"
+
+#: includes/class-kraken-io-settings.php:71
+#: templates/summary-panel.php:74
+msgid "Settings"
+msgstr "설정"
+
+#: includes/class-kraken-io-settings.php:85
+#: templates/bulk-optimizer.php:54
+msgid "Krak 'em all"
+msgstr "모두 최적화"
+
+#: includes/class-kraken-io-settings.php:129
+#: includes/class-kraken-io-settings.php:130
+#: includes/class-kraken-io-settings.php:150
+msgid "Bulk Optimize with Kraken.io"
+msgstr "Kraken.io로 일괄 최적화"
+
+#: includes/class-kraken-io-settings.php:187
+msgid "General Settings"
+msgstr "일반 설정"
+
+#: includes/class-kraken-io-settings.php:188
+msgid "<a href=\"http://kraken.io/account\" target=\"_blank\">Kraken.io</a> API Settings."
+msgstr "<a href=\"http://kraken.io/account\" target=\"_blank\">Kraken.io</a> API 설정입니다."
+
+#: includes/class-kraken-io-settings.php:191
+msgid "Advanced Settings"
+msgstr "고급 설정"
+
+#: includes/class-kraken-io-settings.php:192
+msgid "We recommend that you leave these settings at their default values."
+msgstr "이 설정은 기본값으로 두는 것을 권장합니다."
+
+#: includes/class-kraken-io-settings.php:195
+msgid "Bulk Optimizer"
+msgstr "일괄 최적화 도구"
+
+#: includes/class-kraken-io-settings.php:199
+msgid "Stats"
+msgstr "통계"
+
+#: includes/class-kraken-io-settings.php:203
+msgid "Support"
+msgstr "지원"
+
+#: includes/class-kraken-io-settings.php:249
+msgid "Save Changes"
+msgstr "변경 사항 저장"
+
+#: includes/class-kraken-io-settings.php:354
+msgid "Please refresh the page and try again."
+msgstr "페이지를 새로 고친 후 다시 시도하세요."
+
+#: includes/class-kraken-io-settings.php:359
+msgid "There are no Kraken options."
+msgstr "Kraken 옵션이 없습니다."
+
+#: includes/class-kraken-io-settings.php:392
+msgid "Settings Saved"
+msgstr "설정이 저장되었습니다"
+
+#: includes/class-kraken-io-settings.php:578
+msgid "Deprecated"
+msgstr "사용 중단됨"
+
+#: includes/class-kraken-io-settings.php:605
+msgid "value"
+msgstr "값"
+
+#. translators: %s is the field label, e.g. "API Key" or "API Secret".
+#: includes/class-kraken-io-settings.php:608
+msgid "Your %s is saved. Leave this blank to keep it, or paste a new one to replace it."
+msgstr "%s이(가) 저장되어 있습니다. 그대로 유지하려면 비워 두고, 교체하려면 새 값을 붙여넣으세요."
+
+#: includes/class-kraken-io-settings.php:745
+msgid "Your credentials are valid."
+msgstr "자격 증명이 유효합니다."
+
+#: includes/class-kraken-io-settings.php:747
+msgid "There is a problem with your credentials."
+msgstr "자격 증명에 문제가 있습니다."
+
+#: includes/class-kraken-io-settings.php:794
+msgid "API Key"
+msgstr "API 키"
+
+#: includes/class-kraken-io-settings.php:801
+msgid "API Secret"
+msgstr "API 시크릿"
+
+#: includes/class-kraken-io-settings.php:806
+msgid "API Status"
+msgstr "API 상태"
+
+#: includes/class-kraken-io-settings.php:814
+msgid "Don't convert (keep original format)"
+msgstr "변환 안 함 (원본 형식 유지)"
+
+#: includes/class-kraken-io-settings.php:815
+#: includes/class-kraken-io-summary.php:172
+msgid "JPEG"
+msgstr "JPEG"
+
+#: includes/class-kraken-io-settings.php:816
+#: includes/class-kraken-io-summary.php:173
+msgid "PNG"
+msgstr "PNG"
+
+#: includes/class-kraken-io-settings.php:817
+#: includes/class-kraken-io-summary.php:174
+msgid "GIF"
+msgstr "GIF"
+
+#: includes/class-kraken-io-settings.php:818
+#: includes/class-kraken-io-summary.php:175
+msgid "WebP"
+msgstr "WebP"
+
+#: includes/class-kraken-io-settings.php:819
+#: includes/class-kraken-io-summary.php:176
+msgid "AVIF"
+msgstr "AVIF"
+
+#: includes/class-kraken-io-settings.php:822
+msgid "Convert uploads to"
+msgstr "업로드 변환 형식"
+
+#: includes/class-kraken-io-settings.php:824
+msgid "Automatically convert new image uploads to the selected format during optimization. Leave as \"Don't convert\" to keep each image in its original format."
+msgstr "최적화 시 새로 업로드되는 이미지를 선택한 형식으로 자동 변환합니다. 각 이미지를 원본 형식 그대로 유지하려면 \"변환 안 함\"으로 두세요."
+
+#: includes/class-kraken-io-settings.php:833
+#: includes/class-kraken-io-summary.php:323
+msgid "Intelligent lossy"
+msgstr "지능형 손실 압축"
+
+#: includes/class-kraken-io-settings.php:834
+#: includes/class-kraken-io-summary.php:323
+msgid "Lossless"
+msgstr "무손실 압축"
+
+#: includes/class-kraken-io-settings.php:836
+#: includes/class-kraken-io-summary.php:322
+#: templates/media-column-stats.php:91
+msgid "Optimization mode"
+msgstr "최적화 모드"
+
+#: includes/class-kraken-io-settings.php:838
+msgid "The Intelligent Lossy mode will yield the greatest savings without perceivable reducing the quality of your images, and so we recommend this setting to users."
+msgstr "지능형 손실 압축 모드는 이미지 품질을 눈에 띄게 떨어뜨리지 않으면서 가장 큰 절감 효과를 제공하므로, 이 설정을 권장합니다."
+
+#: includes/class-kraken-io-settings.php:839
+msgid "The Lossless mode will result in an unchanged image, however, will yield reduced savings as the image will not be recompressed."
+msgstr "무손실 압축 모드는 이미지를 그대로 유지하지만, 재압축하지 않으므로 절감 효과는 줄어듭니다."
+
+#: includes/class-kraken-io-settings.php:847
+msgid "Optimize uploads"
+msgstr "업로드 최적화"
+
+#: includes/class-kraken-io-settings.php:848
+#: includes/class-kraken-io-summary.php:328
+msgid "Automatically optimize uploads"
+msgstr "업로드 자동 최적화"
+
+#: includes/class-kraken-io-settings.php:850
+msgid "Enabled by default. This setting causes images uploaded through the Media Uploader to be optimized on-the-fly."
+msgstr "기본적으로 활성화되어 있습니다. 이 설정을 켜면 미디어 업로더를 통해 업로드되는 이미지가 즉시 최적화됩니다."
+
+#: includes/class-kraken-io-settings.php:851
+msgid "If you do not wish to do this, or wish to optimize images later, disable this setting by unchecking the box."
+msgstr "이를 원하지 않거나 이미지를 나중에 최적화하려면, 체크박스를 해제하여 이 설정을 비활성화하세요."
+
+#: includes/class-kraken-io-settings.php:859
+msgid "Optimize images"
+msgstr "이미지 최적화"
+
+#: includes/class-kraken-io-settings.php:860
+#: includes/class-kraken-io-summary.php:334
+msgid "Optimize main image"
+msgstr "메인 이미지 최적화"
+
+#: includes/class-kraken-io-settings.php:862
+msgid "Enabled by default. This option causes the image uploaded by the user to get optimized, as well as all sizes generated by WordPress."
+msgstr "기본적으로 활성화되어 있습니다. 이 옵션을 켜면 사용자가 업로드한 이미지뿐 아니라 WordPress가 생성한 모든 크기도 함께 최적화됩니다."
+
+#: includes/class-kraken-io-settings.php:863
+msgid "Disabling this option results in faster uploading, since the main image is not sent to our system for optimization."
+msgstr "이 옵션을 비활성화하면 메인 이미지가 최적화를 위해 시스템으로 전송되지 않으므로 업로드 속도가 빨라집니다."
+
+#: includes/class-kraken-io-settings.php:864
+msgid "Disable this option if you never use the \"main\" image upload in your posts, or speed of image uploading is an issue."
+msgstr "글에서 \"메인\" 이미지 업로드를 전혀 사용하지 않거나 이미지 업로드 속도가 문제가 된다면 이 옵션을 비활성화하세요."
+
+#: includes/class-kraken-io-settings.php:872
+msgid "Max width (px)"
+msgstr "최대 너비 (px)"
+
+#: includes/class-kraken-io-settings.php:873
+msgid "Max height (px)"
+msgstr "최대 높이 (px)"
+
+#: includes/class-kraken-io-settings.php:879
+#: includes/class-kraken-io-summary.php:343
+msgid "Resize main image"
+msgstr "메인 이미지 크기 조정"
+
+#: includes/class-kraken-io-settings.php:881
+msgid "You can restrict the maximum dimensions of image uploads by width and/or height."
+msgstr "업로드되는 이미지의 최대 크기를 너비 또는 높이로 제한할 수 있습니다."
+
+#: includes/class-kraken-io-settings.php:882
+msgid "It is especially useful if you wish to prevent unnecessarily large photos with extremely high resolutions from being uploaded, for example, photos shot with a recent-model iPhone. Note: you can restrict the dimensions by width, height, or both. A value of zero disables."
+msgstr "최신 iPhone으로 촬영한 사진처럼 해상도가 지나치게 높은 사진이 불필요하게 업로드되는 것을 방지하려는 경우 특히 유용합니다. 참고: 너비, 높이 또는 둘 다로 크기를 제한할 수 있습니다. 값을 0으로 두면 비활성화됩니다."
+
+#: includes/class-kraken-io-settings.php:894
+msgid "Intelligent lossy (recommended)"
+msgstr "지능형 손실 압축 (권장)"
+
+#: includes/class-kraken-io-settings.php:899
+msgid "JPEG quality setting"
+msgstr "JPEG 품질 설정"
+
+#: includes/class-kraken-io-settings.php:901
+msgid "Advanced users can force the quality of JPEG images to a discrete \"q\" value between 25 and 100 using this setting."
+msgstr "고급 사용자는 이 설정을 사용하여 JPEG 이미지의 품질을 25에서 100 사이의 개별 \"q\" 값으로 고정할 수 있습니다."
+
+#: includes/class-kraken-io-settings.php:902
+msgid "For example, forcing the quality to 60 or 70 might yield greater savings, but the resulting quality might be affected, depending on the image."
+msgstr "예를 들어 품질을 60 또는 70으로 고정하면 절감 효과가 커질 수 있지만, 이미지에 따라 결과 품질이 영향을 받을 수 있습니다."
+
+#: includes/class-kraken-io-settings.php:903
+msgid "We therefore recommend keeping the <strong>Intelligent Lossy</strong> setting, which will not allow a resulting image of unacceptable quality."
+msgstr "따라서 허용할 수 없는 품질의 결과 이미지가 생기지 않도록 하는 <strong>지능형 손실 압축</strong> 설정을 유지하는 것을 권장합니다."
+
+#: includes/class-kraken-io-settings.php:904
+msgid "This setting will be ignored when using the <strong>lossless</strong> optimization mode."
+msgstr "<strong>무손실 압축</strong> 모드를 사용할 때는 이 설정이 무시됩니다."
+
+#: includes/class-kraken-io-settings.php:913
+msgid "4:2:0 (default)"
+msgstr "4:2:0 (기본값)"
+
+#: includes/class-kraken-io-settings.php:914
+msgid "4:2:2"
+msgstr "4:2:2"
+
+#: includes/class-kraken-io-settings.php:915
+msgid "4:4:4 (no subsampling)"
+msgstr "4:4:4 (서브샘플링 없음)"
+
+#: includes/class-kraken-io-settings.php:917
+msgid "Chroma subsampling scheme"
+msgstr "크로마 서브샘플링 방식"
+
+#: includes/class-kraken-io-settings.php:919
+msgid "Advanced users can also set the resolution at which colour is encoded for JPEG images."
+msgstr "고급 사용자는 JPEG 이미지에서 색상이 인코딩되는 해상도도 설정할 수 있습니다."
+
+#: includes/class-kraken-io-settings.php:920
+msgid "In short, the default setting of 4:2:0 is suitable for most images, and will result in the lowest possible optimized file size."
+msgstr "요약하면, 기본 설정인 4:2:0은 대부분의 이미지에 적합하며 가능한 가장 작은 최적화 파일 크기를 제공합니다."
+
+#: includes/class-kraken-io-settings.php:921
+msgid "Images containing high contrast text or bright red areas on flat backgrounds might benefit from disabling chroma subsampling (by setting it to 4:4:4). "
+msgstr "대비가 강한 텍스트나 단색 배경 위의 밝은 빨간색 영역이 포함된 이미지는 크로마 서브샘플링을 비활성화(4:4:4로 설정)하면 도움이 될 수 있습니다. "
+
+#: includes/class-kraken-io-settings.php:922
+msgid "More information can be found in our <a href=\"https://kraken.io/docs/chroma-subsampling\" target=\"_blank\">documentation</a>."
+msgstr "자세한 내용은 <a href=\"https://kraken.io/docs/chroma-subsampling\" target=\"_blank\">설명서</a>에서 확인할 수 있습니다."
+
+#: includes/class-kraken-io-settings.php:932
+msgid "All logged-in users"
+msgstr "로그인한 모든 사용자"
+
+#: includes/class-kraken-io-settings.php:933
+msgid "Users who can upload media (Author and above)"
+msgstr "미디어를 업로드할 수 있는 사용자 (작성자 이상)"
+
+#: includes/class-kraken-io-settings.php:934
+msgid "Administrators only"
+msgstr "관리자만"
+
+#: includes/class-kraken-io-settings.php:937
+msgid "Who can optimize images"
+msgstr "이미지를 최적화할 수 있는 사용자"
+
+#: includes/class-kraken-io-settings.php:939
+msgid "Controls which logged-in users may trigger optimization actions (single optimize, bulk optimize, reset) from the Media Library."
+msgstr "로그인한 사용자 중 누가 미디어 라이브러리에서 최적화 작업(단일 최적화, 일괄 최적화, 초기화)을 실행할 수 있는지 제어합니다."
+
+#: includes/class-kraken-io-settings.php:940
+msgid "Optimization consumes your paid Kraken.io quota and rewrites your media, so a user can only act on attachments they are allowed to edit, and by default only users who can upload media (Author and above) may optimize. On sites with open registration (membership, WooCommerce, forums), keep this restricted so untrusted accounts cannot consume your quota or alter media."
+msgstr "최적화는 유료 Kraken.io 할당량을 소비하고 미디어를 다시 기록하므로, 사용자는 편집 권한이 있는 첨부 파일에만 작업할 수 있으며 기본적으로 미디어를 업로드할 수 있는 사용자(작성자 이상)만 최적화할 수 있습니다. 공개 가입이 허용된 사이트(멤버십, WooCommerce, 포럼)에서는 신뢰할 수 없는 계정이 할당량을 소비하거나 미디어를 변경하지 못하도록 이 설정을 제한된 상태로 유지하세요."
+
+#: includes/class-kraken-io-settings.php:941
+msgid "• All logged-in users — anyone signed in who can also edit the attachment (most permissive). • Users who can upload media — Authors, Editors and Administrators (default). • Administrators only — most restrictive."
+msgstr "• 로그인한 모든 사용자 — 첨부 파일을 편집할 수 있는 로그인 사용자 누구나 (가장 허용적). • 미디어를 업로드할 수 있는 사용자 — 작성자, 편집자, 관리자 (기본값). • 관리자만 — 가장 제한적."
+
+#: includes/class-kraken-io-settings.php:950
+msgid "Image sizes to Krak"
+msgstr "최적화할 이미지 크기"
+
+#: includes/class-kraken-io-settings.php:952
+msgid "Every time you upload an image, WordPress generates several resized copies (thumbnail, medium, large, and so on). These resized versions — not the original — are what your visitors actually download, through responsive <code>srcset</code> images. Each size you tick here gets optimized, so the images people really load are compressed."
+msgstr "이미지를 업로드할 때마다 WordPress는 여러 개의 크기 조정 사본(썸네일, 중간, 큰 크기 등)을 생성합니다. 방문자가 실제로 다운로드하는 것은 원본이 아니라 이러한 크기 조정된 버전이며, 반응형 <code>srcset</code> 이미지를 통해 제공됩니다. 여기서 체크한 각 크기가 최적화되므로, 사람들이 실제로 불러오는 이미지가 압축됩니다."
+
+#: includes/class-kraken-io-settings.php:953
+msgid "If you untick a size, that copy is still created and still served to your visitors — just <strong>left unoptimized</strong>, at its full original weight. Keeping these on is what delivers the page-speed gain across your whole site, not just on the original file."
+msgstr "크기 체크를 해제해도 그 사본은 여전히 생성되어 방문자에게 제공되지만, 원본 용량 그대로 <strong>최적화되지 않은</strong> 상태로 남습니다. 이 항목들을 켜 두는 것이 원본 파일뿐 아니라 사이트 전체에 페이지 속도 향상을 가져옵니다."
+
+#: includes/class-kraken-io-settings.php:954
+msgid "The trade-off: each ticked size is a separate optimization that uses your Kraken.io quota. For that reason the large retina sizes <code>1536×1536</code> and <code>2048×2048</code> are <strong>left off by default</strong> — most themes never serve them. If your theme does use them (for high-DPI screens), just tick them here and they'll be optimized too. Already-optimized images are never touched by this."
+msgstr "절충점: 체크한 각 크기는 별도의 최적화이며 Kraken.io 할당량을 사용합니다. 그래서 큰 레티나 크기인 <code>1536×1536</code>과 <code>2048×2048</code>은 <strong>기본적으로 꺼져 있습니다</strong> — 대부분의 테마는 이를 제공하지 않습니다. 테마가 이를 사용한다면(고해상도 화면용) 여기서 체크하면 함께 최적화됩니다. 이미 최적화된 이미지는 이 설정의 영향을 받지 않습니다."
+
+#: includes/class-kraken-io-settings.php:962
+#: includes/class-kraken-io-summary.php:387
+msgid "Date"
+msgstr "날짜"
+
+#: includes/class-kraken-io-settings.php:963
+#: includes/class-kraken-io-summary.php:388
+msgid "Copyright"
+msgstr "저작권"
+
+#: includes/class-kraken-io-settings.php:964
+#: includes/class-kraken-io-summary.php:389
+msgid "Geotag"
+msgstr "지오태그"
+
+#: includes/class-kraken-io-settings.php:965
+#: includes/class-kraken-io-summary.php:390
+msgid "Orientation"
+msgstr "방향"
+
+#: includes/class-kraken-io-settings.php:975
+msgid "Preserve EXIF Metadata"
+msgstr "EXIF 메타데이터 보존"
+
+#: includes/class-kraken-io-settings.php:982
+msgid "Image orientation"
+msgstr "이미지 방향"
+
+#: includes/class-kraken-io-settings.php:983
+#: includes/class-kraken-io-summary.php:366
+msgid "Automatically orient images"
+msgstr "이미지 방향 자동 보정"
+
+#: includes/class-kraken-io-settings.php:985
+msgid "This setting will rotate the JPEG image according to its Orientation EXIF metadata such that it will always be correctly displayed in Web Browsers."
+msgstr "이 설정은 JPEG 이미지를 Orientation EXIF 메타데이터에 따라 회전시켜 웹 브라우저에서 항상 올바르게 표시되도록 합니다."
+
+#: includes/class-kraken-io-settings.php:986
+msgid "Enable this setting if many of your image uploads come from smart phones or digital cameras which set the orientation based on how they are held at the time of shooting."
+msgstr "촬영 시 기기를 쥔 방향에 따라 방향이 설정되는 스마트폰이나 디지털 카메라에서 많은 이미지를 업로드하는 경우 이 설정을 활성화하세요."
+
+#: includes/class-kraken-io-settings.php:994
+msgid "Metadata reset per image"
+msgstr "이미지별 메타데이터 초기화"
+
+#: includes/class-kraken-io-settings.php:995
+msgid "Show reset button"
+msgstr "초기화 버튼 표시"
+
+#: includes/class-kraken-io-settings.php:997
+msgid "Checking this option will add a Reset button in the \"Show Details\" popup in the Kraken Stats column for each optimized image."
+msgstr "이 옵션을 체크하면 최적화된 각 이미지의 Kraken 통계 열에 있는 \"상세 정보 보기\" 팝업에 초기화 버튼이 추가됩니다."
+
+#: includes/class-kraken-io-settings.php:998
+msgid "Resetting an image will remove the Kraken.io metadata associated with it, effectively making your blog forget that it had been optimized in the first place, allowing further optimization in some cases."
+msgstr "이미지를 초기화하면 해당 이미지와 연결된 Kraken.io 메타데이터가 제거되어, 블로그가 해당 이미지를 최적화한 적이 있다는 사실을 잊게 만들며, 경우에 따라 추가 최적화를 할 수 있게 됩니다."
+
+#: includes/class-kraken-io-settings.php:999
+msgid "If an image has been optimized using the lossless setting, lossless optimization will not yield any greater savings. If in doubt, please contact support@kraken.io"
+msgstr "이미지가 무손실 압축 설정으로 최적화된 경우, 무손실 최적화로는 추가 절감 효과를 얻을 수 없습니다. 확실하지 않으면 support@kraken.io로 문의하세요."
+
+#: includes/class-kraken-io-settings.php:1007
+msgid "Savings badge"
+msgstr "절감 배지"
+
+#: includes/class-kraken-io-settings.php:1008
+msgid "Show a savings badge on optimized thumbnails"
+msgstr "최적화된 썸네일에 절감 배지 표시"
+
+#: includes/class-kraken-io-settings.php:1010
+msgid "Displays the percentage saved in the corner of each optimized image thumbnail in the Media Library."
+msgstr "미디어 라이브러리에서 최적화된 각 이미지 썸네일의 모서리에 절감된 비율을 표시합니다."
+
+#: includes/class-kraken-io-settings.php:1018
+msgid "Background process"
+msgstr "백그라운드 처리"
+
+#: includes/class-kraken-io-settings.php:1019
+msgid "Process image optimization in background"
+msgstr "이미지 최적화를 백그라운드에서 처리"
+
+#: includes/class-kraken-io-settings.php:1021
+msgid "This setting will optimize images in background when using the option \"Automatically optimize uploads\" resulting in faster image uploads."
+msgstr "이 설정을 켜면 \"업로드 자동 최적화\" 옵션을 사용할 때 이미지를 백그라운드에서 최적화하여 이미지 업로드 속도가 빨라집니다."
+
+#: includes/class-kraken-io-settings.php:1027
+msgid "WebP / next-gen formats"
+msgstr "WebP / 차세대 형식"
+
+#: includes/class-kraken-io-settings.php:1029
+msgid "The old \"Create WebP\" and \"Display WebP\" options are deprecated. They created a separate .webp companion for every image and depended on Apache .htaccess rewrite rules, which did not work behind a CDN."
+msgstr "기존의 \"WebP 생성\" 및 \"WebP 표시\" 옵션은 사용 중단되었습니다. 이 옵션들은 모든 이미지에 별도의 .webp 동반 파일을 생성하고 Apache .htaccess 재작성 규칙에 의존했으며, 이는 CDN 뒤에서는 작동하지 않았습니다."
+
+#: includes/class-kraken-io-settings.php:1030
+msgid "To serve WebP (or AVIF) now, use \"Convert uploads to → WebP\" in the General settings tab. Each upload is converted to the modern format directly, so the file is served as-is by any server or CDN — no companion files and no rewrite rules required."
+msgstr "이제 WebP(또는 AVIF)를 제공하려면 일반 설정 탭에서 \"업로드 변환 형식 → WebP\"를 사용하세요. 각 업로드가 최신 형식으로 직접 변환되므로, 파일이 모든 서버나 CDN에서 있는 그대로 제공됩니다 — 동반 파일이나 재작성 규칙이 필요하지 않습니다."
+
+#: includes/class-kraken-io-settings.php:1039
+msgid "Bulk concurrency"
+msgstr "일괄 동시 처리 수"
+
+#: includes/class-kraken-io-settings.php:1041
+msgid "This settings defines how many images can be processed at the same time using the bulk optimizer. The recommended (and default) value is 4."
+msgstr "이 설정은 일괄 최적화 도구를 사용할 때 동시에 처리할 수 있는 이미지 수를 정의합니다. 권장(기본) 값은 4입니다."
+
+#: includes/class-kraken-io-settings.php:1042
+msgid "For blogs on very small hosting plans, or with reduced connectivity, a lower number might be necessary to avoid hitting request limits."
+msgstr "매우 작은 호스팅 요금제를 사용하거나 연결이 제한적인 블로그의 경우, 요청 한도에 도달하지 않도록 더 낮은 값이 필요할 수 있습니다."
+
+#: includes/class-kraken-io-summary.php:46
+msgid "Kraken.io Image Optimizer"
+msgstr "Kraken.io Image Optimizer"
+
+#: includes/class-kraken-io-summary.php:171
+msgid "No conversion"
+msgstr "변환 안 함"
+
+#: includes/class-kraken-io-summary.php:351
+msgid "JPEG quality"
+msgstr "JPEG 품질"
+
+#: includes/class-kraken-io-summary.php:358
+msgid "Chroma subsampling"
+msgstr "크로마 서브샘플링"
+
+#: includes/class-kraken-io-summary.php:372
+msgid "Background processing"
+msgstr "백그라운드 처리"
+
+#: includes/class-kraken-io-summary.php:380
+msgid "Per-image reset button"
+msgstr "이미지별 초기화 버튼"
+
+#: includes/class-kraken-io-summary.php:391
+msgid "Profile"
+msgstr "프로필"
+
+#: includes/class-kraken-io-summary.php:400
+msgid "Preserve EXIF metadata"
+msgstr "EXIF 메타데이터 보존"
+
+#: includes/class-kraken-io-summary.php:413
+msgid "Image sizes optimized"
+msgstr "최적화된 이미지 크기"
+
+#. translators: %d number of image sizes
+#: includes/class-kraken-io-summary.php:415
+msgid "%d size"
+msgid_plural "%d sizes"
+msgstr[0] "%d개 크기"
+
+#: includes/class-kraken-io.php:372
+msgid "Are you sure you want to remove Kraken metadata for this image?"
+msgstr "이 이미지의 Kraken 메타데이터를 제거하시겠습니까?"
+
+#: includes/class-kraken-io.php:373
+msgid "This will immediately remove all Kraken metadata associated with your images. Are you sure you want to do this?"
+msgstr "이미지와 연결된 모든 Kraken 메타데이터가 즉시 제거됩니다. 진행하시겠습니까?"
+
+#: includes/class-kraken-io.php:374
+msgid "Something went wrong. Please reload the page and try again."
+msgstr "문제가 발생했습니다. 페이지를 다시 불러온 후 다시 시도하세요."
+
+#: includes/class-kraken-io.php:375
+msgid "Optimizing…"
+msgstr "최적화 중…"
+
+#: includes/class-kraken-io.php:376
+msgid "Converting…"
+msgstr "변환 중…"
+
+#: includes/class-kraken-io.php:377
+msgid "Optimized"
+msgstr "최적화됨"
+
+#. translators: %s number of images
+#: includes/class-kraken-io.php:379
+msgid "%s images will be optimized."
+msgstr "%s개 이미지가 최적화됩니다."
+
+#. translators: %1$s optimized %2$s total
+#: includes/class-kraken-io.php:381
+msgid "%1$s / %2$s images have been optimized."
+msgstr "%1$s / %2$s개 이미지가 최적화되었습니다."
+
+#: includes/class-kraken-io.php:382
+msgid "Copied!"
+msgstr "복사됨!"
+
+#: templates/account-hero.php:60
+#: templates/summary-panel.php:36
+msgid "Not connected"
+msgstr "연결되지 않음"
+
+#: templates/account-hero.php:61
+msgid "Connect your Kraken.io account"
+msgstr "Kraken.io 계정 연결"
+
+#: templates/account-hero.php:62
+msgid "Enter your API key and secret below to start optimizing your images. Don't have an account yet? Create one in seconds."
+msgstr "아래에 API 키와 시크릿을 입력하여 이미지 최적화를 시작하세요. 아직 계정이 없으신가요? 몇 초 만에 만들 수 있습니다."
+
+#: templates/account-hero.php:68
+#: templates/summary-panel.php:38
+msgid "Invalid credentials"
+msgstr "유효하지 않은 자격 증명"
+
+#: templates/account-hero.php:69
+msgid "Your API credentials are invalid"
+msgstr "API 자격 증명이 유효하지 않습니다"
+
+#: templates/account-hero.php:70
+msgid "Double-check the API key and secret below, or grab fresh credentials from your Kraken.io account."
+msgstr "아래의 API 키와 시크릿을 다시 확인하거나, Kraken.io 계정에서 새 자격 증명을 받으세요."
+
+#: templates/account-hero.php:76
+#: templates/summary-panel.php:40
+msgid "Payment overdue"
+msgstr "결제 연체"
+
+#: templates/account-hero.php:77
+msgid "Your Kraken.io payment is overdue"
+msgstr "Kraken.io 결제가 연체되었습니다"
+
+#: templates/account-hero.php:78
+msgid "Optimization may be paused until your billing is up to date."
+msgstr "청구가 정상화될 때까지 최적화가 중단될 수 있습니다."
+
+#: templates/account-hero.php:84
+#: templates/account-hero.php:92
+#: templates/summary-panel.php:42
+msgid "Connected"
+msgstr "연결됨"
+
+#: templates/account-hero.php:85
+msgid "You're on the Free plan"
+msgstr "무료 요금제를 사용 중입니다"
+
+#: templates/account-hero.php:86
+msgid "Upgrade to a paid plan for more monthly quota and larger file sizes."
+msgstr "더 많은 월간 할당량과 더 큰 파일 크기를 원하시면 유료 요금제로 업그레이드하세요."
+
+#. translators: %s plan name
+#: templates/account-hero.php:96
+msgid "Connected — %s plan"
+msgstr "연결됨 — %s 요금제"
+
+#: templates/account-hero.php:99
+msgid "Your Kraken.io account is active and optimizing your images."
+msgstr "Kraken.io 계정이 활성화되어 이미지를 최적화하고 있습니다."
+
+#: templates/account-hero.php:119
+msgid "Monthly quota"
+msgstr "월간 할당량"
+
+#. translators: %1$s used %2$s total
+#: templates/account-hero.php:124
+msgid "%1$s of %2$s used"
+msgstr "%2$s 중 %1$s 사용"
+
+#. translators: %s remaining
+#: templates/account-hero.php:125
+msgid "%s left"
+msgstr "%s 남음"
+
+#: templates/account-hero.php:135
+msgid "Create an account"
+msgstr "계정 만들기"
+
+#: templates/account-hero.php:136
+#: templates/account-hero.php:142
+msgid "Get API credentials"
+msgstr "API 자격 증명 받기"
+
+#: templates/account-hero.php:148
+msgid "Update billing"
+msgstr "청구 정보 업데이트"
+
+#: templates/account-hero.php:154
+msgid "Subscribe to a plan"
+msgstr "요금제 구독"
+
+#: templates/account-hero.php:155
+#: templates/account-hero.php:161
+msgid "Manage account"
+msgstr "계정 관리"
+
+#: templates/account-hero.php:162
+#: templates/summary-panel.php:113
+msgid "Upgrade plan"
+msgstr "요금제 업그레이드"
+
+#: templates/bulk-optimizer-stats.php:32
+#: templates/media-column-stats.php:26
+#: templates/media-column-stats.php:133
+msgid "Failed with errors"
+msgstr "오류와 함께 실패함"
+
+#: templates/bulk-optimizer-stats.php:41
+#: templates/media-column-stats.php:35
+msgid "Optimizing..."
+msgstr "최적화 중..."
+
+#. translators: %1$s percentage %2$s total
+#: templates/bulk-optimizer-stats.php:51
+#: templates/media-column-stats.php:57
+msgid "Saved %1$s (%2$s)"
+msgstr "%1$s 절감 (%2$s)"
+
+#: templates/bulk-optimizer-stats.php:56
+#: templates/media-column-stats.php:107
+msgid "No savings"
+msgstr "절감 없음"
+
+#. translators: %s optimization type
+#: templates/bulk-optimizer-stats.php:64
+#: templates/media-column-stats.php:125
+msgid "No savings found for type %s"
+msgstr "%s 유형에 대한 절감을 찾을 수 없습니다"
+
+#: templates/bulk-optimizer-stats.php:71
+#: templates/media-column-stats.php:146
+msgid "N/A"
+msgstr "해당 없음"
+
+#: templates/bulk-optimizer.php:14
+#: templates/media-column-stats.php:20
+#: templates/stats.php:13
+msgid "Connect your account"
+msgstr "계정 연결"
+
+#. translators: %s number of images
+#: templates/bulk-optimizer.php:23
+msgid "%s image will be optimized."
+msgid_plural "%s images will be optimized."
+msgstr[0] "%s개 이미지가 최적화됩니다."
+
+#: templates/bulk-optimizer.php:27
+msgid "Selected images are already optimized"
+msgstr "선택한 이미지는 이미 최적화되었습니다"
+
+#: templates/bulk-optimizer.php:29
+msgid "All images are already optimized"
+msgstr "모든 이미지가 이미 최적화되었습니다"
+
+#: templates/bulk-optimizer.php:44
+msgid "Kraken Bulk Image Optimization"
+msgstr "Kraken 일괄 이미지 최적화"
+
+#: templates/bulk-optimizer.php:65
+msgid "Image"
+msgstr "이미지"
+
+#: templates/bulk-optimizer.php:66
+msgid "Original Size"
+msgstr "원본 크기"
+
+#: templates/bulk-optimizer.php:69
+msgid "Kraken.io Stats"
+msgstr "Kraken.io 통계"
+
+#: templates/conflicts-notice.php:23
+msgid "Other image optimizers detected"
+msgstr "다른 이미지 최적화 도구가 감지되었습니다"
+
+#: templates/conflicts-notice.php:26
+msgid "Running more than one image optimizer on the same uploads wastes quota and can double-compress your images. For best results with Kraken.io, deactivate the plugins below."
+msgstr "동일한 업로드에 둘 이상의 이미지 최적화 도구를 실행하면 할당량이 낭비되고 이미지가 이중 압축될 수 있습니다. Kraken.io로 최상의 결과를 얻으려면 아래 플러그인을 비활성화하세요."
+
+#: templates/conflicts-notice.php:33
+msgid "Deactivate"
+msgstr "비활성화"
+
+#: templates/media-column-stats.php:46
+msgid "Optimize Main Image"
+msgstr "메인 이미지 최적화"
+
+#: templates/media-column-stats.php:61
+msgid "Show Details"
+msgstr "상세 정보 보기"
+
+#: templates/media-column-stats.php:67
+msgid "Main image savings"
+msgstr "메인 이미지 절감"
+
+#. translators: %1$s bytes %2$s percentage
+#: templates/media-column-stats.php:70
+#: templates/media-column-stats.php:85
+msgid "%1$s (%2$s saved)"
+msgstr "%1$s (%2$s 절감)"
+
+#. translators: %s count
+#: templates/media-column-stats.php:80
+msgid "Savings on %s thumbnails"
+msgstr "썸네일 %s개의 절감"
+
+#: templates/media-column-stats.php:97
+msgid "Reset Image"
+msgstr "이미지 초기화"
+
+#: templates/media-column-stats.php:117
+msgid "Optimize"
+msgstr "최적화"
+
+#: templates/stats.php:28
+msgid "Plan Level"
+msgstr "요금제 등급"
+
+#: templates/stats.php:32
+msgid "Quota"
+msgstr "할당량"
+
+#: templates/stats.php:36
+msgid "Current Usage"
+msgstr "현재 사용량"
+
+#: templates/stats.php:40
+msgid "Remaining"
+msgstr "남은 양"
+
+#: templates/summary-panel.php:53
+msgid "Active plan"
+msgstr "활성 요금제"
+
+#: templates/summary-panel.php:73
+msgid "View full stats"
+msgstr "전체 통계 보기"
+
+#: templates/summary-panel.php:87
+msgid "No API credentials found."
+msgstr "API 자격 증명을 찾을 수 없습니다."
+
+#: templates/summary-panel.php:87
+msgid "Connect your Kraken.io account to start optimizing your images."
+msgstr "이미지 최적화를 시작하려면 Kraken.io 계정을 연결하세요."
+
+#: templates/summary-panel.php:88
+msgid "Add API credentials"
+msgstr "API 자격 증명 추가"
+
+#: templates/summary-panel.php:94
+msgid "Your Kraken.io API credentials are invalid."
+msgstr "Kraken.io API 자격 증명이 유효하지 않습니다."
+
+#: templates/summary-panel.php:94
+msgid "Please check your API key and secret in the plugin settings."
+msgstr "플러그인 설정에서 API 키와 시크릿을 확인하세요."
+
+#: templates/summary-panel.php:95
+msgid "Review credentials"
+msgstr "자격 증명 검토"
+
+#: templates/summary-panel.php:103
+msgid "Payment overdue — your API access has been restricted."
+msgstr "결제 연체 — API 접근이 제한되었습니다."
+
+#: templates/summary-panel.php:103
+msgid "Please complete your payment from your kraken.io account to resume optimizing."
+msgstr "최적화를 재개하려면 kraken.io 계정에서 결제를 완료하세요."
+
+#: templates/summary-panel.php:104
+msgid "Complete payment"
+msgstr "결제 완료"
+
+#: templates/summary-panel.php:112
+msgid "Free test quota used up."
+msgstr "무료 테스트 할당량을 모두 사용했습니다."
+
+#: templates/summary-panel.php:112
+msgid "Upgrade to a paid plan to keep optimizing, or email support@kraken.io to request more test quota."
+msgstr "계속 최적화하려면 유료 요금제로 업그레이드하거나, 테스트 할당량 추가를 요청하려면 support@kraken.io로 이메일을 보내세요."
+
+#: templates/summary-panel.php:115
+msgid "Monthly quota exceeded."
+msgstr "월간 할당량을 초과했습니다."
+
+#: templates/summary-panel.php:115
+msgid "Further optimizations will be billed at the end of your billing period."
+msgstr "추가 최적화는 청구 기간 종료 시 청구됩니다."
+
+#: templates/summary-panel.php:116
+msgid "View account"
+msgstr "계정 보기"
+
+#: templates/summary-panel.php:129
+msgid "Convert uploads to:"
+msgstr "업로드 변환 형식:"
+
+#. translators: %s number of images
+#: templates/summary-panel.php:147
+msgid "Bulk optimize (%s)"
+msgstr "일괄 최적화 (%s)"
+
+#: templates/summary-panel.php:159
+msgid "General"
+msgstr "일반"
+
+#: templates/summary-panel.php:168
+#: templates/summary-panel.php:185
+msgid "Edit"
+msgstr "편집"
+
+#: templates/summary-panel.php:172
+msgid "Advanced"
+msgstr "고급"
+
+#: templates/summary-panel.php:174
+msgid "None enabled"
+msgstr "활성화된 항목 없음"
+
+#: templates/summary-panel.php:189
+msgid "Supported:"
+msgstr "지원됨:"
+
+#: templates/support.php:23
+msgid "Site"
+msgstr "사이트"
+
+#: templates/support.php:24
+msgid "WordPress"
+msgstr "WordPress"
+
+#: templates/support.php:25
+msgid "PHP"
+msgstr "PHP"
+
+#: templates/support.php:26
+msgid "Plugin"
+msgstr "플러그인"
+
+#. translators: %s: site URL
+#: templates/support.php:36
+msgid "Kraken.io WordPress plugin support — %s"
+msgstr "Kraken.io WordPress 플러그인 지원 — %s"
+
+#: templates/support.php:39
+msgid "Describe your question or problem here."
+msgstr "여기에 질문이나 문제를 설명해 주세요."
+
+#: templates/support.php:44
+msgid "Contact us"
+msgstr "문의하기"
+
+#: templates/support.php:46
+msgid "Have a question or hit a problem? The quickest way to reach the Kraken.io team is our WordPress.org support forum — open a thread and we will reply there. Prefer email? Use the button below to write to us from your own mail app."
+msgstr "질문이 있거나 문제가 생기셨나요? Kraken.io 팀에 가장 빠르게 연락하는 방법은 WordPress.org 지원 포럼입니다 — 스레드를 열어 주시면 그곳에서 답변드리겠습니다. 이메일을 선호하시나요? 아래 버튼을 사용해 사용 중인 메일 앱에서 저희에게 메시지를 보내세요."
+
+#: templates/support.php:52
+msgid "Open the support forum"
+msgstr "지원 포럼 열기"
+
+#: templates/support.php:56
+msgid "Email support@kraken.io"
+msgstr "support@kraken.io로 이메일 보내기"
+
+#: templates/support.php:62
+msgid "Please include these details so we can help faster:"
+msgstr "더 빠르게 도와드릴 수 있도록 다음 정보를 포함해 주세요:"
+
+#: templates/support.php:64
+msgid "Copy"
+msgstr "복사"
+
+#: templates/support.php:74
+msgid "These links never depend on your server's email setup, so your message always reaches us."
+msgstr "이 링크는 서버의 이메일 설정에 의존하지 않으므로, 메시지가 항상 저희에게 전달됩니다."
+
+#: includes/class-kraken-io-settings.php:293
+msgid "All changes saved"
+msgstr "모든 변경 사항이 저장되었습니다"
+
+#: includes/class-kraken-io-settings.php:297
+msgid "You have unsaved changes — don’t forget to save."
+msgstr "저장되지 않은 변경 사항이 있습니다 — 저장하는 것을 잊지 마세요."
+
+#: templates/stats.php:62
+msgid "Savings on this site"
+msgstr "이 사이트의 절감"
+
+#: templates/stats.php:64
+msgid "These figures cover only the images optimized on this website — every full-size image and all of their thumbnail sizes — and are calculated from this site's own data. They are separate from the Kraken.io account quota shown above, which is shared across every site that uses your API key."
+msgstr "이 수치는 이 웹사이트에서 최적화된 이미지(모든 원본 크기 이미지와 모든 썸네일 크기)만 대상으로 하며, 이 사이트 자체의 데이터로 계산됩니다. 위에 표시된 Kraken.io 계정 할당량과는 별개이며, 해당 할당량은 API 키를 사용하는 모든 사이트에서 공유됩니다."
+
+#: templates/stats.php:70
+msgid "saved on this site"
+msgstr "이 사이트에서 절감됨"
+
+#: templates/stats.php:79
+msgid "%s smaller overall"
+msgstr "전체적으로 %s 더 작아짐"
+
+#: templates/stats.php
+msgid "Original"
+msgstr "원본"
+
+#: templates/stats.php
+msgid "Saved"
+msgstr "절감"
+
+#: templates/stats.php
+msgid "Full-size images"
+msgstr "전체 크기 이미지"
+
+#: templates/stats.php
+msgid "Thumbnails"
+msgstr "썸네일"
+
+#: templates/stats.php
+msgid "Total"
+msgstr "합계"

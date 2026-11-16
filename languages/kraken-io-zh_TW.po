@@ -1,0 +1,1035 @@
+# Translation of Kraken.io Image Optimizer (Chinese (Taiwan)).
+# This file is distributed under the same license as the plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Kraken Image Optimizer 3.0.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kraken-image-optimizer\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: kraken-i18n\n"
+
+#. Plugin Name of the plugin
+#: kraken.php
+msgid "Kraken Image Optimizer"
+msgstr "Kraken 圖片最佳化工具"
+
+#. Plugin URI of the plugin
+#: kraken.php
+msgid "http://wordpress.org/plugins/kraken-image-optimizer/"
+msgstr "http://wordpress.org/plugins/kraken-image-optimizer/"
+
+#. Description of the plugin
+#: kraken.php
+msgid "This plugin allows you to optimize your WordPress images through the Kraken API, the world's most advanced image optimization solution."
+msgstr "本外掛可透過 Kraken API 為您的 WordPress 圖片進行最佳化，這是全球最先進的圖片最佳化解決方案。"
+
+#. Author of the plugin
+#: kraken.php
+#: includes/class-kraken-io-settings.php:119
+#: includes/class-kraken-io-stats.php:156
+#: includes/class-kraken-io-stats.php:199
+msgid "Kraken.io"
+msgstr "Kraken.io"
+
+#. Author URI of the plugin
+#: kraken.php
+msgid "https://kraken.io"
+msgstr "https://kraken.io"
+
+#. translators: %1$s used %2$s total %3$s remaining
+#: includes/class-kraken-io-ajax.php:237
+#: templates/summary-panel.php:62
+msgid "%1$s / %2$s · %3$s left"
+msgstr "%1$s / %2$s · 剩餘 %3$s"
+
+#: includes/class-kraken-io-background-process.php:62
+#: includes/class-kraken-io-optimization.php:155
+#: includes/class-kraken-io-optimization.php:799
+msgid "Conversion failed."
+msgstr "轉換失敗。"
+
+#: includes/class-kraken-io-optimization.php:400
+msgid "Could not get optimized image URL."
+msgstr "無法取得最佳化後的圖片網址。"
+
+#: includes/class-kraken-io-optimization.php:406
+msgid "Could not overwrite original file. Please ensure that your files are writable by plugins."
+msgstr "無法覆寫原始檔案。請確認您的檔案可供外掛寫入。"
+
+#: includes/class-kraken-io-optimization.php:447
+msgid "Your Kraken.io API credentials are missing or invalid."
+msgstr "您的 Kraken.io API 憑證遺失或無效。"
+
+#: includes/class-kraken-io-optimization.php:448
+msgid "There was nothing to send for optimization."
+msgstr "沒有可供最佳化的內容。"
+
+#: includes/class-kraken-io-optimization.php:449
+msgid "No file was provided to optimize."
+msgstr "未提供要最佳化的檔案。"
+
+#: includes/class-kraken-io-optimization.php:450
+msgid "The image file could not be found on the server."
+msgstr "在伺服器上找不到該圖片檔案。"
+
+#: includes/class-kraken-io-optimization.php:459
+msgid "Unknown error."
+msgstr "未知錯誤。"
+
+#: includes/class-kraken-io-optimization.php:555
+#: includes/class-kraken-io-optimization.php:771
+msgid "Couldn't find the image path."
+msgstr "找不到圖片路徑。"
+
+#: includes/class-kraken-io-optimization.php:594
+msgid "Optimization failed."
+msgstr "最佳化失敗。"
+
+#: includes/class-kraken-io-optimization.php:761
+msgid "Unsupported conversion format."
+msgstr "不支援的轉換格式。"
+
+#: includes/class-kraken-io-optimization.php:765
+msgid "This file cannot be converted."
+msgstr "此檔案無法轉換。"
+
+#: includes/class-kraken-io-optimization.php:813
+msgid "Could not download the converted image."
+msgstr "無法下載轉換後的圖片。"
+
+#: includes/class-kraken-io-optimization.php:818
+msgid "Could not write the converted image. Please ensure your uploads are writable."
+msgstr "無法寫入轉換後的圖片。請確認您的上傳目錄可供寫入。"
+
+#: includes/class-kraken-io-settings.php:71
+#: includes/class-kraken-io-settings.php:118
+#: includes/class-kraken-io-settings.php:213
+msgid "Kraken.io Settings"
+msgstr "Kraken.io 設定"
+
+#: includes/class-kraken-io-settings.php:71
+#: templates/summary-panel.php:74
+msgid "Settings"
+msgstr "設定"
+
+#: includes/class-kraken-io-settings.php:85
+#: templates/bulk-optimizer.php:54
+msgid "Krak 'em all"
+msgstr "全部 Krak 一下"
+
+#: includes/class-kraken-io-settings.php:129
+#: includes/class-kraken-io-settings.php:130
+#: includes/class-kraken-io-settings.php:150
+msgid "Bulk Optimize with Kraken.io"
+msgstr "使用 Kraken.io 批次最佳化"
+
+#: includes/class-kraken-io-settings.php:187
+msgid "General Settings"
+msgstr "一般設定"
+
+#: includes/class-kraken-io-settings.php:188
+msgid "<a href=\"http://kraken.io/account\" target=\"_blank\">Kraken.io</a> API Settings."
+msgstr "<a href=\"http://kraken.io/account\" target=\"_blank\">Kraken.io</a> API 設定。"
+
+#: includes/class-kraken-io-settings.php:191
+msgid "Advanced Settings"
+msgstr "進階設定"
+
+#: includes/class-kraken-io-settings.php:192
+msgid "We recommend that you leave these settings at their default values."
+msgstr "建議您將這些設定保留為預設值。"
+
+#: includes/class-kraken-io-settings.php:195
+msgid "Bulk Optimizer"
+msgstr "批次最佳化工具"
+
+#: includes/class-kraken-io-settings.php:199
+msgid "Stats"
+msgstr "統計"
+
+#: includes/class-kraken-io-settings.php:203
+msgid "Support"
+msgstr "支援"
+
+#: includes/class-kraken-io-settings.php:249
+msgid "Save Changes"
+msgstr "儲存變更"
+
+#: includes/class-kraken-io-settings.php:354
+msgid "Please refresh the page and try again."
+msgstr "請重新整理頁面後再試一次。"
+
+#: includes/class-kraken-io-settings.php:359
+msgid "There are no Kraken options."
+msgstr "沒有 Kraken 選項。"
+
+#: includes/class-kraken-io-settings.php:392
+msgid "Settings Saved"
+msgstr "設定已儲存"
+
+#: includes/class-kraken-io-settings.php:578
+msgid "Deprecated"
+msgstr "已淘汰"
+
+#: includes/class-kraken-io-settings.php:605
+msgid "value"
+msgstr "數值"
+
+#. translators: %s is the field label, e.g. "API Key" or "API Secret".
+#: includes/class-kraken-io-settings.php:608
+msgid "Your %s is saved. Leave this blank to keep it, or paste a new one to replace it."
+msgstr "您的%s已儲存。留空可保留現有內容，或貼上新的內容以取代。"
+
+#: includes/class-kraken-io-settings.php:745
+msgid "Your credentials are valid."
+msgstr "您的憑證有效。"
+
+#: includes/class-kraken-io-settings.php:747
+msgid "There is a problem with your credentials."
+msgstr "您的憑證有問題。"
+
+#: includes/class-kraken-io-settings.php:794
+msgid "API Key"
+msgstr "API 金鑰"
+
+#: includes/class-kraken-io-settings.php:801
+msgid "API Secret"
+msgstr "API 密鑰"
+
+#: includes/class-kraken-io-settings.php:806
+msgid "API Status"
+msgstr "API 狀態"
+
+#: includes/class-kraken-io-settings.php:814
+msgid "Don't convert (keep original format)"
+msgstr "不轉換（保留原始格式）"
+
+#: includes/class-kraken-io-settings.php:815
+#: includes/class-kraken-io-summary.php:172
+msgid "JPEG"
+msgstr "JPEG"
+
+#: includes/class-kraken-io-settings.php:816
+#: includes/class-kraken-io-summary.php:173
+msgid "PNG"
+msgstr "PNG"
+
+#: includes/class-kraken-io-settings.php:817
+#: includes/class-kraken-io-summary.php:174
+msgid "GIF"
+msgstr "GIF"
+
+#: includes/class-kraken-io-settings.php:818
+#: includes/class-kraken-io-summary.php:175
+msgid "WebP"
+msgstr "WebP"
+
+#: includes/class-kraken-io-settings.php:819
+#: includes/class-kraken-io-summary.php:176
+msgid "AVIF"
+msgstr "AVIF"
+
+#: includes/class-kraken-io-settings.php:822
+msgid "Convert uploads to"
+msgstr "上傳時轉換為"
+
+#: includes/class-kraken-io-settings.php:824
+msgid "Automatically convert new image uploads to the selected format during optimization. Leave as \"Don't convert\" to keep each image in its original format."
+msgstr "在最佳化過程中自動將新上傳的圖片轉換為所選格式。保留「不轉換」即可讓每張圖片維持其原始格式。"
+
+#: includes/class-kraken-io-settings.php:833
+#: includes/class-kraken-io-summary.php:323
+msgid "Intelligent lossy"
+msgstr "智慧失真"
+
+#: includes/class-kraken-io-settings.php:834
+#: includes/class-kraken-io-summary.php:323
+msgid "Lossless"
+msgstr "無損"
+
+#: includes/class-kraken-io-settings.php:836
+#: includes/class-kraken-io-summary.php:322
+#: templates/media-column-stats.php:91
+msgid "Optimization mode"
+msgstr "最佳化模式"
+
+#: includes/class-kraken-io-settings.php:838
+msgid "The Intelligent Lossy mode will yield the greatest savings without perceivable reducing the quality of your images, and so we recommend this setting to users."
+msgstr "智慧失真模式可在不明顯降低圖片品質的情況下帶來最大的減量幅度，因此我們建議使用者採用此設定。"
+
+#: includes/class-kraken-io-settings.php:839
+msgid "The Lossless mode will result in an unchanged image, however, will yield reduced savings as the image will not be recompressed."
+msgstr "無損模式會讓圖片維持不變，但由於不會重新壓縮圖片，因此減量幅度較小。"
+
+#: includes/class-kraken-io-settings.php:847
+msgid "Optimize uploads"
+msgstr "最佳化上傳檔案"
+
+#: includes/class-kraken-io-settings.php:848
+#: includes/class-kraken-io-summary.php:328
+msgid "Automatically optimize uploads"
+msgstr "自動最佳化上傳檔案"
+
+#: includes/class-kraken-io-settings.php:850
+msgid "Enabled by default. This setting causes images uploaded through the Media Uploader to be optimized on-the-fly."
+msgstr "預設為啟用。此設定會讓透過媒體上傳工具上傳的圖片即時進行最佳化。"
+
+#: includes/class-kraken-io-settings.php:851
+msgid "If you do not wish to do this, or wish to optimize images later, disable this setting by unchecking the box."
+msgstr "若您不希望這麼做，或想稍後再最佳化圖片，請取消勾選方塊以停用此設定。"
+
+#: includes/class-kraken-io-settings.php:859
+msgid "Optimize images"
+msgstr "最佳化圖片"
+
+#: includes/class-kraken-io-settings.php:860
+#: includes/class-kraken-io-summary.php:334
+msgid "Optimize main image"
+msgstr "最佳化主圖片"
+
+#: includes/class-kraken-io-settings.php:862
+msgid "Enabled by default. This option causes the image uploaded by the user to get optimized, as well as all sizes generated by WordPress."
+msgstr "預設為啟用。此選項會讓使用者上傳的圖片，以及 WordPress 產生的所有尺寸版本，都進行最佳化。"
+
+#: includes/class-kraken-io-settings.php:863
+msgid "Disabling this option results in faster uploading, since the main image is not sent to our system for optimization."
+msgstr "停用此選項可加快上傳速度，因為主圖片不會被送往我們的系統進行最佳化。"
+
+#: includes/class-kraken-io-settings.php:864
+msgid "Disable this option if you never use the \"main\" image upload in your posts, or speed of image uploading is an issue."
+msgstr "若您從不在文章中使用「主」圖片上傳，或圖片上傳速度是個問題，請停用此選項。"
+
+#: includes/class-kraken-io-settings.php:872
+msgid "Max width (px)"
+msgstr "最大寬度（px）"
+
+#: includes/class-kraken-io-settings.php:873
+msgid "Max height (px)"
+msgstr "最大高度（px）"
+
+#: includes/class-kraken-io-settings.php:879
+#: includes/class-kraken-io-summary.php:343
+msgid "Resize main image"
+msgstr "調整主圖片尺寸"
+
+#: includes/class-kraken-io-settings.php:881
+msgid "You can restrict the maximum dimensions of image uploads by width and/or height."
+msgstr "您可以依寬度及／或高度限制上傳圖片的最大尺寸。"
+
+#: includes/class-kraken-io-settings.php:882
+msgid "It is especially useful if you wish to prevent unnecessarily large photos with extremely high resolutions from being uploaded, for example, photos shot with a recent-model iPhone. Note: you can restrict the dimensions by width, height, or both. A value of zero disables."
+msgstr "若您想避免上傳解析度過高、不必要的大型相片（例如近期 iPhone 機型拍攝的相片），此功能特別實用。注意：您可依寬度、高度或兩者來限制尺寸。數值為零即停用。"
+
+#: includes/class-kraken-io-settings.php:894
+msgid "Intelligent lossy (recommended)"
+msgstr "智慧失真（建議）"
+
+#: includes/class-kraken-io-settings.php:899
+msgid "JPEG quality setting"
+msgstr "JPEG 品質設定"
+
+#: includes/class-kraken-io-settings.php:901
+msgid "Advanced users can force the quality of JPEG images to a discrete \"q\" value between 25 and 100 using this setting."
+msgstr "進階使用者可透過此設定，將 JPEG 圖片的品質強制設為 25 到 100 之間的特定「q」值。"
+
+#: includes/class-kraken-io-settings.php:902
+msgid "For example, forcing the quality to 60 or 70 might yield greater savings, but the resulting quality might be affected, depending on the image."
+msgstr "舉例來說，將品質強制設為 60 或 70 可能帶來更大的減量幅度，但結果的品質可能會受到影響，視圖片而定。"
+
+#: includes/class-kraken-io-settings.php:903
+msgid "We therefore recommend keeping the <strong>Intelligent Lossy</strong> setting, which will not allow a resulting image of unacceptable quality."
+msgstr "因此我們建議保留<strong>智慧失真</strong>設定，這樣便不會產生品質無法接受的圖片。"
+
+#: includes/class-kraken-io-settings.php:904
+msgid "This setting will be ignored when using the <strong>lossless</strong> optimization mode."
+msgstr "使用<strong>無損</strong>最佳化模式時，將忽略此設定。"
+
+#: includes/class-kraken-io-settings.php:913
+msgid "4:2:0 (default)"
+msgstr "4:2:0（預設）"
+
+#: includes/class-kraken-io-settings.php:914
+msgid "4:2:2"
+msgstr "4:2:2"
+
+#: includes/class-kraken-io-settings.php:915
+msgid "4:4:4 (no subsampling)"
+msgstr "4:4:4（不進行次取樣）"
+
+#: includes/class-kraken-io-settings.php:917
+msgid "Chroma subsampling scheme"
+msgstr "色度次取樣方案"
+
+#: includes/class-kraken-io-settings.php:919
+msgid "Advanced users can also set the resolution at which colour is encoded for JPEG images."
+msgstr "進階使用者也可設定 JPEG 圖片的色彩編碼解析度。"
+
+#: includes/class-kraken-io-settings.php:920
+msgid "In short, the default setting of 4:2:0 is suitable for most images, and will result in the lowest possible optimized file size."
+msgstr "簡而言之，預設的 4:2:0 設定適用於大多數圖片，並能產生最小的最佳化檔案大小。"
+
+#: includes/class-kraken-io-settings.php:921
+msgid "Images containing high contrast text or bright red areas on flat backgrounds might benefit from disabling chroma subsampling (by setting it to 4:4:4). "
+msgstr "含有高對比文字，或平面背景上有鮮紅色區塊的圖片，可能會因停用色度次取樣（將其設為 4:4:4）而獲益。"
+
+#: includes/class-kraken-io-settings.php:922
+msgid "More information can be found in our <a href=\"https://kraken.io/docs/chroma-subsampling\" target=\"_blank\">documentation</a>."
+msgstr "更多資訊請參閱我們的<a href=\"https://kraken.io/docs/chroma-subsampling\" target=\"_blank\">說明文件</a>。"
+
+#: includes/class-kraken-io-settings.php:932
+msgid "All logged-in users"
+msgstr "所有已登入的使用者"
+
+#: includes/class-kraken-io-settings.php:933
+msgid "Users who can upload media (Author and above)"
+msgstr "可上傳媒體的使用者（作者及以上）"
+
+#: includes/class-kraken-io-settings.php:934
+msgid "Administrators only"
+msgstr "僅限管理員"
+
+#: includes/class-kraken-io-settings.php:937
+msgid "Who can optimize images"
+msgstr "誰可以最佳化圖片"
+
+#: includes/class-kraken-io-settings.php:939
+msgid "Controls which logged-in users may trigger optimization actions (single optimize, bulk optimize, reset) from the Media Library."
+msgstr "控制哪些已登入的使用者可從媒體庫觸發最佳化操作（單張最佳化、批次最佳化、重設）。"
+
+#: includes/class-kraken-io-settings.php:940
+msgid "Optimization consumes your paid Kraken.io quota and rewrites your media, so a user can only act on attachments they are allowed to edit, and by default only users who can upload media (Author and above) may optimize. On sites with open registration (membership, WooCommerce, forums), keep this restricted so untrusted accounts cannot consume your quota or alter media."
+msgstr "最佳化會消耗您付費的 Kraken.io 配額並重寫您的媒體，因此使用者只能對自己有權編輯的附件進行操作；預設情況下，僅可上傳媒體的使用者（作者及以上）能進行最佳化。在開放註冊的網站（會員制、WooCommerce、論壇）上，請保持此限制，以免不受信任的帳號消耗您的配額或變更媒體。"
+
+#: includes/class-kraken-io-settings.php:941
+msgid "• All logged-in users — anyone signed in who can also edit the attachment (most permissive). • Users who can upload media — Authors, Editors and Administrators (default). • Administrators only — most restrictive."
+msgstr "• 所有已登入的使用者——任何登入且也能編輯該附件的人（權限最寬鬆）。• 可上傳媒體的使用者——作者、編輯與管理員（預設）。• 僅限管理員——權限最嚴格。"
+
+#: includes/class-kraken-io-settings.php:950
+msgid "Image sizes to Krak"
+msgstr "要 Krak 的圖片尺寸"
+
+#: includes/class-kraken-io-settings.php:952
+msgid "Every time you upload an image, WordPress generates several resized copies (thumbnail, medium, large, and so on). These resized versions — not the original — are what your visitors actually download, through responsive <code>srcset</code> images. Each size you tick here gets optimized, so the images people really load are compressed."
+msgstr "每次您上傳圖片時，WordPress 都會產生數個調整後的副本（縮圖、中型、大型等）。這些調整後的版本——而非原始圖片——才是訪客實際透過響應式 <code>srcset</code> 圖片下載的內容。您在此勾選的每個尺寸都會被最佳化，因此使用者真正載入的圖片都是經過壓縮的。"
+
+#: includes/class-kraken-io-settings.php:953
+msgid "If you untick a size, that copy is still created and still served to your visitors — just <strong>left unoptimized</strong>, at its full original weight. Keeping these on is what delivers the page-speed gain across your whole site, not just on the original file."
+msgstr "若您取消勾選某個尺寸，該副本仍會被建立並提供給訪客——只是<strong>未經最佳化</strong>，維持其完整的原始大小。保持這些選項啟用，才能讓整個網站（而不只是原始檔案）獲得頁面速度的提升。"
+
+#: includes/class-kraken-io-settings.php:954
+msgid "The trade-off: each ticked size is a separate optimization that uses your Kraken.io quota. For that reason the large retina sizes <code>1536×1536</code> and <code>2048×2048</code> are <strong>left off by default</strong> — most themes never serve them. If your theme does use them (for high-DPI screens), just tick them here and they'll be optimized too. Already-optimized images are never touched by this."
+msgstr "取捨之處：每個勾選的尺寸都是一次獨立的最佳化，會用到您的 Kraken.io 配額。因此大型的視網膜尺寸 <code>1536×1536</code> 與 <code>2048×2048</code> <strong>預設為關閉</strong>——大多數佈景主題從不提供它們。若您的佈景主題確實會用到它們（針對高 DPI 螢幕），只要在此勾選，它們也會被最佳化。已最佳化的圖片絕不會因此被變動。"
+
+#: includes/class-kraken-io-settings.php:962
+#: includes/class-kraken-io-summary.php:387
+msgid "Date"
+msgstr "日期"
+
+#: includes/class-kraken-io-settings.php:963
+#: includes/class-kraken-io-summary.php:388
+msgid "Copyright"
+msgstr "版權"
+
+#: includes/class-kraken-io-settings.php:964
+#: includes/class-kraken-io-summary.php:389
+msgid "Geotag"
+msgstr "地理標記"
+
+#: includes/class-kraken-io-settings.php:965
+#: includes/class-kraken-io-summary.php:390
+msgid "Orientation"
+msgstr "方向"
+
+#: includes/class-kraken-io-settings.php:975
+msgid "Preserve EXIF Metadata"
+msgstr "保留 EXIF 中繼資料"
+
+#: includes/class-kraken-io-settings.php:982
+msgid "Image orientation"
+msgstr "圖片方向"
+
+#: includes/class-kraken-io-settings.php:983
+#: includes/class-kraken-io-summary.php:366
+msgid "Automatically orient images"
+msgstr "自動調整圖片方向"
+
+#: includes/class-kraken-io-settings.php:985
+msgid "This setting will rotate the JPEG image according to its Orientation EXIF metadata such that it will always be correctly displayed in Web Browsers."
+msgstr "此設定會依據 JPEG 圖片的 Orientation EXIF 中繼資料旋轉圖片，使其在網頁瀏覽器中始終正確顯示。"
+
+#: includes/class-kraken-io-settings.php:986
+msgid "Enable this setting if many of your image uploads come from smart phones or digital cameras which set the orientation based on how they are held at the time of shooting."
+msgstr "若您上傳的圖片有許多來自智慧型手機或數位相機（它們會依拍攝時握持的方式設定方向），請啟用此設定。"
+
+#: includes/class-kraken-io-settings.php:994
+msgid "Metadata reset per image"
+msgstr "逐張圖片中繼資料重設"
+
+#: includes/class-kraken-io-settings.php:995
+msgid "Show reset button"
+msgstr "顯示重設按鈕"
+
+#: includes/class-kraken-io-settings.php:997
+msgid "Checking this option will add a Reset button in the \"Show Details\" popup in the Kraken Stats column for each optimized image."
+msgstr "勾選此選項會在每張已最佳化圖片的 Kraken 統計欄位中，於「顯示詳細資料」彈出視窗內加入重設按鈕。"
+
+#: includes/class-kraken-io-settings.php:998
+msgid "Resetting an image will remove the Kraken.io metadata associated with it, effectively making your blog forget that it had been optimized in the first place, allowing further optimization in some cases."
+msgstr "重設圖片會移除與其相關的 Kraken.io 中繼資料，等於讓您的網站忘記它曾被最佳化過，在某些情況下可允許進一步最佳化。"
+
+#: includes/class-kraken-io-settings.php:999
+msgid "If an image has been optimized using the lossless setting, lossless optimization will not yield any greater savings. If in doubt, please contact support@kraken.io"
+msgstr "若圖片曾以無損設定最佳化，再次進行無損最佳化將不會帶來更大的減量幅度。如有疑問，請聯絡 support@kraken.io"
+
+#: includes/class-kraken-io-settings.php:1007
+msgid "Savings badge"
+msgstr "節省標章"
+
+#: includes/class-kraken-io-settings.php:1008
+msgid "Show a savings badge on optimized thumbnails"
+msgstr "在已最佳化的縮圖上顯示節省標章"
+
+#: includes/class-kraken-io-settings.php:1010
+msgid "Displays the percentage saved in the corner of each optimized image thumbnail in the Media Library."
+msgstr "在媒體庫中每張已最佳化圖片縮圖的角落顯示節省的百分比。"
+
+#: includes/class-kraken-io-settings.php:1018
+msgid "Background process"
+msgstr "背景程序"
+
+#: includes/class-kraken-io-settings.php:1019
+msgid "Process image optimization in background"
+msgstr "在背景處理圖片最佳化"
+
+#: includes/class-kraken-io-settings.php:1021
+msgid "This setting will optimize images in background when using the option \"Automatically optimize uploads\" resulting in faster image uploads."
+msgstr "使用「自動最佳化上傳檔案」選項時，此設定會在背景進行圖片最佳化，使圖片上傳更快。"
+
+#: includes/class-kraken-io-settings.php:1027
+msgid "WebP / next-gen formats"
+msgstr "WebP／新世代格式"
+
+#: includes/class-kraken-io-settings.php:1029
+msgid "The old \"Create WebP\" and \"Display WebP\" options are deprecated. They created a separate .webp companion for every image and depended on Apache .htaccess rewrite rules, which did not work behind a CDN."
+msgstr "舊版的「建立 WebP」與「顯示 WebP」選項已淘汰。它們會為每張圖片建立獨立的 .webp 伴隨檔，並依賴 Apache .htaccess 重寫規則，而這些規則在 CDN 後方無法運作。"
+
+#: includes/class-kraken-io-settings.php:1030
+msgid "To serve WebP (or AVIF) now, use \"Convert uploads to → WebP\" in the General settings tab. Each upload is converted to the modern format directly, so the file is served as-is by any server or CDN — no companion files and no rewrite rules required."
+msgstr "若要現在提供 WebP（或 AVIF），請在「一般」設定分頁使用「上傳時轉換為 → WebP」。每個上傳的檔案都會直接轉換為現代格式，因此任何伺服器或 CDN 都能原樣提供該檔案——不需要伴隨檔，也不需要重寫規則。"
+
+#: includes/class-kraken-io-settings.php:1039
+msgid "Bulk concurrency"
+msgstr "批次並行數"
+
+#: includes/class-kraken-io-settings.php:1041
+msgid "This settings defines how many images can be processed at the same time using the bulk optimizer. The recommended (and default) value is 4."
+msgstr "此設定定義使用批次最佳化工具時可同時處理多少張圖片。建議（與預設）值為 4。"
+
+#: includes/class-kraken-io-settings.php:1042
+msgid "For blogs on very small hosting plans, or with reduced connectivity, a lower number might be necessary to avoid hitting request limits."
+msgstr "對於使用極小型主機方案，或連線品質較差的網站，可能需要較低的數值以避免觸及請求限制。"
+
+#: includes/class-kraken-io-summary.php:46
+msgid "Kraken.io Image Optimizer"
+msgstr "Kraken.io 圖片最佳化工具"
+
+#: includes/class-kraken-io-summary.php:171
+msgid "No conversion"
+msgstr "不轉換"
+
+#: includes/class-kraken-io-summary.php:351
+msgid "JPEG quality"
+msgstr "JPEG 品質"
+
+#: includes/class-kraken-io-summary.php:358
+msgid "Chroma subsampling"
+msgstr "色度次取樣"
+
+#: includes/class-kraken-io-summary.php:372
+msgid "Background processing"
+msgstr "背景處理"
+
+#: includes/class-kraken-io-summary.php:380
+msgid "Per-image reset button"
+msgstr "逐張圖片重設按鈕"
+
+#: includes/class-kraken-io-summary.php:391
+msgid "Profile"
+msgstr "色彩描述檔"
+
+#: includes/class-kraken-io-summary.php:400
+msgid "Preserve EXIF metadata"
+msgstr "保留 EXIF 中繼資料"
+
+#: includes/class-kraken-io-summary.php:413
+msgid "Image sizes optimized"
+msgstr "已最佳化的圖片尺寸"
+
+#. translators: %d number of image sizes
+#: includes/class-kraken-io-summary.php:415
+msgid "%d size"
+msgid_plural "%d sizes"
+msgstr[0] "%d 種尺寸"
+
+#: includes/class-kraken-io.php:372
+msgid "Are you sure you want to remove Kraken metadata for this image?"
+msgstr "您確定要移除這張圖片的 Kraken 中繼資料嗎？"
+
+#: includes/class-kraken-io.php:373
+msgid "This will immediately remove all Kraken metadata associated with your images. Are you sure you want to do this?"
+msgstr "這將立即移除與您圖片相關的所有 Kraken 中繼資料。您確定要這麼做嗎？"
+
+#: includes/class-kraken-io.php:374
+msgid "Something went wrong. Please reload the page and try again."
+msgstr "發生錯誤。請重新載入頁面後再試一次。"
+
+#: includes/class-kraken-io.php:375
+msgid "Optimizing…"
+msgstr "最佳化中…"
+
+#: includes/class-kraken-io.php:376
+msgid "Converting…"
+msgstr "轉換中…"
+
+#: includes/class-kraken-io.php:377
+msgid "Optimized"
+msgstr "已最佳化"
+
+#. translators: %s number of images
+#: includes/class-kraken-io.php:379
+msgid "%s images will be optimized."
+msgstr "將最佳化 %s 張圖片。"
+
+#. translators: %1$s optimized %2$s total
+#: includes/class-kraken-io.php:381
+msgid "%1$s / %2$s images have been optimized."
+msgstr "已最佳化 %1$s / %2$s 張圖片。"
+
+#: includes/class-kraken-io.php:382
+msgid "Copied!"
+msgstr "已複製！"
+
+#: templates/account-hero.php:60
+#: templates/summary-panel.php:36
+msgid "Not connected"
+msgstr "未連線"
+
+#: templates/account-hero.php:61
+msgid "Connect your Kraken.io account"
+msgstr "連結您的 Kraken.io 帳號"
+
+#: templates/account-hero.php:62
+msgid "Enter your API key and secret below to start optimizing your images. Don't have an account yet? Create one in seconds."
+msgstr "請在下方輸入您的 API 金鑰與密鑰，開始最佳化您的圖片。還沒有帳號嗎？只要幾秒鐘即可建立一個。"
+
+#: templates/account-hero.php:68
+#: templates/summary-panel.php:38
+msgid "Invalid credentials"
+msgstr "憑證無效"
+
+#: templates/account-hero.php:69
+msgid "Your API credentials are invalid"
+msgstr "您的 API 憑證無效"
+
+#: templates/account-hero.php:70
+msgid "Double-check the API key and secret below, or grab fresh credentials from your Kraken.io account."
+msgstr "請再次確認下方的 API 金鑰與密鑰，或從您的 Kraken.io 帳號取得新的憑證。"
+
+#: templates/account-hero.php:76
+#: templates/summary-panel.php:40
+msgid "Payment overdue"
+msgstr "款項逾期"
+
+#: templates/account-hero.php:77
+msgid "Your Kraken.io payment is overdue"
+msgstr "您的 Kraken.io 款項已逾期"
+
+#: templates/account-hero.php:78
+msgid "Optimization may be paused until your billing is up to date."
+msgstr "在您完成帳單繳納前，最佳化可能會暫停。"
+
+#: templates/account-hero.php:84
+#: templates/account-hero.php:92
+#: templates/summary-panel.php:42
+msgid "Connected"
+msgstr "已連線"
+
+#: templates/account-hero.php:85
+msgid "You're on the Free plan"
+msgstr "您目前使用免費方案"
+
+#: templates/account-hero.php:86
+msgid "Upgrade to a paid plan for more monthly quota and larger file sizes."
+msgstr "升級至付費方案，可獲得更多每月配額與更大的檔案大小。"
+
+#. translators: %s plan name
+#: templates/account-hero.php:96
+msgid "Connected — %s plan"
+msgstr "已連線——%s 方案"
+
+#: templates/account-hero.php:99
+msgid "Your Kraken.io account is active and optimizing your images."
+msgstr "您的 Kraken.io 帳號運作中，正在最佳化您的圖片。"
+
+#: templates/account-hero.php:119
+msgid "Monthly quota"
+msgstr "每月配額"
+
+#. translators: %1$s used %2$s total
+#: templates/account-hero.php:124
+msgid "%1$s of %2$s used"
+msgstr "已使用 %1$s／共 %2$s"
+
+#. translators: %s remaining
+#: templates/account-hero.php:125
+msgid "%s left"
+msgstr "剩餘 %s"
+
+#: templates/account-hero.php:135
+msgid "Create an account"
+msgstr "建立帳號"
+
+#: templates/account-hero.php:136
+#: templates/account-hero.php:142
+msgid "Get API credentials"
+msgstr "取得 API 憑證"
+
+#: templates/account-hero.php:148
+msgid "Update billing"
+msgstr "更新帳單"
+
+#: templates/account-hero.php:154
+msgid "Subscribe to a plan"
+msgstr "訂閱方案"
+
+#: templates/account-hero.php:155
+#: templates/account-hero.php:161
+msgid "Manage account"
+msgstr "管理帳號"
+
+#: templates/account-hero.php:162
+#: templates/summary-panel.php:113
+msgid "Upgrade plan"
+msgstr "升級方案"
+
+#: templates/bulk-optimizer-stats.php:32
+#: templates/media-column-stats.php:26
+#: templates/media-column-stats.php:133
+msgid "Failed with errors"
+msgstr "失敗並出現錯誤"
+
+#: templates/bulk-optimizer-stats.php:41
+#: templates/media-column-stats.php:35
+msgid "Optimizing..."
+msgstr "最佳化中…"
+
+#. translators: %1$s percentage %2$s total
+#: templates/bulk-optimizer-stats.php:51
+#: templates/media-column-stats.php:57
+msgid "Saved %1$s (%2$s)"
+msgstr "已節省 %1$s（%2$s）"
+
+#: templates/bulk-optimizer-stats.php:56
+#: templates/media-column-stats.php:107
+msgid "No savings"
+msgstr "未節省"
+
+#. translators: %s optimization type
+#: templates/bulk-optimizer-stats.php:64
+#: templates/media-column-stats.php:125
+msgid "No savings found for type %s"
+msgstr "找不到 %s 類型的節省結果"
+
+#: templates/bulk-optimizer-stats.php:71
+#: templates/media-column-stats.php:146
+msgid "N/A"
+msgstr "不適用"
+
+#: templates/bulk-optimizer.php:14
+#: templates/media-column-stats.php:20
+#: templates/stats.php:13
+msgid "Connect your account"
+msgstr "連結您的帳號"
+
+#. translators: %s number of images
+#: templates/bulk-optimizer.php:23
+msgid "%s image will be optimized."
+msgid_plural "%s images will be optimized."
+msgstr[0] "將最佳化 %s 張圖片。"
+
+#: templates/bulk-optimizer.php:27
+msgid "Selected images are already optimized"
+msgstr "所選圖片皆已最佳化"
+
+#: templates/bulk-optimizer.php:29
+msgid "All images are already optimized"
+msgstr "所有圖片皆已最佳化"
+
+#: templates/bulk-optimizer.php:44
+msgid "Kraken Bulk Image Optimization"
+msgstr "Kraken 批次圖片最佳化"
+
+#: templates/bulk-optimizer.php:65
+msgid "Image"
+msgstr "圖片"
+
+#: templates/bulk-optimizer.php:66
+msgid "Original Size"
+msgstr "原始大小"
+
+#: templates/bulk-optimizer.php:69
+msgid "Kraken.io Stats"
+msgstr "Kraken.io 統計"
+
+#: templates/conflicts-notice.php:23
+msgid "Other image optimizers detected"
+msgstr "偵測到其他圖片最佳化工具"
+
+#: templates/conflicts-notice.php:26
+msgid "Running more than one image optimizer on the same uploads wastes quota and can double-compress your images. For best results with Kraken.io, deactivate the plugins below."
+msgstr "對同一批上傳檔案執行多個圖片最佳化工具會浪費配額，並可能讓您的圖片被重複壓縮。為了在 Kraken.io 上獲得最佳效果，請停用下列外掛。"
+
+#: templates/conflicts-notice.php:33
+msgid "Deactivate"
+msgstr "停用"
+
+#: templates/media-column-stats.php:46
+msgid "Optimize Main Image"
+msgstr "最佳化主圖片"
+
+#: templates/media-column-stats.php:61
+msgid "Show Details"
+msgstr "顯示詳細資料"
+
+#: templates/media-column-stats.php:67
+msgid "Main image savings"
+msgstr "主圖片節省量"
+
+#. translators: %1$s bytes %2$s percentage
+#: templates/media-column-stats.php:70
+#: templates/media-column-stats.php:85
+msgid "%1$s (%2$s saved)"
+msgstr "%1$s（節省 %2$s）"
+
+#. translators: %s count
+#: templates/media-column-stats.php:80
+msgid "Savings on %s thumbnails"
+msgstr "%s 張縮圖的節省量"
+
+#: templates/media-column-stats.php:97
+msgid "Reset Image"
+msgstr "重設圖片"
+
+#: templates/media-column-stats.php:117
+msgid "Optimize"
+msgstr "最佳化"
+
+#: templates/stats.php:28
+msgid "Plan Level"
+msgstr "方案等級"
+
+#: templates/stats.php:32
+msgid "Quota"
+msgstr "配額"
+
+#: templates/stats.php:36
+msgid "Current Usage"
+msgstr "目前用量"
+
+#: templates/stats.php:40
+msgid "Remaining"
+msgstr "剩餘"
+
+#: templates/summary-panel.php:53
+msgid "Active plan"
+msgstr "使用中的方案"
+
+#: templates/summary-panel.php:73
+msgid "View full stats"
+msgstr "檢視完整統計"
+
+#: templates/summary-panel.php:87
+msgid "No API credentials found."
+msgstr "找不到 API 憑證。"
+
+#: templates/summary-panel.php:87
+msgid "Connect your Kraken.io account to start optimizing your images."
+msgstr "連結您的 Kraken.io 帳號，開始最佳化您的圖片。"
+
+#: templates/summary-panel.php:88
+msgid "Add API credentials"
+msgstr "新增 API 憑證"
+
+#: templates/summary-panel.php:94
+msgid "Your Kraken.io API credentials are invalid."
+msgstr "您的 Kraken.io API 憑證無效。"
+
+#: templates/summary-panel.php:94
+msgid "Please check your API key and secret in the plugin settings."
+msgstr "請在外掛設定中檢查您的 API 金鑰與密鑰。"
+
+#: templates/summary-panel.php:95
+msgid "Review credentials"
+msgstr "檢視憑證"
+
+#: templates/summary-panel.php:103
+msgid "Payment overdue — your API access has been restricted."
+msgstr "款項逾期——您的 API 存取權限已受限。"
+
+#: templates/summary-panel.php:103
+msgid "Please complete your payment from your kraken.io account to resume optimizing."
+msgstr "請從您的 kraken.io 帳號完成付款，以恢復最佳化。"
+
+#: templates/summary-panel.php:104
+msgid "Complete payment"
+msgstr "完成付款"
+
+#: templates/summary-panel.php:112
+msgid "Free test quota used up."
+msgstr "免費測試配額已用盡。"
+
+#: templates/summary-panel.php:112
+msgid "Upgrade to a paid plan to keep optimizing, or email support@kraken.io to request more test quota."
+msgstr "升級至付費方案以繼續最佳化，或寄信至 support@kraken.io 申請更多測試配額。"
+
+#: templates/summary-panel.php:115
+msgid "Monthly quota exceeded."
+msgstr "已超過每月配額。"
+
+#: templates/summary-panel.php:115
+msgid "Further optimizations will be billed at the end of your billing period."
+msgstr "後續的最佳化將於您的帳單週期結束時計費。"
+
+#: templates/summary-panel.php:116
+msgid "View account"
+msgstr "檢視帳號"
+
+#: templates/summary-panel.php:129
+msgid "Convert uploads to:"
+msgstr "上傳時轉換為："
+
+#. translators: %s number of images
+#: templates/summary-panel.php:147
+msgid "Bulk optimize (%s)"
+msgstr "批次最佳化（%s）"
+
+#: templates/summary-panel.php:159
+msgid "General"
+msgstr "一般"
+
+#: templates/summary-panel.php:168
+#: templates/summary-panel.php:185
+msgid "Edit"
+msgstr "編輯"
+
+#: templates/summary-panel.php:172
+msgid "Advanced"
+msgstr "進階"
+
+#: templates/summary-panel.php:174
+msgid "None enabled"
+msgstr "未啟用任何項目"
+
+#: templates/summary-panel.php:189
+msgid "Supported:"
+msgstr "支援："
+
+#: templates/support.php:23
+msgid "Site"
+msgstr "網站"
+
+#: templates/support.php:24
+msgid "WordPress"
+msgstr "WordPress"
+
+#: templates/support.php:25
+msgid "PHP"
+msgstr "PHP"
+
+#: templates/support.php:26
+msgid "Plugin"
+msgstr "外掛"
+
+#. translators: %s: site URL
+#: templates/support.php:36
+msgid "Kraken.io WordPress plugin support — %s"
+msgstr "Kraken.io WordPress 外掛支援——%s"
+
+#: templates/support.php:39
+msgid "Describe your question or problem here."
+msgstr "請在此描述您的問題或疑問。"
+
+#: templates/support.php:44
+msgid "Contact us"
+msgstr "聯絡我們"
+
+#: templates/support.php:46
+msgid "Have a question or hit a problem? The quickest way to reach the Kraken.io team is our WordPress.org support forum — open a thread and we will reply there. Prefer email? Use the button below to write to us from your own mail app."
+msgstr "有疑問或遇到問題嗎？聯繫 Kraken.io 團隊最快的方式是我們的 WordPress.org 支援論壇——開一則討論串，我們會在那裡回覆。偏好電子郵件嗎？請使用下方按鈕，從您自己的郵件應用程式寫信給我們。"
+
+#: templates/support.php:52
+msgid "Open the support forum"
+msgstr "開啟支援論壇"
+
+#: templates/support.php:56
+msgid "Email support@kraken.io"
+msgstr "寄信至 support@kraken.io"
+
+#: templates/support.php:62
+msgid "Please include these details so we can help faster:"
+msgstr "請附上這些詳細資訊，以便我們更快協助您："
+
+#: templates/support.php:64
+msgid "Copy"
+msgstr "複製"
+
+#: templates/support.php:74
+msgid "These links never depend on your server's email setup, so your message always reaches us."
+msgstr "這些連結絕不依賴您伺服器的電子郵件設定，因此您的訊息總能送達我們手中。"
+
+#: includes/class-kraken-io-settings.php:293
+msgid "All changes saved"
+msgstr "所有變更已儲存"
+
+#: includes/class-kraken-io-settings.php:297
+msgid "You have unsaved changes — don’t forget to save."
+msgstr "您有未儲存的變更——別忘了儲存。"
+
+#: templates/stats.php:62
+msgid "Savings on this site"
+msgstr "本網站的節省成效"
+
+#: templates/stats.php:64
+msgid "These figures cover only the images optimized on this website — every full-size image and all of their thumbnail sizes — and are calculated from this site's own data. They are separate from the Kraken.io account quota shown above, which is shared across every site that uses your API key."
+msgstr "這些數據僅涵蓋在本網站上最佳化的圖片——每張完整尺寸圖片及其所有縮圖尺寸——並依本網站自身的資料計算。它們與上方顯示的 Kraken.io 帳號配額是分開的，後者由所有使用您 API 金鑰的網站共用。"
+
+#: templates/stats.php:70
+msgid "saved on this site"
+msgstr "於本網站節省"
+
+#: templates/stats.php:79
+msgid "%s smaller overall"
+msgstr "整體縮小 %s"
+
+#: templates/stats.php
+msgid "Original"
+msgstr "原始"
+
+#: templates/stats.php
+msgid "Saved"
+msgstr "已節省"
+
+#: templates/stats.php
+msgid "Full-size images"
+msgstr "完整尺寸圖片"
+
+#: templates/stats.php
+msgid "Thumbnails"
+msgstr "縮圖"
+
+#: templates/stats.php
+msgid "Total"
+msgstr "合計"

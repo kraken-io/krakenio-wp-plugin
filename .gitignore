@@ -288,3 +288,6 @@ ehthumbs_vista.db
 *.lnk
 
 # End of https://www.gitignore.io/api/osx,node,linux,windows,phpstorm,composer,sublimetext,visualstudiocode
+
+# Demo video (not shipped, too large for the repo)
+.wordpress-org/kraken-demo.webm

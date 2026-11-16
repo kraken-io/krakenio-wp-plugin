@@ -48,7 +48,7 @@ else:
 			<div class="kraken-bulk-images">
 				<p class="kraken-bulk-images-info"><?php echo esc_html($text); ?></p>
 				<div class="kraken-bulk-actions" <?php echo $number > 0 ? '' : ' hidden'; ?>>
-					<button type="button" class="button kraken-button-bulk-optimize"
+					<button type="button" class="kraken-button-bulk-optimize"
 						data-total="<?php echo esc_html($number); ?>" data-pages="<?php echo esc_attr($args['pages']); ?>"
 						data-ids="<?php echo esc_attr(wp_json_encode($args['ids'])); ?>">
 						<?php esc_html_e("Krak 'em all", 'kraken-io'); ?>
